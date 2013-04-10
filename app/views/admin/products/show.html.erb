@@ -22,8 +22,8 @@
 <% if @product.variants.any? %>
   <h4 class="subsection_title">Variants</h4>
   <% @product.variants.each do |variant| %>
-    <p><b><%= variant.name %></b>: <%= number_to_currency(variant.price, strip_insignificant_zeros: true) %> || 
-    In stock: <%= variant.stocks.any? ? variant.stocks.sum(&:in_stock) : 0 %>
+    <p><b><%= variant.name %></b>: <%= number_to_currency(variant.current_price, strip_insignificant_zeros: true) %> || 
+    In stock: <%= variant.in_stock %>
     </p>
     <%= markdown(variant.description) if variant.description.present? %>
   <% end %>

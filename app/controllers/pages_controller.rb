@@ -15,7 +15,7 @@ class PagesController < ApplicationController
   end
 
   def home
-    @products = Product.public.available.order('name')
+    @products = Product.public.in_stocks.order('name')
   end
 
   def become_reseller
