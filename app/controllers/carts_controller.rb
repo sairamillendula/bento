@@ -7,7 +7,7 @@ class CartsController < ApplicationController
     @cart.update_attributes(params[:cart])        
     @cart.calculate
 
-    redirect_to cart_url, notice: "#{t 'carts.is_updated'}."
+    redirect_to cart_url
   end
 
 	def destroy
@@ -15,7 +15,7 @@ class CartsController < ApplicationController
     session[:cart_id] = nil
 
     respond_to do |format|
-      format.html { redirect_to cart_url, notice: "#{t 'carts.is_empty'}." }
+      format.html { redirect_to cart_url }
     end
 	end
 

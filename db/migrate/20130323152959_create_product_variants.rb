@@ -2,10 +2,11 @@ class CreateProductVariants < ActiveRecord::Migration
   def change
     create_table :product_variants do |t|
     	t.string  :name
-    	t.float   :price
-      t.float   :sale_price
+      t.decimal :price, precision: 11, scale: 2
+      t.decimal :sale_price, precision: 11, scale: 2
     	t.text    :description
     	t.boolean :back_ordered, default: false
+      t.integer :in_stock, default: 0
     	t.integer :product_id
 
       t.timestamps

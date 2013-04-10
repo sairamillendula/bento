@@ -23,7 +23,7 @@ class LineItemsController < ApplicationController
     @cart.remove_from_cart(params[:id])
 
 		respond_to do |format|
-      format.html { redirect_to cart_url, notice: 'Product successfully removed from cart.' }
+      format.html { redirect_to cart_url }
       format.js
     end
 	end

@@ -1,12 +1,4 @@
 GIT
-  remote: git://github.com/tors/jquery-fileupload-rails.git
-  revision: 7fd368bcca575173de81103e5e947663cde62e0c
-  specs:
-    jquery-fileupload-rails (0.4.1)
-      actionpack (>= 3.1)
-      railties (>= 3.1)
-
-GIT
   remote: https://github.com/hoangnghiem/rails_bootstrap_helper.git
   revision: 69da209a4c4b07ca284c5fca6ae81d2fc03b37b0
   specs:
@@ -95,6 +87,9 @@ GEM
     httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
+    jquery-fileupload-rails (0.4.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     jquery-rails (2.2.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
@@ -231,7 +226,7 @@ DEPENDENCIES
   faker (= 1.0.1)
   friendly_id
   hirb
-  jquery-fileupload-rails!
+  jquery-fileupload-rails
   jquery-rails
   kaminari-bootstrap
   letter_opener

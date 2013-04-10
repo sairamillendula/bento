@@ -170,13 +170,14 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
 
   create_table "product_variants", :force => true do |t|
     t.string   "name"
-    t.float    "price"
-    t.float    "sale_price"
+    t.decimal  "price",        :precision => 11, :scale => 2
+    t.decimal  "sale_price",   :precision => 11, :scale => 2
     t.text     "description"
-    t.boolean  "back_ordered", :default => false
+    t.boolean  "back_ordered",                                :default => false
+    t.integer  "in_stock",                                    :default => 0
     t.integer  "product_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   add_index "product_variants", ["product_id"], :name => "index_product_variants_on_product_id"
@@ -191,6 +192,7 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
     t.boolean  "public",                                      :default => true
     t.boolean  "back_ordered",                                :default => false
     t.boolean  "featured",                                    :default => false
+    t.integer  "in_stock",                                    :default => 0
     t.integer  "supplier_id"
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false

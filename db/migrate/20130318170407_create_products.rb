@@ -4,12 +4,13 @@ class CreateProducts < ActiveRecord::Migration
       t.string  :name
       t.string  :slug
       t.string  :sku
-      t.decimal :price, :precision => 11, :scale => 2
-      t.decimal :sale_price, :precision => 11, :scale => 2
+      t.decimal :price, precision: 11, scale: 2
+      t.decimal :sale_price, precision: 11, scale: 2
       t.text    :description
       t.boolean :public, default: true
       t.boolean :back_ordered, default: false
       t.boolean :featured, default: false
+      t.integer :in_stock, default: 0
       t.integer :supplier_id
 
       t.timestamps

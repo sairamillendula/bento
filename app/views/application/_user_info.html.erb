@@ -9,7 +9,7 @@
       Welcome, please <%= link_to "#{t 'sign_in'}", login_path %> or
       <%= link_to "#{t 'sign_up'}", signup_path %>
     <% end %>
-    <span class="pull-right"><i class="icon-shopping-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %>
-      <%#= pluralize(current_cart.items.length, "#{t 'item'}") %></span>
+    <span class="pull-right"><i class="icon-shopping-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
+      <%= pluralize(current_cart.items.length, "#{t 'item'}") %></span>
   </div>
 </div>
