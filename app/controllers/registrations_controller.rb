@@ -23,7 +23,12 @@ class RegistrationsController < ApplicationController
 	end
 
 	def update
-		@user = current_user
+    if params[:user][:password].blank?
+      params[:user].delete("password")
+      params[:user].delete("password_confirmation")
+    end
+
+    @user = User.find(current_user.id)
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
