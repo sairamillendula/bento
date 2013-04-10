@@ -31,6 +31,13 @@ body.public {
 			text-transform: uppercase;
 		}
 	}
+
+	/* form */
+	textarea {
+		width: 100%;
+		max-width: 976px;
+		height: 200px;
+	}
 }
 
 #homepage.public {
