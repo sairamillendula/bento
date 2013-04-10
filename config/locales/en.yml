@@ -49,6 +49,8 @@ en:
     is_empty: Your cart is currently empty
     empty_action: Empty cart
     invalid: Invalid cart
+    continue_shopping: Continue Shopping
+    update: Update Cart
   articles:
     title: Articles
     new: New Article

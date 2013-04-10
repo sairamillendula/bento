@@ -2,49 +2,57 @@
 <%= page_title("#{t 'carts.title'}") %>
 
 <% if @cart.items.any? %>
+  <%= form_for @cart, url: cart_path do |f| %>
 	<table id="cart" class="table table-striped">
 	  <tr>
 	    <th><%= t 'item' %></th>
 	    <th><%= t 'quantity' %></th>
-	    <th><%= t 'price' %></th>
+      <th><%= t 'price' %></th>
+	    <th><%= t 'subtotal' %></th>
 	    <th></th>
 	  </tr>
-	  
-	  <% @cart.items.each do |item| %>
+	 
+    <%= f.fields_for :items do |ff| %>
+      <% item = ff.object %>
+	  <%# @cart.items.each do |item| %>
 	    <tr>
 	      <td><%= item.product.name %></td>
-	      <td><%= item.quantity %></td>
+	      <td><%= ff.number_field :quantity, class: 'input-small' %></td>
+        <td><%= number_to_currency(item.current_price) %></td>
 	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-	      <td><%= button_to "X", line_items_path(item), method: :delete %>
-	      	<%= icon_button_link_to "", line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true %></td>
+	      <td><%= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true %></td>
 	    </tr>
-		<% end %>
+    <% end %>
 		<tr class="total">
-			<td colspan="2" class="total-type"><%= t 'subtotal' %></td>
+			<td colspan="3" class="total-type"><%= t 'subtotal' %></td>
       <td colspan="2"><%= number_to_currency(@cart.subtotal) %></td>
 		</tr>
 		<tr class="total">
-			<td colspan="2" class="total-type"><%= t 'discount' %></td>
+			<td colspan="3" class="total-type"><%= t 'discount' %></td>
       <td colspan="2"><%= number_to_currency(0) %></td>
 		</tr>
 		<tr class="total">
-			<td colspan="2" class="total-type"><%= t 'tax' %></td>
+			<td colspan="3" class="total-type"><%= t 'tax' %></td>
       <td colspan="2"><%= number_to_currency(0) %></td>
 		</tr>
 		<tr class="total">
-			<td colspan="2" class="total-type"><%= t 'shipping' %></td>
+			<td colspan="3" class="total-type"><%= t 'shipping' %></td>
       <td colspan="2"><%= number_to_currency(0) %></td>
 		</tr>
 		<tr class="total">
-			<td colspan="2" class="total-type"><%= t 'total' %></td>
+			<td colspan="3" class="total-type"><%= t 'total' %></td>
       <td colspan="2"><%= number_to_currency(@cart.total) %></td>
 		</tr>
 	</table>
-  <%= link_to "Cart", carts_path %>
-  <%= icon_button_link_to "#{t 'destroy'}", cart_path(@cart), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
-  <%= button_to 'Empty cart', carts_path, method: :delete, confirm: 'Are you sure?' %>
-	<%= button_to "#{t 'carts.empty_action'}", @cart, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
-	<%= button_to "#{t 'checkout'}", new_order_path, method: :get, class: "btn btn-success" %>
+  <%#= link_to "Cart", carts_path %>
+  <%#= icon_button_link_to "#{t 'destroy'}", cart_path(@cart), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
+  <%#= button_to 'Empty cart', carts_path, method: :delete, confirm: 'Are you sure?' %>
+  <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
+  <%#= link_to "#{t 'carts.update'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
+  <%= link_to "#{t 'carts.empty_action'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
+	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
+	<%= link_to "#{t 'checkout'}", new_order_path, class: "btn btn-success" %>
+  <% end %>
 
 <% else %>
   <p class="alert"><%= t 'carts.is_empty' %>. <%= link_to "#{t 'products.browse'}", products_path %></p>

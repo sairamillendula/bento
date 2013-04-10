@@ -6,7 +6,7 @@ Bento::Application.routes.draw do
   # ============================================================
   # USER ROUTES
   # ============================================================
-  get "logout" => "sessions#destroy", as: "logout"
+  delete "logout" => "sessions#destroy", as: "logout"
   get "login" => "sessions#new", as: "login"
   get "signup" => "registrations#new", as: "signup"
   get "profile" => "registrations#edit", as: "profile"
@@ -89,8 +89,12 @@ Bento::Application.routes.draw do
     get "/tag/:tag" => "articles#index", as: 'tag'
   end
 
-  scope "/cart" do
-    get "/" => "carts#show", as: 'cart'
+  # scope "/cart" do
+  #   get "/" => "carts#show", as: 'cart'
+  #   resources :line_items
+  # end
+
+  resource :cart, except: [:new, :create, :edit] do
     resources :line_items
   end
     
@@ -101,7 +105,7 @@ Bento::Application.routes.draw do
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
   resources :line_items, only: [:create, :update]
-  resources :carts, only: [:create, :update, :destroy]
+  # resources :carts, only: [:create, :update, :destroy]
   
   get "/:slug" => 'pages#show', as: 'page'
   

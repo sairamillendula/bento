@@ -3,10 +3,10 @@ class CreateOrders < ActiveRecord::Migration
     create_table :orders do |t|
     	t.string   :code
     	t.integer  :user_id
-    	t.float    :subtotal
-    	t.float    :tax
-    	t.float    :shipping
-    	t.float    :total
+      t.decimal  :subtotal, :precision => 11, :scale => 2
+      t.decimal  :tax, :precision => 11, :scale => 2
+      t.decimal  :shipping, :precision => 11, :scale => 2
+      t.decimal  :total, :precision => 11, :scale => 2
     	t.boolean  :completed, default: false
     	t.string   :payment_type
     	t.string   :coupon_code

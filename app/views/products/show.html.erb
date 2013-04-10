@@ -2,7 +2,7 @@
 
 <%= markdown(@product.description) %>
 
-<%= button_to 'Add to Cart', line_items_path(product_id: @product), remote: true, class: "btn btn-success" %>
+<%= button_to 'Add to Cart', line_items_path(product_id: @product), class: "btn btn-success" %>
 
 <% if @product.variants.any? %>
   <ul>

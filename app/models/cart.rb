@@ -1,22 +1,33 @@
 class Cart < ActiveRecord::Base
   has_many :items, class_name: "LineItem", dependent: :destroy
-  
-  def add_product(product_id)
-	  current_item = items.find_by_product_id(product_id)
+  accepts_nested_attributes_for :items, allow_destroy: true
 
-	  if current_item
-	    current_item.quantity += 1
-	  else
-	    current_item = items.build(product_id: product_id)
-	  end
+  attr_accessible :items_attributes
+  
+  # buyable can be product or variant
+  # return: line item
+  def add_to_cart(buyable)
+    if buyable.is_a?(Product)
+	   current_item = items.where(product_id: buyable.id).first_or_initialize
+    elsif buyable.is_a?(ProductVariant)
+      current_item = items.where(product_variant_id: buyable.id).first_or_initialize
+    else
+      raise ArgumentError.new('give argument must be an instance of Product or ProductVariant')
+    end
+    current_item.quantity += 1 unless current_item.new_record?
+    current_item.save
+    calculate
 	  current_item
   end
 
-  def subtotal
-    @subtotal ||= items.inject(0) { |sum, item| sum + item.current_price }.round(2)
+  def remove_from_cart(line_id)
+    items.where(id: line_id).destroy_all
+    calculate
   end
 
-  def total
-  	@total = subtotal
+  def calculate
+    self.subtotal = items.inject(0) { |sum, item| sum + item.subtotal }
+    self.total = subtotal
+    self.save
   end
 end

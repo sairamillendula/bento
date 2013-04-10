@@ -4,8 +4,8 @@ class CreateProducts < ActiveRecord::Migration
       t.string  :name
       t.string  :slug
       t.string  :sku
-      t.float   :price
-      t.float   :sale_price
+      t.decimal :price, :precision => 11, :scale => 2
+      t.decimal :sale_price, :precision => 11, :scale => 2
       t.text    :description
       t.boolean :public, default: true
       t.boolean :back_ordered, default: false

@@ -4,7 +4,7 @@ class CreateLineItems < ActiveRecord::Migration
       t.integer :product_id
       t.integer :product_variant_id
       t.integer :quantity, default: 1
-      t.float   :price
+      t.decimal :price, :precision => 11, :scale => 2
       t.integer :cart_id
       t.integer :order_id
 

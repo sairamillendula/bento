@@ -67,8 +67,12 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
   end
 
   create_table "carts", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.decimal  "subtotal",   :precision => 11, :scale => 2
+    t.decimal  "tax",        :precision => 11, :scale => 2
+    t.decimal  "shipping",   :precision => 11, :scale => 2
+    t.decimal  "total",      :precision => 11, :scale => 2
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -110,12 +114,12 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
   create_table "line_items", :force => true do |t|
     t.integer  "product_id"
     t.integer  "product_variant_id"
-    t.integer  "quantity",           :default => 1
-    t.float    "price"
+    t.integer  "quantity",                                          :default => 1
+    t.decimal  "price",              :precision => 11, :scale => 2
     t.integer  "cart_id"
     t.integer  "order_id"
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.datetime "created_at",                                                       :null => false
+    t.datetime "updated_at",                                                       :null => false
   end
 
   add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
@@ -124,18 +128,18 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
   create_table "orders", :force => true do |t|
     t.string   "code"
     t.integer  "user_id"
-    t.float    "subtotal"
-    t.float    "tax"
-    t.float    "shipping"
-    t.float    "total"
-    t.boolean  "completed",    :default => false
+    t.decimal  "subtotal",     :precision => 11, :scale => 2
+    t.decimal  "tax",          :precision => 11, :scale => 2
+    t.decimal  "shipping",     :precision => 11, :scale => 2
+    t.decimal  "total",        :precision => 11, :scale => 2
+    t.boolean  "completed",                                   :default => false
     t.string   "payment_type"
     t.string   "coupon_code"
     t.string   "remote_ip"
-    t.boolean  "shipped",      :default => false
+    t.boolean  "shipped",                                     :default => false
     t.datetime "shipped_at"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
@@ -181,15 +185,15 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
     t.string   "name"
     t.string   "slug"
     t.string   "sku"
-    t.float    "price"
-    t.float    "sale_price"
+    t.decimal  "price",        :precision => 11, :scale => 2
+    t.decimal  "sale_price",   :precision => 11, :scale => 2
     t.text     "description"
-    t.boolean  "public",       :default => true
-    t.boolean  "back_ordered", :default => false
-    t.boolean  "featured",     :default => false
+    t.boolean  "public",                                      :default => true
+    t.boolean  "back_ordered",                                :default => false
+    t.boolean  "featured",                                    :default => false
     t.integer  "supplier_id"
-    t.datetime "created_at",                      :null => false
-    t.datetime "updated_at",                      :null => false
+    t.datetime "created_at",                                                     :null => false
+    t.datetime "updated_at",                                                     :null => false
   end
 
   create_table "reseller_requests", :force => true do |t|

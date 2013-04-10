@@ -1,9 +1,9 @@
 class LineItemsController < ApplicationController
+  before_filter :load_cart
 
 	def create
-		@cart = current_cart
     product = Product.find(params[:product_id])
-		@line_item = @cart.add_product(product.id)
+		@line_item = @cart.add_to_cart(product)
 		
 		respond_to do |format|
 			if @line_item.save
@@ -21,13 +21,22 @@ class LineItemsController < ApplicationController
 	end
 
 	def destroy
-		@cart = current_cart
-		@item = @cart.items.find(params[:id])
-		@item.destroy
+    @cart.remove_from_cart(params[:id])
 
 		respond_to do |format|
-      format.html { redirect_to cart_path }
+      format.html { redirect_to cart_url, notice: 'Product successfully removed from cart.' }
       format.js
     end
 	end
+
+  private
+
+  def load_cart
+    begin
+      @cart = current_cart
+    rescue ActiveRecord::RecordNotFound
+      logger.error "Attempt to access invalid cart #{params[:id]}"
+      return redirect_to root_url, notice: "#{t 'carts.invalid'}"
+    end 
+  end
 end
