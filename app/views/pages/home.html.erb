@@ -12,7 +12,7 @@ Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consec
 	    <li class="span3" style="margin-bottom:20px;">
 	    	<div class="thumbnail">
 	        <img data-src="holder.js/300x200" alt="" width="360" height="270">
-	  	    <h4 style='height:40px;'><%= product.name %> (<%= number_to_currency(product.price_display, strip_insignificant_zeros: true) %>)</h4>
+	  	    <h4 style='height:40px;'><%= link_to product.name, product %> (<%= number_to_currency(product.price_display, strip_insignificant_zeros: true) %>)</h4>
 	  	    <%= truncate(markdown(product.description), length: 100).html_safe if product.description.present? %>
 	  	    <%= button_to 'Add to Cart', line_items_path(product_id: product), class: "btn btn-block" %>
 	  	  </div>
