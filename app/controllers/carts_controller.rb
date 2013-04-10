@@ -1,5 +1,4 @@
 class CartsController < ApplicationController
-  before_filter :load_cart
 
 	def show
 	end
@@ -20,14 +19,4 @@ class CartsController < ApplicationController
     end
 	end
 
-  private
-
-  def load_cart
-    begin
-      @cart = current_cart
-    rescue ActiveRecord::RecordNotFound
-      logger.error "Attempt to access invalid cart #{params[:id]}"
-      return redirect_to root_url, notice: "#{t 'carts.invalid'}"
-    end 
-  end
 end
