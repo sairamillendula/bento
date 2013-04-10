@@ -7,7 +7,7 @@
 <% if @product.variants.any? %>
   <ul>
   <% @product.variants.each do |v| %>
-    <li><%= v.name %> (<%= number_to_currency(v.price, strip_insignificant_zeros: true) %>)</li>
+    <li><%= v.name %> (<%= number_to_currency(v.current_price, strip_insignificant_zeros: true) %>)</li>
   <% end %>
   </ul>
 <% end %>

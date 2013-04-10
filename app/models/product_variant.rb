@@ -6,8 +6,7 @@ class ProductVariant < ActiveRecord::Base
 
   has_many :stocks
 
-  scope :available, where(back_ordered: false)
-  scope :in_stock, ProductVariant.joins(:stocks).where('stocks.in_stock > 0').group(:variant_id)
+  scope :in_stocks, where(back_ordered: false && in_stock > 0)
 
   attr_accessible :name, :price, :sale_price, :description, :back_ordered, :featured, :product_id, :pictures_attributes, :in_stock
 
@@ -23,7 +22,7 @@ class ProductVariant < ActiveRecord::Base
   end
 
   def in_stock?
-    stocks.select{|stock| stock.in_stock? }.any?
+    in_stock > 0
   end
   
   def can_be_deleted?

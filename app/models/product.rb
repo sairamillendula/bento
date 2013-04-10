@@ -13,8 +13,7 @@ class Product < ActiveRecord::Base
   has_many :stocks
 
   scope :public, where(public: true)
-  scope :available, where(back_ordered: false)
-  scope :in_stock, Product.joins(:stocks).where('stocks.in_stock > 0').group(:product_id)
+  scope :in_stocks, where(back_ordered: false && in_stock > 0)
   
   attr_accessible :back_ordered, :description, :name, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock,
                   :variants_attributes, :category_tokens, :pictures_attributes
@@ -48,7 +47,7 @@ class Product < ActiveRecord::Base
   end
   
   def in_stock?
-    stocks.select{|stock| stock.in_stock? }.any?
+    in_stock > 0
   end
 
   def can_be_deleted?
