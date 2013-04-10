@@ -34,8 +34,8 @@
       <%# v.object.stocks.new do |stock| %>
         <%#= label_tag :in_stock %> <%#= text_field_tag :in_stock %>
       <%# end %>
-      <p class="nolabel"><%= link_to "Add description", "#", class: 'variant_description_link' %></p>
-      <%= v.input :description, wrapper_html: {class: "variant-description"} %>
+      <p class="nolabel"><%= link_to "Add description", "#", class: 'variant_description_link', style: "display: #{v.object.description.present? ? 'none' : 'block'}" %></p>
+      <%= v.input :description, wrapper_html: {class: "variant-description", style: "display: #{v.object.description.present? ? 'block' : 'none'}"} %>
       <i class="icon-remove"></i> <%= v.link_to_remove "#{t 'remove'}" %>
       <hr>
     <% end %>
@@ -49,9 +49,10 @@
 
 <script type="text/javascript">
   $(document).ready(function() {
-    $('.variant_description_link').click(function(event) {
-        event.preventDefault();
-        $(this).closest('.product_variant').find('.variant-description').toggle();
+    $(document).on('click', '.variant_description_link', function(event) {
+      event.preventDefault();
+      $(this).closest('.product_variant').find('.variant-description').show();
+      $(this).hide();
     });
   });
 </script>
