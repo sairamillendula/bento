@@ -155,9 +155,13 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
   create_table "pictures", :force => true do |t|
     t.integer  "picturable_id"
     t.string   "picturable_type"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
     t.string   "name"
-    t.datetime "created_at",      :null => false
-    t.datetime "updated_at",      :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
   end
 
   create_table "product_variants", :force => true do |t|

@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
   scope :in_stock, Product.joins(:stocks).where('stocks.in_stock > 0').group(:product_id)
   
   attr_accessible :back_ordered, :description, :name, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, 
-                  :variants_attributes, :category_tokens
+                  :variants_attributes, :category_tokens, :pictures_attributes
   attr_reader :category_tokens
   
   validates_uniqueness_of :name, :sku

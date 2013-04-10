@@ -12,4 +12,5 @@ public/assets/
 /log/*.log
 /tmp
 /public/cache
+/public/upload
 .DS_Store

@@ -17,6 +17,7 @@ gem 'redcarpet'
 gem 'whenever', :require => false
 gem 'ransack'
 gem 'kaminari-bootstrap'
+gem "paperclip"
 
 
 # Gems used only for assets and not required
@@ -26,7 +27,7 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
   gem 'compass-rails'
-  gem 'jquery-fileupload-rails'
+  gem 'jquery-fileupload-rails', :git => "git://github.com/tors/jquery-fileupload-rails.git"
 end
 
 group :development, :test do
@@ -39,6 +40,7 @@ group :development do
   gem 'thin'
   gem 'letter_opener'
   gem 'better_errors'
+  gem 'quiet_assets'
 end
 
 group :production, :staging do
