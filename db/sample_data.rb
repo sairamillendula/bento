@@ -43,11 +43,11 @@ puts "Created 10 clients"
     password: "123123",
     password_confirmation: "123123"
   )
-  client_build_reseller_request(
+  client.build_reseller_request(
     country: "Dude",
     city: "Ottawa",
-    buisness_name: Faker::Name.last_name,
-    who_are_you: Faker::Name.last_name,
+    business_name: Faker::Name.last_name,
+    who_are_you: Faker::Name.last_name
   )
   client.save!
 end
