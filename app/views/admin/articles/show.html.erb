@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= @article.title %>
+    <%= icon_button_link_to "#{t 'destroy'}", admin_article_path(@article), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
+    <%= icon_button_link_to "#{t 'edit'}", edit_admin_article_path(@article), level: 'primary', icon: 'pencil', white: true, size: 'large', class: "fr" %>
+  </h1>
+</div>
+
+<p>
+  <b>URL:</b>
+  <%= link_to @article_slug, "#{t 'blog_url'}/#{@article.slug}" %>
+</p>
+
+<p>
+  <b><%= t 'published_at' %>:</b>
+  <%= l @article.created_at %>
+</p>
+
+<p>
+  <b><%= t 'author' %>:</b>
+  <%= @article.author.first_name %>
+</p>
+
+<p>
+  <b>Tags:</b>
+  <%= raw @article.tags.map { |t| link_to t.name, tag_path(t) }.join(', ') %>
+</p>
+
+<%= markdown(@article.content) %>

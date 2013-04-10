@@ -1,0 +1,20 @@
+one:
+  name: MyString
+  sku: MyString
+  price: 1.5
+  description: MyText
+  public: false
+  back_ordered: false
+  featured: false
+  supplier_id: 1
+
+two:
+  name: MyString
+  sku: MyString
+  price: 10.5
+  sale_price: 5
+  description: MyText
+  public: false
+  back_ordered: false
+  featured: false
+  supplier_id: 1

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <h1><%= t 'pages.title' %>
+    <%= icon_button_link_to "#{t 'pages.new'}", new_admin_page_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: "fr" %>  
+  </h1>
+</div>
+
+<% if @pages.present? %>
+  <table id="pages" class="table table-striped">
+    <tr id="table-headers">
+      <th><%= "#{t 'name', default: 'Name'}" %></th>
+      <th>Slug</th>
+      <th><%= "#{t 'content'}" %></th>
+      <th style="min-width:100px;"></th>
+    </tr>
+    
+    <% @pages.each do |page| %>
+      <tr>
+        <td><%= link_to page.name, admin_page_path(page) %> <%= status_tag "#{t 'private'}" if !page.public? %></td>
+        <td><%= page.slug %></td>
+        <td><%= truncate(page.content, length: 200) %></td>
+        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_page_path(page), icon: 'pencil' %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% else %>
+  <div class="alert"><%= t 'pages.none', default: 'No pages found' %>.</div>
+<% end %>

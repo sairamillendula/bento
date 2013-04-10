@@ -1,0 +1,32 @@
+<div class="page-header">
+  <h1><%= t 'administrators.title' %>
+    <%= icon_button_link_to "#{t 'administrators.new'}", new_admin_user_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: "fr" %>
+  </h1>
+</div>
+
+<% if @users.present? %>
+  <table id="users" class="table table-striped">
+    <tr id="table-headers">
+      <th><%= "#{t 'name', default: 'Name'}" %></th>
+      <th>Email</th>
+      <th><%= "#{t 'status.title'}" %></th>
+    </tr>
+    
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.full_name %></td>
+        <td><%= user.email %></td>
+        <td>
+          <% if user.active %>
+      <%= icon_button_link_to "#{t 'deactivate'}", deactivate_admin_user_path(user), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
+    <% else %>
+      <%= icon_button_link_to "#{t 'activate'}", activate_admin_user_path(user), level: 'success', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
+    <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+<% else %>
+  <div class="alert"><%= t 'users.none', default: 'No users found' %>.</div>
+<% end %>

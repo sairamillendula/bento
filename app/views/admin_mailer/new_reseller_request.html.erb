@@ -1,0 +1,8 @@
+Hi,
+
+<p>you have received a request from a potential reseller:</p>
+
+<p>* <%= @user.email %></p>
+<p>* <%= @user.reseller_request.business_name %></p>
+<p>* <%= @user.reseller_request.city %> - <%= @user.reseller_request.country %></p>
+<%= simple_format(@user.reseller_request.who_are_you) %>

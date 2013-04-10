@@ -1,0 +1,168 @@
+en:
+  site_name: Bento
+  site_slogan: Lunch Box from Japan
+  default_contact: "contact@email.com"
+  default_email_sender: "app@email.com"
+  blog_url: "http:localhost:3000/blog"
+  sign_in: Sign in
+  please_sign_in: Please sign in
+  sign_up: Sign up
+  logout: Log out
+  remember_me: Remember me
+  go_to_store: Visit Store
+  are_you_sure: Are you sure?
+  save: Save
+  cancel: Cancel
+  edit: Edit
+  destroy: Delete
+  remove: Remove
+  view: View
+  or: or
+  from: From
+  name: Name
+  status: Status
+  active: Active
+  inactive: Inactive
+  public: Public
+  private: Private
+  activate: Activate
+  deactivate: Deactivate
+  approve: Approve
+  disapprove: Disapprove
+  success: Success
+  error: Error
+  featured: Featured
+  discount: Discount
+  dashboard: Dashboard
+  item: Product
+  quantity: Quantity
+  subtotal: Subtotal
+  tax: Tax
+  shipping: Shipping
+  total: Total
+  connect: Connect
+  your_details: Your details
+  payment_info: Payment
+  shipped_at: Shipped at
+  carts:
+    title: Cart
+    is_empty: Your cart is currently empty
+    empty_action: Empty cart
+    invalid: Invalid cart
+  articles:
+    title: Articles
+    new: New Article
+    none: No articles found
+  general_info: Info
+  order: Order
+  orders:
+    title: Orders
+    mine: My Orders
+    none: No orders found
+    thank_you: Thank you for your order
+  work_list: Work List
+  clients:
+    title: Clients
+  client: Client
+  settings: Settings
+  products:
+    title: Products
+    new: New Product
+    edit: Edit Product
+    none: No products found
+    add_new_variant: Add new variant
+    browse: Browse our catalogue
+  coupons:
+    title: Coupons
+    new: New Coupon
+    sales_count: Sales count
+    none: No coupons found
+  pages:
+    title: Pages
+    new: New Page
+    none: No pages found
+  users:
+    title: Users
+    new: New User
+    none: No users found
+    member_since: Member since
+  administrators:
+    title: Administrators
+    new: New Administrator
+  stats: Stats
+  stocks: Stocks
+  reports: Reports
+  monthly_sales_report: Monthly Sales
+  sales_report: Sales Report
+  orders_report: Orders Report
+  logs: Logs
+  audit: Audit
+  content: Content
+  your_website: Website
+  price: Price
+  on_sale: Sale
+  an_email_was_sent_to: An email was sent to
+  is_deactivated: is deactivated
+  is_activated: is activated
+  contact_us: Contact
+  about: About
+  checkout: Checkout
+  resellers:
+    title: Resellers
+    become_reseller: Become Reseller
+    become_reseller_success: We've received your request
+    become_reseller_error: All fields required. Please check input and submit again
+    account: Your Reseller Account
+    registration:
+      title: Create Account
+    dashboard:
+      title: Dashboard
+  shipping_and_billing_are_the_same: Check if Shipping Address = Billing Address
+  i_read_and_accept: I read and accept the
+  terms_and_conditions: terms and conditions
+  blog_posts: Blog Posts
+  billing_address: Billing Address
+  shipping_address: Shipping Address
+  categories: Categories
+  you_re_browsing_our_secure_server: You're browsing our secure server
+  status:
+    title: Status
+    pending: Pending
+    completed: Completed
+    shipped: Shipped
+    mark_as_shipped: Mark as shipped
+    not_paid: Payment not received
+  passwords:
+    new_password_placeholder: New password (6 characters min.)
+    new:
+      title: Reset Password
+    edit:
+      title: Choose a new password
+  registrations:
+    terms_acceptance: By joining you agree with our terms and conditions
+    new:
+      title: Sign up
+    edit:
+      title: Profile
+  sessions:
+    sign_in: Please sign in first
+    signed_in: Signed in!
+    signed_out: Successfully signed out.
+  email:
+    signature: Have a great day!
+    new_reseller_request:
+      subject: New reseller request
+    reset_password_email:
+      subject: Your password has been reset
+      intro:
+      action:
+    reseller_request_approved:
+      subject: Request approved
+    purchase_receipt:
+      subject: Purchase Receipt
+      intro:
+      action:
+    welcome:
+      subject: Welcome
+      intro:
+      action: 

@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1><%= @product.name %>
+    <%= icon_button_link_to "#{t 'destroy'}", admin_product_path(@product), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
+    <%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(@product), level: 'primary', icon: 'pencil', white: true, size: 'large', class: "fr" %>
+  </h1>
+</div>
+
+<p><b>SKU</b>: <%= @product.sku %></p>
+
+<p><b>Slug</b>: <%= @product.slug %></p>
+
+<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.price, strip_insignificant_zeros: true) %></p>
+
+<p><b><%= t 'sale_price' %></b>: <%= number_to_currency(@product.sale_price, strip_insignificant_zeros: true) %></p>
+
+<p><b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %></p>
+
+<p><b>Total in stock</b>: <%= @product.stocks.any? ? @product.stocks.sum(&:in_stock) : 0 %></p>
+
+<%= markdown(@product.description) %>
+
+<% if @product.variants.any? %>
+  <h4 class="subsection_title">Variants</h4>
+  <% @product.variants.each do |variant| %>
+    <p><b><%= variant.name %></b>: <%= number_to_currency(variant.price, strip_insignificant_zeros: true) %> || 
+    In stock: <%= variant.stocks.any? ? variant.stocks.sum(&:in_stock) : 0 %>
+    </p>
+    <%= markdown(variant.description) if variant.description.present? %>
+  <% end %>
+<% end %>

@@ -1,0 +1,19 @@
+<h1><%= @article.title %></h1>
+
+<h5>
+	<%= l @article.created_at.to_date %> par <%= @article.author.first_name %>
+  <span class="pull-right">
+    <%= link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-via"=>"LesBonbecs" %>
+    <div class="fb-like" data-href="https://facebook.com/BonbecsBonbecs" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+  </span>
+</h5>
+
+<% if @article.tags.any? %>
+  <p><b>Tags:</b> <%= raw @article.tags.map { |t| link_to t.name, article_path(t) }.join(', ') %></p>
+<% end %>
+
+<div class="article-content">
+  <%= simple_format(@article.content) %>
+</div>
+
+<%#= render 'comments' %>

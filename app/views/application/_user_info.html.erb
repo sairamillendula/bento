@@ -1,0 +1,15 @@
+<div id="topbar" class="row-fluid">
+  <div id="user-info">
+    <% if current_user %>
+      Welcome, <%= link_to current_user.first_name, profile_path %> | <%= link_to "#{t 'orders.mine'}", orders_path %>
+      <% if current_user.admin? %>| <%= link_to "Administration", admin_dashboard_path %><% end %>
+      <% if current_user.reseller? %>| <%= link_to "#{t 'resellers.account'}", reseller_dashboard_path %><% end %>
+      | <%= link_to "#{t 'logout'}", logout_path %>
+    <% else %>
+      Welcome, please <%= link_to "#{t 'sign_in'}", login_path %> or
+      <%= link_to "#{t 'sign_up'}", signup_path %>
+    <% end %>
+    <span class="pull-right"><i class="icon-shopping-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %>
+      <%#= pluralize(current_cart.items.length, "#{t 'item'}") %></span>
+  </div>
+</div>

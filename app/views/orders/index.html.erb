@@ -1,0 +1,23 @@
+<%= content_for :body_id do %>order<% end %>
+
+<%= page_title("#{t 'orders.title'}") %>
+
+<% if @orders.any? %>
+  <table class="table table-striped">
+    <tr>
+      <th>code</th>
+      <th>total</th>
+      <th>date</th>
+    </tr>
+    
+    <% @orders.each do |order| %>
+	    <tr>
+	      <td><%= link_to order.code, order %></td>
+	      <td><%= order.total %></td>
+	      <td><%= l order.created_at, format: :long %></td>
+	    </tr>
+	  <% end %>
+  </table>
+<% else %>
+  <p class="alert"><%= t 'orders.none' %>.</p>
+<% end %>

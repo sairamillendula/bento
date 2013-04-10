@@ -1,0 +1,8 @@
+<div class="page-header">
+  <h1><%= @page.name %>
+    <%= icon_button_link_to "#{t 'destroy'}", admin_page_path(@page), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
+    <%= icon_button_link_to "#{t 'edit'}", edit_admin_page_path(@page), level: 'primary', icon: 'pencil', white: true, size: 'large', class: "fr" %>
+  </h1>
+</div>
+
+<%= markdown(@page.content) %>

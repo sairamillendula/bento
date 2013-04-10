@@ -1,0 +1,37 @@
+<div class="page-header">
+  <h1><%= t 'products.title' %>
+    <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: "fr" %>  
+  </h1>
+</div>
+
+<% if @products.present? %>
+  <%= form_tag feature_admin_products_path, method: :put do %>
+    <div class="well well-small"><%= submit_tag "Featured checked products", class: "btn" %></div>
+
+    <table id="products" class="table table-striped">
+      <tr id="table-headers">
+        <th></th>
+        <th><%= "#{t 'name', default: 'Name'}" %></th>
+        <th>SKU</th>
+        <th><%= "#{t 'price'}" %></th>
+        <th style="min-width:100px;"></th>
+      </tr>
+      
+      <% @products.each do |product| %>
+        <tr>
+          <td><%= check_box_tag "product_ids[]", product.id %></td>
+          <td><%= link_to product.name, admin_product_path(product) %>
+              <%= status_tag "#{t 'private'}" if !product.public? %>
+              <%= status_tag("#{t 'on_sale'}", level: 'warning') if product.on_sale? %>
+              <%= status_tag("#{t 'featured'}", level: 'success') if product.featured? %>
+          </td>
+          <td><%= product.sku %></td>
+          <td><%= product.price_display %></td>
+          <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(product), icon: 'pencil' %></td>
+        </tr>
+      <% end %>
+    </table>
+  <% end %>
+<% else %>
+  <div class="alert"><%= t 'products.none' %>.</div>
+<% end %>

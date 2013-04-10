@@ -1,0 +1,32 @@
+<%= page_title("Stocks") %>
+
+<%= form_tag update_multiple_admin_stocks_path, method: :put do %>
+
+  <% @stocks.each do |stock, variants| %>
+    <h4><%= stock.product.name %></h4>
+    <%= fields_for "stocks[]", stock do |f| %>
+      <% if stock.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(stock.errors.count, "error") %> prohibited this product from being saved:</h2>
+          <ul>
+          <% stock.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+      
+      <div class="field" style="padding-left:20px;">
+        In stock: <%= f.text_field :in_stock, class: 'input-mini' %>
+      </div>
+      <%# stock.product_variants.each do |variant| %>
+        <li><%#= variant.id %></li>
+      <%# if stock.product.variants.any? %>
+        <%#= stock.product.varian %>
+      <%# end %>
+    <% end %>
+  <% end %>
+  <div class="form-actions">
+    <%= submit_tag "Update", class: "btn btn-success" %>
+  </div>
+<% end %>

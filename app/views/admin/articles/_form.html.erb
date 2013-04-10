@@ -1,0 +1,30 @@
+<%= simple_form_for([:admin, @article], html: {class: 'form-horizontal zen-form'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :title, input_html: {class: 'span5'} %>
+    <%= f.input :slug, input_html: {class: 'span5'} %>
+    <%= f.input :public, as: :radio_buttons, item_wrapper_class: 'inline' %>
+    <div class="control-group" style="position:relative;">
+      <label class="string required control-label" for="article_control">Message <abbr title="requis">*</abbr></label>
+      <div class="controls">
+        <a href="#" class="go-zen"><i class="s s--zen">Edit in Zen Mode</i></a>
+        <%= f.text_area :content, class: "zen-mode", "data-label"=>"Écrire ici..." %>
+      </div>
+    </div>
+    <%= f.input :author_id, collection: User.admin.order('first_name').map{|u| [u.first_name, u.id]}, include_blank: false %>
+    <div class="control-group">
+      <label class="control-label" for="article_tag_tokens">Tags</label>
+      <div class="controls" style="position:absolute;">
+        <%= f.text_field :tag_tokens, data: {load: @article.tags} %>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>
+
+
+<%= render 'markdown_modal' %>

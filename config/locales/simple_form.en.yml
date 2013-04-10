@@ -1,0 +1,31 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+    required:
+      text: 'required'
+      mark: '*'
+    buttons:
+      or: or
+      cancel: Cancel
+    error_notification:
+      default_message: "Some errors were found, please take a look:"
+    please_wait: 'Please wait...'
+    labels:
+      #   user:
+      #     new:
+      #       email: 'E-mail para efetuar o sign in.'
+      #     edit:
+      #       email: 'E-mail.'
+      defaults:
+        login: Email or Username
+        password: Password
+        address1: Address
+    hints:
+      user:
+        password: "(leave blank if you don't want to change it)"
+    helpers:
+      submit:
+        order:
+          create: Complete order
+          update: Update order

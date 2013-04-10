@@ -1,0 +1,10 @@
+<div id="navbar" class="row-fluid">
+  <%= t 'site_name' %> :: <%= t 'site_slogan' %>
+  <ul>
+    <li><%= link_to "Catalogue", products_path %></li>
+    <li><%= link_to "#{t 'about'}", "/about" %></li>
+    <li><%= link_to "#{t 'contact_us'}", "/contact" %></li>
+    <li><%= link_to "Blog", "/blog" %></li>
+    <li><%= link_to "#{t 'resellers.title'}", become_reseller_path %></li>
+  </ul>
+</div>

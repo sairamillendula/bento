@@ -1,0 +1,14 @@
+<div class="authentication">
+	<h1><%= t 'registrations.edit.title' %></h1>
+
+  <%= simple_form_for(@user, url: update_profile_path, method: :post) do |f| %>
+	  <%= f.error_notification %>
+
+	  <%= f.input :email, label: false %>
+	  <%= f.input :first_name, label: false %>
+	  <%= f.input :last_name, label: false %>
+	  <%= f.input :password, label: false, hint: false %>
+
+	  <%= f.button :submit, "Update Profile", class: "btn btn-primary" %>
+	<% end %>
+</div>

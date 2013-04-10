@@ -1,0 +1,57 @@
+<%= simple_nested_form_for([:admin, @product], html: {class: 'form-horizontal', multipart: true}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, input_html: {class: 'span5'} %>
+    <%= f.input :slug, input_html: {class: 'span5'} %>
+    <%= f.input :public, as: :radio_buttons, item_wrapper_class: 'inline' %>
+    <%= f.input :price %>
+    <%= f.input :sale_price %>
+    <%= f.input :back_ordered, as: :radio_buttons, item_wrapper_class: 'inline' %>
+
+    <div class="control-group" style="position:relative;">
+      <label class="string required control-label" for="article_control">Description <abbr title="requis">*</abbr></label>
+      <div class="controls">
+        <a href="#" class="go-zen"><i class="s s--zen">Edit in Zen Mode</i></a>
+        <%= f.text_area :description, class: "zen-mode", "data-label"=>"Écrire ici..." %>
+      </div>
+    </div>
+  </div>
+
+  <div class="control-group">
+    <label class="control-label" for="product_category_tokens">Categories</label>
+    <div class="controls" style="position:absolute;">
+      <%= f.text_field :category_tokens, data: {load: @product.categories} %>
+    </div>
+  </div>
+
+  <h4 class="nolabel subsection_title">Variants</h4>
+  <%= f.fields_for :variants do |v| %>
+    <%= content_tag_for :div, v.object do %>
+      <%= v.input :name, placeholder: "Small, Blue, Large..." %>
+      <%= v.input :price %>
+      <%= v.input :sale_price %>
+      <%# v.object.stocks.new do |stock| %>
+        <%#= label_tag :in_stock %> <%#= text_field_tag :in_stock %>
+      <%# end %>
+      <p class="nolabel"><%= link_to "Add description", "#", class: 'variant_description_link' %></p>
+      <%= v.input :description, wrapper_html: {class: "variant-description"} %>
+      <i class="icon-remove"></i> <%= v.link_to_remove "#{t 'remove'}" %>
+      <hr>
+    <% end %>
+  <% end %>
+  <%= f.link_to_add t('products.add_new_variant'), :variants, class: "btn btn-info nolabel" %>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('.variant_description_link').click(function(event) {
+        event.preventDefault();
+        $(this).closest('.product_variant').find('.variant-description').toggle();
+    });
+  });
+</script>

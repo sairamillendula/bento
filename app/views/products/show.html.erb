@@ -1,0 +1,13 @@
+<%= page_title(@product.name) %>
+
+<%= markdown(@product.description) %>
+
+<%= button_to 'Add to Cart', line_items_path(product_id: @product), remote: true, class: "btn btn-success" %>
+
+<% if @product.variants.any? %>
+  <ul>
+  <% @product.variants.each do |v| %>
+    <li><%= v.name %> (<%= number_to_currency(v.price, strip_insignificant_zeros: true) %>)</li>
+  <% end %>
+  </ul>
+<% end %>

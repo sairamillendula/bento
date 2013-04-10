@@ -1,0 +1,14 @@
+@import "compass";
+
+.clearfix {
+  @include clearfix;
+}
+.pagination {
+	float: right;
+}
+.fr {
+	float: right;
+}
+.nolabel {
+	margin-left: 180px;
+}

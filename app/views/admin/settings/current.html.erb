@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>Boîte du mois</h1>
+</div>
+
+<%= form_tag admin_settings_path, method: :put do |f| %>
+  <div class="form-inputs">
+    <%= label_tag "", "Thème du mois" %>
+    <%= text_field_tag :current_theme, @settings["current_theme"] %>
+
+    <%= label_tag "", "Contenu de la boîte du mois" %>
+    <%= text_area_tag :current_box, @settings["current_box"] %>
+
+  <div class="form-actions">
+    <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>
+  </div>
+<% end %>

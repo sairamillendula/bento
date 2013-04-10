@@ -1,0 +1,15 @@
+<%= content_tag_for :tr, order do %>
+  <td><%= order.code %></td>
+  <td><%= status(order.status) %></td>
+  <td><%= order.client.full_name %></td>
+  <td><%= l order.created_at, format: :long %></td>
+  <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
+  <td><%= icon_button_link_to "#{t 'view'}", admin_order_path(order), icon: 'file' %></td>
+  <td><% if order.completed? %>
+        <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(order), method: :post, remote: true, icon: 'ok', level: 'info', white: true, "data-disable-with"=>"#{t 'status.mark_as_shipped'}" %></td>
+        <% elsif order.shipped? %>
+          <%= "#{t 'shipped_at'}" %> <%= l order.shipped_at, format: "%d %b %H:%m" if order.shipped? %>
+        <% end %>
+    </td>
+  </td>
+<% end %>

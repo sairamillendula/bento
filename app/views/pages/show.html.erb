@@ -1,0 +1,7 @@
+<% content_for(:body_id) do %><%= @page.klass %><% end %>
+
+<%= page_title("#{@page.name}") %>
+
+<div class="page-content">
+	<%= markdown(@page.content) %>
+</div>

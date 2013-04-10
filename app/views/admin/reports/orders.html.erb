@@ -1,0 +1,27 @@
+<div class="page-header">
+  <h1><%= t 'orders_report' %> </h1>
+</div>
+
+<div class="well">
+  <%= search_form_for @search, url: orders_admin_reports_path, :html => {class: "form-inline form-search"} do |f| %>
+    <%= f.text_field :created_at_gteq, class: 'date_picker', style: 'max-width:78px;', placeholder: "#{t 'from_date'}" %>
+    <%= f.text_field :created_at_lteq, class: 'date_picker', style: 'max-width:78px;', placeholder: "#{t 'to_date'}" %>
+    <%= f.text_field :client_first_name_cont, placeholder: "#{t 'first_name'}", class: 'span2' %>
+    <%= f.text_field :client_last_name_cont, placeholder: "#{t 'last_name'}", class: 'span2' %>
+    <%= f.text_field :client_email_matches, placeholder: "Email", class: 'span2' %>
+    <%= f.select :plan_id_eq, options_from_collection_for_select(Plan.all, "id", "name", @search.plan_id_eq), include_blank: true, prompt: "#{t 'plan'}" %>
+    <%= f.text_field :coupon_code_matches, placeholder: "#{t 'coupon_code'}", style: 'max-width:100px;' %>
+    <button class="btn" type="submit"><i class="icon-search"></i></button>
+    <% if @orders.any? %>
+      <button class="btn" type="submit" name="format" value="csv"><i class="icon-download-alt"></i></button>
+    <% end %>
+    <button class="btn" type="submit" name="" id="q_reset"><i class="icon-remove"></i></button>
+  <% end %>
+</div>
+
+<% if @orders.present? %>
+  <%= render "orders" %>
+  <%= paginate @orders %>
+<% else %>
+  <div class="alert"><%= t 'no_orders_found' %>.</div>
+<% end %>

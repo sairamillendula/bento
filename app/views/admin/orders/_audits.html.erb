@@ -1,0 +1,25 @@
+<% if @order.audits.any? %>
+  <h4 style="padding-top:20px; clear:both;"><%= t 'history' %></h4>
+
+  <table class="table table-striped">
+    <tr id="table-headers">
+    	<th></th>
+      <th><%= t 'event' %></th>
+      <th><%= Date %></th>
+    </tr>
+    
+    <% @order.audits.order('created_at DESC').each do |audit_trail| %>
+      <tr>
+      	<td>
+      		<% if audit_trail.success? %>
+      		  <%= status_tag "#{t 'success'}", class: "label label-success" %>
+      		<% else %>
+      		  <%= status_tag "#{t 'error'}", class: "label label-error" %>
+      		<% end %>
+      	</td>
+        <td><%= audit_trail.message %></td>
+        <td><%= l audit_trail.created_at, format: :long %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

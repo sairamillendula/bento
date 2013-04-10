@@ -1,0 +1,29 @@
+<div class="page-header">
+  <h1><%= @client.full_name %></h1>
+</div>
+
+<% if @client.orders.any? %>
+  <h4 style="padding-top:20px; clear:both;"><%= t 'orders' %></h4>
+
+  <table class="table table-striped">
+    <tr id="table-headers">
+      <th>#</th>
+      <th><%= t 'statut' %></th>
+      <th>Date</th>
+      <th><%= t 'price' %></th>
+      <th></th>
+    </tr>
+    
+    <% @client.orders.order('created_at DESC').each do |order| %>
+      <tr>
+      	<td><%= order.code %></td>
+      	<td><%= status(order.status) %></td>
+        <td><%= l order.created_at %></td>
+        <td><%= number_to_currency(order.amount, strip_insignificant_zeros: true) %></td>
+        <td><%= icon_button_link_to "#{t 'view'}", admin_order_path(order), icon: 'file' %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div class="alert"><%= t 'no_orders_found' %>.</div>
+<% end %>

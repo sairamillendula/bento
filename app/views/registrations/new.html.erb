@@ -1,0 +1,15 @@
+<h1><%= t 'registrations.new.title' %></h1>
+
+<%= simple_form_for(@user, url: registrations_path, html: {class: "form-horizontal"}) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :email %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :password, hint: false %>
+  <%= f.input :password_confirmation, required: true %>
+ 
+  <span><%= t 'registrations.terms_acceptance', default: 'By joining you agree with our terms and conditions' %></span>
+
+  <%= f.button :submit, "Create Account", class: "btn btn-primary" %>
+<% end %>

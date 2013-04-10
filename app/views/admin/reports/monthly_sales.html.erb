@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h1><%= t 'monthly_sales_report' %></h1>
+</div>
+
+<h4 id="month_selector" style="margin-bottom:50px;">
+  <%= link_to '&#x2190;'.html_safe, :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
+  <%= I18n.localize(@date, :format => '%B %Y') %>
+  <%= link_to "&#x2192;".html_safe, :month => (@date.end_of_month+1).strftime("%Y-%m") %>
+  <span id='go_to_current' class='fr'><%= link_to "#{t 'current_month'}", month: (Date.today.beginning_of_month).strftime('%Y-%m') %></span>
+</h4>
+
+<% if @orders.present? %>
+  <div class="report_totals">
+    <h2><%= t 'total_sales_count' %>: <b><%= @orders.count %></b></h2>
+    <h2><%= t 'total_sales_amount' %>: <b><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></b></h2>
+  </div>
+
+<% else %>
+  <div class="alert"><%= t 'no_orders_found' %>.</div>
+<% end %>

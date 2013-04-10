@@ -1,0 +1,25 @@
+<table class="table table-striped" style="margin-top:20px;" >
+  <tr id="table-headers">
+  	<th>Item</th>
+  	<th>Price</th>
+    <th>Quantity</th>
+    <th>Subtotal</th>
+  </tr>
+
+  <% @order.items.each do |item| %>
+    <tr>
+    	<td><%= item.product.name %> <% if item.product_variant_id.present? %>(<b><%= item.variant.name %></b>)<% end %></td>
+    	<td><%= number_to_currency(item.price) %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.subtotal) %></td>
+    </tr>
+  <% end %>
+  <tr class="total">
+    <th colspan="3" style="text-align:right;">Subtotal</th>
+    <th><%= number_to_currency(@order.subtotal) %></th>
+  </tr>
+  <tr class="total">
+    <th colspan="3" style="text-align:right;">Total</th>
+    <th><%= number_to_currency(@order.total) %></th>
+  </tr>
+</table>

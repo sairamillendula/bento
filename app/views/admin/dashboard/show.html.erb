@@ -1,0 +1,33 @@
+<h1><%= t 'dashboard' %></h1>
+<br><br>
+<div class="row-fluid stats-row">
+  <h3><%= t 'users.title' %></h3>
+  <div class="span3">
+    <h4>Aujourd'hui: <b><%= @today_users %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Semaine: <b><%= @weekly_users %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Mois: <b><%= @monthly_users %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Total: <b><%= @users.length %></b></h4>
+  </div>
+</div>
+
+<div class="row-fluid stats-row">
+  <h3><%= t 'orders.title' %></h3>
+  <div class="span3">
+    <h4>Aujourd'hui: <b><%#= @today_orders %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Semaine: <b><%#= @weekly_orders %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Mois: <b><%#= @monthly_orders %></b></h4>
+  </div>
+  <div class="span3">
+    <h4>Total: <b><%#= @orders.length %></b></h4>
+  </div>
+</div>

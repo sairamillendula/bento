@@ -1,0 +1,90 @@
+<%= content_for :body_id do %>checkout<% end %>
+
+<%= page_title("#{t 'checkout'}") %>
+
+<p class="alert"><i class="icon-lock"></i> <%= t 'you_re_browsing_our_secure_server' %>.</p>
+
+<%= simple_form_for(@order, html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <% unless current_user %>
+    <h3 class="section"><%= t 'connect' %></h3>
+    <div class="row-fluid">
+      <div class="span6">
+        <h4 class="section-helper">Créer un compte</h4>
+        <% unless current_user %>
+          <%= f.fields_for :client do |c| %>
+            <%= c.input :first_name %>
+            <%= c.input :last_name %>
+            <%= c.input :email %>
+            <%= c.input :password, required: true %>
+            <%= c.input :password_confirmation, required: true %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="span6">
+        <h4 class="section-helper">Si vous avez déjà un compte</h4>
+        <a href="#loginModal" id="loginModal-btn" class="span6 button-main" data-toggle="modal"><%= t 'login' %></a>
+      </div>
+    </div>
+  <% end %>
+
+  <h3 class="section"><%= t 'your_details' %></h3>
+
+  <div class="row-fluid">
+    <div id="shipping-address" class="span6">
+      <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+      <div class="form-horizontal">
+        <%= f.fields_for :shipping_address do |sa| %>
+          <%= sa.input :address1, required: true %>
+          <%= sa.input :address2 %>
+          <%= sa.input :postal_code, required: true %>
+          <%= sa.input :city, required: true %>
+          <%= sa.input :country, required: true %>
+          <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: 'display:none;'} %>
+        <% end %>
+      </div>
+    </div>
+
+    <div id="billing-address" class="span6">
+      <h4 class="section-helper"><%= t 'billing_address' %></h4>
+      <%= f.fields_for :billing_address do |ba| %>
+        <div class="checkbox inline">
+          <label> <%= ba.check_box :bypass_validation %>
+           <%= t 'shipping_and_billing_are_the_same' %>
+          </label>
+        </div>
+
+        <div id="billing_address_fields" class="form-horizontal">
+          <%= ba.input :address1, required: true %>
+          <%= ba.input :address2 %>
+          <%= ba.input :postal_code, required: true %>
+          <%= ba.input :city, required: true %>
+          <%= ba.input :country, required: true %>
+          <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: 'display:none;'} %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+  <h3 class="section"><%= t 'payment_info' %></h3>
+  <p>coming up...</p>
+  
+  <div id="accept-terms" class="checkbox inline">
+    <label class="checkbox">
+      <input id="accept-terms-box" type="checkbox"> <%= t 'i_read_and_accept' %> <%= link_to "#{t 'terms_and_conditions'}", "/cgv" %>.
+    </label>
+  </div>
+  <%= f.button :submit, "data-disable-with"=>"#{t 'please_wait'}", id: "submit-order", class: "btn btn-success pull-right" %>
+<% end %>
+ 
+<!-- Modal -->
+<div id="loginModal" class="modal hide fade" tabindex="-125" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3><%= t 'login' %></h3>
+  </div>
+  <div class="modal-body">
+    <%= render "login_form" %>
+  </div>
+</div>

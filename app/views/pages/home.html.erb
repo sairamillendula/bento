@@ -1,0 +1,22 @@
+<%= content_for :body_id do %>homepage<% end %>
+
+<h1>Homepage</h1>
+
+<p>Subheading. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Subheading
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Subheading. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+
+<h3>Our Catalogue</h3>
+<div class="row-fluid">
+	<ul id="products">
+	  <% @products.each do |product| %>
+	    <li class="span3" style="margin-bottom:20px;">
+	    	<div class="thumbnail">
+	        <img data-src="holder.js/300x200" alt="" width="360" height="270">
+	  	    <h4 style='height:40px;'><%= product.name %> (<%= number_to_currency(product.price_display, strip_insignificant_zeros: true) %>)</h4>
+	  	    <%= truncate(markdown(product.description), length: 100).html_safe if product.description.present? %>
+	  	    <%= button_to 'Add to Cart', line_items_path(product_id: product), class: "btn btn-block" %>
+	  	  </div>
+	    </li>
+	  <% end %>
+	</ul>
+</div>

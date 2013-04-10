@@ -1,0 +1,21 @@
+<div class="page-header">
+  <h1><%= t 'settings' %></h1>
+</div>
+
+<p class="alert">The following settings have currently no effect.</p>
+
+<%= form_tag admin_settings_path, method: :put do |f| %>
+  <div class="form-inputs">
+    <%= label_tag "", "twitter" %>
+    <%= text_field_tag :twitter, @settings["twitter"] %>
+
+    <%= label_tag "", "facebook" %>
+    <%= text_field_tag :facebook, @settings["facebook"] %>
+
+    <%= label_tag "", "Min. amount for free shipping" %>
+    <%= text_field_tag :min_amount_for_free_shipping, @settings["min_amount_for_free_shipping"] %>
+
+  <div class="form-actions">
+    <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>
+  </div>
+<% end %>

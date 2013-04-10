@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  code: 10OFF
+  active: true
+  amount: 10
+  percentage: true
+
+two:
+  code: 5OFF
+  active: false
+  amount: 5
+  percentage: false

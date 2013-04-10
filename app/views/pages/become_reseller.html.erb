@@ -1,0 +1,30 @@
+<%= page_title("#{t 'resellers.become_reseller'}") %>
+
+<div class="well">
+	Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.
+</div>
+
+<% if current_user %>
+  <% if current_user.reseller_request %>
+    <% if current_user.reseller_request.approved? %>
+      <p class="alert">You already are a reseller. <%= link_to "Go To Reseller Account", reseller_dashboard_path %></p>
+    <% else %>
+      <p class="alert">We are reviewing your request. We'll get back to you soon.</p>
+    <% end %>
+  <% else %>
+    <%= simple_form_for(@reseller_request, url: reseller_request_path, html: {class: "form-horizontal"}) do |f| %>
+		  <%= f.error_notification %>
+	    
+	    <%= f.input :business_name %>
+	    <%= f.input :country %>
+	    <%= f.input :city %>
+	    <%= f.input :who_are_you %>
+
+	    <%= f.button :submit, "Submit Request to Become Reseller", class: "btn btn-primary" %>
+	  <% end %>
+	<% end %>
+<% else %>
+
+  <%= link_to "#{t 'sign_up'}", signup_path %> or <%= link_to "#{t 'sign_in'}", login_path %>
+ 
+<% end %>

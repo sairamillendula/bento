@@ -1,0 +1,9 @@
+one:
+  in_stock: 10
+  product_id: 1
+  variant_id: 1
+
+two:
+  in_stock: 0
+  product_id: 1
+  variant_id: 1

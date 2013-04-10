@@ -1,0 +1,10 @@
+<%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
+  <%= f.error_notification %>
+  
+  <%= f.input :email %>
+  <%= f.input :password %>
+  <label class="checkbox nolabel">
+    <input id="remember_me" type="checkbox" name="remember_me" value="1"> <%= t 'remember_me' %>
+  </label>
+  <%= f.button :submit, class: "btn btn-primary nolabel", style: 'margin-top:20px;' %>
+<% end %>
