@@ -170,13 +170,11 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
 
   create_table "product_variants", :force => true do |t|
     t.string   "name"
-    t.decimal  "price",        :precision => 11, :scale => 2
-    t.text     "description"
-    t.boolean  "back_ordered",                                :default => false
-    t.integer  "in_stock",                                    :default => 0
+    t.decimal  "price",      :precision => 11, :scale => 2
+    t.integer  "in_stock",                                  :default => 0
     t.integer  "product_id"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                               :null => false
+    t.datetime "updated_at",                                               :null => false
   end
 
   add_index "product_variants", ["product_id"], :name => "index_product_variants_on_product_id"
@@ -185,16 +183,15 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
     t.string   "name"
     t.string   "slug"
     t.string   "sku"
-    t.decimal  "price",        :precision => 11, :scale => 2
-    t.decimal  "sale_price",   :precision => 11, :scale => 2
+    t.decimal  "price",       :precision => 11, :scale => 2
+    t.decimal  "sale_price",  :precision => 11, :scale => 2
     t.text     "description"
-    t.boolean  "public",                                      :default => true
-    t.boolean  "back_ordered",                                :default => false
-    t.boolean  "featured",                                    :default => false
-    t.integer  "in_stock",                                    :default => 0
+    t.boolean  "public",                                     :default => true
+    t.boolean  "featured",                                   :default => false
+    t.integer  "in_stock",                                   :default => 0
     t.integer  "supplier_id"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   create_table "reseller_requests", :force => true do |t|

@@ -89,14 +89,10 @@ Bento::Application.routes.draw do
     get "/tag/:tag" => "articles#index", as: 'tag'
   end
 
-  # scope "/cart" do
-  #   get "/" => "carts#show", as: 'cart'
-  #   resources :line_items
-  # end
-
   resource :cart, except: [:new, :create, :edit] do
     resources :line_items
   end
+  resources :line_items, only: [:create, :update]
     
   resources :tags, only: :index
   resources :categories, only: :index
@@ -104,8 +100,6 @@ Bento::Application.routes.draw do
   get "/category/:category", to: "products#index", as: 'category'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
-  resources :line_items, only: [:create, :update]
-  # resources :carts, only: [:create, :update, :destroy]
   
   get "/:slug" => 'pages#show', as: 'page'
   

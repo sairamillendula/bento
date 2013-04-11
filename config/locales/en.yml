@@ -109,6 +109,8 @@ en:
   contact_us: Contact
   about: About
   checkout: Checkout
+  in_stock: In stock
+  from_price: From
   resellers:
     title: Resellers
     become_reseller: Become Reseller

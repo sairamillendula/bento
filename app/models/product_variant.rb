@@ -6,9 +6,9 @@ class ProductVariant < ActiveRecord::Base
 
   has_many :stocks
 
-  scope :in_stocks, where(back_ordered: false && in_stock > 0)
+  scope :in_stocks, where('in_stock > ?', 0)
 
-  attr_accessible :name, :price, :description, :in_stock, :back_ordered, :product_id, :pictures_attributes
+  attr_accessible :name, :price, :in_stock, :product_id, :pictures_attributes
 
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :product_id

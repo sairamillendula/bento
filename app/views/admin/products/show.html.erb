@@ -15,7 +15,7 @@
 
 <p><b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %></p>
 
-<p><b>Total in stock</b>: <%= @product.stocks.any? ? @product.stocks.sum(&:in_stock) : 0 %></p>
+<p><b><%= t 'in_stock' %></b>: <%= @product.in_stock || 0 %></p>
 
 <%= markdown(@product.description) %>
 

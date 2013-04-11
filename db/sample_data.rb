@@ -89,7 +89,6 @@ puts "Created 15 articles"
     slug: Faker::Lorem.words(5).join('-'),
     description: Faker::Lorem.paragraphs(3).join("<br/>"),
     public: [true, false].sample,
-    back_ordered: [true, false].sample,
     featured: [true, false].sample,
     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     sale_price: ["", 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,

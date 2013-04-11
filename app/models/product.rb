@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
 
@@ -13,10 +14,10 @@ class Product < ActiveRecord::Base
   has_many :stocks
 
   scope :public, where(public: true)
-  scope :in_stocks, where(back_ordered: false && in_stock > 0)
+  scope :in_stocks, where('in_stock > ?', 0)
   
-  attr_accessible :back_ordered, :description, :name, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock,
-                  :variants_attributes, :category_tokens, :pictures_attributes
+  attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+                  :category_tokens, :pictures_attributes
   attr_reader :category_tokens
   
   validates_uniqueness_of :name, :sku
@@ -43,7 +44,7 @@ class Product < ActiveRecord::Base
   end
 
   def price_display
-    on_sale? ? "#{I18n.t 'from'} #{sale_price}" : price
+    variants.any? ? "#{I18n.t('from_price')} #{number_to_currency(price)}" : "#{number_to_currency(price)}"
   end
   
   def in_stock?
