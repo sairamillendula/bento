@@ -31,8 +31,6 @@
       <%= v.input :name, placeholder: "Small, Blue, Large..." %>
       <%= v.input :price %>
       <%= v.input :in_stock %>
-      <p class="nolabel"><%= link_to "Add description", "#", class: 'variant_description_link', style: "display: #{v.object.description.present? ? 'none' : 'block'}" %></p>
-      <%= v.input :description, wrapper_html: {class: "variant-description", style: "display: #{v.object.description.present? ? 'block' : 'none'}"} %>
       <i class="icon-remove"></i> <%= v.link_to_remove "#{t 'remove'}" %>
       <hr>
     <% end %>
@@ -43,13 +41,3 @@
     <%= submit_or_cancel(f) %>
   </div>
 <% end %>
-
-<script type="text/javascript">
-  $(document).ready(function() {
-    $(document).on('click', '.variant_description_link', function(event) {
-      event.preventDefault();
-      $(this).closest('.product_variant').find('.variant-description').show();
-      $(this).hide();
-    });
-  });
-</script>
