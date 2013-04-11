@@ -11,14 +11,15 @@ class Product < ActiveRecord::Base
 
   has_many :line_items
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :suppliers
   has_many :stocks
 
   scope :public, where(public: true)
   scope :in_stocks, where('in_stock > ?', 0)
   
   attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :pictures_attributes
-  attr_reader :category_tokens
+                  :category_tokens, :supplier_tokens, :pictures_attributes
+  attr_reader :category_tokens, :supplier_tokens
   
   validates_uniqueness_of :name, :sku
   validates_presence_of :name, :price, :slug, :description
@@ -33,6 +34,10 @@ class Product < ActiveRecord::Base
 
   def category_tokens=(tokens)
     self.category_ids = Category.ids_from_tokens(tokens)
+  end
+
+  def supplier_tokens=(tokens)
+    self.supplier_ids = Supplier.ids_from_tokens(tokens)
   end
 
   def on_sale?

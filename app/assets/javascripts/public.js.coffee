@@ -14,4 +14,10 @@ jQuery ->
 		theme: 'facebook'
 		prePopulate: $('#product_category_tokens').data('load')
 	)
+
+	$('#product_supplier_tokens').tokenInput(
+		'/suppliers.json'
+		theme: 'facebook'
+		prePopulate: $('#product_supplier_tokens').data('load')
+	)
 	  

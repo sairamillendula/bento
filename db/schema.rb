@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405161714) do
+ActiveRecord::Schema.define(:version => 20130411042511) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -194,6 +194,14 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
     t.datetime "updated_at",                                                    :null => false
   end
 
+  create_table "products_suppliers", :id => false, :force => true do |t|
+    t.integer "product_id"
+    t.integer "supplier_id"
+  end
+
+  add_index "products_suppliers", ["product_id"], :name => "index_products_suppliers_on_product_id"
+  add_index "products_suppliers", ["supplier_id"], :name => "index_products_suppliers_on_supplier_id"
+
   create_table "reseller_requests", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "approved",      :default => false
@@ -224,6 +232,12 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
 
   add_index "stocks", ["product_id"], :name => "index_stocks_on_product_id"
   add_index "stocks", ["product_variant_id"], :name => "index_stocks_on_product_variant_id"
+
+  create_table "suppliers", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "tags", :force => true do |t|
     t.string   "name"

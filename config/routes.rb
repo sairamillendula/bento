@@ -1,7 +1,4 @@
 Bento::Application.routes.draw do
-  
-  resources :orders
-
 
   # ============================================================
   # USER ROUTES
@@ -93,9 +90,11 @@ Bento::Application.routes.draw do
     resources :line_items
   end
   resources :line_items, only: [:create, :update]
-    
+  
+  resources :orders, only: [:new, :create]
   resources :tags, only: :index
   resources :categories, only: :index
+  resources :suppliers, only: :index
   resources :products, only: [:index, :show]
   get "/category/:category", to: "products#index", as: 'category'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
