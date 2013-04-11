@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130411042511) do
+ActiveRecord::Schema.define(:version => 20130411051352) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -201,6 +201,13 @@ ActiveRecord::Schema.define(:version => 20130411042511) do
 
   add_index "products_suppliers", ["product_id"], :name => "index_products_suppliers_on_product_id"
   add_index "products_suppliers", ["supplier_id"], :name => "index_products_suppliers_on_supplier_id"
+
+  create_table "related_products", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "related_product_id"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "reseller_requests", :force => true do |t|
     t.integer  "user_id"

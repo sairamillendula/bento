@@ -9,6 +9,8 @@ class Product < ActiveRecord::Base
   has_many :pictures, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
+  has_many :related_products, dependent: :destroy
+
   has_many :line_items
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :suppliers
@@ -18,7 +20,7 @@ class Product < ActiveRecord::Base
   scope :in_stocks, where('in_stock > ?', 0)
   
   attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes
+                  :category_tokens, :supplier_tokens, :pictures_attributes, :related_products_attributes
   attr_reader :category_tokens, :supplier_tokens
   
   validates_uniqueness_of :name, :sku
