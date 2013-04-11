@@ -1,6 +1,6 @@
 == Bento
 
-© yafoy.com
+e-commerce application - © yafoy.com
 
 ## Get started
 

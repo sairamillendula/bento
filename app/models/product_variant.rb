@@ -8,17 +8,13 @@ class ProductVariant < ActiveRecord::Base
 
   scope :in_stocks, where(back_ordered: false && in_stock > 0)
 
-  attr_accessible :name, :price, :sale_price, :description, :back_ordered, :featured, :product_id, :pictures_attributes, :in_stock
+  attr_accessible :name, :price, :description, :in_stock, :back_ordered, :product_id, :pictures_attributes
 
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :product_id
   
   def current_price
-  	sale_price.present? ? sale_price : (price.present? ? price : product.price)
-  end
-
-  def on_sale?
-    sale_price.present? && sale_price > 0
+  	price.present? ? price : product.price
   end
 
   def in_stock?

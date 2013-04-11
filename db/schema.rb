@@ -171,7 +171,6 @@ ActiveRecord::Schema.define(:version => 20130405161714) do
   create_table "product_variants", :force => true do |t|
     t.string   "name"
     t.decimal  "price",        :precision => 11, :scale => 2
-    t.decimal  "sale_price",   :precision => 11, :scale => 2
     t.text     "description"
     t.boolean  "back_ordered",                                :default => false
     t.integer  "in_stock",                                    :default => 0

@@ -31,7 +31,6 @@
     <%= content_tag_for :div, v.object do %>
       <%= v.input :name, placeholder: "Small, Blue, Large..." %>
       <%= v.input :price %>
-      <%= v.input :sale_price %>
       <%= v.input :in_stock %>
       <p class="nolabel"><%= link_to "Add description", "#", class: 'variant_description_link', style: "display: #{v.object.description.present? ? 'none' : 'block'}" %></p>
       <%= v.input :description, wrapper_html: {class: "variant-description", style: "display: #{v.object.description.present? ? 'block' : 'none'}"} %>
