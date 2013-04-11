@@ -1,8 +1,8 @@
-== Bento
+# Bento
 
 e-commerce application - © yafoy.com
 
 ## Get started
 
 
-```rake db:bootstrap```
+````rake db:bootstrap````
