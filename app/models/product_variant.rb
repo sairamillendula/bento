@@ -12,6 +12,7 @@ class ProductVariant < ActiveRecord::Base
 
   validates_presence_of :name
   validates_uniqueness_of :name, scope: :product_id
+  before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   
   def current_price
   	price.present? ? price : product.price

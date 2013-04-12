@@ -1,0 +1,38 @@
+<%= page_title("Stocks") %>
+
+<% if @products.any? %>
+  <%= form_for :stocks, method: :put do |f| %>
+
+  <table class="table table-striped" id="stocks">
+    <% @products.each do |product| %>
+      <%= f.fields_for "products[#{Time.now.to_f}]", product do |ff| %>
+        <tr class="<%= cycle('odd', 'even') %>">
+          <td><%= link_to product.name, [:admin, product] %></td>
+          <td>
+            <%= ff.hidden_field :id %>
+            <%= ff.number_field :in_stock, class: 'input-mini' %>
+          </td>
+        </tr>
+        <% if product.variants.size > 0 %>
+          <%= ff.fields_for :variants do |fff| %>
+            <tr class="<%= current_cycle %>">
+              <td class="variant"><%= fff.object.name %></td>
+              <td>
+                <%= fff.hidden_field :id %>
+                <%= fff.hidden_field :name %>
+                <%= fff.number_field :in_stock, class: 'input-mini' %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>  
+    
+    <div class="form-actions">
+      <%= submit_tag "Update", class: "btn btn-success" %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="alert"><%= t 'products.none' %>.</div>
+<% end %>

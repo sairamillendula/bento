@@ -72,6 +72,30 @@ body.admin {
 		width: 100%;
 		height: 150px;
 	}
+
+	/* tables */
+	table#stocks {
+		tr.odd {
+			td {
+				background: #f9f9f9;
+			}
+		}
+		tr.even {
+			td {
+				background: #ffffff;
+			}
+		}
+		tr {
+			td.variant {
+				padding-left: 50px;
+			}	
+			td {
+				input {
+					margin: 0;
+				}
+			}
+		}
+	}
 }
 
 /* views */

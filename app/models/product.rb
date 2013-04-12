@@ -29,6 +29,7 @@ class Product < ActiveRecord::Base
   validates :sale_price, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
   
   before_create :generate_sku
+  before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
 
   def to_param
     slug
