@@ -1,6 +1,6 @@
 <div class="span3">
   <div id="sidebar" class=" sidebar-nav">
-    <%= tabs_tag :builder => BootstrapSidebarNavBuilder, :open_tabs => { :class => "nav nav-list" } do |tab| %>
+    <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav nav-list" } do |tab| %>
       <li><%= tab.dashboard "#{t 'dashboard'}", admin_dashboard_path, icon: 'globe' %></li>
 
       <li class="nav-header"><%= t 'work_list' %></li>
