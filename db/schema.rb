@@ -73,9 +73,9 @@ ActiveRecord::Schema.define(:version => 20130411051352) do
     t.decimal  "total",             :precision => 11, :scale => 2
     t.string   "coupon_code"
     t.decimal  "coupon_amount",     :precision => 11, :scale => 2
-    t.boolean  "coupon_percentage",                                :default => true
-    t.datetime "created_at",                                                         :null => false
-    t.datetime "updated_at",                                                         :null => false
+    t.boolean  "coupon_percentage"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -171,6 +171,14 @@ ActiveRecord::Schema.define(:version => 20130411051352) do
     t.datetime "updated_at",         :null => false
   end
 
+  create_table "product_relationships", :force => true do |t|
+    t.integer  "product_id"
+    t.integer  "other_product_id"
+    t.string   "type"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
   create_table "product_variants", :force => true do |t|
     t.string   "name"
     t.decimal  "price",      :precision => 11, :scale => 2
@@ -204,13 +212,6 @@ ActiveRecord::Schema.define(:version => 20130411051352) do
 
   add_index "products_suppliers", ["product_id"], :name => "index_products_suppliers_on_product_id"
   add_index "products_suppliers", ["supplier_id"], :name => "index_products_suppliers_on_supplier_id"
-
-  create_table "related_products", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "related_product_id"
-    t.datetime "created_at",         :null => false
-    t.datetime "updated_at",         :null => false
-  end
 
   create_table "reseller_requests", :force => true do |t|
     t.integer  "user_id"

@@ -93,7 +93,9 @@ Bento::Application.routes.draw do
   resources :tags, only: :index
   resources :categories, only: :index
   resources :suppliers, only: :index
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    get :search, on: :collection
+  end
   get "/category/:category", to: "products#index", as: 'category'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create

@@ -32,6 +32,13 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <label class="control-label" for="product_cross_sell_tokens">Cross-Sell Products</label>
+    <div class="controls" style="position:absolute;">
+      <%= f.text_field :cross_sell_tokens, data: {load: @product.cross_sell_products} %>
+    </div>
+  </div>
+
   <h3 class="subsection_title">Variants</h3>
   <%= f.fields_for :variants do |v| %>
     <%= content_tag_for :div, v.object do %>

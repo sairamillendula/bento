@@ -22,4 +22,12 @@ class ProductsController < ApplicationController
     end
   end
 
+  def search
+    @products = Product.where("name like ?", "%#{params[:q]}%")
+
+    respond_to do |format| 
+      format.json {render json: @products}
+    end
+  end
+
 end

@@ -20,4 +20,10 @@ jQuery ->
 		theme: 'facebook'
 		prePopulate: $('#product_supplier_tokens').data('load')
 	)
+
+	$('#product_cross_sell_tokens').tokenInput(
+		'/products/search.json'
+		theme: 'facebook'
+		prePopulate: $('#product_cross_sell_tokens').data('load')
+	)
 	  

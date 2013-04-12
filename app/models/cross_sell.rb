@@ -1,0 +1,3 @@
+class CrossSell < ProductRelationship
+
+end

@@ -9,7 +9,9 @@ class Product < ActiveRecord::Base
   has_many :pictures, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
-  has_many :related_products, dependent: :destroy
+  has_many :product_relationships, :dependent => :destroy
+  has_many :cross_sells
+  has_many :cross_sell_products, :through => :cross_sells, :source => :other_product
 
   has_many :line_items
   has_and_belongs_to_many :categories
@@ -20,8 +22,8 @@ class Product < ActiveRecord::Base
   scope :in_stocks, where('in_stock > ?', 0)
   
   attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes, :related_products_attributes
-  attr_reader :category_tokens, :supplier_tokens
+                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens
+  attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   
   validates_uniqueness_of :name, :sku
   validates_presence_of :name, :price, :slug, :description
@@ -41,6 +43,13 @@ class Product < ActiveRecord::Base
 
   def supplier_tokens=(tokens)
     self.supplier_ids = Supplier.ids_from_tokens(tokens)
+  end
+
+  def cross_sell_tokens=(tokens)
+    self.cross_sell_products.destroy_all
+    Product.where(id: tokens.split(',').reject {|crsid| crsid == self.id.to_s}).each do |product|
+      self.cross_sell_products << product
+    end
   end
 
   def on_sale?
