@@ -90,9 +90,9 @@ en:
     new: New User
     none: No users found
     member_since: Member since
-  administrators:
-    title: Administrators
-    new: New Administrator
+  staff_members:
+    title: Staff members
+    new: New staff member
   stats: Stats
   stocks: Stocks
   reports: Reports
@@ -126,7 +126,7 @@ en:
   shipping_and_billing_are_the_same: Check if Shipping Address = Billing Address
   i_read_and_accept: I read and accept the
   terms_and_conditions: terms and conditions
-  blog_posts: Blog Posts
+  blog_posts: Blog
   billing_address: Billing Address
   shipping_address: Shipping Address
   shipping_rates_calculator: Shipping rates calculator
@@ -163,6 +163,8 @@ en:
     title: Taxes
   email:
     signature: Have a great day!
+    new_admin_user:
+      subject: Account created
     new_reseller_request:
       subject: New reseller request
     reset_password_email:

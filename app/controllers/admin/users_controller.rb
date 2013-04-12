@@ -16,15 +16,14 @@ class Admin::UsersController < Admin::BaseController
 
   def create
     @user = User.new(params[:user], as: :manager)
-    random_password = Devise.friendly_token.first(6)
+    random_password = SecureRandom.hex(4)
     @user.password = random_password
     @user.password_confirmation = random_password
     @user.admin = true
     
     respond_to do |format|
       if @user.save
-        AdminMailer.new_admin_user(@user, @user.password).deliver
-        # AdminMailer.user_created_email(@user).deliver
+        AdminMailer.new_admin_user(@user, random_password).deliver
         format.html { redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_created', default: 'is created'}. #{t 'an_email_was_sent_to', default: 'An email was sent to'} #{@user.email}." }
         format.js
       else
