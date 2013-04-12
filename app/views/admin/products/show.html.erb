@@ -22,7 +22,7 @@
 <%= markdown(@product.description) %>
 
 <% if @product.variants.any? %>
-  <h4 class="subsection_title">Variants</h4>
+  <h3 class="subsection_title">Variants</h3>
   <% @product.variants.each do |variant| %>
     <p><b><%= variant.name %></b>: <%= number_to_currency(variant.current_price, strip_insignificant_zeros: true) %> || 
     In stock: <%= variant.in_stock %>

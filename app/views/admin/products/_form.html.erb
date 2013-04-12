@@ -32,7 +32,7 @@
     </div>
   </div>
 
-  <h4 class="nolabel subsection_title">Variants</h4>
+  <h3 class="subsection_title">Variants</h3>
   <%= f.fields_for :variants do |v| %>
     <%= content_tag_for :div, v.object do %>
       <%= v.input :name, placeholder: "Small, Blue, Large...", input_html: {class: 'span5'} %>
@@ -42,7 +42,7 @@
       <hr>
     <% end %>
   <% end %>
-  <%= f.link_to_add t('products.add_new_variant'), :variants, class: "btn btn-info nolabel" %>
+  <%= f.link_to_add t('products.add_new_variant'), :variants, class: "btn btn-info" %>
 
   <div class="form-actions">
     <%= submit_or_cancel(f) %>

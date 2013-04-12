@@ -67,6 +67,7 @@ en:
     title: Clients
   client: Client
   settings: Settings
+  store_settings: Store Settings
   products:
     title: Products
     new: New Product
@@ -100,7 +101,7 @@ en:
   logs: Logs
   audit: Audit
   content: Content
-  your_website: Website
+  your_website: Website Management
   price: Price
   on_sale: Sale
   an_email_was_sent_to: An email was sent to
