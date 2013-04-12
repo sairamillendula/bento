@@ -3,6 +3,8 @@ class Product < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
 
+  # ASSOCICATIONS
+  # -------------
   has_many :variants, class_name: "ProductVariant", dependent: :destroy
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: Proc.new {|v| v['name'].blank?}
 
@@ -18,18 +20,29 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :suppliers
   has_many :stocks
 
+  has_many :options, class_name: "ProductOption", dependent: :destroy
+  accepts_nested_attributes_for :options, allow_destroy: true
+
+  # SCOPES
+  # -------------
   scope :public, where(public: true)
   scope :in_stocks, where('in_stock > ?', 0)
   
+  # ATTRIBUTES
+  # -------------
   attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens
+                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   
+  # VALIDATIONS
+  # -------------
   validates_uniqueness_of :name, :sku
   validates_presence_of :name, :price, :slug, :description
   validates :price, numericality: {greater_than_or_equal_to: 0.01}
   validates :sale_price, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
   
+  # CALLBACKS
+  # -------------
   before_create :generate_sku
   before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
 

@@ -14,7 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker
-//= require jquery_nested_form
+//= require nested_form
 //= require jquery.tokeninput
 //= require zen-form
 //= require holder

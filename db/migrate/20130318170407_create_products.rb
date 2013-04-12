@@ -11,6 +11,7 @@ class CreateProducts < ActiveRecord::Migration
       t.boolean :featured, default: false
       t.integer :in_stock, default: 0
       t.integer :supplier_id
+      t.boolean :has_options, default: false
 
       t.timestamps
     end

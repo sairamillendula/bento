@@ -11,10 +11,12 @@ class Admin::ProductsController < Admin::BaseController
 
   def new
     @product = Product.new
+    @product.options.build unless @product.options.any?
   end
 
   def edit
     @product = Product.find(params[:id])
+    @product.options.build unless @product.options.any?
   end
 
   def create

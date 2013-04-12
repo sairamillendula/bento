@@ -39,6 +39,34 @@
     </div>
   </div>
 
+  <div class="control-group">
+    <div class="controls">
+      <label class="checkbox">
+        <%= f.check_box :has_options %> This product has multiple options e.g. Multiple sizes and/or colors
+      </label>
+    </div>
+  </div>
+
+  <div class="control-group" id="options-container" style="display: <%= @product.has_options? ? 'block' : 'none' %>;">
+    <div class="controls well">
+      <table class="table" id="options_fields">
+        <tr>
+          <th class="span3">OPTION NAME</th>
+          <th class="span8">OPTION VALUES</th>
+          <th></th>
+        </tr>
+        <%= f.fields_for :options, :wrapper => false do |ff| %>
+          <tr>
+            <td><%= ff.input_field :name, collection: ['color', 'size', 'style', 'material'], include_blank: false %></td>
+            <td><%= ff.text_field :values %></td>
+            <td><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'} %></td>
+          </tr>
+        <% end %>
+      </table>
+      <%= f.link_to_add t('products.add_another_option'), :options, class: "btn" %>
+    </div>
+  </div>
+
   <h3 class="subsection_title">Variants</h3>
   <%= f.fields_for :variants do |v| %>
     <%= content_tag_for :div, v.object do %>
@@ -55,3 +83,15 @@
     <%= submit_or_cancel(f) %>
   </div>
 <% end %>
+
+<script type="text/javascript">
+$(function() {
+  $('#product_has_options').click(function() {
+    if ($(this).is(':checked')) {
+      $('#options-container').show();
+    } else {
+      $('#options-container').hide();
+    }
+  });
+});
+</script>
