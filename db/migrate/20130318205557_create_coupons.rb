@@ -2,7 +2,7 @@ class CreateCoupons < ActiveRecord::Migration
   def change
     create_table :coupons do |t|
       t.string  :code
-      t.string  :amount
+      t.decimal :amount, :precision => 11, :scale => 2
       t.boolean :percentage, default: true
       t.boolean :active, default: true
 

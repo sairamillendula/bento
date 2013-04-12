@@ -18,7 +18,7 @@
       <tr>
         <td><%= status_tag(coupon.active? ? "#{t 'active'}" : "#{t 'inactive'}", level: "#{coupon.active? ? 'success': ''}") %></td>
         <td><%= coupon.code %></td>
-        <td><%= coupon.percentage? ? number_to_percentage(coupon.amount, strip_insignificant_zeros: true) : number_to_currency(coupon.amount, strip_insignificant_zeros: true) %></td>
+        <td><%= coupon %></td>
         <td><%= coupon.nb_orders %></td>
         <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_coupon_path(coupon), icon: 'pencil' %></td>
       </tr>

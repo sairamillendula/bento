@@ -1,4 +1,6 @@
 class Coupon < ActiveRecord::Base
+  include ActionView::Helpers::NumberHelper
+
 	has_many :orders
 
 	scope :active, where(active: true)
@@ -19,5 +21,9 @@ class Coupon < ActiveRecord::Base
 
   def nb_orders
     #Order.find_all_by_coupon_code("#{code}").count
+  end
+
+  def to_s
+    percentage? ? number_to_percentage(amount, strip_insignificant_zeros: true) : number_to_currency(amount, strip_insignificant_zeros: true)
   end
 end

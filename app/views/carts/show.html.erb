@@ -3,36 +3,63 @@
 
 <% if @cart.items.any? %>
   <%= form_for @cart, url: cart_path do |f| %>
-	<table id="cart" class="table table-striped">
-	  <tr>
-	    <th><%= t 'item' %></th>
-	    <th><%= t 'quantity' %></th>
-      <th><%= t 'price' %></th>
-	    <th><%= t 'subtotal' %></th>
-	    <th></th>
-	  </tr>
-	 
-    <%= f.fields_for :items do |ff| %>
-      <% item = ff.object %>
-	    <tr>
-	      <td><%= item.product.name %></td>
-	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
-        <td><%= number_to_currency(item.current_price) %></td>
-	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-	      <td><%= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true, size: 'mini' %></td>
-	    </tr>
-    <% end %>
-		<tr class="total">
-			<td colspan="3" class="total-type"><%= t 'subtotal' %></td>
-      <td colspan="2"><%= number_to_currency(@cart.subtotal) %></td>
-		</tr>
-
-	</table>
-  <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
-  <%#= link_to "#{t 'carts.empty_action'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
-	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
-	<%= link_to "#{t 'checkout'}", new_order_path, class: "btn btn-success" %>
+  	<table id="cart" class="table table-striped">
+  	  <tr>
+  	    <th><%= t 'item' %></th>
+  	    <th><%= t 'quantity' %></th>
+        <th><%= t 'price' %></th>
+  	    <th><%= t 'subtotal' %></th>
+  	    <th></th>
+  	  </tr>
+  	 
+      <%= f.fields_for :items do |ff| %>
+        <% item = ff.object %>
+  	    <tr>
+  	      <td><%= item.product.name %></td>
+  	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
+          <td><%= number_to_currency(item.current_price) %></td>
+  	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
+  	      <td><%= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true, size: 'mini' %></td>
+  	    </tr>
+      <% end %>
+  	</table>
+    <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
+    <%#= link_to "#{t 'carts.empty_action'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
+  	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
+  	<%= link_to "#{t 'checkout'}", new_order_path, class: "btn btn-success" %>
   <% end %>
+
+  <div class="well">
+    <% if @cart.coupon_applied? %>
+      Coupon code <b><%= @cart.coupon_code %></b> was applied. <%= link_to 'Remove', remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
+    <% else %>
+      <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
+        <%= label_tag :coupon_code %>
+        <%= text_field_tag :coupon_code, @cart.coupon_code, class: 'input-small' %>
+        <%= submit_tag 'Apply', disable_with: "Updating...", class: 'btn' %>    
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="well">
+    <h6>SUMMARY</h6>
+    <table>
+      <tr>
+        <td><%= t 'subtotal' %></td>
+        <td><%= number_to_currency(@cart.subtotal) %></td>
+      </tr>
+      <% if @cart.discount > 0 %>
+      <tr class="total">
+        <td><%= t 'discount' %></td>
+        <td><%= number_to_currency(-@cart.discount) %></td>
+      </tr>
+      <% end %>
+      <tr class="total">
+        <td><%= t 'total' %></td>
+        <td><%= number_to_currency(@cart.total) %></td>
+      </tr>    
+    </table>
+  </div>
 
   <div id="shipping_calculator">
     <h3><%= t 'shipping_rates_calculator' %></h3>

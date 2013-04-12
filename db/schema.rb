@@ -67,12 +67,15 @@ ActiveRecord::Schema.define(:version => 20130411051352) do
   end
 
   create_table "carts", :force => true do |t|
-    t.decimal  "subtotal",   :precision => 11, :scale => 2
-    t.decimal  "tax",        :precision => 11, :scale => 2
-    t.decimal  "shipping",   :precision => 11, :scale => 2
-    t.decimal  "total",      :precision => 11, :scale => 2
-    t.datetime "created_at",                                :null => false
-    t.datetime "updated_at",                                :null => false
+    t.decimal  "subtotal",          :precision => 11, :scale => 2
+    t.decimal  "tax",               :precision => 11, :scale => 2
+    t.decimal  "shipping",          :precision => 11, :scale => 2
+    t.decimal  "total",             :precision => 11, :scale => 2
+    t.string   "coupon_code"
+    t.decimal  "coupon_amount",     :precision => 11, :scale => 2
+    t.boolean  "coupon_percentage",                                :default => true
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -91,11 +94,11 @@ ActiveRecord::Schema.define(:version => 20130411051352) do
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
-    t.string   "amount"
-    t.boolean  "percentage", :default => true
-    t.boolean  "active",     :default => true
-    t.datetime "created_at",                   :null => false
-    t.datetime "updated_at",                   :null => false
+    t.decimal  "amount",     :precision => 11, :scale => 2
+    t.boolean  "percentage",                                :default => true
+    t.boolean  "active",                                    :default => true
+    t.datetime "created_at",                                                  :null => false
+    t.datetime "updated_at",                                                  :null => false
   end
 
   add_index "coupons", ["code"], :name => "index_coupons_on_code"

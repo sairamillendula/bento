@@ -81,6 +81,10 @@ Bento::Application.routes.draw do
   end
 
   resource :cart, except: [:new, :create, :edit] do
+    member do
+      post :apply_coupon
+      post :remove_coupon
+    end
     resources :line_items
   end
   resources :line_items, only: [:create, :update]
