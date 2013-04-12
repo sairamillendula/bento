@@ -22,14 +22,17 @@ Bento::Application.routes.draw do
     resource :stock, only: [:show, :update], path: 'stocks', as: 'stocks'
     resources :articles
     resources :clients, only: [:index, :show]
+    resources :coupons, except: :show
+    resources :pages
+    resources :taxes
+    resources :shipping_rates
+
     resources :resellers, only: [:index, :show] do
       member do
         post :approve
         post :disapprove
       end
     end
-    resources :coupons, except: :show
-    resources :pages
     
     resources :products do
       collection do

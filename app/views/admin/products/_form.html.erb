@@ -17,7 +17,8 @@
       </div>
     </div>
   </div>
-
+  
+  <h3 class="subsection_title">Classification & Related Products</h3>
   <div class="control-group">
     <label class="control-label" for="product_category_tokens">Categories</label>
     <div class="controls" style="position:absolute;">
@@ -26,7 +27,7 @@
   </div>
 
   <div class="control-group">
-    <label class="control-label" for="product_supplier_tokens">Supplier</label>
+    <label class="control-label" for="product_supplier_tokens">Vendor</label>
     <div class="controls" style="position:absolute;">
       <%= f.text_field :supplier_tokens, data: {load: @product.suppliers} %>
     </div>
@@ -38,7 +39,8 @@
       <%= f.text_field :cross_sell_tokens, data: {load: @product.cross_sell_products} %>
     </div>
   </div>
-
+  
+  <h3 class="subsection_title">Options</h3>
   <div class="control-group">
     <div class="controls">
       <label class="checkbox">
@@ -55,10 +57,10 @@
           <th class="span8">OPTION VALUES</th>
           <th></th>
         </tr>
-        <%= f.fields_for :options, :wrapper => false do |ff| %>
+        <%= f.fields_for :options, wrapper: false do |ff| %>
           <tr>
             <td><%= ff.input_field :name, collection: ['color', 'size', 'style', 'material'], include_blank: false %></td>
-            <td><%= ff.text_field :values %></td>
+            <td><%= ff.text_field :values, class: "span12", placeholder: "Enter any options separated by a comma" %></td>
             <td><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'} %></td>
           </tr>
         <% end %>

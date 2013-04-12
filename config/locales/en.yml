@@ -74,6 +74,7 @@ en:
     edit: Edit Product
     none: No products found
     add_new_variant: Add new variant
+    add_new_option: Add new option
     browse: Browse our catalogue
   coupons:
     title: Coupons
@@ -132,6 +133,7 @@ en:
   categories: Categories
   you_re_browsing_our_secure_server: You're browsing our secure server
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
+  vendors: Vendors
   status:
     title: Status
     pending: Pending
@@ -155,6 +157,10 @@ en:
     sign_in: Please sign in first
     signed_in: Signed in!
     signed_out: Successfully signed out.
+  shipping_rates:
+    title: Shipping rates
+  taxes:
+    title: Taxes
   email:
     signature: Have a great day!
     new_reseller_request:
