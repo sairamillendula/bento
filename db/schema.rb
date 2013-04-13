@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412092056) do
+ActiveRecord::Schema.define(:version => 20130412223005) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -127,6 +127,15 @@ ActiveRecord::Schema.define(:version => 20130412092056) do
 
   add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
   add_index "line_items", ["product_variant_id"], :name => "index_line_items_on_product_variant_id"
+
+  create_table "meta_tags", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "meta_taggable_id"
+    t.string   "meta_taggable_type"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "orders", :force => true do |t|
     t.string   "code"

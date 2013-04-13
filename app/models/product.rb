@@ -8,6 +8,9 @@ class Product < ActiveRecord::Base
   has_many :variants, class_name: "ProductVariant", dependent: :destroy
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: Proc.new {|v| v['name'].blank?}
 
+  has_many :options, class_name: "ProductOption", dependent: :destroy
+  accepts_nested_attributes_for :options, allow_destroy: true
+
   has_many :pictures, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
@@ -20,8 +23,8 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :suppliers
   has_many :stocks
 
-  has_many :options, class_name: "ProductOption", dependent: :destroy
-  accepts_nested_attributes_for :options, allow_destroy: true
+  has_one :meta_tag, :as => :meta_taggable, :class_name => "MetaTag", :dependent => :destroy
+  accepts_nested_attributes_for :meta_tag
 
   # SCOPES
   # -------------
@@ -31,7 +34,8 @@ class Product < ActiveRecord::Base
   # ATTRIBUTES
   # -------------
   attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes
+                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
+                  :meta_tag_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   
   # VALIDATIONS
