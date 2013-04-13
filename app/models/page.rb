@@ -10,7 +10,7 @@ class Page < ActiveRecord::Base
   scope :public, where(public: true)
   scope :private, where(public: false)
 
-  validates_presence_of :name, :slug, :klass
+  validates_presence_of :name, :slug, :klass, :public
   validates_uniqueness_of :name, :slug
 
   KLASS = ['standard', 'faq', 'cgv', 'contact']

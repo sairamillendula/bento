@@ -1,6 +1,7 @@
 en:
   site_name: Bento
   site_slogan: Lunch Box from Japan
+  site_description: "Original Bento lunch box from Japan and accessories"
   default_contact: "contact@email.com"
   default_email_sender: "app@email.com"
   blog_url: "http:localhost:3000/blog"

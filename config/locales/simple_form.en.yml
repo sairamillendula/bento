@@ -22,6 +22,8 @@ en:
         password: Password
         address1: Address
     hints:
+      defaults:
+        slug: Separate words with dash '-'
       user:
         password: "(leave blank if you don't want to change it)"
     helpers:

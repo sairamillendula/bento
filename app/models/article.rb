@@ -11,7 +11,7 @@ class Article < ActiveRecord::Base
   scope :public, where(public: true)
   scope :private, where(public: false)
 
-  validates_presence_of :title, :slug, :author_id, :content
+  validates_presence_of :title, :slug, :author_id, :content, :public
   validates_uniqueness_of :title, :slug
 
   attr_accessible :content, :public, :slug, :title, :author_id, :tag_tokens, :meta_tag_attributes

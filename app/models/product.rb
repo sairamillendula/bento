@@ -41,9 +41,10 @@ class Product < ActiveRecord::Base
   # VALIDATIONS
   # -------------
   validates_uniqueness_of :name, :sku
-  validates_presence_of :name, :price, :slug, :description
-  validates :price, numericality: {greater_than_or_equal_to: 0.01}
-  validates :sale_price, numericality: { greater_than_or_equal_to: 0.01 }, allow_blank: true
+  validates_presence_of :name, :price, :slug, :description, :public
+  validates_numericality_of :price, greater_than_or_equal_to: 0.01
+  validates_numericality_of :sale_price, greater_than_or_equal_to: 0.01, allow_blank: true
+  validates_numericality_of :in_stock, only_integer: true
   
   # CALLBACKS
   # -------------
