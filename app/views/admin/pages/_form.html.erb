@@ -2,18 +2,22 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name, input_html: {class: 'span5'} %>
-    <%= f.input :slug %>
+    <%= f.input :name, input_html: {class: 'span12'} %>
+    <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :klass, collection: Page::KLASS %>
     <%= f.input :public, as: :radio_buttons, item_wrapper_class: 'inline' %>
     <div class="control-group" style="position:relative;">
-      <label class="string required control-label" for="article_control">Contenu <abbr title="requis">*</abbr></label>
+      <label class="string required control-label" for="article_control"><%= "#{t 'content'}" %> <abbr title="requis">*</abbr></label>
       <div class="controls">
         <a href="#" class="go-zen"><i class="s s--zen">Edit in Zen Mode</i></a>
         <%= f.text_area :content, class: "zen-mode", "data-label"=>"Écrire ici..." %>
       </div>
     </div>
   </div>
+
+  <%= subsection_title('SEO') %>
+  <% @page.build_meta_tag unless @page.meta_tag %>
+  <%= render 'admin/meta_tags/form', f: f %>
 
   <div class="form-actions">
     <%= submit_or_cancel(f) %>

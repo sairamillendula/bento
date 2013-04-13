@@ -113,6 +113,7 @@ en:
   checkout: Checkout
   in_stock: In stock
   from_price: From
+  description: Description
   resellers:
     title: Resellers
     become_reseller: Become Reseller
@@ -161,6 +162,9 @@ en:
     title: Shipping rates
   taxes:
     title: Taxes
+  zen_mode:
+    edit: Edit in Zen Mode
+    write_here: Write here...
   email:
     signature: Have a great day!
     new_admin_user:

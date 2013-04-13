@@ -43,6 +43,12 @@ module ApplicationHelper
     end
   end
 
+  def subsection_title(title)
+    content_tag(:div, class: "subsection-title") do
+      content_tag(:h3, title)
+    end
+  end
+
   def status(level)
     status_tag(I18n.t("status.#{level}"), class: "status-#{level}")
   end

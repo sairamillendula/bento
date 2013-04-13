@@ -13,7 +13,9 @@ class ArticlesController < ApplicationController
   end
 
 	def show
-    @article = Article.find(params[:slug])
+    @article = Article.includes(:meta_tag, :tags).find(params[:slug])
+    @page_title       = "#{@article.meta_tag.title.present? ? @article.meta_tag.title : @article.name} | #{t 'site_name'}"
+    @page_description = @article.meta_tag.description
     
     if !@article.public?
       raise ActionController::RoutingError.new('Not Found')

@@ -14,16 +14,16 @@ class Product < ActiveRecord::Base
   has_many :pictures, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
-  has_many :product_relationships, :dependent => :destroy
+  has_many :product_relationships, dependent: :destroy
   has_many :cross_sells
-  has_many :cross_sell_products, :through => :cross_sells, :source => :other_product
+  has_many :cross_sell_products, through: :cross_sells, source: :other_product
 
   has_many :line_items
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :suppliers
   has_many :stocks
 
-  has_one :meta_tag, :as => :meta_taggable, :class_name => "MetaTag", :dependent => :destroy
+  has_one :meta_tag, as: :meta_taggable, dependent: :destroy
   accepts_nested_attributes_for :meta_tag
 
   # SCOPES

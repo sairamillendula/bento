@@ -1,0 +1,4 @@
+<%= f.fields_for :meta_tag do |meta| %>
+  <%= meta.input :title, input_html: {class: "span12"}, placeholder: "up to 70 characters and 10 words" %>
+  <%= meta.input :description, input_html: {class: "span12 rows2"}, placeholder: "up to 160 characters" %>
+<% end %>

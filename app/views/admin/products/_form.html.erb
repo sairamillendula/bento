@@ -10,7 +10,7 @@
     <%= f.input :in_stock, input_html: {class: 'input-small'} %>
 
     <div class="control-group" style="position:relative;">
-      <label class="string required control-label" for="article_control">Description <abbr title="requis">*</abbr></label>
+      <label class="string required control-label" for="article_control"><%= "#{t 'description'}" %> <abbr title="requis">*</abbr></label>
       <div class="controls">
         <a href="#" class="go-zen"><i class="s s--zen">Edit in Zen Mode</i></a>
         <%= f.text_area :description, class: "zen-mode", "data-label"=>"Écrire ici..." %>
@@ -18,7 +18,7 @@
     </div>
   </div>
   
-  <h3 class="subsection_title">Classification & Related Products</h3>
+  <%= subsection_title('Classification & Related Products') %>
   <div class="control-group">
     <label class="control-label" for="product_category_tokens">Categories</label>
     <div class="controls" style="position:absolute;">
@@ -40,7 +40,7 @@
     </div>
   </div>
   
-  <h3 class="subsection_title">Options</h3>
+  <%= subsection_title('Options') %>
   <div class="control-group">
     <div class="controls">
       <label class="checkbox">
@@ -69,14 +69,11 @@
     </div>
   </div>
   
-  <h3 class="subsection_title">SEO</h3>
+  <%= subsection_title('SEO') %>
   <% @product.build_meta_tag unless @product.meta_tag %>
-  <%= f.fields_for :meta_tag do |meta| %>
-    <%= meta.input :title, input_html: {class: "span12"}, placeholder: "up to 70 characters and 10 words" %>
-    <%= meta.input :description, input_html: {class: "span12 rows2"}, placeholder: "up to 160 characters" %>
-  <% end %>
-
-  <h3 class="subsection_title">Variants</h3>
+  <%= render 'admin/meta_tags/form', f: f %>
+  
+  <%= subsection_title('Variants') %>
   <%= f.fields_for :variants do |v| %>
     <%= content_tag_for :div, v.object do %>
       <%= v.input :name, placeholder: "Small, Blue, Large...", input_html: {class: 'span5'} %>

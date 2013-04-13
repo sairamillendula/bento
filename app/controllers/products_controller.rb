@@ -16,7 +16,7 @@ class ProductsController < ApplicationController
   end
 
 	def show
-    @product = Product.find(params[:id])
+    @product = Product.includes(:meta_tag, :categories).find(params[:id])
     @page_title       = "#{@product.meta_tag.title.present? ? @product.meta_tag.title : @product.name} | #{t 'site_name'}"
     @page_description = @product.meta_tag.description
     
