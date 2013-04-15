@@ -92,7 +92,7 @@ Bento::Application.routes.draw do
   end
   resources :line_items, only: [:create, :update]
   
-  resources :orders, only: [:new, :create]
+  resources :orders, only: [:index, :new, :create, :show]
   resources :tags, only: :index
   resources :categories, only: :index
   resources :suppliers, only: :index

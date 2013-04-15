@@ -17,8 +17,9 @@ class Order < ActiveRecord::Base
   scope :completed, where(completed: true)
   scope :shipped, where(shipped: true)
 
-  attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client, :shipping_address, :billing_address, :shipped,
-                  :shipped_at, :shipping_address_attributes, :billing_address_attributes
+  attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client_attributes, :shipping_address, :billing_address, :shipped,
+                  :shipped_at, :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
+  attr_accessor :stripe_card_token
 
   before_create :generate_code
 
@@ -57,6 +58,30 @@ class Order < ActiveRecord::Base
 
   def total
     @total = subtotal # TODO add shipping, discount
+  end
+
+  def save_with_payment
+    customer = Stripe::Customer.create(email: user.email, card: stripe_card_token)
+    
+    # charge customer
+    charge = Stripe::Charge.create(
+      amount: (order.price * 100).to_i, #"#{forfait.price} * 100" # in cents
+      currency: "cad",
+      customer: customer.id,
+      description: "Test"
+    )
+
+    self.total = total
+    self.stripe_customer_token = customer.id
+    self.currency = "cad"
+    self.card_type = charge.card.type
+    self.last4 = charge.card.last4
+    save!
+
+  rescue Stripe::InvalidRequestError => e
+    logger.error "Stripe error while creating customer: #{e.message}"
+    errors.add :base, "There was a problem with your credit card."
+    false
   end
 
 private
