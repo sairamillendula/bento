@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
     t.string   "slug"
     t.boolean  "visible",    :default => true
     t.text     "content"
+    t.text     "meta_tag"
     t.integer  "author_id"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false

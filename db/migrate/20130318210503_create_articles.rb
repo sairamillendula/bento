@@ -5,6 +5,7 @@ class CreateArticles < ActiveRecord::Migration
       t.string  :slug
       t.boolean :visible, default: true
       t.text    :content
+      t.text    :meta_tag
       t.integer :author_id
 
       t.timestamps

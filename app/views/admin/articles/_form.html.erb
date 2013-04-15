@@ -5,6 +5,7 @@
     <%= f.input :title, input_html: {class: 'span12'} %>
     <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
+
     <div class="control-group" style="position:relative;">
       <label class="string required control-label" for="article_control"><%= "#{t 'message'}" %> <abbr title="requis">*</abbr></label>
       <div class="controls">
@@ -22,6 +23,9 @@
   </div>
 
   <%= subsection_title("SEO") %>
+  <%= f.input :seo_title, input_html: {class: 'span12'}, placeholder: "up to 70 characters and 10 words" %>
+  <%= f.input :seo_description, input_html: {class: 'span12 rows2'}, placeholder: "up to 160 characters" %>
+  
   <% @article.build_meta_tag unless @article.meta_tag %>
   <%= render 'admin/meta_tags/form', f: f %>
 

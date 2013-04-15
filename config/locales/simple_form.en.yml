@@ -21,6 +21,8 @@ en:
         login: Email or Username
         password: Password
         address1: Address
+        seo_title: Title
+        seo_description: Description
     hints:
       defaults:
         slug: Separate words with dash '-'

@@ -136,6 +136,7 @@ en:
   you_re_browsing_our_secure_server: You're browsing our secure server
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
+  message: Message
   status:
     title: Status
     pending: Pending
