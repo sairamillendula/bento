@@ -9,7 +9,7 @@ class PagesController < ApplicationController
     @page_title       = "#{@page.meta_tag.title.present? ? @page.meta_tag.title : @page.name} | #{t 'site_name'}"
     @page_description = @page.meta_tag.description
 
-    if !@page.public?
+    if !@page.visible?
       raise ActionController::RoutingError.new('Not Found')
     elsif request.path != "/#{@page.slug}"
       redirect_to "/#{@page.slug}", status: :moved_permanently
@@ -19,7 +19,7 @@ class PagesController < ApplicationController
   def home
     @page_title       = "#{t 'site_slogan'} | #{t 'site_name'}"
     @page_description = "#{t 'site_description'}"
-    @products = Product.public.in_stocks.order('name')
+    @products = Product.visibles.in_stocks.order('name')
   end
 
   def become_reseller

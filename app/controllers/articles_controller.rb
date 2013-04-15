@@ -6,18 +6,18 @@ class ArticlesController < ApplicationController
   def index
     if params[:tag]
       @tag = Tag.find_by_name(params[:tag])
-      @articles = @tag.articles.public.order('created_at DESC').page(params[:page]).per(10)
+      @articles = @tag.articles.visibles.order('created_at DESC').page(params[:page]).per(10)
     else
-      @articles = Article.public.order('created_at DESC').page(params[:page]).per(10)
+      @articles = Article.visibles.order('created_at DESC').page(params[:page]).per(10)
     end
   end
 
 	def show
     @article = Article.includes(:meta_tag, :tags).find(params[:slug])
-    @page_title       = "#{@article.meta_tag.title.present? ? @article.meta_tag.title : @article.name} | #{t 'site_name'}"
-    @page_description = @article.meta_tag.description
+    @page_title       = "#{@article.meta_tag && @article.meta_tag.title.present? ? @article.meta_tag.title : @article.title} | #{t 'site_name'}"
+    @page_description = @article.try(:meta_tag.description)
     
-    if !@article.public?
+    if !@article.visible?
       raise ActionController::RoutingError.new('Not Found')
     elsif request.path != "/blog/#{@article.slug}"
       redirect_to "/blog/#{@article.slug}", status: :moved_permanently

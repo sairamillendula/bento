@@ -74,7 +74,7 @@ puts "Created 4 coupons"
     title: Faker::Lorem.words(5).join(' ').titleize,
     slug: Faker::Lorem.words(5).join('-'),
     content: Faker::Lorem.paragraphs(3).join("<br/>"),
-    public: [true, false].sample,
+    visible: [true, false].sample,
     author_id: User.admin.map(&:id).sample
   )
 end
@@ -88,7 +88,7 @@ puts "Created 15 articles"
     name: Faker::Lorem.words(5).join(' ').titleize,
     slug: Faker::Lorem.words(5).join('-'),
     description: Faker::Lorem.paragraphs(3).join("<br/>"),
-    public: [true, false].sample,
+    visible: [true, false].sample,
     featured: [true, false].sample,
     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     sale_price: ["", 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,

@@ -5,7 +5,7 @@ class CreatePages < ActiveRecord::Migration
       t.string  :slug
       t.string  :klass
       t.text    :content
-      t.boolean :public, default: true
+      t.boolean :visible, default: true
 
       t.timestamps
     end

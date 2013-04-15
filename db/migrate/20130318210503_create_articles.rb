@@ -3,7 +3,7 @@ class CreateArticles < ActiveRecord::Migration
     create_table :articles do |t|
       t.string  :title
       t.string  :slug
-      t.boolean :public, default: true
+      t.boolean :visible, default: true
       t.text    :content
       t.integer :author_id
 

@@ -34,7 +34,7 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
   create_table "articles", :force => true do |t|
     t.string   "title"
     t.string   "slug"
-    t.boolean  "public",     :default => true
+    t.boolean  "visible",    :default => true
     t.text     "content"
     t.integer  "author_id"
     t.datetime "created_at",                   :null => false
@@ -140,18 +140,22 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
   create_table "orders", :force => true do |t|
     t.string   "code"
     t.integer  "user_id"
-    t.decimal  "subtotal",     :precision => 11, :scale => 2
-    t.decimal  "tax",          :precision => 11, :scale => 2
-    t.decimal  "shipping",     :precision => 11, :scale => 2
-    t.decimal  "total",        :precision => 11, :scale => 2
-    t.boolean  "completed",                                   :default => false
+    t.decimal  "subtotal",              :precision => 11, :scale => 2
+    t.decimal  "tax",                   :precision => 11, :scale => 2
+    t.decimal  "shipping",              :precision => 11, :scale => 2
+    t.decimal  "total",                 :precision => 11, :scale => 2
+    t.boolean  "completed",                                            :default => false
     t.string   "payment_type"
     t.string   "coupon_code"
     t.string   "remote_ip"
-    t.boolean  "shipped",                                     :default => false
+    t.boolean  "shipped",                                              :default => false
     t.datetime "shipped_at"
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.string   "stripe_customer_token"
+    t.string   "currency"
+    t.string   "card_type"
+    t.string   "last4"
+    t.datetime "created_at",                                                              :null => false
+    t.datetime "updated_at",                                                              :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
@@ -161,7 +165,7 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
     t.string   "slug"
     t.string   "klass"
     t.text     "content"
-    t.boolean  "public",     :default => true
+    t.boolean  "visible",    :default => true
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
@@ -214,7 +218,7 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
     t.decimal  "price",       :precision => 11, :scale => 2
     t.decimal  "sale_price",  :precision => 11, :scale => 2
     t.text     "description"
-    t.boolean  "public",                                     :default => true
+    t.boolean  "visible",                                    :default => true
     t.boolean  "featured",                                   :default => false
     t.integer  "in_stock",                                   :default => 0
     t.integer  "supplier_id"

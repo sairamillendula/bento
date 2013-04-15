@@ -28,12 +28,12 @@ class Product < ActiveRecord::Base
 
   # SCOPES
   # -------------
-  scope :public, where(public: true)
+  scope :visibles, where(visible: true)
   scope :in_stocks, where('in_stock > ?', 0)
   
   # ATTRIBUTES
   # -------------
-  attr_accessible :name, :description, :sale_price, :price, :public, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+  attr_accessible :name, :description, :sale_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
                   :meta_tag_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
@@ -41,7 +41,7 @@ class Product < ActiveRecord::Base
   # VALIDATIONS
   # -------------
   validates_uniqueness_of :name, :sku
-  validates_presence_of :name, :price, :slug, :description, :public
+  validates_presence_of :name, :price, :slug, :description
   validates_numericality_of :price, greater_than_or_equal_to: 0.01
   validates_numericality_of :sale_price, greater_than_or_equal_to: 0.01, allow_blank: true
   validates_numericality_of :in_stock, only_integer: true

@@ -13,6 +13,10 @@ class CreateOrders < ActiveRecord::Migration
       t.string   :remote_ip
       t.boolean  :shipped, default: false
       t.datetime :shipped_at
+      t.string   :stripe_customer_token
+      t.string   :currency
+      t.string   :card_type
+      t.string   :last4
 
       t.timestamps
     end

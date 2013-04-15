@@ -5,7 +5,7 @@
     <%= f.input :name, input_html: {class: 'span12'} %>
     <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :klass, collection: Page::KLASS %>
-    <%= f.input :public, as: :radio_buttons, item_wrapper_class: 'inline' %>
+    <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
     <div class="control-group" style="position:relative;">
       <label class="string required control-label" for="article_control"><%= "#{t 'content'}" %> <abbr title="requis">*</abbr></label>
       <div class="controls">

@@ -8,13 +8,13 @@ class Article < ActiveRecord::Base
   has_one :meta_tag, as: :meta_taggable, dependent: :destroy
   accepts_nested_attributes_for :meta_tag
 
-  scope :public, where(public: true)
-  scope :private, where(public: false)
+  scope :visibles, where(visible: true)
+  scope :private, where(visible: false)
 
-  validates_presence_of :title, :slug, :author_id, :content, :public
+  validates_presence_of :title, :slug, :author_id, :content
   validates_uniqueness_of :title, :slug
 
-  attr_accessible :content, :public, :slug, :title, :author_id, :tag_tokens, :meta_tag_attributes
+  attr_accessible :content, :visible, :slug, :title, :author_id, :tag_tokens, :meta_tag_attributes
   attr_reader :tag_tokens
 
  def tag_tokens=(tokens)

@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.decimal :price, precision: 11, scale: 2
       t.decimal :sale_price, precision: 11, scale: 2
       t.text    :description
-      t.boolean :public, default: true
+      t.boolean :visible, default: true
       t.boolean :featured, default: false
       t.integer :in_stock, default: 0
       t.integer :supplier_id

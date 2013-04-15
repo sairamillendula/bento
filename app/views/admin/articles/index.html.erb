@@ -16,7 +16,7 @@
     
     <% @articles.each do |article| %>
       <tr>
-        <td><%= link_to article.title, admin_article_path(article) %> <%= status_tag "#{t 'private'}" if !article.public? %></td>
+        <td><%= link_to article.title, admin_article_path(article) %> <%= status_tag "#{t 'private'}" if !article.visible? %></td>
         <td><%= article.slug %></td>
         <td><%= truncate(article.content, length: 100) %></td>
         <td><%= article.author.first_name %></td>
