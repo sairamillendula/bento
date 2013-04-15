@@ -2,10 +2,12 @@ class Page < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
 
-  has_one :meta_tag, as: :meta_taggable, dependent: :destroy
-  accepts_nested_attributes_for :meta_tag
+  #has_one :meta_tag, as: :meta_taggable, dependent: :destroy
+  #accepts_nested_attributes_for :meta_tag
 
-  attr_accessible :content, :name, :slug, :visible, :klass, :meta_tag_attributes
+  store :meta_tag, accessors: [:seo_title, :seo_description]
+
+  attr_accessible :content, :name, :slug, :visible, :klass, :meta_tag, :seo_title, :seo_description
 
   scope :visibles, where(visible: true)
   scope :private, where(visible: false)

@@ -16,9 +16,9 @@ class ProductsController < ApplicationController
   end
 
 	def show
-    @product = Product.includes(:meta_tag, :categories).find(params[:id])
-    @page_title       = "#{@product.meta_tag.title.present? ? @product.meta_tag.title : @product.name} | #{t 'site_name'}"
-    @page_description = @product.meta_tag.description
+    @product = Product.includes(:categories).find(params[:id])
+    @page_title       = "#{@product.seo_title.present? ? @product.seo_title : @product.name} | #{t 'site_name'}"
+    @page_description = @product.seo_description
     
     if !@product.visible?
       raise ActionController::RoutingError.new('Not Found')

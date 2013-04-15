@@ -164,9 +164,10 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
   create_table "pages", :force => true do |t|
     t.string   "name"
     t.string   "slug"
+    t.boolean  "visible",    :default => true
     t.string   "klass"
     t.text     "content"
-    t.boolean  "visible",    :default => true
+    t.text     "meta_tag"
     t.datetime "created_at",                   :null => false
     t.datetime "updated_at",                   :null => false
   end
@@ -223,6 +224,7 @@ ActiveRecord::Schema.define(:version => 20130412223005) do
     t.boolean  "featured",                                   :default => false
     t.integer  "in_stock",                                   :default => 0
     t.integer  "supplier_id"
+    t.text     "meta_tag"
     t.boolean  "has_options",                                :default => false
     t.datetime "created_at",                                                    :null => false
     t.datetime "updated_at",                                                    :null => false

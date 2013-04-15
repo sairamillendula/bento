@@ -70,7 +70,6 @@
   </div>
   
   <%= subsection_title('SEO') %>
-  <% @product.build_meta_tag unless @product.meta_tag %>
   <%= render 'admin/meta_tags/form', f: f %>
   
   <%= subsection_title('Variants') %>

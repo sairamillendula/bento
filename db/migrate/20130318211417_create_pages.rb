@@ -3,9 +3,10 @@ class CreatePages < ActiveRecord::Migration
     create_table :pages do |t|
       t.string  :name
       t.string  :slug
+      t.boolean :visible, default: true
       t.string  :klass
       t.text    :content
-      t.boolean :visible, default: true
+      t.text    :meta_tag
 
       t.timestamps
     end

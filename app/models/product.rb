@@ -23,8 +23,9 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :suppliers
   has_many :stocks
 
-  has_one :meta_tag, as: :meta_taggable, dependent: :destroy
-  accepts_nested_attributes_for :meta_tag
+  #has_one :meta_tag, as: :meta_taggable, dependent: :destroy
+  #accepts_nested_attributes_for :meta_tag
+  store :meta_tag, accessors: [:seo_title, :seo_description]
 
   # SCOPES
   # -------------
@@ -35,7 +36,7 @@ class Product < ActiveRecord::Base
   # -------------
   attr_accessible :name, :description, :sale_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-                  :meta_tag_attributes
+                  :meta_tag, :seo_title, :seo_description
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   
   # VALIDATIONS

@@ -5,9 +5,9 @@ class PagesController < ApplicationController
   caches_page :home, :show
 
 	def show
-    @page = Page.includes(:meta_tag).find(params[:slug])
-    @page_title       = "#{@page.meta_tag.title.present? ? @page.meta_tag.title : @page.name} | #{t 'site_name'}"
-    @page_description = @page.meta_tag.description
+    @page = Page.find(params[:slug])
+    @page_title       = "#{@page.seo_title.present? ? @page.seo_title : @page.name} | #{t 'site_name'}"
+    @page_description = @page.seo_description
 
     if !@page.visible?
       raise ActionController::RoutingError.new('Not Found')
