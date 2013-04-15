@@ -25,7 +25,7 @@ class OrdersController < ApplicationController
     @order.user_id = current_user.id if current_user
 
     respond_to do |format|
-      if @order.save
+      if @order.save_with_payment #@order.save
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }

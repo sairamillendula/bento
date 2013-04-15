@@ -23,18 +23,6 @@ jQuery ->
           $('#billing_province').show()
         else
           $('#billing_province').hide()
-
-      # disable submit if termms & conditions not accepted
-      setupTermsbox = ->
-        if $('#accept-terms-box').is(':checked')
-          $('#submit-order').attr('disabled', false)
-        else
-          $('#submit-order').attr('disabled', true)
-
-      setupTermsbox()
-
-      $('#accept-terms-box').click ->
-        setupTermsbox()
       
       # stripe
       Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))

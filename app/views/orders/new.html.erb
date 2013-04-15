@@ -91,11 +91,6 @@
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
   </div>
   
-  <div id="accept-terms" class="checkbox inline">
-    <label class="checkbox">
-      <input id="accept-terms-box" type="checkbox"> <%= t 'i_read_and_accept' %> <%= link_to "#{t 'terms_and_conditions'}", "/cgv" %>.
-    </label>
-  </div>
   <%= f.button :submit, "data-disable-with"=>"#{t 'please_wait'}", id: "submit-order", class: "btn btn-success pull-right" %>
 <% end %>
  

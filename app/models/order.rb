@@ -61,7 +61,7 @@ class Order < ActiveRecord::Base
   end
 
   def save_with_payment
-    customer = Stripe::Customer.create(email: user.email, card: stripe_card_token)
+    customer = Stripe::Customer.create(email: client.email, card: stripe_card_token)
     
     # charge customer
     charge = Stripe::Charge.create(
@@ -71,7 +71,7 @@ class Order < ActiveRecord::Base
       description: "Test"
     )
 
-    self.total = total
+    #self.total = total
     self.stripe_customer_token = customer.id
     self.currency = "cad"
     self.card_type = charge.card.type
