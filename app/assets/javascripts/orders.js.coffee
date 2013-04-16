@@ -1,4 +1,5 @@
 jQuery ->
+  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   order.setupForm()
 
 	order =
@@ -23,9 +24,7 @@ jQuery ->
           $('#billing_province').show()
         else
           $('#billing_province').hide()
-      
-      # stripe
-      Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+
       
       # disable submit button when clicked
       $('#new_order').submit ->
