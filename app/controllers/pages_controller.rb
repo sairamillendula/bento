@@ -17,8 +17,6 @@ class PagesController < ApplicationController
   end
 
   def home
-    @page_title       = "#{t 'site_slogan'} | #{t 'site_name'}"
-    @page_description = "#{t 'site_description'}"
     @products = Product.visibles.in_stocks.order('name')
   end
 

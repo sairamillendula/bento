@@ -53,4 +53,11 @@ module ApplicationHelper
     status_tag(I18n.t("status.#{level}"), class: "status-#{level}")
   end
 
+  def default_meta_tags
+    {
+      :title       => "#{t 'site_slogan'} | #{t 'site_name'}",
+      :description => "#{t 'site_description'}"
+    }
+  end
+
 end
