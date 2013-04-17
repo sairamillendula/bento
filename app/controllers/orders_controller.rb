@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_filter :require_login, only: [:index, :show]
+  before_filter(only: [:new, :create, :show]) { @checkout_script = true }
 
   def index
   	@orders = current_user.orders.order('created_at DESC')

@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   layout 'admin'
   before_filter :verify_admin
+  before_filter { @checkout_script = true }
 
 private
     
