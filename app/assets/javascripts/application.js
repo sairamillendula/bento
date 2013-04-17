@@ -17,6 +17,7 @@
 //= require nested_form
 //= require jquery.tokeninput
 //= require zen-form
+//= require jquery.tagsinput
 //= require holder
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl

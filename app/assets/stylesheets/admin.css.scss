@@ -104,8 +104,12 @@ body.admin {
 			}
 		}
 	}
-	table#table-options {
-		
+	table#options_fields {
+		tr {
+			td {
+				vertical-align: middle;
+			}
+		}
 	}
 }
 
