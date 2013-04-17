@@ -2,7 +2,7 @@ class LineItem < ActiveRecord::Base
 	belongs_to :product
   belongs_to :variant, class_name: "ProductVariant", foreign_key: 'product_variant_id'
   belongs_to :cart
-  belongs_to :order
+  belongs_to :order, counter_cache: true
   
   attr_accessible :cart_id, :product_id, :product_variant_id, :quantity, :price, :order_id
 

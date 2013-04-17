@@ -22,9 +22,8 @@ class Product < ActiveRecord::Base
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :suppliers
   has_many :stocks
+  has_many :orders, through: :line_items
 
-  #has_one :meta_tag, as: :meta_taggable, dependent: :destroy
-  #accepts_nested_attributes_for :meta_tag
   store :meta_tag, accessors: [:seo_title, :seo_description]
 
   # SCOPES

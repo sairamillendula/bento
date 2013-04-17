@@ -19,7 +19,7 @@ class Order < ActiveRecord::Base
 
   attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client_attributes, :shipping_address, :billing_address, :shipped,
                   :shipped_at, :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
-  attr_accessor :stripe_card_token
+  #attr_accessor :stripe_card_token
 
   before_create :generate_code
 
@@ -29,6 +29,7 @@ class Order < ActiveRecord::Base
 
   def add_items_from_cart(cart)
   	cart.items.each do |item|
+      #item.product.in_stock = item.product.in_stock - item.quantity || 0
       item.cart_id = nil
       item.price = item.current_price
       items << item
@@ -60,23 +61,23 @@ class Order < ActiveRecord::Base
     @total = subtotal # TODO add shipping, discount
   end
 
-  def save_with_payment
-    customer = Stripe::Customer.create(email: client.email, card: stripe_card_token)
-    
-    # charge customer
-    charge = Stripe::Charge.create(
-      amount: (self.total * 100).to_i,
-      currency: "cad",
-      customer: customer.id,
-      description: "Test"
-    )
+  def save_with_payment(total)
+    if valid?
+      charge = Stripe::Charge.create(
+        card: stripe_card_token,
+        amount: (total * 100).to_i,
+        currency: "cad",
+        description: "#{client.email}"
+        # application_fee:
+      )
 
-    self.total = total
-    self.stripe_customer_token = customer.id
-    self.currency = "cad"
-    self.card_type = charge.card.type
-    self.last4 = charge.card.last4
-    save!
+      self.total = total
+      self.stripe_card_token = charge.id
+      self.currency = "cad"
+      self.card_type = charge.card.type
+      self.last4 = charge.card.last4
+      save!
+    end
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"

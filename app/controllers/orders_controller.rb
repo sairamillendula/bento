@@ -23,13 +23,15 @@ class OrdersController < ApplicationController
 	def create
 		@order = Order.new(params[:order])
     @order.user_id = current_user.id if current_user
+    @order.remote_ip = request.remote_ip
 
     respond_to do |format|
-      if @order.save_with_payment #@order.save
+      if @order.save_with_payment(current_cart.total)
         @order.add_items_from_cart(current_cart)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }
+        # TODO send email
       else
         format.html { render action: "new" }
       end

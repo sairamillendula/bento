@@ -67,6 +67,10 @@ body.public {
 	.section {
 		border-bottom: 1px solid #eee;
 	}
+	
+	#stripe_error {
+  	color: red;
+  }
 }
 
 #order.public {

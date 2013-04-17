@@ -8,12 +8,11 @@ class CreateOrders < ActiveRecord::Migration
       t.decimal  :shipping, :precision => 11, :scale => 2
       t.decimal  :total, :precision => 11, :scale => 2
     	t.boolean  :completed, default: false
-    	t.string   :payment_type
     	t.string   :coupon_code
       t.string   :remote_ip
       t.boolean  :shipped, default: false
       t.datetime :shipped_at
-      t.string   :stripe_customer_token
+      t.string   :stripe_card_token
       t.string   :currency
       t.string   :card_type
       t.string   :last4

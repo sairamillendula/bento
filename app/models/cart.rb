@@ -72,7 +72,7 @@ class Cart < ActiveRecord::Base
     coupon_code && coupon_amount
   end
 
-  private
+private
 
   def validate_coupon_code_exists
     begin

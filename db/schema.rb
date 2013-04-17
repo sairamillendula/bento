@@ -132,22 +132,21 @@ ActiveRecord::Schema.define(:version => 20130412092056) do
   create_table "orders", :force => true do |t|
     t.string   "code"
     t.integer  "user_id"
-    t.decimal  "subtotal",              :precision => 11, :scale => 2
-    t.decimal  "tax",                   :precision => 11, :scale => 2
-    t.decimal  "shipping",              :precision => 11, :scale => 2
-    t.decimal  "total",                 :precision => 11, :scale => 2
-    t.boolean  "completed",                                            :default => false
-    t.string   "payment_type"
+    t.decimal  "subtotal",          :precision => 11, :scale => 2
+    t.decimal  "tax",               :precision => 11, :scale => 2
+    t.decimal  "shipping",          :precision => 11, :scale => 2
+    t.decimal  "total",             :precision => 11, :scale => 2
+    t.boolean  "completed",                                        :default => false
     t.string   "coupon_code"
     t.string   "remote_ip"
-    t.boolean  "shipped",                                              :default => false
+    t.boolean  "shipped",                                          :default => false
     t.datetime "shipped_at"
-    t.string   "stripe_customer_token"
+    t.string   "stripe_card_token"
     t.string   "currency"
     t.string   "card_type"
     t.string   "last4"
-    t.datetime "created_at",                                                              :null => false
-    t.datetime "updated_at",                                                              :null => false
+    t.datetime "created_at",                                                          :null => false
+    t.datetime "updated_at",                                                          :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
@@ -217,7 +216,7 @@ ActiveRecord::Schema.define(:version => 20130412092056) do
     t.integer  "supplier_id"
     t.text     "meta_tag"
     t.boolean  "has_options",                                 :default => false
-    t.integer  "orders_count"
+    t.integer  "orders_count",                                :default => 0
     t.datetime "created_at",                                                     :null => false
     t.datetime "updated_at",                                                     :null => false
   end

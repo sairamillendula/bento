@@ -13,7 +13,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :supplier_id
       t.text    :meta_tag
       t.boolean :has_options, default: false
-      t.integer :orders_count
+      t.integer :orders_count, default: 0
 
       t.timestamps
     end
