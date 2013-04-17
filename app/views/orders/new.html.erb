@@ -36,10 +36,10 @@
       <h4 class="section-helper"><%= t 'shipping_address' %></h4>
       <div class="form-horizontal">
         <%= f.fields_for :shipping_address do |sa| %>
-          <%= sa.input :address1, required: true %>
+          <%= sa.input :address1, required: true, input_html: {value: '13 Street name'} %>
           <%= sa.input :address2 %>
-          <%= sa.input :postal_code, required: true %>
-          <%= sa.input :city, required: true %>
+          <%= sa.input :postal_code, required: true, input_html: {value: '54000'} %>
+          <%= sa.input :city, required: true, input_html: {value: 'Nancy'} %>
           <%= sa.input :country, required: true %>
           <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: 'display:none;'} %>
         <% end %>
@@ -71,15 +71,19 @@
   <%= f.hidden_field :stripe_card_token %>
 
   <% if @order.stripe_card_token.present? %>
-    Credit card has been provided.
+    <%= t 'orders.credit_card_provided' %>.
   <% else %>
     <div class="field">
+      <%= label_tag :card_holder, "Name on Card" %>
+      <%= text_field_tag :card_holder, 'John Doe', name: nil %>
+    </div>
+    <div class="field">
       <%= label_tag :card_number, "Credit Card Number" %>
-      <%= text_field_tag :card_number, nil, name: nil %>
+      <%= text_field_tag :card_number, '4242424242424242', name: nil %>
     </div>
     <div class="field">
       <%= label_tag :card_code, "Security Code on Card (CVV)" %>
-      <%= text_field_tag :card_code, nil, name: nil %>
+      <%= text_field_tag :card_code, '333', name: nil %>
     </div>
     <div class="field">
       <%= label_tag :card_month, "Card Expiration" %>

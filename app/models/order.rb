@@ -65,13 +65,13 @@ class Order < ActiveRecord::Base
     
     # charge customer
     charge = Stripe::Charge.create(
-      amount: (order.price * 100).to_i, #"#{forfait.price} * 100" # in cents
+      amount: (self.total * 100).to_i,
       currency: "cad",
       customer: customer.id,
       description: "Test"
     )
 
-    #self.total = total
+    self.total = total
     self.stripe_customer_token = customer.id
     self.currency = "cad"
     self.card_type = charge.card.type

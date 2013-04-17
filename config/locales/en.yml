@@ -63,6 +63,7 @@ en:
     mine: My Orders
     none: No orders found
     thank_you: Thank you for your order
+    credit_card_provided: Credit card has been provided
   work_list: Work List
   clients:
     title: Clients

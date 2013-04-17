@@ -21,11 +21,11 @@ class OrdersController < ApplicationController
 
 	def create
 		@order = Order.new(params[:order])
-    @order.add_items_from_cart(current_cart)
     @order.user_id = current_user.id if current_user
 
     respond_to do |format|
       if @order.save_with_payment #@order.save
+        @order.add_items_from_cart(current_cart)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }

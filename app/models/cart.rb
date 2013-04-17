@@ -80,7 +80,7 @@ class Cart < ActiveRecord::Base
       self.coupon_amount = coupon.amount
       self.coupon_percentage = coupon.percentage
     rescue
-      # if coupon does not valid, then remove it from cart
+      # if coupon not valid, then remove it from cart
       self.coupon_code = nil
       self.coupon_amount = nil
       self.coupon_percentage = nil
