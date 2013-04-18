@@ -14,6 +14,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text    :meta_tag
       t.boolean :has_options, default: false
       t.integer :orders_count, default: 0
+      t.boolean :auto_generate_variants, default: true
 
       t.timestamps
     end

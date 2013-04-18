@@ -46,36 +46,46 @@ class ProductForm
 
       @resetOptionIds()
 
+    $('#product_auto_generate_variants').click ->
+      if $(this).is(':checked')
+        $('#select-variants').hide()
+      else
+        $('#select-variants').show()
+
     $('.option_values').tagsInput
       'onAddTag': @addOption
       'onRemoveTag': @removeOption    
 
   addOption: (field, optionValue) =>
     variants = @generateVariants()
+    $('#auto-create').show()
+    $('#variant-count').text(variants.length)
     $('#table-variants tbody').empty()
     for variant in variants
-      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / ')}))
+      name = $.map variant, (n, i) -> return n.name
+      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: name.join(' / '), variants: variant, idx: (new Date().getTime())}))
 
   removeOption: (value) =>
     variants = @generateVariants()
+    $('#auto-create').show()
+    $('#variant-count').text(variants.length)
     $('#table-variants tbody').empty()
     for variant in variants
-      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / ')}))
+      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / '), variants: variant, idx: (new Date().getTime())}))
 
   generateVariants: ->
     variants = []
     if $('#option-1').length > 0
-      option1 = $.map $("#option-1 .option_values").val().split(','), (n, i) -> return "<span class=\"option-1\">#{n}</span>"
+      option1 = $.map $("#option-1 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-1\">#{n}</span>", value: n}
       variants = @pushOpt(option1, [])
 
     if $('#option-2').length > 0
-      option2 = $.map $("#option-2 .option_values").val().split(','), (n, i) -> return "<span class=\"option-2\">#{n}</span>"
+      option2 = $.map $("#option-2 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-2\">#{n}</span>", value: n}
       variants = @pushOpt(variants, option2) 
 
     if $('#option-3').length > 0
-      option3 = $.map $("#option-3 .option_values").val().split(','), (n, i) -> return "<span class=\"option-3\">#{n}</span>"
-      variants = @pushOpt(variants, option3)   
-
+      option3 = $.map $("#option-3 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-3\">#{n}</span>", value: n}
+      variants = @pushOpt(variants, option3)
     return variants
 
   pushOpt: (arr1, arr2) ->

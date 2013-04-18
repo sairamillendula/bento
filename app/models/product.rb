@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   # ASSOCICATIONS
   # -------------
   has_many :variants, class_name: "ProductVariant", dependent: :destroy
-  accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: Proc.new {|v| v['name'].blank?}
+  accepts_nested_attributes_for :variants, allow_destroy: true
 
   has_many :options, class_name: "ProductOption", dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
@@ -35,7 +35,7 @@ class Product < ActiveRecord::Base
   # -------------
   attr_accessible :name, :description, :sale_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-                  :meta_tag, :seo_title, :seo_description
+                  :meta_tag, :seo_title, :seo_description, :auto_generate_variants
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   
   # VALIDATIONS
@@ -50,6 +50,7 @@ class Product < ActiveRecord::Base
   # -------------
   before_create :generate_sku
   before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
+  before_save :clean_up
 
   def to_param
     slug
@@ -95,6 +96,14 @@ private
   def generate_sku
     last_product_id = Product.last.present? ? Product.last.id : 0
     self.sku = "%05d" % (last_product_id + 1)
+  end
+
+  def clean_up
+    unless has_options?
+      options.destroy_all
+      variants.destroy_all
+      self.auto_generate_variants = true
+    end
   end
 
 end

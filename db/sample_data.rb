@@ -97,16 +97,16 @@ puts "Created 15 articles"
 end
 puts "Created 15 products"
 
-10.times do |x|
-  print '.'
-  p = x + 1
-  variant = ProductVariant.create!(
-    name: Faker::Lorem.words(2).join(' ').titleize,
-    price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
-    in_stock: (0..10).to_a.sample,
-    product_id: Product.pluck(:id).sample
-  )
-end
-puts "Created 15 variants"
+# 10.times do |x|
+#   print '.'
+#   p = x + 1
+#   variant = ProductVariant.create!(
+#     name: Faker::Lorem.words(2).join(' ').titleize,
+#     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
+#     in_stock: (0..10).to_a.sample,
+#     product_id: Product.pluck(:id).sample
+#   )
+# end
+# puts "Created 15 variants"
 
 puts "All set"

@@ -63,7 +63,7 @@
         <%= f.fields_for :options, wrapper: false do |ff| %>
           <%=  %>
           <tr class="option">
-            <td><%= ff.input_field :name, collection: ['color', 'size', 'style', 'material'], include_blank: false, class: 'option_name' %></td>
+            <td><%= ff.input_field :name, class: 'option_name', placeholder: "Color, Size, Material..." %></td>
             <td><%= ff.text_field :values, class: "span12 option_values", placeholder: "Enter any options separated by a comma" %></td>
             <td><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'}, style: "display: #{@product.options.size > 1 ? 'block' : 'none'}" %></td>
           </tr>
@@ -72,7 +72,11 @@
       </table>
       <p><%= f.link_to_add t('products.add_another_option'), :options, class: "btn", id: 'add_product_option' %></p>
 
-      <div class="select-variants">
+      <div class="alert alert-warning form-inline" style="color: #000;display: <%= @product.options.any? ? 'block' : 'none' %>;" id="auto-create">
+        <label class="checkbox"><%= f.input_field :auto_generate_variants, label: false, as: :boolean %> Automatically create <strong><span id="variant-count">0</span> variants</strong> based on the options defined above.</label>
+      </div>
+      
+      <div id="select-variants" style="display: <%= @product.auto_generate_variants ? 'none' : 'block' %>;">
         <p>Select which variants will be created</p>
         <table class="table" id="table-variants">
           <thead>
@@ -80,7 +84,7 @@
               <th></th>
               <th>Variant</th>
               <th>Price</th>
-              <th>SKU (optional)</th>
+              <th>In stock</th>
             </tr>
           </thead>
           <tbody>
@@ -92,18 +96,6 @@
   
   <%= subsection_title('SEO') %>
   <%= render 'admin/meta_tags/form', f: f %>
-  
-  <%= subsection_title('Variants') %>
-  <%= f.fields_for :variants do |v| %>
-    <%= content_tag_for :div, v.object do %>
-      <%= v.input :name, placeholder: "Small, Blue, Large...", input_html: {class: 'span5'} %>
-      <%= v.input :price, input_html: {class: 'input-small'} %>
-      <%= v.input :in_stock, input_html: {class: 'input-small'} %>
-      <i class="icon-remove"></i> <%= v.link_to_remove "#{t 'remove'}" %>
-      <hr>
-    <% end %>
-  <% end %>
-  <%= f.link_to_add t('products.add_new_variant'), :variants, class: "btn btn-info" %>
 
   <div class="form-actions">
     <%= submit_or_cancel(f) %>
@@ -112,10 +104,18 @@
 
 <script type="text/x-tmpl" id="tmpl-product-option">
 <tr id="variant_{%=o.id%}">
-  <td><%= check_box_tag '' %></td>
-  <td>{%#o.name%}</td>
-  <td><%= text_field_tag '' %></td>
-  <td><%= text_field_tag '' %></td>
+  <td>
+    <input name="product[variants_attributes][{%=o.idx%}][_destroy]" type="hidden" value="1" />
+    <input type="checkbox" name="product[variants_attributes][{%=o.idx%}][_destroy]" value="0">
+  </td>
+  <td>
+    {%#o.name%}
+    {% for (var i=0; i<o.variants.length; i++) { %}
+      <input type="hidden" name="product[variants_attributes][{%=o.idx%}][option{%=i+1%}]" value="{%=o.variants[i].value%}">
+    {% } %}
+  </td>
+  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][price]' %></td>
+  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][in_stock]' %></td>
 </tr>  
 </script>
 
