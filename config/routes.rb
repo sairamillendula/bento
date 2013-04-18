@@ -110,7 +110,7 @@ Bento::Application.routes.draw do
     get :search, on: :collection
   end
   get "/category/:category", to: "products#index", as: 'category'
-  get "/collection/:collection", to: "collections#show", as: 'collection'
+  get "/collection/:slug", to: "collections#show", as: 'collection'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
   
