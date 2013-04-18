@@ -57,8 +57,10 @@ class ProductForm
       $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / ')}))
 
   removeOption: (value) =>
-    # console.log value
-    # @generateVariants(value)
+    variants = @generateVariants()
+    $('#table-variants tbody').empty()
+    for variant in variants
+      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / ')}))
 
   generateVariants: ->
     variants = []
