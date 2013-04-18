@@ -50,3 +50,9 @@ jQuery ->
       .trigger({ type: 'nested:fieldRemoved', field: field })
       .trigger({ type: 'nested:fieldRemoved:' + assoc, field: field })
     return false
+  
+  # Collections
+  $('#collection-products').sortable
+    axis: 'y'
+    update: ->
+      $.post($(this).data('update-url'), $(this).sortable('serialize'))

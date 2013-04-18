@@ -67,4 +67,14 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_url
   end
 
+  def add_to_collection
+    @product = Product.find(params[:id])
+    #@collection = Collection.find(params[:id])
+    CollectionsProducts.create(product_id: @product.id, collection_id: 1) #@collection.id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 end

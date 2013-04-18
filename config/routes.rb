@@ -26,7 +26,12 @@ Bento::Application.routes.draw do
     resources :pages
     resources :taxes
     resources :shipping_rates
-    resources :collections
+    resources :collections do
+      member do
+        post "sort_products"
+      end
+    end
+    resources :collections_products
 
     resources :resellers, only: [:index, :show] do
       member do
@@ -38,6 +43,10 @@ Bento::Application.routes.draw do
     resources :products do
       collection do
         put :feature
+      end
+
+      member do
+        post 'add_to_collection'
       end
     end
 

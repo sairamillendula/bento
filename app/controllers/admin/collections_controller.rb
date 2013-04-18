@@ -12,7 +12,8 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def show
-    @collection = Collection.find(params[:id])
+    @collection = Collection.includes(:products).find(params[:id])
+    @products = Product.order('name')
 
     respond_to do |format|
       format.html # show.html.erb
@@ -68,6 +69,13 @@ class Admin::CollectionsController < Admin::BaseController
     respond_to do |format|
       format.html { redirect_to admin_collections_url, notice: 'Collection was successfully deleted.' }
     end
+  end
+
+  def sort_products
+    params[:product].each_with_index do |id, index|
+      CollectionsProducts.update_all({position: index+1}, {product_id: id})
+    end
+    render nothing: true
   end
 
 private

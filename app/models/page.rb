@@ -1,6 +1,7 @@
 class Page < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
+  include Sluggable
 
   store :meta_tag, accessors: [:seo_title, :seo_description]
 

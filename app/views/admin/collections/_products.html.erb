@@ -1,0 +1,5 @@
+<% @collection.products.order('position').each do |product| %>
+  <%= content_tag_for :li, product do %>
+    <%= link_to product.name, "" %> <span class="remove fr" style="display:none;">remove</span>
+  <% end %>
+<% end %>

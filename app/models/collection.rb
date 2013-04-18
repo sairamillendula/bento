@@ -1,6 +1,7 @@
 class Collection < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
+  include Sluggable
 
   before_save :format_slug
   
@@ -15,9 +16,5 @@ class Collection < ActiveRecord::Base
   
   validates_presence_of :name, :slug
   validates_uniqueness_of :name, :slug
-
-  def format_slug
-  	slug.parameterize.downcase
-  end
 
 end
