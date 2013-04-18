@@ -111,6 +111,17 @@ body.admin {
 			}
 		}
 	}
+	table#table-variants {
+		span.option-1 {
+			color: #75a630 !important;
+		}
+		span.option-2 {
+			color: #c1873c !important;
+		}
+		span.option-3 {
+			color: #425a91 !important;
+		}
+	}
 }
 
 /* views */

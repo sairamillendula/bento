@@ -1,6 +1,5 @@
 class ProductForm
   constructor: ->
-    console.log 'init ProductOption'
 
   setup: ->
     @resetOptionIds()
@@ -52,59 +51,46 @@ class ProductForm
       'onRemoveTag': @removeOption    
 
   addOption: (field, optionValue) =>
-    # a = []
-    # @generateVariants(a)
-    # console.log a
-    # @generateVariants(arr)
-    # console.log arr
-    console.log @pushOpt([1,2,4], 6)
-    console.log @pushOpt([1,2,4], 7)
-
-    optionName = $(field).closest('tr').find('.option-name').val()
-
-    $('#options_fields tbody .option_values').each (index, optionValueField) ->
-      # console.log $(optionValueField).val()
-
-    $('#variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: optionValue}))
+    variants = @generateVariants()
+    $('#table-variants tbody').empty()
+    for variant in variants
+      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / ')}))
 
   removeOption: (value) =>
     # console.log value
-    @generateVariants(value)
+    # @generateVariants(value)
 
-  generateVariants: (result=[], i=0, temp=[], source=[[1,2,3], [4,5], [6,7]]) =>
-    if i < source.length
-      for val in source[i]
-        temp.push(val)
-        if i == source.length - 1
-          result.push(temp)
-          temp = []
-      i++
-      @generateVariants(result, i, temp, source)
-        
+  generateVariants: ->
+    variants = []
+    if $('#option-1').length > 0
+      option1 = $.map $("#option-1 .option_values").val().split(','), (n, i) -> return "<span class=\"option-1\">#{n}</span>"
+      variants = @pushOpt(option1, [])
 
-    # for arr, i in source
-    #   console.log "loop arr[#{i}]=#{arr}"
-    #   for val in arr
-    #     console.log val
-    # if arr[i] != undefined
-    #   console.log "loop arr[#{i}]=#{arr[i]}"
-    #   for value in arr[i]
-    #     console.log value
-    #     i++
-    #     @generateVariants(result, i, temp, arr[i])
-      # $.each arr[i], (idx, v) =>
-      #   console.log v
-      #   i++
-      #   @generateVariants(result, i, temp, arr[i])
+    if $('#option-2').length > 0
+      option2 = $.map $("#option-2 .option_values").val().split(','), (n, i) -> return "<span class=\"option-2\">#{n}</span>"
+      variants = @pushOpt(variants, option2) 
 
-  pushOpt: (source, val) ->
+    if $('#option-3').length > 0
+      option3 = $.map $("#option-3 .option_values").val().split(','), (n, i) -> return "<span class=\"option-3\">#{n}</span>"
+      variants = @pushOpt(variants, option3)   
+
+    return variants
+
+  pushOpt: (arr1, arr2) ->
     result = []
-    if source.length > 0
-      $.each source, (idx, v) ->
-        result.push [v, val]
-    else
-      result.push(val)
-    result    
+    for v1 in arr1
+      if arr2.length > 0
+        for v2 in arr2
+          if v1 instanceof Array
+            tmp = v1.slice()
+            tmp.push(v2)
+            result.push(tmp)
+          else
+            result.push([v1, v2])
+      else
+        result.push([v1])      
+    return result    
+    
   
   resetOptionIds: ->
     $('#options_fields tbody tr').each (index, tr) ->

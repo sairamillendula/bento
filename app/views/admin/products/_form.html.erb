@@ -63,7 +63,7 @@
         <%= f.fields_for :options, wrapper: false do |ff| %>
           <%=  %>
           <tr class="option">
-            <td><%= ff.input_field :name, collection: ['color', 'size', 'style', 'material'], include_blank: false, class: 'option-name' %></td>
+            <td><%= ff.input_field :name, collection: ['color', 'size', 'style', 'material'], include_blank: false, class: 'option_name' %></td>
             <td><%= ff.text_field :values, class: "span12 option_values", placeholder: "Enter any options separated by a comma" %></td>
             <td><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'}, style: "display: #{@product.options.size > 1 ? 'block' : 'none'}" %></td>
           </tr>
@@ -74,7 +74,7 @@
 
       <div class="select-variants">
         <p>Select which variants will be created</p>
-        <table class="table" id="variants">
+        <table class="table" id="table-variants">
           <thead>
             <tr>
               <th></th>
@@ -111,9 +111,9 @@
 <% end %>
 
 <script type="text/x-tmpl" id="tmpl-product-option">
-<tr id="{%=o.id%}">
+<tr id="variant_{%=o.id%}">
   <td><%= check_box_tag '' %></td>
-  <td>{%=o.name%}</td>
+  <td>{%#o.name%}</td>
   <td><%= text_field_tag '' %></td>
   <td><%= text_field_tag '' %></td>
 </tr>  
