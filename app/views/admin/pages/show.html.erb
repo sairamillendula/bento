@@ -5,4 +5,6 @@
   </h1>
 </div>
 
+<p><b>URL:</b> <%= link_to "#{page_url(@page.slug)}", page_url(@page.slug) %></p>
+
 <%= markdown(@page.content) %>

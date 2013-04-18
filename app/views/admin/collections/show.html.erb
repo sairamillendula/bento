@@ -1,0 +1,13 @@
+<div class="page-header">
+  <h1><%= @collection.name %>
+  <%= icon_button_link_to "#{t 'destroy'}", admin_collection_path(@collection), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, size: 'large', class: "fr" %>
+    <%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(@collection), level: 'primary', icon: 'pencil', white: true, size: 'large', class: "fr" %>
+  </h1>
+</div>
+
+<p>
+  <b>URL:</b>
+  <%= link_to "#{collection_url(@collection.slug)}", collection_url(@collection.slug) %>
+</p>
+
+<%= markdown(@collection.description) %>

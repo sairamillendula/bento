@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1><%= t 'collections.title' %>
+    <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+  </h1>
+</div>
+
+<% if @collections.present? %>
+  <table id="collections" class="table table-striped">
+    <tr id="table-headers">
+      <th><%= "#{t 'name'}" %></th>
+      <th>Slug</th>
+      <th style="min-width:100px;"></th>
+    </tr>
+    
+    <% @collections.each do |collection| %>
+      <tr>
+        <td><%= link_to collection.name, admin_collection_path(collection) %> <%= status_tag "#{t 'private'}" if !collection.visible? %></td>
+        <td><%= collection.slug %></td>
+        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(collection), icon: 'pencil' %></td>
+      </tr>
+    <% end %>
+  </table>
+
+<% else %>
+  <div class="alert"><%= t 'collections.none' %>.</div>
+<% end %>

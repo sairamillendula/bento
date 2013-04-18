@@ -7,7 +7,7 @@
 
 <p>
   <b>URL:</b>
-  <%= link_to @article_slug, "#{t 'blog_url'}/#{@article.slug}" %>
+  <%= link_to "#{article_url(@article.slug)}", article_url(@article.slug) %>
 </p>
 
 <p>

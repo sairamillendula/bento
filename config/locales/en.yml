@@ -116,6 +116,13 @@ en:
   in_stock: In stock
   from_price: From
   description: Description
+  collections:
+    title: Collections
+    none: No Collections found
+    new:
+      title: New Collection
+    edit:
+      title: Edit Collection  
   resellers:
     title: Resellers
     become_reseller: Become Reseller

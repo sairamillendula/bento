@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130412092056) do
+ActiveRecord::Schema.define(:version => 20130418044639) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -92,6 +92,16 @@ ActiveRecord::Schema.define(:version => 20130412092056) do
 
   add_index "categories_products", ["category_id"], :name => "index_categories_products_on_category_id"
   add_index "categories_products", ["product_id"], :name => "index_categories_products_on_product_id"
+
+  create_table "collections", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.boolean  "visible",     :default => true
+    t.text     "description"
+    t.text     "meta_tag"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "coupons", :force => true do |t|
     t.string   "code"

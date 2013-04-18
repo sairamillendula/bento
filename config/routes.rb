@@ -26,6 +26,7 @@ Bento::Application.routes.draw do
     resources :pages
     resources :taxes
     resources :shipping_rates
+    resources :collections
 
     resources :resellers, only: [:index, :show] do
       member do
@@ -100,6 +101,7 @@ Bento::Application.routes.draw do
     get :search, on: :collection
   end
   get "/category/:category", to: "products#index", as: 'category'
+  get "/collection/:collection", to: "collections#show", as: 'collection'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
   
