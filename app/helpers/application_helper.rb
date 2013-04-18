@@ -60,4 +60,8 @@ module ApplicationHelper
     }
   end
 
+  def format_slug(model)
+    model.slug.parameterize.downcase
+  end
+
 end

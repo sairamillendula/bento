@@ -1,6 +1,6 @@
 class Admin::CollectionsController < Admin::BaseController
   set_tab :collections
-  #cache_sweeper :collection_sweeper
+  cache_sweeper :collection_sweeper
 
   def index
     @collections = Collection.order('created_at DESC')
