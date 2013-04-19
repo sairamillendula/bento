@@ -19,7 +19,7 @@
   <ul id="products-list" class="span4 nav nav-list bs-docs-sidenav">
 	  <% @products.each do |product| %>
 	    <%= content_tag_for :li, product do %>
-	      <%= link_to "#{product.name} »", add_to_collection_admin_product_path(product), method: :post, remote: true %>
+	      <%= link_to "#{product.name} »", add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true %>
 	    <% end %>
 	  <% end %>
 	</ul>

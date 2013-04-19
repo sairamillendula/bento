@@ -78,6 +78,15 @@ class Admin::CollectionsController < Admin::BaseController
     render nothing: true
   end
 
+  def add_products
+    collection = Collection.find(params[:id])
+    CollectionsProducts.create(product_id: params[:product_id], collection_id: collection.id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
 private
 
   def sort_direction
