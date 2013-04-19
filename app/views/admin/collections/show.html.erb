@@ -13,25 +13,23 @@
 <%= markdown(@collection.description) %>
 
 <%= subsection_title('Products') %>
-<p class="alert alert-info">Assign products to collection. You can sort products by drag and drop.</p>
 
 <div class="row-fluid">
-  <ul id="products-list" class="span4 nav nav-list bs-docs-sidenav">
-	  <% @products.each do |product| %>
-	    <%= content_tag_for :li, product do %>
-	      <%= link_to "#{product.id} - #{truncate(product.name, length: 40)} »", add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true %>
-	    <% end %>
-	  <% end %>
-	</ul>
-  
-  <ul id="collection-products" class="span8 nav" data-update-url="<%= sort_products_admin_collection_url %>">
-	  <%= render 'admin/collections/products' %>
-	</ul>
-  
-</div>
+	<% if @products.any? %>
+	  <ul id="products-list" class="span4 nav nav-list bs-docs-sidenav">
+		  <% @products.each do |product| %>
+		    <%= content_tag_for :li, product do %>
+	        <%= link_to(add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true) do %>
+	          <%= "#{truncate(product.name, length: 40)}" %> <i class="icon-chevron-right"> </i>
+	        <% end %>
+		    <% end %>
+		  <% end %>
+		</ul>
 
-<script type="text/javascript" charset="utf-8">
-  $(function() {
-    Collection.Show.init();
-  });
-</script>
+	  <ul id="collection-products" class="span8 nav" data-update-url="<%= sort_products_admin_collection_url %>">
+		  <%= render 'admin/collections/products' %>
+		</ul>
+	<% else %>
+	  <p class="alert">Create products first so you can add to collection.</p>
+	<% end %>
+</div>
