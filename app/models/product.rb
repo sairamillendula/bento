@@ -32,6 +32,7 @@ class Product < ActiveRecord::Base
   # -------------
   scope :visibles, where(visible: true)
   scope :in_stocks, where('in_stock > ?', 0)
+  scope :exclude_products, lambda {|product_ids| where("id NOT IN (?)", product_ids)}
   
   # ATTRIBUTES
   # -------------

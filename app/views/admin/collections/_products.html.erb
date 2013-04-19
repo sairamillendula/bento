@@ -1,5 +1,5 @@
-<% @collection.products.order('position').each do |product| %>
+<% @collection.products.order('position').uniq.each do |product| %>
   <%= content_tag_for :li, product do %>
-    <%= link_to product.name, "" %> <span class="remove fr" style="display:none;">remove</span>
+    <%= product.id %> - <%= product.name %> <span class="remove fr"><%= link_to "remove", remove_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true %></span>
   <% end %>
 <% end %>

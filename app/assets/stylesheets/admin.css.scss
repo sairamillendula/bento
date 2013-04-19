@@ -236,20 +236,15 @@ textarea.zen-mode {
 		list-style-type: none;
 		line-height: 36px;
 		border-top: 1px solid #e5e5e5;
+		padding: 0 14px; 
 
 		&:hover {
 			cursor: move;
+			background-color: #eeeeee;
 		}
     
-		a {
-			padding: 0 14px;
-
-			&:hover {
-				cursor: move;
-			}
-		}
-		.remove {
-			color: #005580;
+		a:hover {
+			cursor: move;
 		}
 	}
 }	

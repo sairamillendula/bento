@@ -30,6 +30,7 @@ Bento::Application.routes.draw do
       member do
         post "sort_products"
         post "add_products"
+        post "remove_products"
       end
     end
 

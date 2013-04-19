@@ -13,7 +13,7 @@ class Admin::CollectionsController < Admin::BaseController
 
   def show
     @collection = Collection.includes(:products).find(params[:id])
-    @products = Product.order('name')
+    @products = Product.exclude_products([@collection.products.pluck(:product_id).uniq]).uniq.order('name')
 
     respond_to do |format|
       format.html # show.html.erb
@@ -79,8 +79,17 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def add_products
-    collection = Collection.find(params[:id])
-    CollectionsProducts.create(product_id: params[:product_id], collection_id: collection.id)
+    @collection = Collection.find(params[:id])
+    CollectionsProducts.create(product_id: params[:product_id], collection_id: @collection.id)
+
+    respond_to do |format|
+      format.js
+    end
+  end
+
+  def remove_products
+    @collection = Collection.find(params[:id])
+    CollectionsProducts.where(product_id: params[:product_id], collection_id: @collection.id).delete_all
 
     respond_to do |format|
       format.js

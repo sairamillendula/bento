@@ -19,16 +19,13 @@
   <ul id="products-list" class="span4 nav nav-list bs-docs-sidenav">
 	  <% @products.each do |product| %>
 	    <%= content_tag_for :li, product do %>
-	      <%= link_to "#{product.name} »", add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true %>
+	      <%= link_to "#{product.id} - #{truncate(product.name, length: 40)} »", add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true %>
 	    <% end %>
 	  <% end %>
 	</ul>
   
   <ul id="collection-products" class="span8 nav" data-update-url="<%= sort_products_admin_collection_url %>">
-
-  <%# @collection.products.order('position').each do |product| %>
 	  <%= render 'admin/collections/products' %>
-	  <%# end %>
 	</ul>
   
 </div>
