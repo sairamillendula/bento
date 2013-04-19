@@ -1,5 +1,9 @@
+@PaymentGateway =
+  init: ->
+    Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+
+
 jQuery ->
-  Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
   order.setupForm()
 
 order =
@@ -24,7 +28,6 @@ order =
         $('#billing_province').show()
       else
         $('#billing_province').hide()
-
     
     # disable submit button when clicked
     $('#new_order').submit ->
