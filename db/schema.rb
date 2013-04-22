@@ -106,7 +106,7 @@ ActiveRecord::Schema.define(:version => 20130418143107) do
   create_table "collections_products", :id => false, :force => true do |t|
     t.integer "collection_id"
     t.integer "product_id"
-    t.integer "position"
+    t.integer "position",      :default => 1
   end
 
   add_index "collections_products", ["collection_id"], :name => "index_collections_products_on_collection_id"

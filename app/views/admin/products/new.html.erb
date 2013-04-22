@@ -1,7 +1,7 @@
 <%= page_title("#{t 'products.new'}") %>
 
 <%= simple_nested_form_for([:admin, @product], html: {class: 'form-horizontal', multipart: true}) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'error_messages', object: f.object %>
 
   <div class="form-inputs">
     <%= f.input :name, input_html: {class: 'span12'} %>

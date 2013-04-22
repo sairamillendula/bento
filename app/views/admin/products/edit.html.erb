@@ -1,7 +1,7 @@
 <%= page_title("#{t 'products.edit'}") %>
 
 <%= simple_nested_form_for([:admin, @product], html: {class: 'form-horizontal', multipart: true}) do |f| %>
-  <%= f.error_notification %>
+  <%= render 'error_messages', object: f.object %>
 
   <div class="form-inputs">
     <%= f.input :name, input_html: {class: 'span12'} %>
@@ -41,7 +41,7 @@
       <%= f.text_field :cross_sell_tokens, data: {load: @product.cross_sell_products} %>
     </div>
   </div>
-  
+
   <%= subsection_title('Options') %>
   <div class="control-group" id="options-container">
     <div class="control-label"><%= link_to 'Edit options', '#edit-option-modal', class: 'btn', data: {toggle: 'modal'} %></div>
@@ -64,19 +64,19 @@
               <% variant = ff.object %>
               <%= content_tag_for(:tr, variant) do %>
                 <% if @product.options.size > 0 %>
-                  <td><%= ff.text_field :option1 %></td>
+                  <td><%= ff.text_field :option1, class: 'input-small' %></td>
                 <% end %>
                 <% if @product.options.size > 1 %>
-                  <td><%= ff.text_field :option2 %></td>
+                  <td><%= ff.text_field :option2, class: 'input-small' %></td>
                 <% end %>
                 <% if @product.options.size > 2 %>
-                  <td><%= ff.text_field :option3 %></td>
+                  <td><%= ff.text_field :option3, class: 'input-small' %></td>
                 <% end %>
                 <td>
                   <%= ff.hidden_field :selected, value: '1' %>
-                  <%= ff.text_field :price %>
+                  <%= ff.text_field :price, class: 'input-small' %>
                 </td>
-                <td><%= ff.text_field :in_stock %></td>
+                <td><%= ff.text_field :in_stock, class: 'input-small' %></td>
                 <td><%= ff.link_to_remove 'remove', class: 'btn', data: {wrapper: 'tr'} %></td>
               <% end %>
             <% end %>

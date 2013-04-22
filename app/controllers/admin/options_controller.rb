@@ -7,7 +7,6 @@ class Admin::OptionsController < Admin::BaseController
 
   def update
     @product.update_attributes(params[:product])
-    puts @product.errors.inspect
     redirect_to [:edit, :admin, @product]
   end
 

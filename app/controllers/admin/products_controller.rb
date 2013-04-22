@@ -17,7 +17,6 @@ class Admin::ProductsController < Admin::BaseController
 
   def edit
     @product = Product.find(params[:id])
-    @product.options.build unless @product.options.any?
   end
 
   def create
