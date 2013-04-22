@@ -23,6 +23,7 @@ en:
         address1: Address
         seo_title: Title
         seo_description: Description
+        slug: URL
     hints:
       defaults:
         slug: Separate words with dash '-'

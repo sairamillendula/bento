@@ -11,7 +11,7 @@ class ProductVariant < ActiveRecord::Base
   attr_accessor :selected
   attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3, :selected, :options
 
-  validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "#{YAML.load(attributes[:value]).values.join(' / ')} is duplicated"} }
+  validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "'#{YAML.load(attributes[:value]).values.join(' / ')}' is duplicated"} }
   validates :price, numericality: {greater_than_or_equal_to: 0.0, allow_blank: true}
   validate :validate_options_presence
 

@@ -114,6 +114,10 @@ body.admin {
 	table#table-variants {
 		margin-bottom: 0;
 		
+		th {
+			text-transform: uppercase;
+		}
+		
 		span.option-1 {
 			color: #75a630 !important;
 		}
@@ -123,6 +127,12 @@ body.admin {
 		span.option-3 {
 			color: #425a91 !important;
 		}
+	}
+	table#table-options {
+		tr:first-of-type td {
+			border-top: none;
+			line-height: 35px;
+		} 
 	}
 }
 

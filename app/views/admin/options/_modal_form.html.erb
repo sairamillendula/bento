@@ -12,7 +12,7 @@
           <% idx = ff.object_name.gsub(/[^0-9]+/,'') %>
           <tr>
             <td width="40%"><%= ff.text_field :name, placeholder: 'eg. Color, Size, Material' %></td>
-            <td><%= ff.link_to_remove 'remove', class: 'btn', data: {wrapper: 'tr'} if ff.object.destroyable? %></td>
+            <td><%= ff.link_to_remove 'remove', data: {wrapper: 'tr'} if ff.object.destroyable? %></td>
           </tr>
         <% end %>
       </tbody>

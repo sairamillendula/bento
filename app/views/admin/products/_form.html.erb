@@ -72,7 +72,7 @@
       </table>
       <p><%= f.link_to_add t('products.add_another_option'), :options, class: "btn", id: 'add_product_option' %></p>
 
-      <div class="alert alert-warning form-inline" style="color: #000;display: <%= @product.options.any? ? 'block' : 'none' %>;" id="auto-create">
+      <div class="alert alert-warning form-inline" style="color:#000; display:<%= @product.options.any? ? 'block' : 'none' %>;" id="auto-create">
         <label class="checkbox"><%= f.input_field :auto_generate_variants, label: false, as: :boolean %> Automatically create <strong><span id="variant-count">0</span> variants</strong> based on the options defined above.</label>
       </div>
       
@@ -103,24 +103,24 @@
 <% end %>
 
 <script type="text/x-tmpl" id="tmpl-product-option">
-<tr id="variant_{%=o.id%}">
-  <td>
-    <input name="product[variants_attributes][{%=o.idx%}][_destroy]" type="hidden" value="1" />
-    <input type="checkbox" name="product[variants_attributes][{%=o.idx%}][_destroy]" value="0">
-  </td>
-  <td>
-    {%#o.name%}
-    {% for (var i=0; i<o.variants.length; i++) { %}
-      <input type="hidden" name="product[variants_attributes][{%=o.idx%}][option{%=i+1%}]" value="{%=o.variants[i].value%}">
-    {% } %}
-  </td>
-  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][price]' %></td>
-  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][in_stock]' %></td>
-</tr>  
+  <tr id="variant_{%=o.id%}">
+    <td>
+      <input name="product[variants_attributes][{%=o.idx%}][_destroy]" type="hidden" value="1" />
+      <input type="checkbox" name="product[variants_attributes][{%=o.idx%}][_destroy]" value="0">
+    </td>
+    <td>
+      {%#o.name%}
+      {% for (var i=0; i<o.variants.length; i++) { %}
+        <input type="hidden" name="product[variants_attributes][{%=o.idx%}][option{%=i+1%}]" value="{%=o.variants[i].value%}">
+      {% } %}
+    </td>
+    <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][price]' %></td>
+    <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][in_stock]' %></td>
+  </tr>
 </script>
 
 <script type="text/javascript">
-$(function() {
-  product_form.setup();
-});
+  $(function() {
+    product_form.setup();
+  });
 </script>
