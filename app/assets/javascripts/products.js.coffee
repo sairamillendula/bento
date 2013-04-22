@@ -1,4 +1,4 @@
-class ProductForm
+class NewProductForm
   constructor: ->
 
   setup: ->
@@ -8,6 +8,7 @@ class ProductForm
       if assoc == 'options'
         $field = $('#options_fields tbody').append(content)
         $field.find('.option_values:visible').tagsInput
+          'defaultText': ''
           'onAddTag': @addOption
           'onRemoveTag': @removeOption
         return $field
@@ -33,18 +34,21 @@ class ProductForm
           $('#options_fields .remove_nested_fields').show()
         $('#add_product_option').show()
 
-      @resetOptionIds()  
+      @resetOptionIds()
+      if @isValid()
+        @generateVariants() 
+      else
+        @resetVariants()  
 
     # Add product option handle
     $(document).on 'nested:fieldAdded:options', (event) =>
+      @resetOptionIds()
       $('#options_fields .remove_nested_fields').show()
 
       if $('#options_fields').find('tbody tr:visible').length == 3
         $('#add_product_option').hide()
       else
         $('#add_product_option').show()
-
-      @resetOptionIds()
 
     $('#product_auto_generate_variants').click ->
       if $(this).is(':checked')
@@ -53,25 +57,31 @@ class ProductForm
         $('#select-variants').show()
 
     $('.option_values').tagsInput
+      'defaultText': ''
       'onAddTag': @addOption
       'onRemoveTag': @removeOption    
 
   addOption: (field, optionValue) =>
-    variants = @generateVariants()
-    $('#auto-create').show()
-    $('#variant-count').text(variants.length)
-    $('#table-variants tbody').empty()
-    for variant in variants
-      name = $.map variant, (n, i) -> return n.name
-      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: name.join(' / '), variants: variant, idx: (new Date().getTime())}))
+    if @isValid()
+      @generateVariants() 
+    else
+      @resetVariants()  
 
   removeOption: (value) =>
-    variants = @generateVariants()
-    $('#auto-create').show()
-    $('#variant-count').text(variants.length)
-    $('#table-variants tbody').empty()
-    for variant in variants
-      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: variant.join(' / '), variants: variant, idx: (new Date().getTime())}))
+    if @isValid()
+      @generateVariants() 
+    else
+      @resetVariants()  
+
+  isValid: ->
+    for optionValue in $('.option_values')
+      if !($(optionValue).val())
+        return false
+    return true
+
+  resetVariants: ->
+    $('#select-variants').hide()
+    $('#auto-create').hide()
 
   generateVariants: ->
     variants = []
@@ -86,7 +96,27 @@ class ProductForm
     if $('#option-3').length > 0
       option3 = $.map $("#option-3 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-3\">#{n}</span>", value: n}
       variants = @pushOpt(variants, option3)
-    return variants
+    
+    $('#auto-create').show()
+    $('#variant-count').text(variants.length)
+
+    if variants.length > 100
+      $('#product_auto_generate_variants').attr('checked', 'checked')
+      $('#product_auto_generate_variants').attr('disabled', true)
+      $('#select-variants').hide()
+      $('#too-many-variants').show()
+    else
+      $('#too-many-variants').hide()
+      $('#product_auto_generate_variants').attr('disabled', false)
+      if $('#product_auto_generate_variants').is(':checked')
+        $('#select-variants').hide()
+      else
+        $('#select-variants').show()
+
+    $('#table-variants tbody').empty()
+    for variant, idx in variants
+      name = $.map variant, (n, i) -> return n.name
+      $('#table-variants tbody').append $.parseHTML(tmpl("tmpl-product-option", {name: name.join(' / '), variants: variant, idx: idx + 1}))
 
   pushOpt: (arr1, arr2) ->
     result = []
@@ -108,7 +138,39 @@ class ProductForm
     $('#options_fields tbody tr').each (index, tr) ->
       $(tr).attr('id', "option-#{index + 1}")
 
+@new_product_form = new NewProductForm()
   
+class EditProductForm
+  constructor: ->
 
-@product_form = new ProductForm()
-  
+  setup: ->
+
+    window.nestedFormEvents.insertFields = (content, assoc, link) =>
+      if assoc == 'variants'
+        return $('#table-variants tbody').append(content)
+      else if assoc == 'options'
+        return $('#table-options tbody').append(content)
+      else
+        return $(content).insertBefore(link)
+
+    $(document).on 'nested:fieldAdded:options', (event) =>
+      if $('#table-options').find('tbody tr:visible').length == 3
+        $('#add_product_option').hide()
+      else
+        $('#add_product_option').show()    
+
+    $(document).on 'nested:fieldRemoved:options', (event) =>
+      if $('#table-options').find('tbody tr:visible').length == 3
+        $('#add_product_option').hide()
+      else
+        $('#add_product_option').show()    
+
+    $(document).on 'click', '.close-modal', (e) ->
+      $('#edit-option-modal').modal('hide')
+      return false
+
+    $(document).on 'hidden', '#edit-option-modal', (e) ->
+      $.get $('.close-modal').attr('href'), (html) ->
+        $('#edit-option-modal').replaceWith(html)
+
+@edit_product_form = new EditProductForm()        

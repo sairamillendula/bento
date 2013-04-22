@@ -12,9 +12,7 @@ class CreateProducts < ActiveRecord::Migration
       t.integer :in_stock, default: 0
       t.integer :supplier_id
       t.text    :meta_tag
-      t.boolean :has_options, default: false
       t.integer :orders_count, default: 0
-      t.boolean :auto_generate_variants, default: true
 
       t.timestamps
     end

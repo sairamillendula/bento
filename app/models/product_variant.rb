@@ -8,10 +8,13 @@ class ProductVariant < ActiveRecord::Base
 
   scope :in_stocks, where('in_stock > ?', 0)
 
-  attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3
+  attr_accessor :selected
+  attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3, :selected, :options
 
-  # validates_presence_of :name
-  # validates_uniqueness_of :name, scope: :product_id
+  validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "#{YAML.load(attributes[:value]).values.join(' / ')} is duplicated"} }
+  validates :price, numericality: {greater_than_or_equal_to: 0.0, allow_blank: true}
+  validate :validate_options_presence
+
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
 
   store :options, accessors: [:option1, :option2, :option3]
@@ -28,8 +31,16 @@ class ProductVariant < ActiveRecord::Base
     line_items.any?
   end
 
-  def name
-    options.values.join(" / ")
+  def name(html=false)
+    if html
+      options.values.map.with_index {|v, idx| "<span class=\"option-#{idx + 1}\">#{v}</span>"}.join(' / ').html_safe
+    else
+      options.values.join(' / ')
+    end
+  end
+
+  def validate_options_presence
+    errors.add :options, "can't be blank" if options.values.map {|v| v.presence}.compact.blank?
   end
 
 end

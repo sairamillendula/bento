@@ -47,9 +47,12 @@ Bento::Application.routes.draw do
     end
     
     resources :products do
+      resource :options, only: [:edit, :update], as: :options
+      resources :variants, only: [:destroy]
       collection do
         put :feature
       end
+
     end
 
     resource :settings, only: [:edit, :update]

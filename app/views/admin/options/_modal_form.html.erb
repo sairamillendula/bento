@@ -1,0 +1,38 @@
+<div class="modal hide fade" id="edit-option-modal">
+  <%= nested_form_for product, url: [:admin, product, :options], html: {style: 'margin: 0'} do |f| %>
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Edit options</h3>
+  </div>
+  <div class="modal-body">
+    <table class="table table-stripe" id="table-options">
+      <tbody>
+        <% product.options.build if product.options.blank? %>
+        <%= f.fields_for :options, wrapper: false do |ff| %>
+          <% idx = ff.object_name.gsub(/[^0-9]+/,'') %>
+          <tr>
+            <td width="40%"><%= ff.text_field :name, placeholder: 'eg. Color, Size, Material' %></td>
+            <td>
+              <% if ff.object.new_record? %>
+                <%= ff.text_field :values, placeholder: "Comma separated values, eg. Red,Blue,Green" %>
+              <% else %>
+                <span class="option-<%= idx.to_i + 1 %>"><%= ff.object.values %></span>
+              <% end %>
+            </td>
+            <td><%= ff.link_to_remove 'remove', class: 'btn', data: {wrapper: 'tr'} if ff.object.destroyable? %></td>
+          </tr>
+        <% end %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3"><%= f.link_to_add 'Add another option', :options, class: 'btn', id: 'add_product_option', style: "display: #{@product.options.size > 2 ? 'none' : 'inline-block'}" %></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <%= link_to 'Cancel', [:edit, :admin, product, :options], class: 'btn close-modal' %>
+    <%= f.submit 'Save changes', class: 'btn btn-primary', disable_with: 'Saving...' %>
+  </div>
+  <% end %>
+</div>
