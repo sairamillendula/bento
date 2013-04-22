@@ -265,6 +265,7 @@ DEPENDENCIES
   meta-tags
   mysql2
   nested_form
+  oauth2
   paperclip
   prawn!
   quiet_assets

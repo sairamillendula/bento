@@ -4,7 +4,7 @@ e-commerce application - © yafoy.com
 
 ## Get started
 
-1. copy and rename stripe.example.rb
-2. Insert stripe credentials
-3. ````rake db:bootstrap````
-4. ````rails server````
+1. Customize ````/config/application.yml```
+2. ````rake db:bootstrap````
+3. ````rails server -p 3015```` -> important for Stripe registered application
+4. Sign in as admin and connect user with Stripe

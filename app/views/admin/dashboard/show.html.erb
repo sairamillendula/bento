@@ -31,3 +31,5 @@
     <h4>Total: <b><%#= @orders.length %></b></h4>
   </div>
 </div>
+
+<%= link_to image_tag('connect-button-blue.png', size: "190x33"), "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&stripe_landing=login&client_id=#{ENV['STRIPE_CONNECT_CLIENT_ID']}" %>

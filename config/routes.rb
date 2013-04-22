@@ -12,6 +12,11 @@ Bento::Application.routes.draw do
   resources :passwords, only: [:new, :create, :edit]
   resources :registrations, except: [:index, :show, :destroy]
   resources :sessions
+  
+  # ============================================================
+  # STRIPE ROUTES
+  # ============================================================
+  get '/stripe/connect' => 'stripe#connect'
 
   # ============================================================
   # ADMIN ROUTES
