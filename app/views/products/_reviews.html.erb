@@ -1,0 +1,31 @@
+<h3>Reviews</h3>
+
+<% if current_user %>
+  <% if current_user.reviews.where(product_id: @product.id).empty? %>
+    <%= simple_form_for(@product.reviews.new, remote: true, html: {class: 'form-horizontal'}) do |f| %>
+	    <%= f.error_notification %>
+
+		  <%= f.input :username %>
+		  <%= f.input :rating %>
+		  <%= f.input :rating, collection: (1..5), id: "product-review-rating" %><%= content_tag(:div, '', class: 'rateit', data: {:'rateit-backingfld' => "#product-review-rating"}) %>
+		  <%= f.text_field :rating, size: 1, min: 0, max: 5, step: 1 %>
+        <div class="rateit" data-rateit-backingfld="#product_review_rating" data-rateit-resetable="true">
+      </div>
+		  <%= f.input :message %>
+		  <%= f.input :product_id, as: :hidden %>
+		  <%= f.submit %>
+		<% end %>
+  <% end %>
+<% else %>
+  <%= link_to "Please sign in to write a review", login_path %>
+<% end %>
+
+<% @product.reviews.approved.order('created_at DESC').each do |review| %>
+  <p><b>Rating:</b> <%= review.rating %></p>
+  <p><b>Username:</b><%= review.username %></p>
+  <p><%= review.message %></p>
+<% end %>
+
+<script type="text/javascript">
+  $('.rateit').rateit();
+</script>

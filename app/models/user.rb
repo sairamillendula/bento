@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_one  :reseller_request
   accepts_nested_attributes_for :reseller_request, :reject_if => lambda {|rr| rr[:location].blank?}, :allow_destroy => true
+  has_many :reviews, class_name: "ProductReview"
 
   # SCOPES
   # ==================================================

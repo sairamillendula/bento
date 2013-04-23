@@ -70,6 +70,7 @@ en:
   client: Client
   settings: Settings
   store_settings: Store Settings
+  product: Product
   products:
     title: Products
     new: New Product
@@ -78,6 +79,11 @@ en:
     add_new_variant: Add new variant
     add_new_option: Add new option
     browse: Browse our catalogue
+  reviews:
+    title: Product reviews
+    none: No product reviews found
+    is_now_disapproved: Product review is now disapproved
+    is_now_approved: Product review is now approved
   coupons:
     title: Coupons
     new: New Coupon
@@ -87,6 +93,7 @@ en:
     title: Pages
     new: New Page
     none: No pages found
+  user: User
   users:
     title: Users
     new: New User

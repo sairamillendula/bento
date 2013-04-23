@@ -24,7 +24,8 @@
       </tr>
     <% end %>
   </table>
-
+  
+  <%= paginate @articles %>
 <% else %>
   <div class="alert"><%= t 'articles.none' %>.</div>
 <% end %>

@@ -1,0 +1,5 @@
+<% if @review.errors.blank? %>
+  location.reload();
+<% else %>
+  $(alert("<%= j @review.errors.full_messages.to_sentence %>"));
+<% end %>

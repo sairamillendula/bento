@@ -3,7 +3,7 @@ class Admin::ArticlesController < Admin::BaseController
   cache_sweeper :article_sweeper
 
   def index
-    @articles = Article.order('created_at DESC')
+    @articles = Article.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
 
     respond_to do |format|
       format.html # index.html.erb

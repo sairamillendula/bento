@@ -97,6 +97,21 @@ puts "Created 15 articles"
 end
 puts "Created 15 products"
 
+
+15.times do |x|
+  print '.'
+  r = x + 1
+  review = ProductReview.create!(
+    username: Faker::Name.first_name,
+    rating: (1..5).to_a.sample,
+    message: Faker::Lorem.paragraphs(2).join("<br/>"),
+    approved: [true, false].sample,
+    user_id: User.pluck(:id).sample,
+    product_id: Product.pluck(:id).sample
+  )
+end
+puts "Created 15 products reviews"
+
 # 10.times do |x|
 #   print '.'
 #   p = x + 1

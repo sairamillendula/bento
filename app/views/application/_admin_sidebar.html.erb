@@ -19,6 +19,7 @@
       <li class="nav-header"><%= t 'website_management' %></li>
       <li><%= tab.articles "#{t 'blog_posts'}", admin_articles_path, icon: 'bookmark' %></li>
       <li><%= tab.pages "#{t 'pages.title'}", admin_pages_path, icon: 'book' %></li>
+      <li><%= tab.reviews "#{t 'reviews.title'}", admin_product_reviews_path, icon: 'star' %></li>
 
       <li class="nav-header"><%= t 'staff_members.title' %></li>
       <li><%= tab.users "#{t 'staff_members.title'}", admin_users_path, icon: 'user' %></li>

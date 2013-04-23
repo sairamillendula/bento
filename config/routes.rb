@@ -52,7 +52,13 @@ Bento::Application.routes.draw do
       collection do
         put :feature
       end
+    end
 
+    resources :product_reviews, only: [:index, :show] do
+      member do
+        post :approve
+        post :disapprove
+      end
     end
 
     resource :settings, only: [:edit, :update]
@@ -111,6 +117,7 @@ Bento::Application.routes.draw do
   resources :tags, only: :index
   resources :categories, only: :index
   resources :suppliers, only: :index
+  resources :product_reviews, only: :create
   resources :products, only: [:index, :show] do
     get :search, on: :collection
   end

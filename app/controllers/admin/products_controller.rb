@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::BaseController
   set_tab :products
 
   def index
-    @products = Product.order('name')
+    @products = Product.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
   end
 
   def show
@@ -65,6 +65,16 @@ class Admin::ProductsController < Admin::BaseController
   def feature
     Product.update_all({featured: true}, {id: params[:product_ids]})
     redirect_to admin_products_url
+  end
+
+private
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+  end
+
+  def sort_column
+    Product.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
   end
 
 end
