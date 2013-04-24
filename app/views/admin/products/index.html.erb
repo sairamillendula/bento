@@ -1,12 +1,12 @@
 <div class="page-header">
   <h1><%= t 'products.title' %>
-    <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: "fr" %>  
+    <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
   </h1>
 </div>
 
 <% if @products.present? %>
   <%= form_tag feature_admin_products_path, method: :put do %>
-    <div class="well well-small"><%= submit_tag "Featured checked products", class: "btn" %></div>
+    <div class="well well-small"><%= submit_tag "Feature checked products", class: "btn" %></div>
 
     <table id="products" class="table table-striped">
       <tr id="table-headers">
@@ -14,7 +14,7 @@
         <th><%= "#{t 'name', default: 'Name'}" %></th>
         <th>SKU</th>
         <th><%= "#{t 'price'}" %></th>
-        <th style="min-width:100px;"></th>
+        <th style="min-width:80px;"></th>
       </tr>
       
       <% @products.each do |product| %>
@@ -27,7 +27,7 @@
           </td>
           <td><%= product.sku %></td>
           <td><%= product.price_display %></td>
-          <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(product), icon: 'pencil' %></td>
+          <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(product), icon: 'pencil', size: 'small' %></td>
         </tr>
       <% end %>
     </table>

@@ -1,11 +1,9 @@
-<div class="page-header">
-  <h1><%= t 'sales_report' %> </h1>
-</div>
+<%= page_title("#{t 'sales_report'}") %>
 
 <div id="years">
   <form action="" method="get" class="filter">
     <div class="inline-form">
-      <%= select_tag :year, options_for_select(@years, @year), :onchange => "$(this).closest('form').submit();", class: 'span2' %>
+      <%= select_tag :year, options_for_select(@years, @year), onchange: "$(this).closest('form').submit();", class: 'span2' %>
     </div>
   </form>
 </div>

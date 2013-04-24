@@ -1,21 +1,22 @@
 <%= page_title("#{t 'collections.title'}") do %>
-  <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+  <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, class: 'fr' %>
 <% end %>
-
 
 <% if @collections.present? %>
   <table id="collections" class="table table-striped">
     <tr id="table-headers">
       <th><%= "#{t 'name'}" %></th>
       <th>Slug</th>
+      <th><%= "#{t 'products.title'}" %></th>
       <th style="min-width:100px;"></th>
     </tr>
     
-    <% @collections.each do |collection| %>
+    <% @collections.each do |coll| %>
       <tr>
-        <td><%= link_to collection.name, admin_collection_path(collection) %> <%= status_tag "#{t 'private'}" if !collection.visible? %></td>
-        <td><%= collection.slug %></td>
-        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(collection), icon: 'pencil' %></td>
+        <td><%= link_to coll.name, admin_collection_path(coll) %> <%= status_tag "#{t 'private'}" if !coll.visible? %></td>
+        <td><%= coll.slug %></td>
+        <td><%= pluralize(coll.products.length, "#{t 'product'}") %></td>
+        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(coll), icon: 'pencil', size: 'small' %></td>
       </tr>
     <% end %>
   </table>

@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1>Blog
-    <%= icon_button_link_to "#{t 'articles.new'}", new_admin_article_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+    <%= icon_button_link_to "#{t 'articles.new'}", new_admin_article_path, level: 'primary', icon: 'plus', white: true, class: 'fr' %>
   </h1>
 </div>
 
@@ -11,7 +11,7 @@
       <th>Slug</th>
       <th><%= "#{t 'content'}" %></th>
       <th><%= t 'author' %></th>
-      <th style="min-width:100px;"></th>
+      <th style="min-width:80px;"></th>
     </tr>
     
     <% @articles.each do |article| %>
@@ -20,7 +20,7 @@
         <td><%= article.slug %></td>
         <td><%= truncate(article.content, length: 100) %></td>
         <td><%= article.author.first_name %></td>
-        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_article_path(article), icon: 'pencil' %></td>
+        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_article_path(article), icon: 'pencil', size: 'small' %></td>
       </tr>
     <% end %>
   </table>

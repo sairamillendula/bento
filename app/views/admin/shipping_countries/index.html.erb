@@ -1,5 +1,5 @@
 <%= page_title("#{t 'shipping_rates.title'}") do %>
-  <%= icon_button_link_to "#{t 'shipping_rates.new.title'}", new_admin_shipping_country_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+  <%= icon_button_link_to "#{t 'shipping_rates.new.title'}", new_admin_shipping_country_path, level: 'primary', icon: 'plus', white: true, class: 'fr' %>
 <% end %>
 
 <% if @shipping_countries.present? %>

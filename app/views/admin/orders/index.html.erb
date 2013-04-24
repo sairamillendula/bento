@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1><%= t 'orders.title' %></h1>
-</div>
+<%= page_title("#{t 'orders.title'}") %>
 
 <% if @orders.present? %>
   <table id="orders" class="table table-striped">
@@ -20,7 +18,6 @@
 	</table>
 
   <%= paginate @orders %>
-
 <% else %>
   <div class="alert"><%= t 'orders.none' %>.</div>
 <% end %>

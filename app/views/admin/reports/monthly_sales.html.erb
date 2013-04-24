@@ -1,10 +1,8 @@
-<div class="page-header">
-  <h1><%= t 'monthly_sales_report' %></h1>
-</div>
+<%= page_title("#{t 'monthly_sales_report'}") %>
 
 <h4 id="month_selector" style="margin-bottom:50px;">
   <%= link_to '&#x2190;'.html_safe, :month => (@date.beginning_of_month-1).strftime("%Y-%m") %>
-  <%= I18n.localize(@date, :format => '%B %Y') %>
+  <%= I18n.localize(@date, format: '%B %Y') %>
   <%= link_to "&#x2192;".html_safe, :month => (@date.end_of_month+1).strftime("%Y-%m") %>
   <span id='go_to_current' class='fr'><%= link_to "#{t 'current_month'}", month: (Date.today.beginning_of_month).strftime('%Y-%m') %></span>
 </h4>

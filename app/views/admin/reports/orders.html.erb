@@ -1,9 +1,7 @@
-<div class="page-header">
-  <h1><%= t 'orders_report' %> </h1>
-</div>
+<%= page_title("#{t 'orders_report'}") %>
 
 <div class="well">
-  <%= search_form_for @search, url: orders_admin_reports_path, :html => {class: "form-inline form-search"} do |f| %>
+  <%= search_form_for @search, url: orders_admin_reports_path, html: {class: "form-inline form-search"} do |f| %>
     <%= f.text_field :created_at_gteq, class: 'date_picker', style: 'max-width:78px;', placeholder: "#{t 'from_date'}" %>
     <%= f.text_field :created_at_lteq, class: 'date_picker', style: 'max-width:78px;', placeholder: "#{t 'to_date'}" %>
     <%= f.text_field :client_first_name_cont, placeholder: "#{t 'first_name'}", class: 'span2' %>

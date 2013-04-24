@@ -1,3 +1,11 @@
 <%= page_title(@collection.name) %>
 
 <%= markdown(@collection.description) if @collection.description.present? %>
+
+<% if @collection.products.any? %>
+  <ul>
+  	<% @collection.products.order('position').each do |p| %>
+      <li><%= p.name %> (<%= number_to_currency(p.current_price) %>)</li>
+    <% end %>
+  </ul>
+<% end %>

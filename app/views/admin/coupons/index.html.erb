@@ -1,6 +1,6 @@
 <div class="page-header">
   <h1><%= t 'coupons.title' %>
-    <%= icon_button_link_to "#{t 'coupons.new'}", new_admin_coupon_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: "fr" %>  
+    <%= icon_button_link_to "#{t 'coupons.new'}", new_admin_coupon_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
   </h1>
 </div>
 
@@ -20,11 +20,11 @@
         <td><%= coupon.code %></td>
         <td><%= coupon %></td>
         <td><%= coupon.nb_orders %></td>
-        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_coupon_path(coupon), icon: 'pencil' %></td>
+        <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_coupon_path(coupon), icon: 'pencil', size: 'small' %></td>
       </tr>
     <% end %>
   </table>
 
 <% else %>
-  <div class="alert"><%= t 'coupons.none', default: 'No coupons found' %>.</div>
+  <div class="alert"><%= t 'coupons.none' %>.</div>
 <% end %>
