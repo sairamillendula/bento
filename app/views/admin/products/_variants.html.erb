@@ -1,0 +1,18 @@
+<% if @product.variants.any? %>
+  <h3 class="subsection_title">Variants</h3>
+  
+  <table class="table table-striped">
+  	<tr>
+  		<th></th>
+  		<th>PRICE</th>
+  		<th>IN STOCK</th>
+  	</tr>
+    <% @product.variants.each do |variant| %>
+      <tr>
+        <td><b><%= variant.name %></b></td>
+        <td><%= number_to_currency(variant.current_price) %></td>
+        <td><%= variant.in_stock %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

@@ -5,7 +5,7 @@ class CreateProducts < ActiveRecord::Migration
       t.string  :slug
       t.string  :sku
       t.decimal :price, precision: 11, scale: 2
-      t.decimal :sale_price, precision: 11, scale: 2
+      t.decimal :reduced_price, precision: 11, scale: 2
       t.text    :description
       t.boolean :visible, default: true
       t.boolean :featured, default: false

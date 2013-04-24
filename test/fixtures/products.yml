@@ -12,7 +12,7 @@ two:
   name: MyString
   sku: MyString
   price: 10.5
-  sale_price: 5
+  reduced_price: 5
   description: MyText
   visible: false
   back_ordered: false

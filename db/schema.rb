@@ -238,17 +238,17 @@ ActiveRecord::Schema.define(:version => 20130424085434) do
     t.string   "name"
     t.string   "slug"
     t.string   "sku"
-    t.decimal  "price",        :precision => 11, :scale => 2
-    t.decimal  "sale_price",   :precision => 11, :scale => 2
+    t.decimal  "price",         :precision => 11, :scale => 2
+    t.decimal  "reduced_price", :precision => 11, :scale => 2
     t.text     "description"
-    t.boolean  "visible",                                     :default => true
-    t.boolean  "featured",                                    :default => false
-    t.integer  "in_stock",                                    :default => 0
+    t.boolean  "visible",                                      :default => true
+    t.boolean  "featured",                                     :default => false
+    t.integer  "in_stock",                                     :default => 0
     t.integer  "supplier_id"
     t.text     "meta_tag"
-    t.integer  "orders_count",                                :default => 0
-    t.datetime "created_at",                                                     :null => false
-    t.datetime "updated_at",                                                     :null => false
+    t.integer  "orders_count",                                 :default => 0
+    t.datetime "created_at",                                                      :null => false
+    t.datetime "updated_at",                                                      :null => false
   end
 
   create_table "products_suppliers", :id => false, :force => true do |t|

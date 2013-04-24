@@ -40,7 +40,7 @@ class Product < ActiveRecord::Base
   
   # ATTRIBUTES
   # -------------
-  attr_accessible :name, :description, :sale_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+  attr_accessible :name, :description, :reduced_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
                   :meta_tag, :seo_title, :seo_description, :auto_generate_variants
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
@@ -51,7 +51,7 @@ class Product < ActiveRecord::Base
   validates_uniqueness_of :name, :sku
   validates_presence_of :name, :price, :slug, :description
   validates_numericality_of :price, greater_than_or_equal_to: 0.01
-  validates_numericality_of :sale_price, greater_than_or_equal_to: 0.01, allow_blank: true
+  validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
   validates_numericality_of :in_stock, only_integer: true
   
   # CALLBACKS
@@ -81,11 +81,11 @@ class Product < ActiveRecord::Base
   end
 
   def on_sale?
-    sale_price.present? && sale_price > 0
+    reduced_price.present? && reduced_price > 0
   end
 
   def current_price
-    sale_price.present? ? sale_price : price
+    reduced_price.present? ? reduced_price : price
   end
 
   def price_display

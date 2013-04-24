@@ -167,8 +167,6 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    pjax_rails (0.3.4)
-      jquery-rails
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -281,7 +279,6 @@ DEPENDENCIES
   nested_form
   oauth2
   paperclip
-  pjax_rails
   prawn!
   quiet_assets
   rack-mini-profiler

@@ -11,7 +11,7 @@
         <%= f.fields_for :options, wrapper: false do |ff| %>
           <% idx = ff.object_name.gsub(/[^0-9]+/,'') %>
           <tr>
-            <td width="40%"><%= ff.text_field :name, placeholder: 'eg. Color, Size, Material' %></td>
+            <td width="100%"><%= ff.text_field :name, placeholder: 'eg. Color, Size, Material', class: 'span12' %></td>
             <td><%= ff.link_to_remove 'remove', data: {wrapper: 'tr'} if ff.object.destroyable? %></td>
           </tr>
         <% end %>

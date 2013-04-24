@@ -5,13 +5,13 @@
   </h1>
 </div>
 
-<p><b>SKU</b>: <%= @product.sku %></p>
+<p><b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug) %></p>
 
-<p><b>Slug</b>: <%= @product.slug %></p>
+<p><b>SKU</b>: <%= @product.sku %></p>
 
 <p><b><%= t 'price' %></b>: <%= number_to_currency(@product.price, strip_insignificant_zeros: true) %></p>
 
-<p><b><%= t 'sale_price' %></b>: <%= number_to_currency(@product.sale_price, strip_insignificant_zeros: true) %></p>
+<p><b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.reduced_price, strip_insignificant_zeros: true) %></p>
 
 <p><b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %></p>
 
@@ -23,11 +23,4 @@
 
 <%= markdown(@product.description) %>
 
-<% if @product.variants.any? %>
-  <h3 class="subsection_title">Variants</h3>
-  <% @product.variants.each do |variant| %>
-    <p><b><%= variant.name %></b>: <%= number_to_currency(variant.current_price, strip_insignificant_zeros: true) %> || 
-    In stock: <%= variant.in_stock %>
-    </p>
-  <% end %>
-<% end %>
+<%= render 'variants' %>
