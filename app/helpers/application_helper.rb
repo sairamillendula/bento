@@ -37,9 +37,10 @@ module ApplicationHelper
     end
   end
 
-  def page_title(title)
+  def page_title(title, &block)
+    page_actions = block_given? ? capture(&block) : ''
     content_tag(:div, class: "page-header") do
-      content_tag(:h1, title)
+      content_tag(:h1, (title + page_actions).html_safe)
     end
   end
 
@@ -62,6 +63,10 @@ module ApplicationHelper
 
   def format_slug(model)
     model.slug.parameterize.downcase
+  end
+
+  def icon_flag(country)
+    content_tag(:i, '', class: "famfamfam-flag-#{Country[country].alpha2.downcase}") + " "
   end
 
 end

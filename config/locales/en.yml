@@ -157,6 +157,11 @@ en:
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
   message: Message
+  price-based: Based on order price
+  weight-based: Based on order weight 
+  price-based-rage: Price range
+  weight-based-rage: Weight range
+  country: Country
   status:
     title: Status
     pending: Pending
@@ -182,6 +187,10 @@ en:
     signed_out: Successfully signed out.
   shipping_rates:
     title: Shipping rates
+    new:
+      title: New shipping country
+    edit:
+      title: Edit shipping country  
   taxes:
     title: Taxes
   zen_mode:

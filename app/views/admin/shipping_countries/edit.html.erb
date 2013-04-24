@@ -1,0 +1,35 @@
+<%= page_title("#{t 'shipping_rates.edit.title'}") %>
+
+<%= simple_nested_form_for([:admin, @shipping_country], html: {class: 'form-horizontal zen-form'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :country %>
+
+    <div id="rates">
+      <%= f.fields_for :rates do |ff| %>
+        <div class="well rate">
+          <%= ff.input :name %>  
+          <%= ff.input :criteria, collection: [[t('weight-based'), 'weight-based'], [t('price-based'), 'price-based']], include_blank: false, input_html: {class: 'criteria'} %>
+          <%= ff.input :range, required: true, wrapper_html: {class: 'range'} do %>
+            <%= ff.input_field :min_criteria, class: 'input-small min_criteria' %> <span class="unit"><%= ff.object.unit %></span> — <%= ff.input_field :max_criteria, class: 'input-small max_criteria' %> <span class="unit"><%= ff.object.unit %></span>
+          <% end %>
+          <%= ff.input :price, input_html: {class: 'input-small'} %>
+          <%= ff.link_to_remove 'remove', class: 'btn btn-danger' %>
+        </div>
+      <% end %>
+
+      <p><%= f.link_to_add t('shipping_rates.add_rate'), :rates, class: "btn", id: 'add_rate' %></p>
+    </div>
+  </div>
+  
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$(function() {
+  shipping.setup();
+});
+</script>

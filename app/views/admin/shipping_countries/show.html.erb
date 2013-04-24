@@ -1,0 +1,13 @@
+<%= page_title(@shipping_country.name) %>
+
+<% if @shipping_country.rates.any? %>
+  <table class="table table-striped">
+    <% @shipping_country.rates.each do |rate| %>
+      <tr>
+        <td><%= rate.name %></td>
+        <td><%= rate.rate %></td>
+        <td><strong><%= number_to_currency rate.price %></strong></td>
+      </tr>
+    <% end %>
+  </table>
+<% end %>

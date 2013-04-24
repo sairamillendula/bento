@@ -1,0 +1,13 @@
+<%= page_title("#{t 'shipping_rates.new.title'}") %>
+
+<%= simple_form_for([:admin, @shipping_country], html: {class: 'form-horizontal zen-form'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :country %>
+  </div>
+  
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>

@@ -1,0 +1,30 @@
+<%= page_title("#{t 'shipping_rates.title'}") do %>
+  <%= icon_button_link_to "#{t 'shipping_rates.new.title'}", new_admin_shipping_country_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+<% end %>
+
+<% if @shipping_countries.present? %>
+  <table id="shipping_countries" class="table table-striped">
+    <tr id="table-headers">
+      <th colspan="2"><%= "#{t 'country'}" %></th>
+      <th style="min-width:100px;"></th>
+    </tr>
+    
+    <% @shipping_countries.each do |shipping_country| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td colspan="3"><%= icon_flag(shipping_country.country) %> <%= link_to Country[shipping_country.country].name, edit_admin_shipping_country_path(shipping_country) %> - <%= link_to 'remove country', admin_shipping_country_path(shipping_country), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      </tr>
+      <% if shipping_country.rates.any? %>
+        <% shipping_country.rates.each do |rate| %>
+          <tr class="<%= current_cycle %>">
+            <td><%= rate.name %></td>
+            <td><%= rate.rate %></td>
+            <td><strong><%= number_to_currency rate.price %></strong></td>
+          </tr>
+        <% end %>
+      <% end %>
+    <% end %>
+  </table>
+
+<% else %>
+  <div class="alert"><%= t 'shipping_countries.none' %>.</div>
+<% end %>

@@ -1,8 +1,7 @@
-<div class="page-header">
-  <h1><%= t 'collections.title' %>
-    <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
-  </h1>
-</div>
+<%= page_title("#{t 'collections.title'}") do %>
+  <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, size: 'large', class: 'fr' %>
+<% end %>
+
 
 <% if @collections.present? %>
   <table id="collections" class="table table-striped">

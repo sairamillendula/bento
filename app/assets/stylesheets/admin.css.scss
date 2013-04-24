@@ -82,7 +82,7 @@ body.admin {
 	}
 
 	/* tables */
-	table#stocks {
+	table#stocks, table#shipping_countries {
 		tr.odd {
 			td {
 				background: #f9f9f9;
@@ -133,6 +133,15 @@ body.admin {
 			border-top: none;
 			line-height: 35px;
 		} 
+	}
+	.rate {
+		position: relative;
+
+		.remove_nested_fields {
+			position: absolute;
+			top: 20px;
+			right: 20px;
+		}
 	}
 }
 

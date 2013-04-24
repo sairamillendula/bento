@@ -30,7 +30,11 @@ Bento::Application.routes.draw do
     resources :coupons, except: :show
     resources :pages
     resources :taxes
-    resources :shipping_rates
+    scope "/shipping" do
+      root to: 'shipping_countries#index', as: :shipping
+      resources :shipping_countries, except: [:index, :show]
+    end
+    
     resources :collections do
       member do
         post "sort_products"

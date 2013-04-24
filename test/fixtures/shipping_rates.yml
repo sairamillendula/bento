@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  shipping_country: 
+  name: MyString
+  criteria: MyString
+  min_weight: 9.99
+  max_weight: 9.99
+  price: 9.99
+
+two:
+  shipping_country: 
+  name: MyString
+  criteria: MyString
+  min_weight: 9.99
+  max_weight: 9.99
+  price: 9.99

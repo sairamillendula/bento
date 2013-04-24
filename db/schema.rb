@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130423133531) do
+ActiveRecord::Schema.define(:version => 20130424085434) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -214,7 +214,7 @@ ActiveRecord::Schema.define(:version => 20130423133531) do
 
   create_table "product_reviews", :force => true do |t|
     t.text     "message"
-    t.integer  "rating"
+    t.integer  "rating",     :default => 5
     t.string   "username"
     t.integer  "user_id"
     t.integer  "product_id"
@@ -278,6 +278,25 @@ ActiveRecord::Schema.define(:version => 20130423133531) do
   end
 
   add_index "settings", ["key"], :name => "index_settings_on_key"
+
+  create_table "shipping_countries", :force => true do |t|
+    t.string   "country"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "shipping_rates", :force => true do |t|
+    t.integer  "shipping_country_id"
+    t.string   "name"
+    t.string   "criteria"
+    t.decimal  "min_criteria",        :precision => 6,  :scale => 2
+    t.decimal  "max_criteria",        :precision => 6,  :scale => 2
+    t.decimal  "price",               :precision => 11, :scale => 2
+    t.datetime "created_at",                                         :null => false
+    t.datetime "updated_at",                                         :null => false
+  end
+
+  add_index "shipping_rates", ["shipping_country_id"], :name => "index_shipping_rates_on_shipping_country_id"
 
   create_table "stocks", :force => true do |t|
     t.integer  "in_stock",           :default => 0
