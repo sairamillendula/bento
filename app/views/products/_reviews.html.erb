@@ -6,11 +6,10 @@
 	    <%= f.error_notification %>
 
 		  <%= f.input :username %>
-		  <%= f.input :rating %>
-		  <%= f.input :rating, collection: (1..5), id: "product-review-rating" %><%= content_tag(:div, '', class: 'rateit', data: {:'rateit-backingfld' => "#product-review-rating"}) %>
-		  <%= f.text_field :rating, size: 1, min: 0, max: 5, step: 1 %>
-        <div class="rateit" data-rateit-backingfld="#product_review_rating" data-rateit-resetable="true">
-      </div>
+      <%= f.input :rating do %>
+        <%= f.input_field :rating, collection: (1..5), id: "product-review-rating" %>
+        <%= content_tag(:div, '', class: 'rateit', data: {:'rateit-backingfld' => "#product-review-rating"}) %>
+      <% end %>
 		  <%= f.input :message %>
 		  <%= f.input :product_id, as: :hidden %>
 		  <%= f.submit %>
