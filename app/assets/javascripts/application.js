@@ -20,6 +20,7 @@
 //= require zen-form
 //= require jquery.tagsinput
 //= require jquery.rateit
+//= require turbolinks
 //= require holder
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl

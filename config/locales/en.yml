@@ -49,6 +49,7 @@ en:
   last_name: Last name
   country: Country
   remove_country: remove country
+  current_month: Current month
   carts:
     title: Cart
     is_empty: Your cart is currently empty

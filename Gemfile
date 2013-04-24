@@ -24,7 +24,8 @@ gem 'figaro'
 gem 'oauth2'
 gem 'acts_as_list'
 gem "countries"
-gem "famfamfam_flags_rails"
+gem 'famfamfam_flags_rails'
+gem 'turbolinks'
 
 # Gems used only for assets and not required
 # in production environments by default.
