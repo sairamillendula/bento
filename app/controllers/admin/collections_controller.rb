@@ -13,7 +13,11 @@ class Admin::CollectionsController < Admin::BaseController
 
   def show
     @collection = Collection.includes(:products).find(params[:id])
-    @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
+    if @collection.products.any?
+      @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
+    else
+      @products = Product.order('name')
+    end
 
     respond_to do |format|
       format.html # show.html.erb
@@ -92,7 +96,12 @@ class Admin::CollectionsController < Admin::BaseController
     @collection = Collection.find(params[:id])
     @relationship = CollectionProduct.find_by_collection_id_and_product_id(@collection.id, params[:product_id])
     @relationship.destroy
-    @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
+
+    if @collection.products.any?
+      @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
+    else
+      @products = Product.order('name')
+    end
 
     respond_to do |format|
       format.js
