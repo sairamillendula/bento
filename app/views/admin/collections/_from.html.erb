@@ -1,0 +1,7 @@
+<% @products.each do |product| %>
+  <%= content_tag_for :li, product do %>
+    <%= link_to(add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true) do %>
+      <%= "#{truncate(product.name, length: 40)}" %> <i class="icon-chevron-right"> </i>
+    <% end %>
+  <% end %>
+<% end %>

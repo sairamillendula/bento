@@ -93,6 +93,15 @@ ActiveRecord::Schema.define(:version => 20130424085434) do
   add_index "categories_products", ["category_id"], :name => "index_categories_products_on_category_id"
   add_index "categories_products", ["product_id"], :name => "index_categories_products_on_product_id"
 
+  create_table "collection_products", :force => true do |t|
+    t.integer "collection_id"
+    t.integer "product_id"
+    t.integer "position"
+  end
+
+  add_index "collection_products", ["collection_id"], :name => "index_collection_products_on_collection_id"
+  add_index "collection_products", ["product_id"], :name => "index_collection_products_on_product_id"
+
   create_table "collections", :force => true do |t|
     t.string   "name"
     t.string   "slug"
@@ -102,15 +111,6 @@ ActiveRecord::Schema.define(:version => 20130424085434) do
     t.datetime "created_at",                    :null => false
     t.datetime "updated_at",                    :null => false
   end
-
-  create_table "collections_products", :id => false, :force => true do |t|
-    t.integer "collection_id"
-    t.integer "product_id"
-    t.integer "position",      :default => 1
-  end
-
-  add_index "collections_products", ["collection_id"], :name => "index_collections_products_on_collection_id"
-  add_index "collections_products", ["product_id"], :name => "index_collections_products_on_product_id"
 
   create_table "coupons", :force => true do |t|
     t.string   "code"

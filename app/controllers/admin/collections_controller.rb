@@ -13,7 +13,7 @@ class Admin::CollectionsController < Admin::BaseController
 
   def show
     @collection = Collection.includes(:products).find(params[:id])
-    @products = Product.exclude_products([@collection.products.pluck(:product_id).uniq]).uniq.order('name')
+    @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
 
     respond_to do |format|
       format.html # show.html.erb
@@ -73,14 +73,15 @@ class Admin::CollectionsController < Admin::BaseController
 
   def sort_products
     params[:product].each_with_index do |id, index|
-      CollectionsProducts.update_all({position: index+1}, {product_id: id})
+      CollectionProduct.update_all({position: index+1}, {product_id: id})
     end
     render nothing: true
   end
 
   def add_products
     @collection = Collection.find(params[:id])
-    CollectionsProducts.create(product_id: params[:product_id], collection_id: @collection.id)
+    @collection.products << Product.find(params[:product_id])
+    @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
 
     respond_to do |format|
       format.js
@@ -89,7 +90,9 @@ class Admin::CollectionsController < Admin::BaseController
 
   def remove_products
     @collection = Collection.find(params[:id])
-    CollectionsProducts.where(product_id: params[:product_id], collection_id: @collection.id).delete_all
+    @relationship = CollectionProduct.find_by_collection_id_and_product_id(@collection.id, params[:product_id])
+    @relationship.destroy
+    @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
 
     respond_to do |format|
       format.js

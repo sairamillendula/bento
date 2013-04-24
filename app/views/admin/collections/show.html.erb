@@ -17,17 +17,11 @@
 <div class="row-fluid">
 	<% if @products.any? %>
 	  <ul id="products-list" class="span4 nav nav-list bs-docs-sidenav">
-		  <% @products.each do |product| %>
-		    <%= content_tag_for :li, product do %>
-	        <%= link_to(add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true) do %>
-	          <%= "#{truncate(product.name, length: 40)}" %> <i class="icon-chevron-right"> </i>
-	        <% end %>
-		    <% end %>
-		  <% end %>
+		  <%= render 'admin/collections/from' %>
 		</ul>
 
 	  <ul id="collection-products" class="span8 nav" data-update-url="<%= sort_products_admin_collection_url %>">
-		  <%= render 'admin/collections/products' %>
+		  <%= render 'admin/collections/to' %>
 		</ul>
 	<% else %>
 	  <p class="alert">Create products first so you can add to collection.</p>

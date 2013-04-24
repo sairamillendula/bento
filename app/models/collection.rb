@@ -5,8 +5,9 @@ class Collection < ActiveRecord::Base
 
   before_save :format_slug
   
-  has_and_belongs_to_many :products
-  
+  has_many :collection_products, dependent: :destroy
+  has_many :products, through: :collection_products
+    
   store :meta_tag, accessors: [:seo_title, :seo_description]
 
   scope :visibles, where(visible: true)

@@ -21,7 +21,10 @@ class Product < ActiveRecord::Base
 
   has_many :line_items
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many :collections
+
+  has_many :collection_products, dependent: :destroy
+  has_many :collections, through: :collection_products
+
   has_and_belongs_to_many :suppliers
   has_many :stocks
   has_many :orders, through: :line_items
