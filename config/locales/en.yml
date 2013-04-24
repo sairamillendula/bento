@@ -47,6 +47,8 @@ en:
   shipped_at: Shipped at
   first_name: First name
   last_name: Last name
+  country: Country
+  remove_country: remove country
   carts:
     title: Cart
     is_empty: Your cart is currently empty
@@ -105,6 +107,13 @@ en:
   staff_members:
     title: Staff members
     new: New staff member
+  shipping_rates:
+    title: Shipping rates
+    new: New shipping rate
+    edit: Edit shipping rate
+    none: No shipping rates found
+    add_rate: Add rate
+    calculator: Shipping rates calculator
   stats: Stats
   stocks: Stocks
   reports: Reports
@@ -151,7 +160,6 @@ en:
   blog_posts: Blog
   billing_address: Billing Address
   shipping_address: Shipping Address
-  shipping_rates_calculator: Shipping rates calculator
   categories: Categories
   you_re_browsing_our_secure_server: You're browsing our secure server
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
@@ -184,13 +192,7 @@ en:
   sessions:
     sign_in: Please sign in first
     signed_in: Signed in!
-    signed_out: Successfully signed out.
-  shipping_rates:
-    title: Shipping rates
-    new:
-      title: New shipping country
-    edit:
-      title: Edit shipping country  
+    signed_out: Successfully signed out. 
   taxes:
     title: Taxes
   zen_mode:

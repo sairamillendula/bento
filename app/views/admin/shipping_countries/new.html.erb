@@ -1,6 +1,6 @@
-<%= page_title("#{t 'shipping_rates.new.title'}") %>
+<%= page_title("#{t 'shipping_rates.new'}") %>
 
-<%= simple_form_for([:admin, @shipping_country], html: {class: 'form-horizontal zen-form'}) do |f| %>
+<%= simple_form_for([:admin, @shipping_country], html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">

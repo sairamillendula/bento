@@ -1,4 +1,5 @@
 class ShippingCountry < ActiveRecord::Base
+
   has_many :rates, class_name: "ShippingRate", dependent: :destroy
   accepts_nested_attributes_for :rates, allow_destroy: true
 

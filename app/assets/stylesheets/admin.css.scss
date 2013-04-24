@@ -84,6 +84,10 @@ body.admin {
 		width: 855px;
 	}
 
+	div.well > .control-group:last-of-type {
+    margin-bottom: 0;
+  }
+
 	/* tables */
 	table#stocks, table#shipping_countries {
 		tr.odd {

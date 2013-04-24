@@ -4,10 +4,10 @@ class ShippingRate < ActiveRecord::Base
   belongs_to :shipping_country
   attr_accessible :criteria, :max_criteria, :min_criteria, :name, :price
 
-  validates :shipping_country, :criteria, :name, :price, presence: true
-  validates :price, numericality: {greater_than: 0}
-  validates :min_criteria, numericality: {greater_than_or_equal_to: 0}
-  validates :max_criteria, presence: true, numericality: {greater_than_or_equal_to: 0}, if: Proc.new{|r| r.criteria == 'weight-based' }
+  validates_presence_of :shipping_country, :criteria, :name, :price
+  validates_numericality_of :price, { greater_than: 0 }
+  validates_numericality_of :min_criteria, { greater_than_or_equal_to: 0 }
+  validates :max_criteria, presence: true, numericality: { greater_than_or_equal_to: 0 }, if: Proc.new{|r| r.criteria == 'weight-based' }
   validate :validate_criteria
 
   def validate_criteria
