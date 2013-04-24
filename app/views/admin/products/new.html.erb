@@ -122,24 +122,27 @@
 <% end %>
 
 <script type="text/x-tmpl" id="tmpl-product-option">
-<tr id="variant_{%=o.idx%}">
-  <td>
-    <input name="product[variants_attributes][{%=o.idx%}][selected]" type="hidden" value="0" />
-    <input type="checkbox" name="product[variants_attributes][{%=o.idx%}][selected]" value="1">
-  </td>
-  <td>
-    {%#o.name%}
-    {% for (var i=0; i<o.variants.length; i++) { %}
-      <input type="hidden" name="product[variants_attributes][{%=o.idx%}][option{%=i+1%}]" value="{%=o.variants[i].value%}">
-    {% } %}
-  </td>
-  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][price]' %></td>
-  <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][in_stock]' %></td>
-</tr>  
+  <tr id="variant_{%=o.idx%}">
+    <td>
+      <input name="product[variants_attributes][{%=o.idx%}][selected]" type="hidden" value="0" />
+      <input type="checkbox" name="product[variants_attributes][{%=o.idx%}][selected]" value="1">
+    </td>
+    <td>
+      {%#o.name%}
+      {% for (var i=0; i<o.variants.length; i++) { %}
+        <input type="hidden" name="product[variants_attributes][{%=o.idx%}][option{%=i+1%}]" value="{%=o.variants[i].value%}">
+      {% } %}
+    </td>
+    <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][price]' %></td>
+    <td><%= text_field_tag 'product[variants_attributes][{%=o.idx%}][in_stock]' %></td>
+  </tr>
 </script>
 
 <script type="text/javascript">
-$(function() {
-  new_product_form.setup();
-});
+  $(function() {
+    new_product_form.setup();
+  });
+  $('#product_name').one('change', function() {
+    $('#product_slug').val($(this).val().replace(/\s+/g, '-').toLowerCase());
+  });
 </script>

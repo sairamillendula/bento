@@ -9,8 +9,7 @@
     <%= f.text_field :client_first_name_cont, placeholder: "#{t 'first_name'}", class: 'span2' %>
     <%= f.text_field :client_last_name_cont, placeholder: "#{t 'last_name'}", class: 'span2' %>
     <%= f.text_field :client_email_matches, placeholder: "Email", class: 'span2' %>
-    <%= f.select :plan_id_eq, options_from_collection_for_select(Plan.all, "id", "name", @search.plan_id_eq), include_blank: true, prompt: "#{t 'plan'}" %>
-    <%= f.text_field :coupon_code_matches, placeholder: "#{t 'coupon_code'}", style: 'max-width:100px;' %>
+    <%= f.text_field :coupon_code_matches, placeholder: "#{t 'coupons.code'}", style: 'max-width:100px;' %>
     <button class="btn" type="submit"><i class="icon-search"></i></button>
     <% if @orders.any? %>
       <button class="btn" type="submit" name="format" value="csv"><i class="icon-download-alt"></i></button>

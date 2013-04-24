@@ -5,3 +5,9 @@
 </div>
 
 <%= render 'form' %>
+
+<script type="text/javascript">
+  $('#page_name').one('change', function() {
+    $('#page_slug').val($(this).val().replace(/\s+/g, '-').toLowerCase());
+  });
+</script>

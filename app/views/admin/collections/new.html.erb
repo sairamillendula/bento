@@ -1,3 +1,9 @@
 <%= page_title("#{t 'collections.new.title'}") %>
 
 <%= render 'form' %>
+
+<script type="text/javascript">
+  $('#collection_name').one('change', function() {
+    $('#collection_slug').val($(this).val().replace(/\s+/g, '-').toLowerCase());
+  });
+</script>

@@ -45,6 +45,8 @@ en:
   your_details: Your details
   payment_info: Payment
   shipped_at: Shipped at
+  first_name: First name
+  last_name: Last name
   carts:
     title: Cart
     is_empty: Your cart is currently empty
@@ -89,6 +91,7 @@ en:
     new: New Coupon
     sales_count: Sales count
     none: No coupons found
+    code: Coupon code
   pages:
     title: Pages
     new: New Page
@@ -122,6 +125,8 @@ en:
   checkout: Checkout
   in_stock: In stock
   from_price: From
+  from_date: From
+  to_date: To
   description: Description
   collections:
     title: Collections
