@@ -36,10 +36,10 @@
 
     <%= subsection_title('Options') %>
     <div class="control-group" id="options-container">
-      <div class="control-label"><%= link_to 'Edit options', '#edit-option-modal', class: 'btn', data: {toggle: 'modal'} %></div>
+      <div class="control-label"><%= link_to "#{t 'products.edit_options'}", '#edit-option-modal', class: 'btn btn-inverse', data: {toggle: 'modal'} %></div>
       <div class="controls well">
         <% if @product.options.any? %>
-          <table class="table" id="table-variants">
+          <table id="table-variants" class="table">
             <thead>
               <tr>
                 <% @product.options.each do |option| %>
@@ -69,13 +69,13 @@
                     <%= ff.text_field :price, class: 'input-small' %>
                   </td>
                   <td><%= ff.text_field :in_stock, class: 'input-small' %></td>
-                  <td><%= ff.link_to_remove 'remove', class: 'btn', data: {wrapper: 'tr'} %></td>
+                  <td><%= ff.link_to_remove 'remove', data: {wrapper: 'tr'} %></td>
                 <% end %>
               <% end %>
             </tbody>
             <tfoot>
               <tr>
-                <td colspan="<%= 4 + @product.options.size %>"><%= f.link_to_add 'Add a variant', :variants, class: 'btn', id: 'add_variant' %></td>
+                <td colspan="<%= 4 + @product.options.size %>"><%= f.link_to_add "#{t 'products.add_variant'}", :variants, class: 'btn btn-inverse', id: 'add_variant' %></td>
               </tr>
             </tfoot>
           </table>

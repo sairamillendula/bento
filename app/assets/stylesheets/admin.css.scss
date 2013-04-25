@@ -145,6 +145,12 @@ body.admin {
 				line-height: 30px;
 			}
     }
+
+    .subsection-title {
+			margin-top: 40px;
+			margin-bottom: 30px;
+			border-bottom: 1px solid #eeeeee;
+		}
 	}
 
 	/* buttons */
@@ -214,6 +220,16 @@ body.admin {
     }
 	}
 
+	.btn-inverse {
+		background: $blue;
+		color: #ffffff;
+
+		&:hover {
+			background: lighten($blue, 10%);
+    	color: #ffffff;
+    }
+	}
+
 	/* forms */
 	input, textarea {
 		max-width: 900px;
@@ -239,7 +255,7 @@ body.admin {
 	}
 
 	.token-input-list-facebook {
-		width: 855px;
+		width: 910px;
 	}
 
 	div.well > .control-group:last-of-type {
@@ -270,6 +286,7 @@ body.admin {
 
 	.table th {
 	  font-weight: bold;
+	  text-transform: uppercase;
 	}
 
 	.table thead th {

@@ -1,49 +1,16 @@
-/* views */
-.subsection-title {
-	margin-top: 40px;
-	margin-bottom: 30px;
-	border-bottom: 1px solid #eeeeee;
-}
-
+/* global */
 #md_link {
 	font-weight: normal;
 }
 
-/* Zen form */
-.go-zen { // icon position within form control
-  position: absolute;
-  top: 10px;
-  right: 5px;
-}
-.s--zen {
-  background-position: -16px -16px;
-}
-.s {
-	background-image: url('zen-form-sprites.png');
-	display: inline-block;
-	line-height: 1;
+.rate {
 	position: relative;
-	vertical-align: top;
-	zoom: 1;
-	width: 16px;
-	height: 16px;
-	top: -1px;
-	overflow: hidden;
-}
-.s::before {
-	content: "";
-	display: block;
-	width: 0;
-	height: 100%;
-}
-textarea#zen-forms-input0 {
-	height: 100%;
-	min-height: 650px;
-}
-textarea.zen-mode {
-	padding-right: 30px;
-	margin-right: -30px;
-	max-width: 820px;
+
+	.remove_nested_fields {
+		position: absolute;
+		top: 20px;
+		right: 20px;
+	}
 }
 
 /* Dashboard */
@@ -56,5 +23,102 @@ textarea.zen-mode {
 
 	.span3 h4 {
 		font-weight: normal;
+	}
+}
+
+/* Orders */
+#order_date {
+	font-size: 16px;
+	font-weight: normal;
+}
+
+#addresses {
+	.address {
+		padding: 4px;
+	}
+	.address.billing {
+		margin-left: 0;
+	}
+	.address.shipping {
+		background: #f9f9f9;
+	}
+}
+
+/* Collections */
+#products-list, #collection-products {
+	padding-left: 0;
+	padding-top: 0;
+
+	li {
+		list-style-type: none;
+		line-height: 36px;
+		border-top: 1px solid #e5e5e5;
+		padding: 0 14px;
+	}
+	li:first-child {
+		border-top: none;
+	}
+}
+
+#collection-products {
+	li:hover {
+		cursor: move;
+		background-color: #eeeeee;
+	}
+	.alert {
+		margin-top: 0;
+	}
+}
+
+/* tables */
+table#stocks, table#shipping_countries {
+	tr.odd {
+		td {
+			background: #f9f9f9;
+		}
+	}
+	tr.even {
+		td {
+			background: #ffffff;
+		}
+	}
+	tr {
+		td.variant {
+			padding-left: 50px;
+		}	
+		td {
+			input {
+				margin: 0;
+			}
+		}
+	}
+}
+
+table#options_fields {
+	tr {
+		td {
+			vertical-align: middle;
+		}
+	}
+}
+
+table#table-variants {
+	margin-bottom: 0;
+
+	span.option-1 {
+		color: #75a630 !important;
+	}
+	span.option-2 {
+		color: #c1873c !important;
+	}
+	span.option-3 {
+		color: #425a91 !important;
+	}
+}
+
+table#table-options {
+	tr:first-of-type td {
+		border-top: none;
+		line-height: 35px;
 	}
 }

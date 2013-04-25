@@ -18,7 +18,7 @@
       </tbody>
       <tfoot>
         <tr>
-          <td colspan="3"><%= f.link_to_add "#{t 'products.add_an_option'}", :options, class: 'btn', id: 'add_product_option', style: "display: #{@product.options.size > 2 ? 'none' : 'inline-block'}" %></td>
+          <td colspan="3"><%= f.link_to_add "#{t 'products.add_option'}", :options, class: 'btn', id: 'add_product_option', style: "display: #{@product.options.size > 2 ? 'none' : 'inline-block'}" %></td>
         </tr>
       </tfoot>
     </table>

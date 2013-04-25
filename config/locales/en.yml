@@ -83,8 +83,10 @@ en:
     new: New Product
     edit: Edit Product
     none: No products found
-    add_an_option: Add an option
+    add_option: Add an option
+    add_variant: Add a variant
     browse: Browse our catalogue
+    edit_options: Edit options
   reviews:
     title: Product reviews
     none: No product reviews found
