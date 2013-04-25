@@ -17,7 +17,6 @@
 //= require bootstrap-datepicker
 //= require nested_form
 //= require jquery.tokeninput
-//= require zen-form
 //= require jquery.tagsinput
 //= require jquery.rateit
 //= require turbolinks
@@ -30,6 +29,4 @@ $(function () {
     $('.date_picker').datepicker({
         format: 'yyyy-mm-dd'
     });
-
-    $('.zen-mode').zenForm();
 });

@@ -1,18 +1,12 @@
-<%= simple_form_for([:admin, @article], html: {class: 'form-horizontal zen-form'}) do |f| %>
+<%= simple_form_for([:admin, @article], html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :title, input_html: {class: 'span12'} %>
     <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
-    
-    <div class="control-group" style="position:relative;">
-      <label class="string required control-label" for="article_control"><%= "#{t 'message'}" %> <abbr title="requis">*</abbr></label>
-      <div class="controls">
-        <a href="#" class="go-zen"><i class="s s--zen"><%= "#{t 'zen_mode.edit'}" %></i></a>
-        <%= f.text_area :content, class: "zen-mode", "data-label"=>"#{t 'zen_mode.write_here'}" %>
-      </div>
-    </div>
+    <%= f.input :content %>
+
     <%= f.input :author_id, collection: User.admin.order('first_name').map{|u| [u.first_name, u.id]}, include_blank: false %>
     <div class="control-group">
       <label class="control-label" for="article_tag_tokens">Tags</label>
@@ -20,10 +14,10 @@
         <%= f.text_field :tag_tokens, data: {load: @article.tags} %>
       </div>
     </div>
-  </div>
 
-  <%= subsection_title("SEO") %>
-  <%= render 'admin/meta_tags/form', f: f %>
+    <%= subsection_title("SEO") %>
+    <%= render 'admin/meta_tags/form', f: f %>
+  </div>
 
   <div class="form-actions">
     <%= submit_or_cancel(f) %>

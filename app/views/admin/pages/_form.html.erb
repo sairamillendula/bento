@@ -6,18 +6,12 @@
     <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :klass, collection: Page::KLASS %>
     <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
-    <div class="control-group" style="position:relative;">
-      <label class="string required control-label" for="article_control"><%= "#{t 'content'}" %> <abbr title="requis">*</abbr></label>
-      <div class="controls">
-        <a href="#" class="go-zen"><i class="s s--zen">Edit in Zen Mode</i></a>
-        <%= f.text_area :content, class: "zen-mode", "data-label"=>"Écrire ici..." %>
-      </div>
-    </div>
+    <%= f.input :content %>
+
+    <%= subsection_title('SEO') %>
+    <%= render 'admin/meta_tags/form', f: f %>
   </div>
-
-  <%= subsection_title('SEO') %>
-  <%= render 'admin/meta_tags/form', f: f %>
-
+  
   <div class="form-actions">
     <%= submit_or_cancel(f) %>
   </div>
