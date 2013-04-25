@@ -43,7 +43,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'rack-mini-profiler'
+  #gem 'rack-mini-profiler'
   gem 'thin'
   gem 'letter_opener'
   gem 'better_errors'

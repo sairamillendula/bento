@@ -13,17 +13,21 @@
   </head>
 
   <body class="admin">
-    <header id="header">
-      <%= render 'admin_navbar2' %>
-    </header>
-    <section id="sidebar">
-      <%= render 'admin_sidebar' %>
-    </section>
+    <%#= render 'admin_navbar' %>
+    <%#= render 'admin_navbar2' %>
+    
+    <div class="container-fluid">
+      <div id="content" class="row-fluid">
+        <div class="span3">
+          <%= render 'admin_sidebar' %>
+        </div>
 
-    <section id="content">
-      <%= render 'flash' %>
-      <%= yield %>
-    </section>
+        <div id="main_content" class="span9">
+          <%= render 'flash' %>
+          <%= render 'admin_navbar2' %>
+          <%= yield %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
-
