@@ -4,17 +4,14 @@
 @import "bootstrap-datepicker";
 @import "token-input-facebook";
 @import "jquery.rateit";
+@import "jquery.fileupload-ui";
+@import "jquery.tagsinput";
+@import "famfamfam-flags";
 
 //app
 @import "variables";
 @import "global";
-//@import "responsive";
-//@import "bootstrap.override";
 @import "public";
 //@import "orders";
 @import "admin";
 @import "admin_views";
-
-@import "jquery.fileupload-ui";
-@import "jquery.tagsinput";
-@import "famfamfam-flags";

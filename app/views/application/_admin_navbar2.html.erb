@@ -1,7 +1,0 @@
-<h1>
-  <%= "#{t 'site_name'}" %> <%= link_to "#{t 'go_to_store'}", root_path, class: "view-site" %>
-  <span id="user-info" class="fr">
-    <%= t 'welcome' %> <%= link_to current_user.first_name, profile_path %> | 
-    <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
-  </span>
-</h1>
