@@ -14,7 +14,8 @@ class ProductOption < ActiveRecord::Base
 
   def remove_option_from_variants
     product.variants.each do |variant|
-      variant.options = variant.options.except(:"option#{position}")
+      new_options = variant.options.except(:"option#{position}").each.with_index.inject({}) {|h, ((k, v), index)| h[:"option#{index + 1}"] = v; h }
+      variant.options = new_options
       variant.save
     end
   end
