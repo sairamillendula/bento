@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1><%= t 'clients.title' %></h1>
-</div>
+<%= page_title("#{t 'clients.title'}") %>
 
 <% if @clients.present? %>
   <table id="packages" class="table table-striped">
@@ -26,5 +24,5 @@
   <%= paginate @clients %>
 
 <% else %>
-  <div class="alert"><%= t 'no_clients_found', default: 'No clients found' %>.</div>
+  <div class="alert"><%= t 'clients.none' %>.</div>
 <% end %>

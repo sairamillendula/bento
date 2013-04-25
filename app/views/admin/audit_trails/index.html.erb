@@ -1,6 +1,4 @@
-<div class="page-header">
-  <h1><%= t 'audit' %></h1>
-</div>
+<%= page_title("#{t 'audit'}") %>
 
 <% if @audit_trails.any? %>
   <table id="logs" class="table table-striped">

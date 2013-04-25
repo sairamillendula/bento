@@ -61,7 +61,6 @@
         </thead>
         <tbody>
         <%= f.fields_for :options, wrapper: false do |ff| %>
-          <%=  %>
           <tr class="option">
             <td><%= ff.input_field :name, class: 'option_name', placeholder: "Color, Size, Material..." %></td>
             <td><%= ff.text_field :values, class: "span12 option_values", placeholder: "Enter any options separated by a comma" %></td>
@@ -70,7 +69,7 @@
         <% end %>
         </tbody>
       </table>
-      <p><%= f.link_to_add t('products.add_another_option'), :options, class: "btn", id: 'add_product_option' %></p>
+      <p><%= f.link_to_add t('products.add_an_option'), :options, class: "btn", id: 'add_product_option' %></p>
 
       <div class="alert alert-warning form-inline" style="color:#000; display:<%= @product.options.any? ? 'block' : 'none' %>;" id="auto-create">
         <label class="checkbox"><%= f.input_field :auto_generate_variants, label: false, as: :boolean %> Automatically create <strong><span id="variant-count">0</span> variants</strong> based on the options defined above.</label>

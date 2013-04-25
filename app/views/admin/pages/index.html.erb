@@ -1,8 +1,6 @@
-<div class="page-header">
-  <h1><%= t 'pages.title' %>
-    <%= icon_button_link_to "#{t 'pages.new'}", new_admin_page_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
-  </h1>
-</div>
+<%= page_title("#{t 'pages.title'}") do %>
+  <%= icon_button_link_to "#{t 'pages.new'}", new_admin_page_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>
+<% end %>
 
 <% if @pages.present? %>
   <table id="pages" class="table table-striped">

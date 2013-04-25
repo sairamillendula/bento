@@ -13,14 +13,18 @@
   </head>
 
   <body class="admin">
-    <%= render 'admin_navbar' %>
-
+    <%#= render 'admin_navbar' %>
+    <%#= render 'admin_navbar2' %>
+    
     <div class="container-fluid">
       <div id="content" class="row-fluid">
-        <%= render 'admin_sidebar' %>
+        <div class="span3">
+          <%= render 'admin_sidebar' %>
+        </div>
 
         <div id="main_content" class="span9">
           <%= render 'flash' %>
+          <%= render 'admin_navbar2' %>
           <%= yield %>
         </div>
       </div>

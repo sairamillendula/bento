@@ -1,9 +1,8 @@
-<div class="page-header">
-  <h1><%= @page.name %> <%= status_tag("#{t 'private'}") if !@page.visible %>
-    <%= icon_button_link_to "#{t 'destroy'}", admin_page_path(@page), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, level: 'danger', icon: 'remove', white: true, class: "fr" %>
-    <%= icon_button_link_to "#{t 'edit'}", edit_admin_page_path(@page), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
-  </h1>
-</div>
+<%= page_title(@page.name) do %>
+  <%= status_tag("#{t 'private'}") if !@page.visible %>
+  <%= icon_button_link_to "#{t 'destroy'}", admin_page_path(@page), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
+  <%= icon_button_link_to "#{t 'edit'}", edit_admin_page_path(@page), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
+<% end %>
 
 <p><b>URL:</b> <%= link_to "#{page_url(@page.slug)}", page_url(@page.slug) %></p>
 

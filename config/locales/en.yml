@@ -50,6 +50,7 @@ en:
   country: Country
   remove_country: remove country
   current_month: Current month
+  website_management: Website management
   carts:
     title: Cart
     is_empty: Your cart is currently empty
@@ -60,6 +61,7 @@ en:
   articles:
     title: Articles
     new: New Article
+    edit: Edit Article
     none: No articles found
   general_info: Info
   order: Order
@@ -81,8 +83,7 @@ en:
     new: New Product
     edit: Edit Product
     none: No products found
-    add_new_variant: Add new variant
-    add_new_option: Add new option
+    add_an_option: Add an option
     browse: Browse our catalogue
   reviews:
     title: Product reviews
@@ -92,12 +93,14 @@ en:
   coupons:
     title: Coupons
     new: New Coupon
+    edit: Edit Coupon
     sales_count: Sales count
     none: No coupons found
     code: Coupon code
   pages:
     title: Pages
     new: New Page
+    edit: Edit Page
     none: No pages found
   user: User
   users:
@@ -124,7 +127,6 @@ en:
   logs: Logs
   audit: Audit
   content: Content
-  your_website: Website Management
   price: Price
   reduced_price: Reduced price
   on_sale: Sale
@@ -167,11 +169,13 @@ en:
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
   message: Message
-  price-based: Based on order price
-  weight-based: Based on order weight 
-  price-based-rage: Price range
-  weight-based-rage: Weight range
+  price-based: "Based on order price"
+  weight-based: "Based on order weight"
+  price-based-rage: "Price range"
+  weight-based-rage: "Weight range"
   country: Country
+  please_wait: Please wait...
+  welcome: Welcome
   status:
     title: Status
     pending: Pending

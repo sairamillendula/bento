@@ -1,8 +1,6 @@
-<div class="page-header">
-  <h1><%= t 'coupons.title' %>
-    <%= icon_button_link_to "#{t 'coupons.new'}", new_admin_coupon_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
-  </h1>
-</div>
+<%= page_title("#{coupons.title}") do %>
+  <%= icon_button_link_to "#{t 'coupons.new'}", new_admin_coupon_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>
+<% end %>
 
 <% if @coupons.present? %>
   <table id="coupons" class="table table-striped">

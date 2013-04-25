@@ -26,7 +26,7 @@ en:
         slug: URL
     hints:
       defaults:
-        slug: Separate words with dash '-'
+        slug: Separate words with a dash '-'
       user:
         password: "(leave blank if you don't want to change it)"
     helpers:

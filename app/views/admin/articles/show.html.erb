@@ -1,9 +1,8 @@
-<div class="page-header">
-  <h1><%= @article.title %> <%= status_tag("#{t 'private'}") if !@article.visible %>
-    <%= icon_button_link_to "#{t 'destroy'}", admin_article_path(@article), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
-    <%= icon_button_link_to "#{t 'edit'}", edit_admin_article_path(@article), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
-  </h1>
-</div>
+<%= page_title(@article.title) do %>
+  <%= status_tag("#{t 'private'}") if !@article.visible %>
+  <%= icon_button_link_to "#{t 'destroy'}", admin_article_path(@article), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
+  <%= icon_button_link_to "#{t 'edit'}", edit_admin_article_path(@article), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
+<% end %>
 
 <p>
   <b>URL:</b>

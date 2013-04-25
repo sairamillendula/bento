@@ -1,8 +1,6 @@
-<div class="page-header">
-  <h1><%= t 'products.title' %>
-    <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
-  </h1>
-</div>
+<%= page_title("#{t 'products.title'}") do %>
+  <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
+<% end %>
 
 <% if @products.present? %>
   <%= form_tag feature_admin_products_path, method: :put do %>

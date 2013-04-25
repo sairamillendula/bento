@@ -1,9 +1,8 @@
-<div class="page-header">
-  <h1><%= @collection.name %> <%= status_tag("#{t 'private'}") if !@collection.visible %>
+<%= page_title(@collection.name) do %>
+  <%= status_tag("#{t 'private'}") if !@collection.visible %>
   <%= icon_button_link_to "#{t 'destroy'}", admin_collection_path(@collection), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
-    <%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(@collection), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
-  </h1>
-</div>
+  <%= icon_button_link_to "#{t 'edit'}", edit_admin_collection_path(@collection), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
+<% end %>
 
 <p>
   <b>URL:</b>

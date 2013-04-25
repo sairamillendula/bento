@@ -1,39 +1,37 @@
-<div class="span3">
-  <div id="sidebar" class=" sidebar-nav">
-    <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav nav-list" } do |tab| %>
-      <li><%= tab.dashboard "#{t 'dashboard'}", admin_dashboard_path, icon: 'globe' %></li>
+<div id="sidebar" class=" sidebar-nav">
+  <%= tabs_tag builder: BootstrapSidebarNavBuilder, open_tabs: { class: "nav nav-list" } do |tab| %>
+    <li><%= tab.dashboard "#{t 'dashboard'}", admin_dashboard_path, icon: 'globe' %></li>
 
-      <li class="nav-header"><%= t 'work_list' %></li>
-      <li><%= tab.orders "#{t 'orders.title'}", admin_orders_path, icon: 'fire' %></li>
-      <li><%= tab.clients "#{t 'clients.title'}", admin_clients_path, icon: 'heart' %></li>
-      <li><%= tab.stocks "#{t 'stocks'}", admin_stocks_path, icon: 'list' %></li>
+    <li class="nav-header"><%= t 'work_list' %></li>
+    <li><%= tab.orders "#{t 'orders.title'}", admin_orders_path, icon: 'fire' %></li>
+    <li><%= tab.clients "#{t 'clients.title'}", admin_clients_path, icon: 'heart' %></li>
+    <li><%= tab.stocks "#{t 'stocks'}", admin_stocks_path, icon: 'list' %></li>
 
-      <li class="nav-header"><%= t 'store_settings' %></li>
-      <li><%= tab.settings "#{t 'general_info'}", admin_settings_path, icon: 'home' %></li>
-      <li><%= tab.plans "#{t 'products.title'}", admin_products_path, icon: 'list-alt' %></li>
-      <li><%= tab.collections "#{t 'collections.title'}", admin_collections_path, icon: 'th-list' %></li>
-      <li><%= tab.coupons "#{t 'coupons.title'}", admin_coupons_path, icon: 'tags' %></li>
-      <li><%= tab.taxes "#{t 'taxes.title'}", admin_taxes_path, icon: 'magnet' %></li>
-      <li><%= tab.shipping_rates "#{t 'shipping_rates.title'}", admin_shipping_path, icon: 'plane' %></li>
+    <li class="nav-header"><%= t 'store_settings' %></li>
+    <li><%= tab.settings "#{t 'general_info'}", admin_settings_path, icon: 'home' %></li>
+    <li><%= tab.plans "#{t 'products.title'}", admin_products_path, icon: 'list-alt' %></li>
+    <li><%= tab.collections "#{t 'collections.title'}", admin_collections_path, icon: 'th-list' %></li>
+    <li><%= tab.coupons "#{t 'coupons.title'}", admin_coupons_path, icon: 'tags' %></li>
+    <li><%= tab.taxes "#{t 'taxes.title'}", admin_taxes_path, icon: 'magnet' %></li>
+    <li><%= tab.shipping_rates "#{t 'shipping_rates.title'}", admin_shipping_path, icon: 'plane' %></li>
 
-      <li class="nav-header"><%= t 'website_management' %></li>
-      <li><%= tab.articles "#{t 'blog_posts'}", admin_articles_path, icon: 'bookmark' %></li>
-      <li><%= tab.pages "#{t 'pages.title'}", admin_pages_path, icon: 'book' %></li>
-      <li><%= tab.reviews "#{t 'reviews.title'}", admin_product_reviews_path, icon: 'star' %></li>
+    <li class="nav-header"><%= t 'website_management' %></li>
+    <li><%= tab.articles "#{t 'blog_posts'}", admin_articles_path, icon: 'bookmark' %></li>
+    <li><%= tab.pages "#{t 'pages.title'}", admin_pages_path, icon: 'book' %></li>
+    <li><%= tab.reviews "#{t 'reviews.title'}", admin_product_reviews_path, icon: 'star' %></li>
 
-      <li class="nav-header"><%= t 'staff_members.title' %></li>
-      <li><%= tab.users "#{t 'staff_members.title'}", admin_users_path, icon: 'user' %></li>
+    <li class="nav-header"><%= t 'staff_members.title' %></li>
+    <li><%= tab.users "#{t 'staff_members.title'}", admin_users_path, icon: 'user' %></li>
 
-      <li class="nav-header"><%= t 'resellers.title' %></li>
-      <li><%= tab.resellers "#{t 'resellers.title'}", admin_resellers_path, icon: 'bullhorn' %></li>      
+    <li class="nav-header"><%= t 'resellers.title' %></li>
+    <li><%= tab.resellers "#{t 'resellers.title'}", admin_resellers_path, icon: 'bullhorn' %></li>      
 
-      <li class="nav-header"><%= t 'reports' %></li>
-      <li><%= tab.monthly_sales_report "#{t 'monthly_sales_report'}", monthly_sales_admin_reports_path, icon: 'file' %></li>
-      <li><%= tab.sales_report "#{t 'sales_report'}", sales_admin_reports_path, icon: 'file' %></li>
-      <li><%= tab.orders_report "#{t 'orders_report'}", orders_admin_reports_path, icon: 'file' %></li>
+    <li class="nav-header"><%= t 'reports' %></li>
+    <li><%= tab.monthly_sales_report "#{t 'monthly_sales_report'}", monthly_sales_admin_reports_path, icon: 'file' %></li>
+    <li><%= tab.sales_report "#{t 'sales_report'}", sales_admin_reports_path, icon: 'file' %></li>
+    <li><%= tab.orders_report "#{t 'orders_report'}", orders_admin_reports_path, icon: 'file' %></li>
 
-      <li class="nav-header"><%= t 'logs' %></li>
-      <li><%= tab.audit "#{t 'audit'}", admin_audit_path, icon: 'align-justify' %></li>
-    <% end %>
-  </div>
+    <li class="nav-header"><%= t 'logs' %></li>
+    <li><%= tab.audit "#{t 'audit'}", admin_audit_path, icon: 'align-justify' %></li>
+  <% end %>
 </div>

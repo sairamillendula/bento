@@ -1,8 +1,6 @@
-<div class="page-header">
-  <h1><%= t 'new_page' %>
-    <span id='md_link' class='fr'><a href="#mdModal" role="button" class="btn" data-toggle="modal">Markdown</a></span>
-  </h1>
-</div>
+<%= page_title("#{t 'pages.new'}") do %>
+  <span id='md_link' class='fr'><a href="#mdModal" role="button" class="btn" data-toggle="modal">Markdown</a></span>
+<% end %>
 
 <%= render 'form' %>
 

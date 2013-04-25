@@ -1,5 +1,5 @@
-<div class="page-header">
-	<h1><%= t 'delete' %> <%= icon_button_link_to "#{t 'destroy'}", admin_coupon_path(@coupon), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, level: 'danger', icon: 'remove', white: true, class: "fr" %></h1>
-</div>
+<%= page_title("#{t 'delete'}") do %>
+  <%= icon_button_link_to "#{t 'destroy'}", admin_coupon_path(@coupon), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
+<% end %>
 
 <%= render 'form' %>

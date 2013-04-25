@@ -72,9 +72,9 @@
         <% end %>
         </tbody>
       </table>
-      <p><%= f.link_to_add t('products.add_another_option'), :options, class: "btn", id: 'add_product_option' %></p>
+      <p><%= f.link_to_add t('products.add_an_option'), :options, class: "btn", id: 'add_product_option' %></p>
 
-      <div class="alert alert-warning form-inline" style="color: #000;display: <%= @product.variants.any? ? 'block' : 'none' %>;" id="auto-create">
+      <div class="alert alert-warning form-inline" style="color:#000; display:<%= @product.variants.any? ? 'block' : 'none' %>;" id="auto-create">
         <p class="orange" style="font-size: 13px; display: none;" id="too-many-variants"><strong>Warning:</strong> Product can't have more than 100 variants.</p>
         <label class="checkbox"><%= f.input_field :auto_generate_variants, label: false, as: :boolean %> Automatically create <strong><span id="variant-count"><%= @product.variants.size %></span> variants</strong> based on the options defined above.</label>
       </div>
