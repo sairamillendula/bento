@@ -273,6 +273,10 @@ body.admin {
 	.table {
 	  width: 100%;
 	  margin-bottom: 20px;
+
+	  td.indent {
+	  	padding-left: 30px;
+	  }
 	}
 
 	.table th,

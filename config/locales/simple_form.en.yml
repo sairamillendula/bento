@@ -24,6 +24,8 @@ en:
         seo_title: Title
         seo_description: Description
         slug: URL
+      tax:
+        rate: Tax rate
     hints:
       defaults:
         slug: Separate words with a dash '-'

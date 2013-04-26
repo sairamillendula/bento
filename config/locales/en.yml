@@ -178,6 +178,9 @@ en:
   country: Country
   please_wait: Please wait...
   welcome: Welcome
+  province_state: Province/State
+  province: Province
+  click_here: Click here
   status:
     title: Status
     pending: Pending
@@ -203,12 +206,12 @@ en:
     signed_out: Successfully signed out. 
   taxes:
     title: Taxes
-    none: No taxes found. %{add_country_link} to add countries first
-    edit:
-      title: Edit Tax
-  zen_mode:
-    edit: Edit in Zen Mode
-    write_here: Write here...
+    none: No taxes found. %{add_country_link} to add country first
+    edit: Edit Tax
+    name: Tax name
+    rate: Tax rate
+    country_tax_rate: Country Tax Rate
+    subregion_tax_rate: Sub-region Tax Rate
   email:
     signature: Have a great day!
     new_admin_user:
