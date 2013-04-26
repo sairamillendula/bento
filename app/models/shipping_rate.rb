@@ -5,7 +5,7 @@ class ShippingRate < ActiveRecord::Base
   attr_accessible :criteria, :max_criteria, :min_criteria, :name, :price
 
   validates_presence_of :shipping_country, :criteria, :name, :price
-  validates_numericality_of :price, { greater_than: 0 }
+  validates_numericality_of :price, { greater_than_or_equal_to: 0 }
   validates_numericality_of :min_criteria, { greater_than_or_equal_to: 0 }
   validates :max_criteria, presence: true, numericality: { greater_than_or_equal_to: 0 }, if: Proc.new{|r| r.criteria == 'weight-based' }
   validate :validate_criteria
@@ -28,6 +28,10 @@ class ShippingRate < ActiveRecord::Base
 
   def unit
     criteria == 'price-based' ? '$' : 'kg'
+  end
+
+  def is_free?
+    price == 0
   end
   
 end
