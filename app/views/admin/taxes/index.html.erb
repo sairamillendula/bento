@@ -1,1 +1,21 @@
 <%= page_title("#{t 'taxes.title'}") %>
+
+<% if @taxes.present? %>
+  <table id="taxes" class="table table-striped">
+    <tr id="table-headers">
+      <th>Destination</th>
+      <th>Country Tax Rate</th>
+      <th>Sub-region Tax Rate</th>
+    </tr>
+    
+    <% @taxes.each do |tax| %>
+      <tr>
+        <td><%= icon_flag(tax.shipping_country.country) %> <%= link_to Country[tax.shipping_country.country].name, admin_tax_path(tax) %></td>
+        <td><%= number_to_percentage tax.rate, precision: 2 %></td>        
+        <td><% if tax.region_taxes_count > 0 %><%= pluralize(tax.region_taxes_count, 'province') %><% end %></td>
+      </tr>
+    <% end %>
+  </table>
+<% else %>
+  <div class="alert"><%= t('taxes.none', add_country_link: link_to('Click here', admin_shipping_path)).html_safe %>.</div>
+<% end %>

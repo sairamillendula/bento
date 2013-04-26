@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130424085434) do
+ActiveRecord::Schema.define(:version => 20130426051112) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -259,6 +259,17 @@ ActiveRecord::Schema.define(:version => 20130424085434) do
   add_index "products_suppliers", ["product_id"], :name => "index_products_suppliers_on_product_id"
   add_index "products_suppliers", ["supplier_id"], :name => "index_products_suppliers_on_supplier_id"
 
+  create_table "region_taxes", :force => true do |t|
+    t.integer  "tax_id"
+    t.string   "province"
+    t.string   "name"
+    t.decimal  "rate",       :precision => 4, :scale => 2, :default => 0.0
+    t.datetime "created_at",                                                :null => false
+    t.datetime "updated_at",                                                :null => false
+  end
+
+  add_index "region_taxes", ["tax_id"], :name => "index_region_taxes_on_tax_id"
+
   create_table "reseller_requests", :force => true do |t|
     t.integer  "user_id"
     t.boolean  "approved",      :default => false
@@ -320,6 +331,16 @@ ActiveRecord::Schema.define(:version => 20130424085434) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "taxes", :force => true do |t|
+    t.integer  "shipping_country_id"
+    t.decimal  "rate",                :precision => 4, :scale => 2, :default => 0.0
+    t.integer  "region_taxes_count",                                :default => 0
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
+  end
+
+  add_index "taxes", ["shipping_country_id"], :name => "index_taxes_on_shipping_country_id"
 
   create_table "users", :force => true do |t|
     t.string   "email",                                              :null => false

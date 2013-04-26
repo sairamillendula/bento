@@ -1,0 +1,51 @@
+<%= page_title("#{t 'taxes.edit.title'}") %>
+
+<%= simple_nested_form_for([:admin, @tax], html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :country do %>
+      <p style="margin: 5px 0 0 0;"><%= icon_flag(@tax.shipping_country.country) %> <%= @tax.shipping_country.name %></p>
+    <% end %>
+    <%= f.input :rate, wrapper: :append do %>
+      <%= f.input_field :rate, class: 'input-mini' %>
+      <span class="add-on">%</span>
+    <% end %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Province</th>
+          <th>Name of tax</th>
+          <th>Tax rate</th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.fields_for :region_taxes do |ff| %>
+          <tr>
+            <td>
+              <%= Country[@tax.shipping_country.country].subdivisions[ff.object.province]['name'] %>
+              <%= ff.hidden_field :province %>
+            </td>
+            <td><%= ff.text_field :name %></td>
+            <td>
+              <div class="input-append">
+                <%= ff.text_field :rate, class: 'input-mini' %>
+                <span class="add-on">%</span>
+              </div>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+  
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+  $(function() {
+  });
+</script>

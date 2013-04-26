@@ -203,6 +203,9 @@ en:
     signed_out: Successfully signed out. 
   taxes:
     title: Taxes
+    none: No taxes found. %{add_country_link} to add countries first
+    edit:
+      title: Edit Tax
   zen_mode:
     edit: Edit in Zen Mode
     write_here: Write here...
