@@ -20,6 +20,7 @@
 //= require jquery.tagsinput
 //= require jquery.rateit
 //= require turbolinks
+//= require jquery.turbolinks
 //= require holder
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl

@@ -23,9 +23,10 @@ gem 'stripe'
 gem 'figaro'
 gem 'oauth2'
 gem 'acts_as_list'
-gem "countries"
+gem "countries", :git => "https://github.com/hoangnghiem/countries.git"
 gem 'famfamfam_flags_rails'
 gem 'turbolinks'
+gem 'jquery-turbolinks'
 
 # Gems used only for assets and not required
 # in production environments by default.
