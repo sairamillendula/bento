@@ -3,9 +3,9 @@ class Shipping
 
   setup: ->
     $("#rates").on 'change', '.criteria', ->
-      if $(this).val() == 'price-based'
-        $(this).closest('.rate').find('.unit').text('$')
-      else
+      if $(this).val() == 'weight-based'
         $(this).closest('.rate').find('.unit').text('kg')
+      else
+        $(this).closest('.rate').find('.unit').text('$')
 
-@shipping = new Shipping()    
+@shipping = new Shipping()

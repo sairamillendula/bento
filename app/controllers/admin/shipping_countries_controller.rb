@@ -2,7 +2,7 @@ class Admin::ShippingCountriesController < Admin::BaseController
   set_tab :shipping_rates
 
   def index
-    @shipping_countries = ShippingCountry.includes(:rates).order('created_at DESC')
+    @shipping_countries = ShippingCountry.includes(:rates).order(:country)
 
     respond_to do |format|
       format.html # index.html.erb

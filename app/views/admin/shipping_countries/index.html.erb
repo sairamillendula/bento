@@ -6,19 +6,19 @@
   <table id="shipping_countries" class="table table-striped">
     <tr id="table-headers">
       <th colspan="2"><%= "#{t 'country'}" %></th>
-      <th style="min-width:80px;"></th>
+      <th></th>
     </tr>
     
     <% @shipping_countries.each do |shipping_country| %>
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td colspan="3"><%= icon_flag(shipping_country.country) %> <%= link_to Country[shipping_country.country].name, edit_admin_shipping_country_path(shipping_country) %> - <%= link_to "#{t 'remove_country'}", admin_shipping_country_path(shipping_country), method: :delete, data: {confirm: 'Are you sure?'} %></td>
+      <tr class="<%= cycle('even', 'odd') %>">
+        <td colspan="3"><%= icon_flag(shipping_country.country) %> <%= link_to Country[shipping_country.country].name, edit_admin_shipping_country_path(shipping_country) %> • <%= link_to "#{t 'remove_country'}", admin_shipping_country_path(shipping_country), method: :delete, data: {confirm: "#{t 'are_you_sure'} Associated taxes will also be removed."} %></td>
       </tr>
       <% if shipping_country.rates.any? %>
         <% shipping_country.rates.each do |rate| %>
           <tr class="<%= current_cycle %>">
             <td class="indent"><%= rate.name %></td>
-            <td><%= rate.rate %></td>
             <td><strong><%= number_to_currency rate.price %></strong></td>
+            <td><%= rate.rate %></td>
           </tr>
         <% end %>
       <% end %>

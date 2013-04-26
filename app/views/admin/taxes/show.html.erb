@@ -28,7 +28,7 @@
                 <%= Country[@tax.shipping_country.country].subdivisions[ff.object.province]['name'] %>
                 <%= ff.hidden_field :province %>
               </td>
-              <td><%= ff.text_field :name %></td>
+              <td><%= ff.text_field :name, class: 'input-small' %></td>
               <td>
                 <div class="input-append">
                   <%= ff.text_field :rate, class: 'input-mini' %>
