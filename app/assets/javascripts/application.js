@@ -13,14 +13,14 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.turbolinks
+//= require turbolinks
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require nested_form
 //= require jquery.tokeninput
 //= require jquery.tagsinput
 //= require jquery.rateit
-//= require turbolinks
-//= require jquery.turbolinks
 //= require holder
 //= require jquery-fileupload/basic
 //= require jquery-fileupload/vendor/tmpl
