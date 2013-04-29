@@ -5,19 +5,11 @@
     <%= f.input :name, input_html: {class: 'span12'}, placeholder: "Summer collection, Under $50, Staff picks..." %>
     <%= f.input :slug, input_html: {class: 'span12'} %>
     <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
-    
-    <div class="control-group" style="position:relative;">
-      <label class="string required control-label" for="article_control"><%= "#{t 'description'}" %> <abbr title="requis">*</abbr></label>
-      <div class="controls">
-        <a href="#" class="go-zen"><i class="s s--zen"><%= "#{t 'zen_mode.edit'}" %></i></a>
-        <%= f.text_area :description, class: "zen-mode", "data-label"=>"#{t 'zen_mode.write_here'}" %>
-      </div>
-    </div>
+    <%= f.input :description %>
+
+    <%= subsection_title("SEO") %>
+    <%= render 'admin/meta_tags/form', f: f %>
   </div>
-
-  <%= subsection_title("SEO") %>
-  <%= render 'admin/meta_tags/form', f: f %>
-
   <div class="form-actions">
     <%= submit_or_cancel(f) %>
   </div>

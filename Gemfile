@@ -26,7 +26,6 @@ gem 'acts_as_list'
 gem "countries", :git => "https://github.com/hoangnghiem/countries.git"
 gem 'famfamfam_flags_rails'
 gem 'turbolinks'
-gem 'jquery-turbolinks'
 gem 'omniauth-stripe-connect'
 
 # Gems used only for assets and not required
