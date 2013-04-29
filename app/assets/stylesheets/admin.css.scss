@@ -4,6 +4,10 @@ $blue: #55606e;
 $green: #6cc644;
 $red: #f26c4f;
 
+body,html{
+  height:100%;
+}
+
 body.admin {
 	/* global */
 	font: 14px/20px "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -12,6 +16,7 @@ body.admin {
 	margin: 0;
   padding: 0;
   -webkit-text-size-adjust: none;
+  background: image-url('sidebar-bg.gif');
 
 	a, a:visited {
 		//color: $light-gray;
@@ -31,10 +36,11 @@ body.admin {
 		position: relative;
 		height: 85px;
 		padding: 0 35px 0 40px;
-		margin-left: 275px;
+		// margin-left: 275px;
 		border-bottom: 1px solid  #e3e3e8;
 		zoom: 1;
 		@include box-sizing(border-box);
+		background: #FFF;
 
 		h1 {
 			display: block;
@@ -125,11 +131,12 @@ body.admin {
 	}
 
 	#content {
-		margin-left: 275px;
+		// margin-left: 275px;
 		padding: 0 35px;
-		min-height: 710px;
+		min-height: 850px;
     position: relative;
     @include box-sizing(border-box);
+    background: #FFF;
 
     .page-title {
 			margin-bottom: 30px;
@@ -151,6 +158,10 @@ body.admin {
 			margin-bottom: 30px;
 			border-bottom: 1px solid #eeeeee;
 		}
+	}
+	#wrapper {
+		background: #FFF;
+		margin-left: 275px;
 	}
 
 	/* buttons */

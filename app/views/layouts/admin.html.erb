@@ -13,16 +13,18 @@
   </head>
 
   <body class="admin">
-    <header id="header">
-      <%= render 'admin_navbar' %>
-    </header>
     <section id="sidebar">
       <%= render 'admin_sidebar' %>
     </section>
-
-    <section id="content">
-      <%= render 'flash' %>
-      <%= yield %>
-    </section>
+    <div id="wrapper">
+      <header id="header">
+        <%= render 'admin_navbar' %>
+      </header>
+      <section id="content" class="row-fluid">
+        <%= render 'flash' %>
+        <%= yield %>
+      </section>
+    </div>
+    <div style="clear"></div>
   </body>
 </html>
