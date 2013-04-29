@@ -16,7 +16,7 @@ Bento::Application.routes.draw do
   # ============================================================
   # STRIPE ROUTES
   # ============================================================
-  get '/stripe/connect' => 'stripe#connect'
+  get '/stripe/callback' => 'stripe#callback'
 
   # ============================================================
   # ADMIN ROUTES

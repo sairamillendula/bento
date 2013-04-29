@@ -109,6 +109,7 @@ GEM
     friendly_id (4.0.9)
     fssm (0.2.10)
     hashery (2.1.0)
+    hashie (2.0.4)
     highline (1.6.16)
     hike (1.2.1)
     hirb (0.7.1)
@@ -163,6 +164,15 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
+    omniauth (1.1.4)
+      hashie (>= 1.2, < 3)
+      rack
+    omniauth-oauth2 (1.1.1)
+      oauth2 (~> 0.8.0)
+      omniauth (~> 1.0)
+    omniauth-stripe-connect (2.2.0)
+      omniauth (~> 1.0)
+      omniauth-oauth2 (>= 1.0.3)
     paperclip (3.4.0)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -284,7 +294,7 @@ DEPENDENCIES
   meta-tags
   mysql2
   nested_form
-  oauth2
+  omniauth-stripe-connect
   paperclip
   prawn!
   quiet_assets

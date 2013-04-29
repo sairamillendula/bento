@@ -32,4 +32,5 @@
   </div>
 </div>
 
-<%= link_to image_tag('connect-button-blue.png', size: "190x33"), "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_write&stripe_landing=login&client_id=#{ENV['STRIPE_CONNECT_CLIENT_ID']}" %>
+<%#= link_to image_tag('connect-button-blue.png', size: "190x33"), "https://connect.stripe.com/oauth/authorize?response_type=code&scope=read_only&stripe_landing=login&client_id=#{ENV['STRIPE_CONNECT_CLIENT_ID']}" %>
+<%= link_to image_tag('connect-button-blue.png', size: "190x33"), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
