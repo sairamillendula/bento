@@ -18,7 +18,7 @@
           <% if user.active %>
       <%= icon_button_link_to "#{t 'deactivate'}", deactivate_admin_user_path(user), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
     <% else %>
-      <%= icon_button_link_to "#{t 'activate'}", activate_admin_user_path(user), level: 'success', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
+      <%= icon_button_link_to "#{t 'activate'}", activate_admin_user_path(user), level: 'primary', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
     <% end %>
         </td>
       </tr>
