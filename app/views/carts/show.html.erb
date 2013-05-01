@@ -15,7 +15,7 @@
       <%= f.fields_for :items do |ff| %>
         <% item = ff.object %>
   	    <tr>
-  	      <td><%= item.product.name %></td>
+  	      <td><%= item.buyable.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>

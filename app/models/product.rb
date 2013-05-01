@@ -125,6 +125,8 @@ class Product < ActiveRecord::Base
     end
   end
 
+  alias_attribute :cart_name, :name
+
 private
 
   def generate_sku

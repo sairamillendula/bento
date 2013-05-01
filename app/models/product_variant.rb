@@ -40,6 +40,10 @@ class ProductVariant < ActiveRecord::Base
     end
   end
 
+  def cart_name
+    "#{product.name} (#{name})"
+  end
+
 private
 
   def update_product_options
