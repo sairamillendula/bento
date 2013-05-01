@@ -19,12 +19,7 @@ body.admin {
   background: image-url('sidebar-bg.gif');
 
 	a, a:visited {
-		//color: $light-gray;
 		text-decoration: none;
-
-		&:hover {
-			//color: $blue;
-		}
 	}
 
 	h1 {
@@ -182,6 +177,7 @@ body.admin {
     @include border-radius(3px);
     border: none;
     box-shadow: none;
+    min-width: 80px;
 
     &:hover {
     	background: darken($gray, 10%);
@@ -253,6 +249,10 @@ body.admin {
 
 		input[type="submit"] {
 			padding: 10px;
+		}
+
+		&.reset {
+			padding-left: 0;
 		}
 	}
 

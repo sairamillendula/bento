@@ -63,7 +63,7 @@ en:
     new: New Article
     edit: Edit Article
     none: No articles found
-  general_info: Info
+  general_settings: Settings
   order: Order
   orders:
     title: Orders
@@ -188,6 +188,8 @@ en:
     shipped: Shipped
     mark_as_shipped: Mark as shipped
     not_paid: Payment not received
+  payments:
+    title: Payments
   passwords:
     new_password_placeholder: New password (6 characters min.)
     new:
@@ -200,10 +202,19 @@ en:
       title: Sign up
     edit:
       title: Profile
+  social:
+    twitter:
+      username: Twitter username
+    facebook:
+      username: Facebook username/Page name
   sessions:
     sign_in: Please sign in first
     signed_in: Signed in!
-    signed_out: Successfully signed out. 
+    signed_out: Successfully signed out.
+  stripe:
+    please_connect: You need to set up your stripe account to accept payments
+    account_set_up: Payments successfully set up. Manage revenues through your
+    and_start_accepting_payments: and start accepting payments
   taxes:
     title: Taxes
     none: No taxes found. %{add_country_link} to add country first
