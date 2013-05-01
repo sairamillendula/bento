@@ -24,6 +24,8 @@ en:
         seo_title: Title
         seo_description: Description
         slug: URL
+      page:
+        klass: Type
       tax:
         rate: Tax rate
     hints:

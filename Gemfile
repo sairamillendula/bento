@@ -17,17 +17,16 @@ gem 'prawn', :git => "git://github.com/prawnpdf/prawn.git"
 gem 'whenever', :require => false
 gem 'ransack'
 gem 'kaminari-bootstrap'
-gem "paperclip"
+gem 'paperclip'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'stripe'
 gem 'figaro'
-# gem 'oauth2'
 gem 'acts_as_list'
-gem "countries", :git => "https://github.com/hoangnghiem/countries.git"
+gem 'countries', :git => "https://github.com/hoangnghiem/countries.git"
 gem 'famfamfam_flags_rails'
 gem 'turbolinks'
 gem 'omniauth-stripe-connect'
-gem "rails-settings-cached", "0.2.4"
+gem 'rails-settings-cached', "0.2.4"
 
 # Gems used only for assets and not required
 # in production environments by default.

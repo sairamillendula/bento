@@ -1,8 +1,6 @@
 <%= page_title("#{t 'dashboard'}") %>
 
-<%=  %>
-
-<% if Setting.stripe_access_token.present? %>
+<% unless Setting.stripe_access_token.present? %>
   <p class="alert">
     <%= link_to image_tag('connect-button-blue.png', size: "190x33"), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
     <%= t 'stripe.and_start_accepting_payments' %>

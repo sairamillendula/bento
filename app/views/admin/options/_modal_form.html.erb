@@ -24,8 +24,8 @@
     </table>
   </div>
   <div class="modal-footer">
-    <%= link_to 'Cancel', [:edit, :admin, product, :options], class: 'btn close-modal' %>
-    <%= f.submit 'Save changes', class: 'btn btn-primary', disable_with: 'Saving...' %>
+    <%= link_to "#{t 'cancel'}", [:edit, :admin, product, :options], class: 'btn btn-inverse close-modal' %>
+    <%= f.submit "#{t 'save_changes'}", class: 'btn btn-primary', disable_with: 'Saving...' %>
   </div>
   <% end %>
 </div>

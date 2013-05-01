@@ -17,8 +17,8 @@ class Order < ActiveRecord::Base
   scope :completed, where(completed: true)
   scope :shipped, where(shipped: true)
 
-  attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client_attributes, :shipping_address, :billing_address, :shipped,
-                  :shipped_at, :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
+  attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client_attributes, :shipping_address, :billing_address, 
+                  :shipped, :shipped_at, :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
   #attr_accessor :stripe_card_token
 
   before_create :generate_code
@@ -67,8 +67,8 @@ class Order < ActiveRecord::Base
         card: stripe_card_token,
         amount: (total * 100).to_i,
         currency: "cad",
-        description: "#{client.email}"
-        # application_fee:
+        description: "#{client.email}",
+        application_fee: amount * ENV['STRIPE_APPLICATION_FEE'] / 100
       )
 
       self.total = total
