@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130426051112) do
+ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "addresses", :force => true do |t|
     t.string   "address1"
@@ -135,18 +135,17 @@ ActiveRecord::Schema.define(:version => 20130426051112) do
   add_index "friendly_id_slugs", ["sluggable_type"], :name => "index_friendly_id_slugs_on_sluggable_type"
 
   create_table "line_items", :force => true do |t|
-    t.integer  "product_id"
-    t.integer  "product_variant_id"
-    t.integer  "quantity",                                          :default => 1
-    t.decimal  "price",              :precision => 11, :scale => 2
+    t.integer  "buyable_id"
+    t.string   "buyable_type"
+    t.integer  "quantity",                                    :default => 1
+    t.decimal  "price",        :precision => 11, :scale => 2
     t.integer  "cart_id"
     t.integer  "order_id"
-    t.datetime "created_at",                                                       :null => false
-    t.datetime "updated_at",                                                       :null => false
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
   end
 
-  add_index "line_items", ["product_id"], :name => "index_line_items_on_product_id"
-  add_index "line_items", ["product_variant_id"], :name => "index_line_items_on_product_variant_id"
+  add_index "line_items", ["buyable_id", "buyable_type"], :name => "index_line_items_on_buyable_id_and_buyable_type"
 
   create_table "orders", :force => true do |t|
     t.string   "code"
@@ -282,13 +281,15 @@ ActiveRecord::Schema.define(:version => 20130426051112) do
   end
 
   create_table "settings", :force => true do |t|
-    t.string   "key"
+    t.string   "var",                      :null => false
     t.text     "value"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.integer  "thing_id"
+    t.string   "thing_type", :limit => 30
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
   end
 
-  add_index "settings", ["key"], :name => "index_settings_on_key"
+  add_index "settings", ["thing_type", "thing_id", "var"], :name => "index_settings_on_thing_type_and_thing_id_and_var", :unique => true
 
   create_table "shipping_countries", :force => true do |t|
     t.string   "country"

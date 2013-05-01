@@ -10,9 +10,9 @@ class Cart < ActiveRecord::Base
   # return: line item
   def add_to_cart(buyable)
     if buyable.is_a?(Product)
-	   current_item = items.where(product_id: buyable.id).first_or_initialize
+	    current_item = items.where(buyable_id: buyable.id, buyable_type: 'Product').first_or_initialize
     elsif buyable.is_a?(ProductVariant)
-      current_item = items.where(product_variant_id: buyable.id).first_or_initialize
+      current_item = items.where(buyable_id: buyable.id, buyable_type: 'ProductVariant').first_or_initialize
     else
       raise ArgumentError.new('give argument must be an instance of Product or ProductVariant')
     end

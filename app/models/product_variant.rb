@@ -16,6 +16,7 @@ class ProductVariant < ActiveRecord::Base
   validate :validate_options_presence
 
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
+  after_save :update_product_options
 
   store :options, accessors: [:option1, :option2, :option3]
   
@@ -33,9 +34,23 @@ class ProductVariant < ActiveRecord::Base
 
   def name(html=false)
     if html
-      options.values.map.with_index {|v, idx| "<span class=\"option-#{idx + 1}\">#{v}</span>"}.join(' / ').html_safe
+      options.values.reject{|v| v.blank?}.map.with_index {|v, idx| "<span class=\"option-#{idx + 1}\">#{v}</span>"}.join(' / ').html_safe
     else
-      options.values.join(' / ')
+      options.values.reject{|v| v.blank?}.join(' / ')
+    end
+  end
+
+private
+
+  def update_product_options
+    product.options.each do |opt|
+      current_values = opt.values.try(:split, ',') || []
+      val = send(:"option#{opt.position}")
+      unless current_values.include?(val)
+        current_values << val
+        opt.values = current_values.join(',')
+        opt.save
+      end
     end
   end
 

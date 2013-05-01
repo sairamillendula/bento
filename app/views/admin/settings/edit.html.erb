@@ -2,17 +2,20 @@
 
 <p class="alert">The following settings have no effect currently.</p>
 
-<%= form_tag admin_settings_path, method: :put do |f| %>
+<%= form_for :setting, url: admin_settings_path, method: :put do |f| %>
   <div class="form-inputs">
-    <%= label_tag "", "twitter" %>
-    <%= text_field_tag :twitter, @settings["twitter"] %>
+    <%= f.label :twitter %>
+    <%= f.text_field :twitter, value: Setting.twitter %>
 
-    <%= label_tag "", "facebook" %>
-    <%= text_field_tag :facebook, @settings["facebook"] %>
+    <%= f.label :facebook %>
+    <%= f.text_field :facebook, value: Setting.facebook %>
 
-    <%= label_tag "", "Min. amount for free shipping" %>
-    <%= text_field_tag :min_amount_for_free_shipping, @settings["min_amount_for_free_shipping"] %>
+    <%= f.label :min_amount_for_free_shipping %>
+    <%= f.text_field :min_amount_for_free_shipping, value: Setting.min_amount_for_free_shipping %>
 
+    <%= f.label :stripe_access_token %>
+    <%= f.text_field :stripe_access_token, value: Setting.stripe_access_token, disabled: true %>
+  </div>
   <div class="form-actions">
     <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>
   </div>

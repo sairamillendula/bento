@@ -173,4 +173,13 @@ class EditProductForm
       $.get $('.close-modal').attr('href'), (html) ->
         $('#edit-option-modal').replaceWith(html)
 
-@edit_product_form = new EditProductForm()        
+@edit_product_form = new EditProductForm()
+
+class ProductOptionSelector
+  constructor: (@variants, @option_refs) ->
+
+  setup: ->
+    for ref, option in @option_refs
+      console.log option
+
+

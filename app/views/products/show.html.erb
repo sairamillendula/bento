@@ -2,7 +2,16 @@
 
 <%= markdown(@product.description) %>
 
-<%= button_to 'Add to Cart', line_items_path(product_id: @product), class: "btn btn-success" %>
+<% if @product.options.any? && @product.variants.any? %>
+  <% default_variant = @product.variants.first %>
+  <% @product.options.each do |option| %>
+    <p><%= option.name %>: <%= select_tag option.name, options_for_select(option.values.split(',')) %></p>
+  <% end %>
+
+  <h3><%= number_to_currency default_variant.price %></h3>
+<% else %>  
+  <h3><%= number_to_currency @product.price, strip_insignificant_zeros: true %></h3>
+<% end %>  
 
 <% if @product.variants.any? %>
   <ul>
@@ -12,4 +21,12 @@
   </ul>
 <% end %>
 
+
+<%= button_to 'Add to Cart', line_items_path(product_id: @product.id), class: "btn btn-success" %>
+
 <%= render 'reviews' %>
+
+<script type="text/javascript">
+  var variants = <%= raw @product.variants.to_json(only: [:id, :price, :in_stock, :options]) %>;
+  var option_refs = <%= raw @product.options.inject({}) {|h, option| h[:"option#{option.position}"] = option.name;h }.to_json %>;
+</script>

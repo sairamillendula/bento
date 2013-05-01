@@ -107,9 +107,9 @@ class Product < ActiveRecord::Base
     if options.size > 0
       existings = temp ? temp.index_by{|v| v.options.symbolize_keys} : {}
       result = []
-      result = pushOpt(options[0].values.split(','), []) if options[0]
-      result = pushOpt(result, options[1].values.split(',')) if options[1]
-      result = pushOpt(result, options[2].values.split(',')) if options[2]
+      result = pushOpt(options[0].values.try(:split, ',') || [], []) if options[0]
+      result = pushOpt(result, options[1].values.try(:split, ',') || []) if options[1]
+      result = pushOpt(result, options[2].values.try(:split, ',') || []) if options[2]
       result.each do |variant_options|
         opts = variant_options.each.with_index.inject({}) {|h, (opt, idx)| h[:"option#{idx + 1}"] = opt; h }
         unless existings[opts]
