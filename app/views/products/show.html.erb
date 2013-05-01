@@ -9,11 +9,13 @@
   <% end %>
 
   <h3 id="price"><%= number_to_currency default_variant.price %></h3>
+  <%= button_to 'Add to Cart', line_items_path(product_variant_id: default_variant.id), class: "btn btn-success", id: 'add-to-cart' %>
 <% else %>  
   <h3 id="price"><%= number_to_currency @product.price, strip_insignificant_zeros: true %></h3>
+  <%= button_to 'Add to Cart', line_items_path(product_id: @product.id), class: "btn btn-success", id: 'add-to-cart' %>
 <% end %>  
 
-<%= button_to 'Add to Cart', line_items_path(product_id: @product.id), class: "btn btn-success", id: 'add-to-cart' %>
+
 
 <%= render 'reviews' %>
 

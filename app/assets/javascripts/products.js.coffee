@@ -200,7 +200,3 @@ class @ProductOptionSelector
         else
           $('#price').text('Not available')
           $('#add-to-cart').hide()
-
-
-  foo = ->
-    console.log 'private call'    
