@@ -51,22 +51,63 @@
 
 	li {
 		list-style-type: none;
-		line-height: 36px;
 		border-top: 1px solid #e5e5e5;
 		padding: 0 14px;
-	}
-	li:first-child {
-		border-top: none;
+
+		&:first-child {
+			border-top: none;
+		}
+
+		a {
+      display: block;
+			padding: 8px 0;
+		}
 	}
 }
 
 #collection-products {
-	li:hover {
-		cursor: move;
-		background-color: #eeeeee;
+	li {
+    display: block;
+		padding: 8px 14px;
+
+		&:hover {
+			cursor: move;
+		  background-color: #eeeeee;
+		}
+
+		a.remove.fr {
+			padding: 0;
+
+			i.icon-remove {
+				opacity: .25;
+
+				&:hover {
+					opacity: .75;
+				}
+			}
+		}
 	}
 	.alert {
 		margin-top: 0;
+	}
+}
+
+#products-list {
+	li {
+		&:hover {
+			i.icon-chevron-right {
+				opacity: .75;
+			}
+		}
+		
+		a {
+			i.icon-chevron-right {
+				float: right;
+				margin-top: 2px;
+				margin-right: -6px;
+				opacity: .25;
+			}
+		}
 	}
 }
 

@@ -1,7 +1,7 @@
 <% if @collection.products.any? %>
   <% @collection.products.order('position').each do |product| %>
     <%= content_tag_for :li, product do %>
-      <%= product.name %> <span class="remove fr">  <%= icon_link_to "", remove_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true, icon: 'remove' %></span>
+      <%= product.name %> <%= icon_link_to "", remove_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true, icon: 'remove', class: "remove fr" %></span>
     <% end %>
   <% end %>
 <% else %>
