@@ -28,7 +28,9 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("name like ?", "%#{params[:q]}%")
+    current_product = Product.find(params[:id])
+    #@products = Product.where("name like ?", "%#{params[:q]}%")
+    @products = Product.exclude_products([current_product.id]).where("name like ?", "%#{params[:q]}%")
 
     respond_to do |format|
       format.json {render json: @products}

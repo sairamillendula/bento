@@ -88,6 +88,8 @@ en:
     add_variant: Add a variant
     browse: Browse our catalogue
     edit_options: Edit options
+    related: Related Products
+    cross_sell: Cross-Sell Products
   reviews:
     title: Product reviews
     none: No product reviews found
@@ -171,6 +173,7 @@ en:
   you_re_browsing_our_secure_server: You're browsing our secure server
   please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
+  vendor_supplier: Vendor/Supplier
   message: Message
   price-based: "Based on order price"
   weight-based: "Based on order weight"

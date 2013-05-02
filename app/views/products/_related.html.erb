@@ -1,0 +1,12 @@
+<% if @product.cross_sell_products %>
+  <h3><%= t 'products.related' %></h3>
+
+  <ul id="related_products" class="row-fluid">
+		<% @product.cross_sell_products.each do |product| %>
+	    <li class="span3">
+	      <img data-src="holder.js/300x200" alt="" width="300" height="200"><br>
+	      <%= link_to product.name, product_path(product.slug) %>
+	    </li>
+	  <% end %>
+  </ul>
+<% end %>

@@ -14,21 +14,21 @@
   
     <%= subsection_title('Classification & Related Products') %>
     <div class="control-group">
-      <label class="control-label" for="product_category_tokens">Categories</label>
+      <label class="control-label" for="product_category_tokens"><%= t 'categories' %></label>
       <div class="controls" style="position:absolute;">
         <%= f.text_field :category_tokens, data: {load: @product.categories} %>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="product_supplier_tokens">Vendor</label>
+      <label class="control-label" for="product_supplier_tokens"><%= t 'vendor_supplier' %></label>
       <div class="controls" style="position:absolute;">
         <%= f.text_field :supplier_tokens, data: {load: @product.suppliers} %>
       </div>
     </div>
 
     <div class="control-group">
-      <label class="control-label" for="product_cross_sell_tokens">Cross-Sell Products</label>
+      <label class="control-label" for="product_cross_sell_tokens"><%= t 'products.cross_sell' %></label>
       <div class="controls" style="position:absolute;">
         <%= f.text_field :cross_sell_tokens, data: {load: @product.cross_sell_products} %>
       </div>
