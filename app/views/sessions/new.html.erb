@@ -1,4 +1,4 @@
-<h1><%= t 'please_sign_in' %></h1>
+<h1><%= t 'sesssions.new' %></h1>
 	
 <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
   <%= f.error_notification %>
@@ -11,4 +11,4 @@
   <%= f.button :submit, class: "btn btn-primary", style: 'margin-top:20px; margin-left:180px;' %>
 <% end %>
 
-<p class="nolabel" style="margin-top:20px;"><%= link_to 'Forgot Password?', new_password_path %></p>
+<p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></p>

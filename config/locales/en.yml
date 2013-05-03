@@ -149,10 +149,8 @@ en:
   collections:
     title: Collections
     none: No Collections found
-    new:
-      title: New Collection
-    edit:
-      title: Edit Collection  
+    new: New Collection
+    edit: Edit Collection  
   resellers:
     title: Resellers
     become_reseller: Become Reseller
@@ -196,16 +194,15 @@ en:
     title: Payments
   passwords:
     new_password_placeholder: New password (6 characters min.)
-    new:
-      title: Reset Password
-    edit:
-      title: Choose a new password
+    new: Reset Password
+    edit: Choose a new password
+    forgot: Forgot Password?
   registrations:
     terms_acceptance: By joining you agree with our terms and conditions
-    new:
-      title: Sign up
-    edit:
-      title: Profile
+    new: Sign up
+    edit: Profile
+    create_account: Create Account
+    update_profile: Update Profile
   social:
     twitter:
       username: Twitter username
@@ -215,6 +212,7 @@ en:
     sign_in: Please sign in first
     signed_in: Signed in!
     signed_out: Successfully signed out.
+    new: Sign in
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your

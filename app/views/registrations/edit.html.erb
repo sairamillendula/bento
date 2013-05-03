@@ -1,5 +1,5 @@
 <div class="authentication">
-	<h1><%= t 'registrations.edit.title' %></h1>
+	<h1><%= t 'registrations.edit' %></h1>
 
   <%= simple_form_for(@user, url: update_profile_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
 	  <%= f.error_notification %>
@@ -10,6 +10,6 @@
     <%= f.input :password, required: false %>
     <%= f.input :password_confirmation %>
 
-	  <%= f.button :submit, "Update Profile", class: "btn btn-primary nolabel" %>
+	  <%= f.button :submit, "#{t 'registrations.update_profile'}", class: "btn btn-primary nolabel" %>
 	<% end %>
 </div>

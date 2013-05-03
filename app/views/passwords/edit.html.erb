@@ -1,5 +1,5 @@
 <div class="authentication">
-	<h1><%= t 'passwords.edit.title' %></h1>
+	<h1><%= t 'passwords.edit' %></h1>
 
 	<%= simple_form_for(@user, url: password_path(@user), method: :put) do |f| %>
 	  <%= f.error_notification %>
@@ -8,6 +8,6 @@
 	  <%= f.input :password_confirmation, label: false %>
 	  <%= hidden_field_tag :token, @token %>
 
-	  <%= f.button :submit, "#{t 'passwords.new.title'}", class: "btn btn-primary" %>
+	  <%= f.button :submit, "#{t 'passwords.new'}", class: "btn btn-primary" %>
 	<% end %>
 </div>
