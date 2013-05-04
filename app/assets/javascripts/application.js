@@ -22,6 +22,7 @@
 //= require jquery.rateit
 //= require holder
 //= require jquery-fileupload
+//= require bootbox
 //= require_tree .
 
 $(function () {

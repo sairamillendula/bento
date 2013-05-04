@@ -40,6 +40,16 @@ class Admin::PicturesController < Admin::BaseController
     end
   end
 
+  def edit
+    @picture = Picture.find(params[:id])
+    render :layout => false
+  end
+
+  def update
+    @picture = Picture.find(params[:id])
+    @picture.update_attributes(params[:picture])
+  end
+
   def destroy
     @picture = Picture.find(params[:id])
     @picture.destroy
@@ -48,6 +58,13 @@ class Admin::PicturesController < Admin::BaseController
       format.html { redirect_to [:admin, @product] }
       format.json { head :no_content }
     end
+  end
+
+  def sort
+    params[:picture].each_with_index do |id, index|
+      Picture.update_all({position: index+1}, {id: id})
+    end
+    render nothing: true
   end
 
   private

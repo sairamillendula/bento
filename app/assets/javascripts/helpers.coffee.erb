@@ -1,0 +1,45 @@
+class @Helpers
+  @modalableHandler: (e) ->
+    url = $(this).attr('href')
+    title = $(this).data('title')
+    width = $(this).data('width')
+    confirmable = $(this).data('confirmable')
+    disable_submit = $(this).data('disable-submit')
+    content = "<div class='loading'><img src='<%= asset_path('loading.gif') %>'></div>"
+    modal_options =
+      header: title
+
+    if width
+      modal_options = $.extend(modal_options, {modal_width: width})
+
+    callback = [{
+      "label" : I18n.t('save')
+      "class" : "btn-primary"
+      "callback": ->
+        if confirmable
+          # confirm before submit
+          bootbox.setLocale(CURRENT_LOCALE);
+          bootbox.confirm I18n.t('are_you_sure_this_cannot_be_undone'), (confirmed) ->
+            if confirmed
+              $("form", modal).submit()
+            else
+              bootbox.hideAll()
+        else
+          $("form", modal).submit()
+        return false
+    }, {
+      "label" : I18n.t('cancel')
+      "class" : "btn"
+      "callback": ->
+        bootbox.hideAll()
+    }]
+
+    modal = bootbox.dialog(content, callback, modal_options)
+
+    modal.on 'shown', ->
+      $.get url, (html) ->
+        $('.modal-body', modal).html(html)
+
+      if disable_submit
+        $('button', modal).addClass('disabled').attr('disabled', true)
+    return false;  

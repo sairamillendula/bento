@@ -563,11 +563,9 @@ body.admin {
 				margin-bottom: 10px;
 			}
 		}
+		li:nth-child(4n + 1) {
+			clear: left;
+		}
+
 	}
-	// #picture_upload {
- //    display: block;
- //    visibility: hidden;
- //    width: 0;
- //    height: 0;
- //  }
 }

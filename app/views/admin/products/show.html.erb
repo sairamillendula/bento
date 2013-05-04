@@ -26,7 +26,7 @@
 
 <h3 class="subsection_title">Pictures</h3>
 <%= form_for [:admin, @product, @product.pictures.build], :html => { :multipart => true, :id => "fileupload"  } do |f| %>
-  <ul class="thumbnails pictures" id="pictures-container">
+  <ul class="thumbnails pictures" id="pictures-container" data-update-url="<%= polymorphic_url([:sort, :admin, @product, :pictures]) %>">
     <li>
       <span class="thumbnail fileinput-button">
         <img data-src="holder.js/200x150/bright/text:+" alt="Click to add pictures">
@@ -70,7 +70,7 @@
 
 <script id="template-download" type="text/x-tmpl">
   {% for (var i=0, file; file=o.files[i]; i++) { %}
-    <li class="template-download fade">
+    <li class="template-download fade picture" id="picture-{%=file.id%}">
       {% if (file.error) { %}
         <p class="name"><span>{%=file.name%}</span></p>
         <p class="size"><span>{%=o.formatFileSize(file.size)%}</span></p>
@@ -81,8 +81,9 @@
             <span class="preview"><img src="{%=file.thumbnail_url%}"></span>
           </a>
         {% } %}
-        <p class="name">
-          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}">{%=file.name%}</a>
+        <p>
+          <a href="{%=file.url%}" title="{%=file.name%}" rel="{%=file.thumbnail_url&&'gallery'%}" download="{%=file.name%}" id="name-{%=file.id%}">{%=file.name%}</a>
+          <a href="{%=file.edit_url%}" class="modalable" data-no-turbolink data-title="Edit picture name"><i class="icon-pencil"></i></a>
         </p>
         {% } %}
       <p class="delete">
@@ -96,36 +97,7 @@
 </script>
 
 <script type="text/javascript">
-  Holder.add_theme("bright", { background: "#eee", foreground: "#aaa", size: 60}).run();
-  $(function () {
-      // Initialize the jQuery File Upload widget:
-      $('#fileupload').fileupload({
-        filesContainer: $('#pictures-container'),
-        previewMaxWidth : 200,
-        previewMaxHeight : 150,
-        acceptFileTypes: /(.|\/)(gif|jpe?g|png)$/i,
-        maxFileSize: 5242880 // 5M
-      });
-      // // 
-      // // Load existing files:
-      $.getJSON($('#fileupload').prop('action'), function (files) {
-        var fu = $('#fileupload').data('blueimpFileupload'), 
-          template;
-        fu._adjustMaxNumberOfFiles(-files.length);
-        console.log(files);
-        template = fu._renderDownload(files)
-          .appendTo($('#pictures-container'));
-        // console.log($('#fileupload .files'));
-        // Force reflow:
-        console.log(template);
-        fu._reflow = fu._transition && template.length &&
-          template[0].offsetWidth;
-        template.addClass('in');
-        $('#loading').remove();
-      });
-
+  $(function() {
+    ProductUploader.setup();
   });
-  // $('#add-new').click(function() {
-  //   $('#picture_upload').click();
-  // });
 </script>

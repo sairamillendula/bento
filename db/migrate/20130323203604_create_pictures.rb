@@ -4,6 +4,7 @@ class CreatePictures < ActiveRecord::Migration
       t.references :picturable, :polymorphic => true
       t.has_attached_file :upload
       t.integer :position      
+      t.string :name
 
       t.timestamps
     end

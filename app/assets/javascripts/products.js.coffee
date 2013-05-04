@@ -200,3 +200,34 @@ class @ProductOptionSelector
         else
           $('#price').text('Not available')
           $('#add-to-cart').hide()
+
+class @ProductUploader
+  @setup: ->
+    Holder.add_theme("bright", { background: "#eee", foreground: "#aaa", size: 60}).run()
+
+    $('ul.pictures').on('click', '.modalable', Helpers.modalableHandler)
+
+    $pictures_container = $('#pictures-container')
+    $('#fileupload').fileupload
+      filesContainer: $pictures_container
+      previewMaxWidth : 200
+      previewMaxHeight : 150
+      acceptFileTypes: /(.|\/)(gif|jpe?g|png)$/i
+      maxFileSize: 5242880 #5M
+      autoUpload: true
+
+    $.getJSON $('#fileupload').prop('action'), (files) ->
+      fu = $('#fileupload').data('blueimpFileupload')
+      fu._adjustMaxNumberOfFiles(-files.length)
+      template = fu._renderDownload(files).appendTo($pictures_container)
+
+      fu._reflow = fu._transition && template.length && template[0].offsetWidth
+      template.addClass('in')
+      $('#loading').remove()
+
+    $("ul.pictures").sortable
+      items: "li.picture"
+      placeholder: "alert",
+      forcePlaceholderSize: true,
+      update: ->
+        $.post($(this).data('update-url'), $(this).sortable('serialize'))

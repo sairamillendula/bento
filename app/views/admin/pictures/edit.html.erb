@@ -1,0 +1,10 @@
+<%= simple_form_for [:admin, @product, @picture], remote: true do |f| %>
+  <div class="row-fluid">
+    <div class="span4">
+      <a href="#" class="thumbnail"><%= image_tag(@picture.upload.url(:thumb)) %></a>
+    </div>
+    <div class="span8">
+      <%= f.input :name, input_html: {class: 'input-block-level'}, hint: "If an image can't load for any reason, name will be shown instead. The text should be brief but descriptive." %>
+    </div>
+  </div>
+<% end %>

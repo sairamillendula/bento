@@ -56,7 +56,11 @@ Bento::Application.routes.draw do
       collection do
         put :feature
       end
-      resources :pictures
+      resources :pictures do
+        collection do
+          post :sort
+        end
+      end
     end
 
     resources :product_reviews, only: [:index, :show] do
