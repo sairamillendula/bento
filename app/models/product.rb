@@ -12,7 +12,7 @@ class Product < ActiveRecord::Base
   has_many :options, class_name: "ProductOption", dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
 
-  has_many :pictures, as: :picturable, dependent: :destroy
+  has_many :pictures, as: :picturable, dependent: :destroy, order: "position"
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   has_many :product_relationships, dependent: :destroy

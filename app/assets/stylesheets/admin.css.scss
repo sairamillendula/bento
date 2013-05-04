@@ -557,16 +557,17 @@ body.admin {
 
 		li {
 			margin: 0 20px 20px 0;
+			width: 210px;
 
 			a.thumbnail {
 				margin-bottom: 10px;
 			}
 		}
 	}
-	#picture_image {
-    display: block;
-    visibility: hidden;
-    width: 0;
-    height: 0;
-  }
+	// #picture_upload {
+ //    display: block;
+ //    visibility: hidden;
+ //    width: 0;
+ //    height: 0;
+ //  }
 }

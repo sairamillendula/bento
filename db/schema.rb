@@ -189,7 +189,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.string   "upload_content_type"
     t.integer  "upload_file_size"
     t.datetime "upload_updated_at"
-    t.string   "name"
+    t.integer  "position"
     t.datetime "created_at",          :null => false
     t.datetime "updated_at",          :null => false
   end

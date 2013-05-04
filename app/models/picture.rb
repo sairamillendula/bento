@@ -1,20 +1,15 @@
 class Picture < ActiveRecord::Base
   include Rails.application.routes.url_helpers
 	belongs_to :picturable, polymorphic: true
+  acts_as_list scope: :picturable
 
-  attr_accessible :name, :upload
+  attr_accessible :upload
 
   has_attached_file :upload, 
                     :url => "/upload/pictures/:id/:style/:basename.:extension",
                     :path => ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
-                    :styles => { :thumb => "100x100>" }
+                    :styles => { :thumb => "200x150>" }
   
-  # before_create :default_name
-  
-  # def default_name
-  #   self.name ||= File.basename(upload_file_name, '.*').titleize if upload
-  # end
-
   def to_jq_upload
     {
       "name" => read_attribute(:upload_file_name),
