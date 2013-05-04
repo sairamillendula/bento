@@ -21,8 +21,7 @@
 //= require jquery.tagsinput
 //= require jquery.rateit
 //= require holder
-//= require jquery-fileupload/basic
-//= require jquery-fileupload/vendor/tmpl
+//= require jquery-fileupload
 //= require_tree .
 
 $(function () {

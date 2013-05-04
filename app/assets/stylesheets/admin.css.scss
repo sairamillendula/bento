@@ -551,4 +551,22 @@ body.admin {
 	  max-height: 340px;
 	  overflow-y: scroll;
 	}
+
+	ul.pictures {
+		padding: 0;
+
+		li {
+			margin: 0 20px 20px 0;
+
+			a.thumbnail {
+				margin-bottom: 10px;
+			}
+		}
+	}
+	#picture_image {
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+  }
 }
