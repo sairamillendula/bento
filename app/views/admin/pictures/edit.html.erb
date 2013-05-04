@@ -4,7 +4,7 @@
       <a href="#" class="thumbnail"><%= image_tag(@picture.upload.url(:thumb)) %></a>
     </div>
     <div class="span8">
-      <%= f.input :name, input_html: {class: 'input-block-level'}, hint: "If an image can't load for any reason, name will be shown instead. The text should be brief but descriptive." %>
+      <%= f.input :name, input_html: {class: 'input-block-level'} %>
     </div>
   </div>
 <% end %>

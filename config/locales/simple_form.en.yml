@@ -33,6 +33,8 @@ en:
         slug: Separate words with a dash '-'
       user:
         password: "(leave blank if you don't want to change it)"
+      picture:
+        name: "Name your picture, useful for search engines. Keep the text brief but descriptive."
     helpers:
       submit:
         order:
