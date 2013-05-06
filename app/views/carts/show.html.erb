@@ -48,23 +48,43 @@
         <td><%= t 'subtotal' %></td>
         <td><%= number_to_currency(@cart.subtotal) %></td>
       </tr>
+      <tr id="shipping" style="display:none;">
+        <td><%= t 'estimated_shipping' %></td>
+        <td><span id="shipping-price"></span></td>
+      </tr>
       <% if @cart.discount > 0 %>
       <tr class="total">
         <td><%= t 'discount' %></td>
         <td><%= number_to_currency(-@cart.discount) %></td>
       </tr>
       <% end %>
-      <tr class="total">
-        <td><%= t 'total' %></td>
-        <td><%= number_to_currency(@cart.total) %></td>
-      </tr>    
+      <!-- <tr class="total">
+        <td><%#= t 'total' %></td>
+        <td><%#= number_to_currency(@cart.total) %></td>
+      </tr>     -->
     </table>
   </div>
 
   <div id="shipping_calculator">
     <h3><%= t 'shipping_rates.calculator' %></h3>
+    <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
+      <div class="row-fluid">
+        <div class="span4">
+          <%= f.hidden_field :subtotal, value: @cart.subtotal %>
+          <%= f.input :country, input_html: {class: 'input-block-level'} %>
+        </div>
+        <div class="span4">
+          <div class="control-group string optional">
+            <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
+            <div class="controls">
+              <%= f.submit 'Calculate', class: 'btn', disable_with: 'Calculating...' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <div id="shipping-rate-feedback" style="display: none;"></div>
   </div>
-
 <% else %>
   <p class="alert"><%= t 'carts.is_empty' %>. <%= link_to "#{t 'products.browse'}", products_path %></p>
 <% end %>

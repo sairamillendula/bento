@@ -16,6 +16,7 @@ class CreateOrders < ActiveRecord::Migration
       t.string   :currency
       t.string   :card_type
       t.string   :last4
+      t.string   :state
 
       t.timestamps
     end

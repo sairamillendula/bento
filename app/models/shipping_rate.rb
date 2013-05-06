@@ -33,5 +33,18 @@ class ShippingRate < ActiveRecord::Base
   def is_free?
     price == 0
   end
+
+  # TODO: add weight check
+  def self.estimate(amount, shipping_rates, criteria='price-based')
+    if shipping_rates
+      applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == criteria && amount >= shipping_rate.min_criteria }
+      if applicable_rates.present?
+        compare = lambda {|a,b| a.price <=> b.price}
+        applicable_rates.min &compare
+      else
+        shipping_rates.first
+      end
+    end
+  end
   
 end
