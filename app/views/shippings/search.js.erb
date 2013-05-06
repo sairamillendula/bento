@@ -7,8 +7,13 @@
     $('#shipping').hide();
   <% end %>
 <% else %>
-  $('#shipping-rate-feedback').empty().append("Error: country can't be blank").show();
-  $('#shipping').hide();
+  <% unless @country.present? %>
+    $('#shipping-rate-feedback').empty().append("Error: country can't be blank").show();
+    $('#shipping').hide();
+  <% else %>  
+    $('#shipping-rate-feedback').empty().append("Sorry we don't ship to <%= Country[@country].name %>").show();
+    $('#shipping').hide();
+  <% end %>
 <% end %>
 
 

@@ -29,4 +29,18 @@ class CartsController < ApplicationController
     end
 	end
 
+  def checkout
+    @cart = current_cart
+    
+    if @cart.items.empty?
+      redirect_to products_url, notice: "#{t 'carts.is_empty'}."
+      return
+    end
+  end
+
+  def continue
+    # save user address
+    redirect_to new_order_url
+  end
+
 end

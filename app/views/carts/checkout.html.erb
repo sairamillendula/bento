@@ -1,0 +1,111 @@
+<%= content_for :body_id do %>checkout<% end %>
+
+<%= page_title("#{t 'checkout'}") %>
+
+<p class="alert"><i class="icon-lock"></i> <%= t 'you_re_browsing_our_secure_server' %>.</p>
+
+<section id="login">
+  <h3>Login</h3>
+  <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
+    <%= f.error_notification %>
+    <%= hidden_field_tag :checkout, '1' %>
+    
+    <%= f.input :email %>
+    <%= f.input :password %>
+    <label class="checkbox nolabel">
+      <input id="remember_me" type="checkbox" name="remember_me" value="1"> <%= t 'remember_me' %>
+    </label>
+    <%= f.button :submit, class: "btn btn-primary", style: 'margin-top:20px; margin-left:180px;' %>
+  <% end %>
+
+  <p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></p>
+</section>
+
+<hr>
+
+<section id="signup">
+  <h3>Sign up</h3>
+
+  <%= simple_form_for(User.new, url: registrations_path, html: {class: "form-horizontal"}) do |f| %>
+    <%= f.error_notification %>
+
+    <%= hidden_field_tag :checkout, '1' %>
+
+    <%= f.input :email %>
+    <%= f.input :first_name %>
+    <%= f.input :last_name %>
+    <%= f.input :password, hint: false %>
+    <%= f.input :password_confirmation, required: true %>
+   
+    <p><%= t 'registrations.terms_acceptance', default: 'By joining you agree with our terms and conditions' %></p>
+
+    <%= f.button :submit, "#{t 'registrations.create_account'}", class: "btn btn-primary" %>
+  <% end %>
+</section>
+
+<hr>
+
+<section id="signup">
+  <h3>Checkout as guest</h3>
+
+  <%= simple_form_for(@cart, url: continue_cart_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
+    <%= f.error_notification %>
+
+    <% 
+      @cart.build_shipping_address unless @cart.shipping_address
+      @cart.build_billing_address unless @cart.billing_address
+    %>
+
+    <h4 class="section"><%= t 'your_details' %></h4>
+
+    <%= f.fields_for :user do |ff| %>
+      <%= ff.input :email %>
+      <%= ff.input :first_name %>
+      <%= ff.input :last_name %>
+    <% end %>
+
+    <div class="row-fluid">
+      <div id="shipping-address" class="span6">
+        <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+        <div class="form-horizontal">
+          <%= f.fields_for :shipping_address do |sa| %>
+            <%= sa.input :address1, required: true, input_html: {value: '13 Street name'} %>
+            <%= sa.input :address2 %>
+            <%= sa.input :postal_code, required: true, input_html: {value: '54000'} %>
+            <%= sa.input :city, required: true, input_html: {value: 'Nancy'} %>
+            <%= sa.input :country, required: true %>
+            <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: 'display:none;'} %>
+          <% end %>
+        </div>
+      </div>
+
+      <div id="billing-address" class="span6">
+        <h4 class="section-helper"><%= t 'billing_address' %></h4>
+        <%= f.fields_for :billing_address do |ba| %>
+          <div class="checkbox inline">
+            <label> <%= ba.check_box :bypass_validation %>
+             <%= t 'shipping_and_billing_are_the_same' %>
+            </label>
+          </div>
+
+          <div id="billing_address_fields" class="form-horizontal">
+            <%= ba.input :address1, required: true %>
+            <%= ba.input :address2 %>
+            <%= ba.input :postal_code, required: true %>
+            <%= ba.input :city, required: true %>
+            <%= ba.input :country, required: true %>
+            <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: 'display:none;'} %>
+          </div>
+        <% end %>
+      </div>
+
+      <%= f.button :submit, "#{t 'carts.continue_as_guest'}", class: "btn btn-primary" %>
+    </div>
+    <% end %>
+</section>
+
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    PaymentGateway.init();
+  });
+</script>

@@ -5,6 +5,12 @@ class Cart < ActiveRecord::Base
   attr_accessible :items_attributes, :coupon_code
 
   validate :validate_coupon_code_exists, :if => :coupon_code?
+
+  has_one :billing_address, :as => :addressable, :class_name => "BillingAddress", :dependent => :destroy
+  accepts_nested_attributes_for :billing_address#, :reject_if => lambda {|add| add[:address1].blank?}, :allow_destroy => true
+
+  has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
+  accepts_nested_attributes_for :shipping_address
   
   # buyable can be product or variant
   # return: line item

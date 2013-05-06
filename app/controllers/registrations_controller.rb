@@ -11,10 +11,18 @@ class RegistrationsController < ApplicationController
 
 	  if @user.save
 	  	auto_login(@user)
-	  	redirect_to products_url, notice: "#{t 'registrations.success'}"
-	    UserMailer.welcome(@user).deliver
+      UserMailer.welcome(@user).deliver
+      if params[:checkout]
+        redirect_to new_order_url
+      else
+	  	  redirect_to products_url, notice: "#{t 'registrations.success'}"
+      end
 	  else
-	    render :new
+      if params[:checkout]
+        render template: "carts/checkout"
+      else
+	     render :new
+     end
 	  end
 	end
 

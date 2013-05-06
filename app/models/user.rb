@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
   has_one  :reseller_request
   accepts_nested_attributes_for :reseller_request, :reject_if => lambda {|rr| rr[:location].blank?}, :allow_destroy => true
   has_many :reviews, class_name: "ProductReview"
+  has_many :addresses, :as => :addressable, :dependent => :destroy
+  accepts_nested_attributes_for :addresses
 
   # SCOPES
   # ==================================================
@@ -26,13 +28,12 @@ class User < ActiveRecord::Base
   # ATTRIBUTES
   # ==================================================
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
-                  :billing_address_attributes, :shipping_address_attributes, :reseller_request_attributes
+                  :addresses_attributes, :reseller_request_attributes
 
   # attributes that only admin type users can be assigned
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
-                  :billing_address_attributes, :shipping_address_attributes, :active, :admin, :reseller,
+                  :addresses_attributes, :active, :admin, :reseller,
                   :reseller_request_attributes, :as => :manager
-
 
   # VALIDATIONS
   # ==================================================

@@ -117,6 +117,8 @@ Bento::Application.routes.draw do
     member do
       post :apply_coupon
       post :remove_coupon
+      get :checkout
+      post :continue
     end
     resources :line_items
   end

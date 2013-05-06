@@ -59,6 +59,7 @@ en:
     invalid: Invalid cart
     continue_shopping: Continue Shopping
     update: Update Cart
+    continue_as_guest: Continue as Guest
   articles:
     title: Articles
     new: New Article

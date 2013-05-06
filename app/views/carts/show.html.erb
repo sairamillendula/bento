@@ -26,7 +26,7 @@
     <%#= link_to "#{t 'carts.empty_action'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
   	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
     <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
-  	<%= link_to "#{t 'checkout'}", new_order_path, class: "btn btn-success" %>
+  	<%= link_to "#{t 'checkout'}", checkout_cart_path, class: "btn btn-success" %>
   <% end %>
 
   <div class="well">
@@ -48,23 +48,20 @@
         <td><%= t 'subtotal' %></td>
         <td><%= number_to_currency(@cart.subtotal) %></td>
       </tr>
-      <tr id="shipping" style="display:none;">
-        <td><%= t 'estimated_shipping' %></td>
-        <td><span id="shipping-price"></span></td>
-      </tr>
       <% if @cart.discount > 0 %>
       <tr class="total">
         <td><%= t 'discount' %></td>
         <td><%= number_to_currency(-@cart.discount) %></td>
       </tr>
       <% end %>
-      <!-- <tr class="total">
-        <td><%#= t 'total' %></td>
-        <td><%#= number_to_currency(@cart.total) %></td>
-      </tr>     -->
+      <tr id="shipping" style="display:none;">
+        <td><%= t 'estimated_shipping' %></td>
+        <td><span id="shipping-price"></span></td>
+      </tr>
     </table>
   </div>
 
+  <% if ShippingCountry.count > 0 %>
   <div id="shipping_calculator">
     <h3><%= t 'shipping_rates.calculator' %></h3>
     <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
@@ -85,6 +82,7 @@
     <% end %>
     <div id="shipping-rate-feedback" style="display: none;"></div>
   </div>
+  <% end %>
 <% else %>
   <p class="alert"><%= t 'carts.is_empty' %>. <%= link_to "#{t 'products.browse'}", products_path %></p>
 <% end %>

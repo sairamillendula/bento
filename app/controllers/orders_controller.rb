@@ -14,10 +14,10 @@ class OrdersController < ApplicationController
       return
     end
 
-    @order = Order.new
-    @order.build_client unless current_user
-    @order.build_shipping_address
-    @order.build_billing_address
+    # @order = Order.new
+    # @order.build_client unless current_user
+    # @order.build_shipping_address
+    # @order.build_billing_address
 	end
 
 	def create

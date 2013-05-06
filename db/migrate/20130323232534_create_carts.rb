@@ -8,7 +8,8 @@ class CreateCarts < ActiveRecord::Migration
       t.string   :coupon_code
       t.decimal  :coupon_amount, :precision => 11, :scale => 2
       t.boolean  :coupon_percentage
-      
+      t.string   :state
+
       t.timestamps
     end
   end

@@ -11,15 +11,25 @@ class SessionsController < ApplicationController
 	  	user = login(params[:email], params[:password], params[:remember_me])
 	  end
 
-	  if user.admin?
-	    redirect_to admin_dashboard_url, notice: "#{t 'sessions.signed_in'}"
-	  elsif user.reseller?
-      redirect_to reseller_dashboard_url, notice: "#{t 'sessions.signed_in'}"
-	  elsif user
-	  	redirect_back_or_to root_url, notice: "#{t 'sessions.signed_in'}"
-	  else
-	    flash.now.alert = "#{t 'sessions.error'}"
-	    render :new
+	  if user
+	  	if params[:checkout]
+	  		redirect_to new_order_url
+	  	else
+				if user.admin?
+			    redirect_to admin_dashboard_url, notice: "#{t 'sessions.signed_in'}"
+			  elsif user.reseller?
+		      redirect_to reseller_dashboard_url, notice: "#{t 'sessions.signed_in'}"
+			  else
+			  	redirect_back_or_to root_url, notice: "#{t 'sessions.signed_in'}"	  	
+			  end
+			end
+		else
+			flash.now.alert = "#{t 'sessions.error'}"
+			if params[:checkout]
+				render template: "carts/checkout"
+			else
+	    	render :new
+	    end
 	  end
 	end
 
