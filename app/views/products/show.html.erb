@@ -12,7 +12,7 @@
       <% default_variant = @product.variants.in_stocks.first || @product.variants.first %>
       <% valid_options = @product.variants.map{|v| v.options}.map(&:to_a).flatten(1).reduce({}) {|h,(k,v)| (h[k] ||= []) << v; h} %>
       <% @product.options.each do |option| %>
-        <p><%= option.name %>: <%= select_tag option.name, options_for_select(valid_options[:"option#{option.position}"], default_variant.send(:"option#{option.position}")), class: 'option' %></p>
+        <p><%= option.name %>: <%= select_tag option.name, options_for_select(valid_options[:"option#{option.position}"].uniq, default_variant.send(:"option#{option.position}")), class: 'option' %></p>
       <% end %>
 
       <h2 id="price"><%= number_to_currency default_variant.price %></h2>
