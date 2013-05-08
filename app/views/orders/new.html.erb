@@ -1,29 +1,28 @@
 <% content_for :head do %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
   <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
 <% end %>
 <%= content_for :body_id do %>checkout<% end %>
 
 <%= page_title("Shipping & Payment") %>
 
-<%= render 'carts/summary' %>
-
 <div class="row-fluid">
   <div class="span6">
     <div class="well">
-      <h3>Billing Address</h3>
-      <%= @cart.billing_address.display_name %>
+      <h3>Billing Address <%= link_to 'Edit', checkout_cart_url, style: 'float: right;' %></h3>
+      <p><%= @cart.billing_address.display_name %></p>
     </div>
   </div>
   <div class="span6">
     <div class="well">
-      <h3>Shipping Address</h3>
-      <%= @cart.shipping_address.display_name %>
+      <h3>Shipping Address <%= link_to 'Edit', checkout_cart_url, style: 'float: right;' %></h3>
+      <p><%= @cart.shipping_address.display_name %></p>
     </div>
   </div>
 </div>
 
 <%= form_for @order do |f| %>
-
+  <%= f.hidden_field :stripe_card_token %>
   <div class="well">
     <h3>Shipping Method</h3>
     <hr>
@@ -31,9 +30,10 @@
     <%= select_tag :shipping_rate, options_for_select(@shipping_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
   </div>
 
+  <%= render 'carts/summary' %>
+
   <div class="well">
     <h3 class="section"><%= t 'payment_info' %></h3>
-    <%= f.hidden_field :stripe_card_token %>
 
     <% if @order.stripe_card_token.present? %>
       <%= t 'orders.credit_card_provided' %>.
@@ -53,7 +53,7 @@
       <div class="field">
         <%= label_tag :card_month, "Card Expiration" %>
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
-        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+        <%= select_year 2018, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
       </div>
     <% end %>
     <div id="stripe_error">
@@ -68,6 +68,6 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    PaymentGateway.init();
+    Order.setup();
   });
 </script>

@@ -18,7 +18,8 @@ class OrdersController < ApplicationController
     @shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
     @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @shipping_rates)
 
-    @order = Order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
+    @order = Order.new
+    @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
 
     unless @shipping_country
       flash.now.alert = "Sorry, your order cannot complete. We don't ship to #{Country[@cart.shipping_address.country].name}"
@@ -26,19 +27,24 @@ class OrdersController < ApplicationController
 	end
 
 	def create
+    @cart = current_cart
 		@order = Order.new(params[:order])
     @order.user_id = current_user.id if current_user
     @order.remote_ip = request.remote_ip
 
+    @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+    @shipping_estimate = ShippingRate.find(params[:shipping_rate])
+    @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
+    @order.copy_from_cart(@cart)
+
     respond_to do |format|
-      if @order.save_with_payment(current_cart.total)
-        @order.add_items_from_cart(current_cart)
+      if @order.save_with_payment(@cart)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }
         # TODO send email
       else
-        format.html { render action: "new" }
+        format.html { redirect_to action: "new" }
       end
     end
 	end

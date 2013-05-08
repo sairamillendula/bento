@@ -3,7 +3,7 @@ class Cart < ActiveRecord::Base
   accepts_nested_attributes_for :items, allow_destroy: true
 
   attr_accessor :tax_amount
-  attr_accessible :items_attributes, :coupon_code, :billing_address_attributes, :shipping_address_attributes
+  attr_accessible :items_attributes, :coupon_code, :billing_address_attributes, :shipping_address_attributes, :email, :first_name, :last_name
 
   validate :validate_coupon_code_exists, :if => :coupon_code?
 
@@ -33,6 +33,7 @@ class Cart < ActiveRecord::Base
       raise ArgumentError.new('give argument must be an instance of Product or ProductVariant')
     end
     current_item.quantity += 1 unless current_item.new_record?
+    current_item.price = buyable.price
     current_item.save
     calculate
 	  current_item

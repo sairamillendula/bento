@@ -73,9 +73,9 @@ class Address < ActiveRecord::Base
     end
   end
 
-  def ==(other_address)
-    ![:address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.send(attr) == other_address.send(attr)}.include?(false)
-  end
+  # def ==(other_address)
+  #   ![:address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.send(attr) == other_address.send(attr)}.include?(false)
+  # end
 
   def as_json(options={})
     {

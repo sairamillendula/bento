@@ -76,7 +76,9 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.string   "coupon_code"
     t.decimal  "coupon_amount",     :precision => 11, :scale => 2
     t.boolean  "coupon_percentage"
-    t.string   "state"
+    t.string   "email"
+    t.string   "first_name"
+    t.string   "last_name"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end
@@ -153,22 +155,23 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.string   "code"
     t.integer  "user_id"
     t.decimal  "subtotal",          :precision => 11, :scale => 2
-    t.decimal  "tax",               :precision => 11, :scale => 2
+    t.string   "tax_name"
+    t.decimal  "tax_rate",          :precision => 11, :scale => 2
     t.string   "shipping_method"
     t.decimal  "shipping_price",    :precision => 11, :scale => 2
     t.decimal  "total",             :precision => 11, :scale => 2
-    t.boolean  "completed",                                        :default => false
     t.string   "coupon_code"
+    t.decimal  "coupon_amount",     :precision => 11, :scale => 2
+    t.boolean  "coupon_percentage"
     t.string   "remote_ip"
-    t.boolean  "shipped",                                          :default => false
     t.datetime "shipped_at"
     t.string   "stripe_card_token"
     t.string   "currency"
     t.string   "card_type"
     t.string   "last4"
     t.string   "state"
-    t.datetime "created_at",                                                          :null => false
-    t.datetime "updated_at",                                                          :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
   end
 
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"

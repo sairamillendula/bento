@@ -4,14 +4,15 @@ class CreateOrders < ActiveRecord::Migration
     	t.string   :code
     	t.integer  :user_id
       t.decimal  :subtotal, :precision => 11, :scale => 2
-      t.decimal  :tax, :precision => 11, :scale => 2
+      t.string   :tax_name
+      t.decimal  :tax_rate, :precision => 11, :scale => 2
       t.string   :shipping_method
       t.decimal  :shipping_price, :precision => 11, :scale => 2
       t.decimal  :total, :precision => 11, :scale => 2
-    	t.boolean  :completed, default: false
-    	t.string   :coupon_code
+      t.string   :coupon_code
+      t.decimal  :coupon_amount, :precision => 11, :scale => 2
+      t.boolean  :coupon_percentage
       t.string   :remote_ip
-      t.boolean  :shipped, default: false
       t.datetime :shipped_at
       t.string   :stripe_card_token
       t.string   :currency

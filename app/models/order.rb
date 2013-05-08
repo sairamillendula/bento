@@ -14,26 +14,36 @@ class Order < ActiveRecord::Base
   has_one :coupon, :foreign_key => "coupon_code"
   has_many :audits, :class_name => "AuditTrail", as: :auditable
   
-  scope :completed, where(completed: true)
-  scope :shipped, where(shipped: true)
+  # scope :completed, where(completed: true)
+  # scope :shipped, where(shipped: true)
 
-  attr_accessible :user_id, :coupon_code, :client_attributes, :shipping_address, :billing_address, 
-                  :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
+  attr_accessible :stripe_card_token
   #attr_accessor :stripe_card_token
 
   before_create :generate_code
+
+  state_machine :initial => :pending do
+    event :ship do
+      transition :pending => :shipped
+    end
+    event :complete do
+      transition :shipped => :completed
+    end    
+  end
+
+  state_machine.states.map do |state|
+    scope state.name, where(state: state.name.to_s)
+  end
 
   def to_param
   	code
   end
 
-  def self.build_from_cart(cart, shipping_country, shipping_estimate)
-    order = Order.new
-
+  def build_from_cart(cart, shipping_country, shipping_estimate)
     # shipping
-    order.shipping_method = shipping_estimate.try(:name)
-    order.shipping_price = shipping_estimate.try(:price)
-    cart.shipping = order.shipping_price
+    self.shipping_method = shipping_estimate.try(:name)
+    self.shipping_price = shipping_estimate.try(:price)
+    cart.shipping = shipping_price
 
     # tax
     if shipping_country && shipping_country.tax
@@ -54,17 +64,30 @@ class Order < ActiveRecord::Base
 
     # calculate cart
     cart.calculate
-
-    order
   end
 
-  def add_items_from_cart(cart)
+  # copy everything from cart
+  def copy_from_cart(cart)
+    # items
   	cart.items.each do |item|
       #item.product.in_stock = item.product.in_stock - item.quantity || 0
       item.cart_id = nil
       item.price = item.current_price
       items << item
     end
+
+    # addresses
+    build_billing_address.copy(cart.billing_address)
+    build_shipping_address.copy(cart.shipping_address)
+
+    # values
+    self.subtotal = cart.subtotal
+    self.tax_name = cart.tax_name
+    self.tax_rate = cart.tax_rate
+    self.total = cart.total
+    self.coupon_code = cart.coupon_code
+    self.coupon_amount = cart.coupon_amount
+    self.coupon_percentage = cart.coupon_percentage
   end
 
   def status
@@ -92,23 +115,22 @@ class Order < ActiveRecord::Base
     @total = subtotal # TODO add shipping, discount
   end
 
-  def save_with_payment(total)
-    if valid?
-      charge = Stripe::Charge.create(
-        card: stripe_card_token,
-        amount: (total * 100).to_i,
-        currency: "cad",
-        description: "#{client.email}",
-        application_fee: amount * ENV['STRIPE_APPLICATION_FEE'] / 100
-      )
+  # process payment and save
+  def save_with_payment(cart)
+    Stripe.api_key = ENV['STRIPE_API_KEY']
+    charge = Stripe::Charge.create(
+      card: stripe_card_token,
+      amount: (total * 100).to_i,
+      currency: "cad",
+      description: "#{cart.email}"
+      # application_fee: amount * ENV['STRIPE_APPLICATION_FEE'] / 100
+    )
 
-      self.total = total
-      self.stripe_card_token = charge.id
-      self.currency = "cad"
-      self.card_type = charge.card.type
-      self.last4 = charge.card.last4
-      save!
-    end
+    self.stripe_card_token = charge.id
+    self.currency = "cad"
+    self.card_type = charge.card.type
+    self.last4 = charge.card.last4
+    save!
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
