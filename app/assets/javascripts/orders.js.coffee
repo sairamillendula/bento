@@ -2,7 +2,6 @@
   init: ->
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
 
-
 jQuery ->
   order.setupForm()
 

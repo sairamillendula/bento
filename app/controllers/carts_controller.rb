@@ -40,7 +40,17 @@ class CartsController < ApplicationController
 
   def continue
     # save user address
-    redirect_to new_order_url
+    @cart = current_cart
+
+    if @cart.update_attributes(params[:cart])
+      if @cart.shipping_availability?
+        redirect_to new_order_url
+      else
+        redirect_to checkout_cart_url, alert: "Sorry, your order cannot proceed. We don't ship to #{Country[@cart.shipping_address.country].name}"
+      end
+    else
+      render :checkout
+    end
   end
 
 end

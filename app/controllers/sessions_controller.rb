@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
 	  if user
 	  	if params[:checkout]
-	  		redirect_to new_order_url
+	  		redirect_to checkout_cart_url
 	  	else
 				if user.admin?
 			    redirect_to admin_dashboard_url, notice: "#{t 'sessions.signed_in'}"

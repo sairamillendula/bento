@@ -9,7 +9,7 @@
 	  <script type="text/javascript">
       CURRENT_LOCALE = '<%= I18n.locale %>';
     </script>
-    <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] if @checkout_script %>
+    <%= yield :head %>
     <!--[if lt IE 9]>
       <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->

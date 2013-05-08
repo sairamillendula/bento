@@ -69,12 +69,14 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "carts", :force => true do |t|
     t.decimal  "subtotal",          :precision => 11, :scale => 2
-    t.decimal  "tax",               :precision => 11, :scale => 2
+    t.string   "tax_name"
+    t.decimal  "tax_rate",          :precision => 11, :scale => 2
     t.decimal  "shipping",          :precision => 11, :scale => 2
     t.decimal  "total",             :precision => 11, :scale => 2
     t.string   "coupon_code"
     t.decimal  "coupon_amount",     :precision => 11, :scale => 2
     t.boolean  "coupon_percentage"
+    t.string   "state"
     t.datetime "created_at",                                       :null => false
     t.datetime "updated_at",                                       :null => false
   end
@@ -152,7 +154,8 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.integer  "user_id"
     t.decimal  "subtotal",          :precision => 11, :scale => 2
     t.decimal  "tax",               :precision => 11, :scale => 2
-    t.decimal  "shipping",          :precision => 11, :scale => 2
+    t.string   "shipping_method"
+    t.decimal  "shipping_price",    :precision => 11, :scale => 2
     t.decimal  "total",             :precision => 11, :scale => 2
     t.boolean  "completed",                                        :default => false
     t.string   "coupon_code"
@@ -163,6 +166,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.string   "currency"
     t.string   "card_type"
     t.string   "last4"
+    t.string   "state"
     t.datetime "created_at",                                                          :null => false
     t.datetime "updated_at",                                                          :null => false
   end
@@ -336,6 +340,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "taxes", :force => true do |t|
     t.integer  "shipping_country_id"
+    t.string   "name"
     t.decimal  "rate",                :precision => 4, :scale => 2, :default => 0.0
     t.integer  "region_taxes_count",                                :default => 0
     t.datetime "created_at",                                                         :null => false

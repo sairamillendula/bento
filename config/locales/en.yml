@@ -60,6 +60,7 @@ en:
     continue_shopping: Continue Shopping
     update: Update Cart
     continue_as_guest: Continue as Guest
+    continue: Continue
   articles:
     title: Articles
     new: New Article
@@ -162,7 +163,7 @@ en:
       title: Create Account
     dashboard:
       title: Dashboard
-  shipping_and_billing_are_the_same: Check if Shipping Address = Billing Address
+  shipping_and_billing_are_the_same: Also shipping address
   i_read_and_accept: I read and accept the
   terms_and_conditions: terms and conditions
   blog_posts: Blog

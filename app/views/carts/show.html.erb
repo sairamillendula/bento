@@ -19,7 +19,8 @@
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-  	      <td><%= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true, size: 'mini' %></td>
+          <!-- <td><%#= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true, size: 'mini' %></td> -->
+  	      <td><%= link_to "remove", cart_line_item_path(item), method: :delete %></td>
   	    </tr>
       <% end %>
   	</table>

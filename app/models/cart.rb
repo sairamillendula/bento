@@ -2,15 +2,25 @@ class Cart < ActiveRecord::Base
   has_many :items, class_name: "LineItem", dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
 
-  attr_accessible :items_attributes, :coupon_code
+  attr_accessor :tax_amount
+  attr_accessible :items_attributes, :coupon_code, :billing_address_attributes, :shipping_address_attributes
 
   validate :validate_coupon_code_exists, :if => :coupon_code?
 
   has_one :billing_address, :as => :addressable, :class_name => "BillingAddress", :dependent => :destroy
-  accepts_nested_attributes_for :billing_address#, :reject_if => lambda {|add| add[:address1].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :billing_address
 
   has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
   accepts_nested_attributes_for :shipping_address
+
+  before_validation do |cart|
+    if billing_address && billing_address.also_shipping_address
+      if shipping_address
+        shipping_address.copy(billing_address)
+        shipping_address.bypass_validation = true
+      end
+    end
+  end
   
   # buyable can be product or variant
   # return: line item
@@ -58,7 +68,17 @@ class Cart < ActiveRecord::Base
 
   def calculate
     self.subtotal = items.inject(0) { |sum, item| sum + item.subtotal }
+
+    # discount
     self.total = subtotal - discount
+
+    # shipping
+    self.total += try(:shipping) || 0
+
+    # tax
+    @tax_amount = subtotal * ((try(:tax_rate) || 0) / 100)
+    self.total += @tax_amount
+
     self.save
   end
 
@@ -76,6 +96,13 @@ class Cart < ActiveRecord::Base
 
   def coupon_applied?
     coupon_code && coupon_amount
+  end
+
+  def shipping_availability?
+    if shipping_address && shipping_address.country
+      shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+      shipping_country.present?
+    end
   end
 
 private

@@ -11,7 +11,7 @@
     <% @taxes.each do |tax| %>
       <tr>
         <td><%= icon_flag(tax.shipping_country.country) %> <%= link_to Country[tax.shipping_country.country].name, admin_tax_path(tax) %></td>
-        <td><%= number_to_percentage tax.rate, precision: 2 %></td>        
+        <td><%= tax.name %> <%= number_to_percentage tax.rate, precision: 2 %></td>        
         <td><% if tax.region_taxes_count > 0 %><%= pluralize(tax.region_taxes_count, ("#{t 'province'}").downcase) %><% end %></td>
       </tr>
     <% end %>

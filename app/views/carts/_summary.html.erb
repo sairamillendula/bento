@@ -1,0 +1,42 @@
+<table id="cart" class="table table-striped">
+  <tr>
+    <th><%= t 'item' %></th>
+    <th><%= t 'quantity' %></th>
+    <th><%= t 'price' %></th>
+    <th><%= t 'subtotal' %></th>
+  </tr>
+  <% @cart.items.each do |item| %>
+    <tr>
+      <td><%= item.buyable.cart_name %></td>
+      <td><%= item.quantity %></td>
+      <td><%= number_to_currency(item.current_price) %></td>
+      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <td colspan="3">Subtotal</td>
+    <td><%= number_to_currency @cart.subtotal %></td>
+  </tr>
+  <% if @cart.discount > 0 %>
+  <tr>
+    <td colspan="3"><%= t 'discount' %></td>
+    <td><%= number_to_currency(-@cart.discount) %></td>
+  </tr>
+  <% end %>
+  <% if @cart.tax_amount > 0 %>
+  <tr>
+    <td colspan="3"><%= @cart.tax_name || 'Tax' %> (<%= number_to_percentage @cart.tax_rate, precision: 0 %>)</td>
+    <td><%= number_to_currency @cart.tax_amount %></td>
+  </tr>
+  <% end %>
+  <% if @cart.try_with_default(:shipping, 0) > 0 %>
+  <tr>
+    <td colspan="3">Shipping</td>
+    <td><%= number_to_currency @cart.shipping %></td>
+  </tr>
+  <% end %>
+  <tr>
+    <td colspan="3">Total</td>
+    <td><b><%= number_to_currency @cart.total %></b></td>
+  </tr>
+</table>

@@ -5,7 +5,8 @@ class CreateOrders < ActiveRecord::Migration
     	t.integer  :user_id
       t.decimal  :subtotal, :precision => 11, :scale => 2
       t.decimal  :tax, :precision => 11, :scale => 2
-      t.decimal  :shipping, :precision => 11, :scale => 2
+      t.string   :shipping_method
+      t.decimal  :shipping_price, :precision => 11, :scale => 2
       t.decimal  :total, :precision => 11, :scale => 2
     	t.boolean  :completed, default: false
     	t.string   :coupon_code

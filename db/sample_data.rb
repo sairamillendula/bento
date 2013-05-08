@@ -30,6 +30,20 @@ puts "Created 3 admin users"
     password_confirmation: "123123"
   )
   client.save!
+  client.addresses.create!(
+    address1: Faker::Base.numerify("#####") + " " + Faker::Address.street_name,
+    city: Faker::Address.city,
+    postal_code: Faker::Base.numerify("#####"),
+    country: ['CA', 'US'].sample,
+    province: Address::PROVINCE.sample
+  )
+  client.addresses.create!(
+    address1: Faker::Base.numerify("#####") + " " + Faker::Address.street_name,
+    city: Faker::Address.city,
+    postal_code: Faker::Base.numerify("#####"),
+    country: ['CA', 'US'].sample,
+    province: Address::PROVINCE.sample
+  )
 end
 puts "Created 10 clients"
 

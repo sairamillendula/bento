@@ -46,5 +46,9 @@ class ShippingRate < ActiveRecord::Base
       end
     end
   end
+
+  def to_s
+    "#{name} - #{number_to_currency price}"
+  end
   
 end

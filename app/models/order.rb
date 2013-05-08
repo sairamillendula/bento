@@ -17,14 +17,45 @@ class Order < ActiveRecord::Base
   scope :completed, where(completed: true)
   scope :shipped, where(shipped: true)
 
-  attr_accessible :user_id, :subtotal, :tax, :shipping, :total, :coupon_code, :client_attributes, :shipping_address, :billing_address, 
-                  :shipped, :shipped_at, :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
+  attr_accessible :user_id, :coupon_code, :client_attributes, :shipping_address, :billing_address, 
+                  :shipping_address_attributes, :billing_address_attributes, :stripe_card_token
   #attr_accessor :stripe_card_token
 
   before_create :generate_code
 
   def to_param
   	code
+  end
+
+  def self.build_from_cart(cart, shipping_country, shipping_estimate)
+    order = Order.new
+
+    # shipping
+    order.shipping_method = shipping_estimate.try(:name)
+    order.shipping_price = shipping_estimate.try(:price)
+    cart.shipping = order.shipping_price
+
+    # tax
+    if shipping_country && shipping_country.tax
+      cart.tax_name = shipping_country.tax.name
+      cart.tax_rate = shipping_country.tax.rate
+      if cart.shipping_address.province.present? && shipping_country.tax.region_taxes_count > 0
+        province_tax = shipping_country.tax.region_taxes.find_by_province(cart.shipping_address.province)
+        if province_tax && province_tax.rate > 0
+          cart.tax_name = province_tax.name
+          cart.tax_rate = province_tax.rate
+        end
+      end
+    else
+      cart.tax_name = nil
+      cart.tax_rate = nil
+      cart.shipping = nil
+    end
+
+    # calculate cart
+    cart.calculate
+
+    order
   end
 
   def add_items_from_cart(cart)

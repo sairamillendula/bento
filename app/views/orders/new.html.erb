@@ -1,8 +1,70 @@
+<% content_for :head do %>
+  <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
+<% end %>
 <%= content_for :body_id do %>checkout<% end %>
 
-<%= page_title("#{t 'checkout'}") %>
+<%= page_title("Shipping & Payment") %>
 
-<h2>Shipping & Payment</h2>
+<%= render 'carts/summary' %>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="well">
+      <h3>Billing Address</h3>
+      <%= @cart.billing_address.display_name %>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="well">
+      <h3>Shipping Address</h3>
+      <%= @cart.shipping_address.display_name %>
+    </div>
+  </div>
+</div>
+
+<%= form_for @order do |f| %>
+
+  <div class="well">
+    <h3>Shipping Method</h3>
+    <hr>
+    <p>Please select how you would like your products to be delivered</p>
+    <%= select_tag :shipping_rate, options_for_select(@shipping_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+  </div>
+
+  <div class="well">
+    <h3 class="section"><%= t 'payment_info' %></h3>
+    <%= f.hidden_field :stripe_card_token %>
+
+    <% if @order.stripe_card_token.present? %>
+      <%= t 'orders.credit_card_provided' %>.
+    <% else %>
+      <div class="field">
+        <%= label_tag :card_holder, "Name on Card" %>
+        <%= text_field_tag :card_holder, 'John Doe', name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_number, "Credit Card Number" %>
+        <%= text_field_tag :card_number, '4242424242424242', name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_code, "Security Code on Card (CVV)" %>
+        <%= text_field_tag :card_code, '333', name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_month, "Card Expiration" %>
+        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+        <%= select_year nil, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+      </div>
+    <% end %>
+    <div id="stripe_error">
+      <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+    </div>
+  </div>
+
+  <% if @shipping_country %>
+    <p><%= f.submit 'Complete my purchase' %></p>
+  <% end %>
+<% end %>  
 
 <script type="text/javascript" charset="utf-8">
   $(function() {

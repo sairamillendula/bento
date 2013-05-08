@@ -4,7 +4,7 @@
       Welcome, <%= link_to current_user.first_name, profile_path %> | <%= link_to "#{t 'orders.mine'}", orders_path %>
       <% if current_user.admin? %>| <%= link_to "Administration", admin_dashboard_path %><% end %>
       <% if current_user.reseller? %>| <%= link_to "#{t 'resellers.account'}", reseller_dashboard_path %><% end %>
-      | <%= link_to "#{t 'logout'}", logout_path %>
+      | <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
     <% else %>
       Welcome, please <%= link_to "#{t 'sign_in'}", login_path %> or
       <%= link_to "#{t 'sign_up'}", signup_path %>
