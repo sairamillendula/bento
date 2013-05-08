@@ -153,7 +153,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "orders", :force => true do |t|
     t.string   "code"
-    t.integer  "user_id"
+    t.integer  "client_id"
     t.decimal  "subtotal",          :precision => 11, :scale => 2
     t.string   "tax_name"
     t.decimal  "tax_rate",          :precision => 11, :scale => 2
@@ -174,7 +174,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.datetime "updated_at",                                       :null => false
   end
 
-  add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
+  add_index "orders", ["client_id"], :name => "index_orders_on_client_id"
 
   create_table "pages", :force => true do |t|
     t.string   "name"

@@ -1,6 +1,6 @@
 class Order < ActiveRecord::Base
 
-  belongs_to :client, :class_name => "User", foreign_key: "user_id"
+  belongs_to :client, :class_name => "User"
   accepts_nested_attributes_for :client
 
   has_many :items, class_name: "LineItem", dependent: :destroy
@@ -131,6 +131,20 @@ class Order < ActiveRecord::Base
     self.card_type = charge.card.type
     self.last4 = charge.card.last4
     save!
+
+    # after order created, create user if guest
+    if client_id.blank?
+      puts 'create user'
+    else
+      unless client.addresses.select {|address| address.same_as(billing_address) }.size > 0
+        client.addresses.build.copy(billing_address).save!
+      end
+      unless client.addresses.select {|address| address.same_as(shipping_address) }.size > 0
+        client.addresses.build.copy(shipping_address).save!
+      end
+    end
+
+    return true
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"

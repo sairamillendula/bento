@@ -71,11 +71,12 @@ class Address < ActiveRecord::Base
       self.postal_code = address.postal_code
       self.province = address.province
     end
+    self
   end
 
-  # def ==(other_address)
-  #   ![:address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.send(attr) == other_address.send(attr)}.include?(false)
-  # end
+  def same_as(other_address)
+    ![:address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.try_with_default(attr, '') == other_address.try_with_default(attr, '')}.include?(false)
+  end
 
   def as_json(options={})
     {

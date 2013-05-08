@@ -29,7 +29,7 @@ class OrdersController < ApplicationController
 	def create
     @cart = current_cart
 		@order = Order.new(params[:order])
-    @order.user_id = current_user.id if current_user
+    @order.client_id = current_user.id if current_user
     @order.remote_ip = request.remote_ip
 
     @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('Worldwide')

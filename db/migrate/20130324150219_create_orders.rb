@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration
   def change
     create_table :orders do |t|
     	t.string   :code
-    	t.integer  :user_id
+    	t.integer  :client_id
       t.decimal  :subtotal, :precision => 11, :scale => 2
       t.string   :tax_name
       t.decimal  :tax_rate, :precision => 11, :scale => 2
@@ -23,6 +23,6 @@ class CreateOrders < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_index :orders, :user_id
+    add_index :orders, :client_id
   end
 end

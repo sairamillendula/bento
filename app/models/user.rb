@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
 
   # ASSOCIATIONS
   # ==================================================
-  has_many :orders, :dependent => :destroy
+  has_many :orders, :dependent => :destroy, foreign_key: 'client_id'
   has_many :posts
   has_one  :reseller_request
   accepts_nested_attributes_for :reseller_request, :reject_if => lambda {|rr| rr[:location].blank?}, :allow_destroy => true
