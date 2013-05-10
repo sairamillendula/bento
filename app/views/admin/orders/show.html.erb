@@ -1,10 +1,10 @@
 <%= page_title("##{@order.code}") do %>
-  <%= status(@order.status) %> <span id='order_date'> <%= l @order.created_at, format: :long %></span>
+  <%= status_tag(@order.state, class: "state-#{@order.state}") %> <span id='order_date'> <%= l @order.created_at, format: :long %></span>
   <div class="btn-group fr">
     <button class="btn btn-large"><i class="icon-print"></i> <%= t 'print' %></button>
     <button class="btn btn-large"><i class="icon-remove"></i> <%= t 'cancel' %></button>
     <% if !@order.shipped? %>
-      <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", class: "btn btn-large", icon: "ok" %></td>
+      <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", class: "btn", icon: "ok" %></td>
     <% end %>
   </div>
 <% end %>
@@ -15,9 +15,12 @@
   </div>
 <% end %>
 
-<h3><%= @order.client.full_name %></h3>
+<h3>
+  <%= @order.client.full_name %>
+  <% if @order.shipped? %><span class="fr">Shipped on <%= l @order.shipped_at, format: :long %></span><% end %>
+</h3>
 
-<%= render 'items' %>
+<%= render 'orders/items' %>
 
 <% if @order.coupon_code.present? %>
   <p>

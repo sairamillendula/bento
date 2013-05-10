@@ -45,7 +45,7 @@ en:
   connect: Connect
   your_details: Your details
   payment_info: Payment
-  shipped_at: Shipped at
+  shipped_on: Shipped on
   first_name: First name
   last_name: Last name
   country: Country
@@ -61,6 +61,7 @@ en:
     update: Update Cart
     continue_as_guest: Continue as Guest
     continue: Continue
+    no_shipping_in_country: "Sorry, we cannot proceed with your order as we don't ship to"
   articles:
     title: Articles
     new: New Article

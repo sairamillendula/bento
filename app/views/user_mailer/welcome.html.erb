@@ -1,7 +1,7 @@
 <%= content_for :email_body do %>
   Hello, <%= @user.first_name %>
  
-	<p><%= t 'email.welcome.intro', default: 'Thank you for joining us' %>.</p>
+	<p><%= t 'email.welcome.intro', default: "Thank you for joining #{t 'site_name'}" %>.</p>
 
 	<p><%= t 'email.welcome.action', default: 'You can access your account anytime' %>. <%= link_to "#{t 'sign_in'}", login_url %></p>
 	 

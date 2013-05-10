@@ -6,7 +6,7 @@ class Order < ActiveRecord::Base
   has_many :items, class_name: "LineItem", dependent: :destroy
 
   has_one :billing_address, :as => :addressable, :class_name => "BillingAddress", :dependent => :destroy
-  accepts_nested_attributes_for :billing_address#, :reject_if => lambda {|add| add[:address1].blank?}, :allow_destroy => true
+  accepts_nested_attributes_for :billing_address
 
   has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
   accepts_nested_attributes_for :shipping_address
@@ -50,6 +50,10 @@ class Order < ActiveRecord::Base
 
   def to_param
   	code
+  end
+
+  def shipped?
+    shipped_at.present?
   end
 
   def build_from_cart(cart, shipping_country, shipping_estimate)

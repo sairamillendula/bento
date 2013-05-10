@@ -28,7 +28,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def mark_as_shipped
     @order = Order.find(params[:id])
-    @order.mark_as_shipped
+    @order.ship
 
     respond_to do |format|
       if @order.errors.blank?

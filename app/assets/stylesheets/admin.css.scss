@@ -375,6 +375,10 @@ body.admin {
 
 	.label {
 		@include border-radius(2px);
+
+		&.state-shipped {
+			background-color: $green;
+		}
 	}
 
 	.badge {
@@ -497,7 +501,6 @@ body.admin {
 
 	address {
 	  display: block;
-	  margin-bottom: 20px;
 	  font-style: normal;
 	  line-height: 20px;
 	}

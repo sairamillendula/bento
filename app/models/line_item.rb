@@ -15,7 +15,11 @@ class LineItem < ActiveRecord::Base
   	buyable.price
   end
 
-  private
+  def is_variant?
+    buyable_type == 'Variant'
+  end
+
+private
 
   def ensure_valid_quantity
     self.quantity = 0 if quantity < 0

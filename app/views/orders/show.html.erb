@@ -1,3 +1,24 @@
 <%= content_for :body_id do %>order<% end %>
 
-<%= page_title("#{t 'order'} ##{@order.code}") %>
+<%= page_title("#{t 'order'} ##{@order.code}") do %> <%= status_tag(@order.state, class: "state-#{@order.state}") %><% end %>
+
+<% if @order.shipped? %>
+  <p class="alert alert-info">Order was shipped on <%= l @order.shipped_at, format: :long %></p>
+<% end %>
+
+<div class="row-fluid">
+  <div class="span6">
+    <div class="well address">
+      <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+    	<address><%= @order.shipping_address.display_name %></address>
+    </div>
+  </div>
+  <div class="span6">
+    <div class="well address">
+      <h4><%= t 'billing_address' %></h4>
+    	<address><%= @order.billing_address.display_name %></address>
+    </div>
+  </div>
+</div>
+
+<%= render 'items' %>

@@ -65,46 +65,44 @@
       <% end %>
   </section>
 <% else %>
-  <section id="login">
-    <h3>Login</h3>
-    <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
-      <%= f.error_notification %>
-      <%= hidden_field_tag :checkout, '1' %>
-      
-      <%= f.input :email %>
-      <%= f.input :password %>
-      <label class="checkbox nolabel">
-        <input id="remember_me" type="checkbox" name="remember_me" value="1"> <%= t 'remember_me' %>
-      </label>
-      <%= f.button :submit, class: "btn btn-primary", style: 'margin-top:20px; margin-left:180px;' %>
-    <% end %>
+  <div class="row-fluid">
+    <section id="login" class="span6">
+      <h3>Login</h3>
+      <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
+        <%= f.error_notification %>
+        <%= hidden_field_tag :checkout, '1' %>
+        
+        <%= f.input :email %>
+        <%= f.input :password %>
+        <label class="checkbox nolabel">
+          <input id="remember_me" type="checkbox" name="remember_me" value="1"> <%= t 'remember_me' %>
+        </label>
+        <%= f.button :submit, class: "btn btn-primary", style: 'margin-top:20px; margin-left:180px;' %>
+      <% end %>
 
-    <p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></p>
-  </section>
+      <p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></p>
+    </section>
 
-  <hr>
+    <section id="signup" class="span6">
+      <h3>Sign up</h3>
 
-  <section id="signup">
-    <h3>Sign up</h3>
+      <%= simple_form_for(User.new, url: registrations_path, html: {class: "form-horizontal"}) do |f| %>
+        <%= f.error_notification %>
 
-    <%= simple_form_for(User.new, url: registrations_path, html: {class: "form-horizontal"}) do |f| %>
-      <%= f.error_notification %>
+        <%= hidden_field_tag :checkout, '1' %>
 
-      <%= hidden_field_tag :checkout, '1' %>
+        <%= f.input :email %>
+        <%= f.input :first_name %>
+        <%= f.input :last_name %>
+        <%= f.input :password, hint: false %>
+        <%= f.input :password_confirmation, required: true %>
+       
+        <p><%= t 'registrations.terms_acceptance', default: 'By joining you agree with our terms and conditions' %></p>
 
-      <%= f.input :email %>
-      <%= f.input :first_name %>
-      <%= f.input :last_name %>
-      <%= f.input :password, hint: false %>
-      <%= f.input :password_confirmation, required: true %>
-     
-      <p><%= t 'registrations.terms_acceptance', default: 'By joining you agree with our terms and conditions' %></p>
-
-      <%= f.button :submit, "#{t 'registrations.create_account'}", class: "btn btn-primary" %>
-    <% end %>
-  </section>
-
-  <hr>
+        <%= f.button :submit, "#{t 'registrations.create_account'}", class: "btn btn-primary" %>
+      <% end %>
+    </section>
+  </div>
 
   <section id="checkout-as-guest">
     <h3>Checkout as guest</h3>
@@ -118,7 +116,6 @@
       %>
 
       <h4 class="section"><%= t 'your_details' %></h4>
-
       <%= f.input :email, required: true %>
       <%= f.input :first_name, required: true %>
       <%= f.input :last_name, required: true %>
