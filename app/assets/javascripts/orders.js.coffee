@@ -35,16 +35,7 @@ class @Order
     tax = parseFloat($('#tax').data('value')) || 0
     discount = parseFloat($('#discount').data('value')) || 0
     shipping = parseFloat($('#shipping').data('value')) || 0
-
-    console.log subtotal
-    console.log tax
-    console.log discount
-    console.log shipping
-
     total = subtotal + tax + shipping - discount
-
-    console.log total
-
     $('#shipping').text accounting.formatMoney(shipping)
     $('#total').text accounting.formatMoney(total)
 

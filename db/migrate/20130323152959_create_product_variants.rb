@@ -4,7 +4,8 @@ class CreateProductVariants < ActiveRecord::Migration
     	t.text    :options
       t.decimal :price, precision: 11, scale: 2
       t.integer :in_stock, default: 0
-    	t.integer :product_id
+      t.integer :product_id
+    	t.integer :orders_count, default: 0
 
       t.timestamps
     end

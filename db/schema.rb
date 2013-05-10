@@ -118,11 +118,12 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "coupons", :force => true do |t|
     t.string   "code"
-    t.decimal  "amount",     :precision => 11, :scale => 2
-    t.boolean  "percentage",                                :default => true
-    t.boolean  "active",                                    :default => true
-    t.datetime "created_at",                                                  :null => false
-    t.datetime "updated_at",                                                  :null => false
+    t.decimal  "amount",       :precision => 11, :scale => 2
+    t.boolean  "percentage",                                  :default => true
+    t.boolean  "active",                                      :default => true
+    t.integer  "orders_count",                                :default => 0
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   add_index "coupons", ["code"], :name => "index_coupons_on_code"
@@ -232,11 +233,12 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "product_variants", :force => true do |t|
     t.text     "options"
-    t.decimal  "price",      :precision => 11, :scale => 2
-    t.integer  "in_stock",                                  :default => 0
+    t.decimal  "price",        :precision => 11, :scale => 2
+    t.integer  "in_stock",                                    :default => 0
     t.integer  "product_id"
-    t.datetime "created_at",                                               :null => false
-    t.datetime "updated_at",                                               :null => false
+    t.integer  "orders_count",                                :default => 0
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
   end
 
   add_index "product_variants", ["product_id"], :name => "index_product_variants_on_product_id"

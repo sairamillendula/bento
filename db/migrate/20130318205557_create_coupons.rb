@@ -5,6 +5,7 @@ class CreateCoupons < ActiveRecord::Migration
       t.decimal :amount, :precision => 11, :scale => 2
       t.boolean :percentage, default: true
       t.boolean :active, default: true
+      t.integer :orders_count, default: 0
 
       t.timestamps
     end

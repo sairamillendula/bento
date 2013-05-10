@@ -11,7 +11,7 @@ class Order < ActiveRecord::Base
   has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
   accepts_nested_attributes_for :shipping_address
 
-  has_one :coupon, :foreign_key => "coupon_code"
+  belongs_to :coupon, :foreign_key => "coupon_code"
   has_many :audits, :class_name => "AuditTrail", as: :auditable
   
   # scope :completed, where(completed: true)
@@ -21,6 +21,7 @@ class Order < ActiveRecord::Base
   #attr_accessor :stripe_card_token
 
   before_create :generate_code
+  after_create :update_stocks
 
   state_machine :initial => :pending do
     event :ship do
@@ -159,6 +160,19 @@ private
   def generate_code
     last_order_id = Order.last.present? ? Order.last.id : 0
     self.code = "%05d" % (last_order_id + 1)
+  end
+
+  def update_stocks
+    items.each do |item|
+      buyable = item.buyable
+      buyable.in_stock -= item.quantity
+      buyable.orders_count += 1
+      buyable.save
+    end
+    if coupon
+      coupon.orders_count += 1
+      coupon.save
+    end
   end
 
 end
