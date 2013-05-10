@@ -1,4 +1,4 @@
-/* global */
+/* Global */
 #md_link {
 	font-weight: normal;
 }
@@ -23,6 +23,14 @@
 
 	.span3 h4 {
 		font-weight: normal;
+	}
+}
+
+/* Products */
+.template-download {
+	p:first-of-type { // file name
+		height: 40px;
+		font-size: 13px;
 	}
 }
 

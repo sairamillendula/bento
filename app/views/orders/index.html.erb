@@ -13,7 +13,7 @@
     <% @orders.each do |order| %>
 	    <tr>
 	      <td><%= link_to order.code, order %></td>
-	      <td><%= order.total %></td>
+	      <td><%= number_to_currency(order.total) %></td>
 	      <td><%= l order.created_at, format: :long %></td>
 	    </tr>
 	  <% end %>

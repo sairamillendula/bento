@@ -3,11 +3,11 @@
   <ul class="thumbnails pictures" id="pictures-container" data-update-url="<%= polymorphic_url([:sort, :admin, @product, :pictures]) %>">
     <li>
       <span class="thumbnail fileinput-button">
-        <img data-src="holder.js/200x150/bright/text:+" alt="Click to add pictures">
+        <%= image_tag("picture-upload.jpg", size: "200x138", alt: "Click to add pictures") %>
         <%= f.file_field :upload, multiple: true %>
       </span>
       <div class="progress">
-        <div class="bar" style="width: 60%;"></div>
+        <div class="bar" style="width:60%;"></div>
       </div>
     </li>
   </ul>
@@ -34,7 +34,7 @@
     {% } %}
     <span class="cancel">{% if (!i) { %}
       <button class="btn btn-warning">
-        <i class="icon-ban-circle icon-white"></i>
+        <i class="icon-ban-circle"></i>
         <span>{%=locale.fileupload.cancel%}</span>
       </button>
       {% } %}</span>

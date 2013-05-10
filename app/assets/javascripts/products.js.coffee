@@ -211,7 +211,7 @@ class @ProductUploader
     $('#fileupload').fileupload
       filesContainer: $pictures_container
       previewMaxWidth : 200
-      previewMaxHeight : 150
+      previewMaxHeight : 138
       acceptFileTypes: /(.|\/)(gif|jpe?g|png)$/i
       maxFileSize: 5242880 #5M
       autoUpload: true
