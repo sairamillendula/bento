@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   before_filter :require_login, only: [:index, :show]
-  before_filter(only: [:new, :create, :show]) { @checkout_script = true }
 
   def index
   	@orders = current_user.orders.order('created_at DESC')
@@ -41,6 +40,7 @@ class OrdersController < ApplicationController
       if @order.save_with_payment(@cart)
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
+        auto_login(@order.client) unless current_user
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }
         # TODO send email
       else

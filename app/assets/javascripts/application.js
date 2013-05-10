@@ -23,6 +23,7 @@
 //= require holder
 //= require jquery-fileupload
 //= require bootbox
+//= require accounting
 //= require_tree .
 
 $(function () {

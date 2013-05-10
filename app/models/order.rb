@@ -28,7 +28,19 @@ class Order < ActiveRecord::Base
     end
     event :complete do
       transition :shipped => :completed
-    end    
+    end
+
+    before_transition :pending => :shipped do |order, transition|
+      order.shipped_at = Time.now
+    end
+
+    after_transition do |order, transition|
+      puts "******************************"
+      puts transition
+      puts "******************************"
+      # audits.create! message: 
+    end
+
   end
 
   state_machine.states.map do |state|
@@ -90,23 +102,6 @@ class Order < ActiveRecord::Base
     self.coupon_percentage = cart.coupon_percentage
   end
 
-  def status
-  	if shipped?
-  		"shipped"
-  	elsif completed?
-  		"completed"
-  	else
-  		"pending"
-  	end
-  end
-
-  def mark_as_shipped
-    self.shipped = true
-    self.shipped_at = Time.now
-    save!
-    audits.create! message: "Shipped"
-  end
-
   def subtotal
     @subtotal ||= items.inject(0) { |sum, item| sum + item.subtotal }.round(2)
   end
@@ -134,14 +129,21 @@ class Order < ActiveRecord::Base
 
     # after order created, create user if guest
     if client_id.blank?
-      puts 'create user'
-    else
-      unless client.addresses.select {|address| address.same_as(billing_address) }.size > 0
-        client.addresses.build.copy(billing_address).save!
+      random_password = SecureRandom.hex(4)
+      u = User.new(email: cart.email, first_name: cart.first_name, last_name: cart.last_name, password: random_password, password_confirmation: random_password)
+      if u.save
+        self.client = u
+        update_attribute(:client_id, u.id)
+        UserMailer.welcome(u).deliver
       end
-      unless client.addresses.select {|address| address.same_as(shipping_address) }.size > 0
-        client.addresses.build.copy(shipping_address).save!
-      end
+    end
+
+    # save order addresses to user address
+    unless client.addresses.select {|address| address.same_as(billing_address) }.size > 0
+      client.addresses.build.copy(billing_address).save!
+    end
+    unless client.addresses.select {|address| address.same_as(shipping_address) }.size > 0
+      client.addresses.build.copy(shipping_address).save!
     end
 
     return true

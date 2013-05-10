@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
 	  	auto_login(@user)
       UserMailer.welcome(@user).deliver
       if params[:checkout]
-        redirect_to new_order_url
+        redirect_to checkout_cart_url
       else
 	  	  redirect_to products_url, notice: "#{t 'registrations.success'}"
       end

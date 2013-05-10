@@ -9,10 +9,13 @@
     <%= simple_form_for(@cart, url: continue_cart_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
       <%= f.error_notification %>
 
-      <% 
-        @cart.build_billing_address(also_shipping_address: true).copy(current_user.addresses.try(:first)) unless @cart.billing_address
+      <%
+        default_billing_address = current_user.orders.try(:last).try(:billing_address) || current_user.addresses.try(:first)
+        default_shipping_address = current_user.orders.try(:last).try(:shipping_address) || current_user.addresses.try(:first)
+        also_shipping_address = default_billing_address.same_as(default_shipping_address)
+        @cart.build_billing_address(also_shipping_address: also_shipping_address).copy(default_billing_address) unless @cart.billing_address
         @cart.build_shipping_address unless @cart.shipping_address
-        @cart.billing_address.also_shipping_address = true if @cart.billing_address.same_as(@cart.shipping_address)
+        @cart.shipping_address.copy(default_shipping_address) unless @cart.billing_address.also_shipping_address
       %>
 
       <div class="row-fluid">
@@ -110,56 +113,55 @@
       <%= f.error_notification %>
 
       <% 
+        @cart.build_billing_address(also_shipping_address: true) unless @cart.billing_address
         @cart.build_shipping_address unless @cart.shipping_address
-        @cart.build_billing_address unless @cart.billing_address
       %>
 
       <h4 class="section"><%= t 'your_details' %></h4>
 
-      <%= f.fields_for :user do |ff| %>
-        <%= ff.input :email %>
-        <%= ff.input :first_name %>
-        <%= ff.input :last_name %>
-      <% end %>
+      <%= f.input :email, required: true %>
+      <%= f.input :first_name, required: true %>
+      <%= f.input :last_name, required: true %>
 
       <div class="row-fluid">
-        <div id="shipping-address" class="span6">
-          <h4 class="section-helper"><%= t 'shipping_address' %></h4>
-          <div class="form-horizontal">
-            <%= f.fields_for :shipping_address do |sa| %>
-              <%= sa.input :address1, required: true, input_html: {value: '13 Street name'} %>
-              <%= sa.input :address2 %>
-              <%= sa.input :postal_code, required: true, input_html: {value: '54000'} %>
-              <%= sa.input :city, required: true, input_html: {value: 'Nancy'} %>
-              <%= sa.input :country, required: true %>
-              <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: 'display:none;'} %>
-            <% end %>
-          </div>
-        </div>
-
         <div id="billing-address" class="span6">
           <h4 class="section-helper"><%= t 'billing_address' %></h4>
           <%= f.fields_for :billing_address do |ba| %>
-            <div class="checkbox inline">
-              <label> <%= ba.check_box :bypass_validation %>
-               <%= t 'shipping_and_billing_are_the_same' %>
-              </label>
-            </div>
-
             <div id="billing_address_fields" class="form-horizontal">
               <%= ba.input :address1, required: true %>
               <%= ba.input :address2 %>
               <%= ba.input :postal_code, required: true %>
               <%= ba.input :city, required: true %>
               <%= ba.input :country, required: true %>
-              <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: 'display:none;'} %>
+              <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
+              <div class="checkbox inline">
+                <label> <%= ba.check_box :also_shipping_address, id: 'also_shipping_address' %>
+                 <%= t 'shipping_and_billing_are_the_same' %>
+                </label>
+              </div>
             </div>
           <% end %>
         </div>
 
-        <%= f.button :submit, "#{t 'carts.continue_as_guest'}", class: "btn btn-primary" %>
-      </div>
-      <% end %>
+        <div id="shipping-address" class="span6">
+          <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+          <div id="shipping_address_fields" class="form-horizontal" style="display: <%= @cart.billing_address.also_shipping_address ? 'none' : 'block' %>;">
+            <%= f.fields_for :shipping_address do |sa| %>
+              <%= sa.input :address1, required: true %>
+              <%= sa.input :address2 %>
+              <%= sa.input :postal_code, required: true %>
+              <%= sa.input :city, required: true %>
+              <%= sa.input :country, required: true %>
+              <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
+            <% end %>
+          </div>
+          <div id="same-address" class="alert alert-info" style="display: <%= @cart.billing_address.also_shipping_address ? 'block' : 'none' %>;">
+            Same as billing address
+          </div>
+        </div>
+      </div>  
+      <p><%= f.button :submit, "#{t 'carts.continue'}", class: "btn btn-primary" %></p>
+    <% end %>
   </section>
 <% end %>  
 
