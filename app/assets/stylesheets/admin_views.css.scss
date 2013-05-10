@@ -34,6 +34,25 @@
 	}
 }
 
+ul.pictures {
+	padding: 0;
+
+	li {
+		margin: 0 20px 20px 0;
+		width: 210px;
+
+		&:hover {
+			cursor: move;
+		}
+		a.thumbnail {
+			margin-bottom: 10px;
+		}
+	}
+	li:nth-child(4n + 1) {
+		clear: left;
+	}
+}
+
 /* Orders */
 #order_date {
 	font-size: 16px;

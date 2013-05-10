@@ -4,17 +4,17 @@
   <%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(@product), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
 <% end %>
 
-<p><b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug) %></p>
+<p>
+	<b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug) %>
+	<span class="fr"><b>SKU</b>: <%= @product.sku %></span>
+</p>
 
-<p><b>SKU</b>: <%= @product.sku %></p>
+<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.price) %> || <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.reduced_price) %></p>
 
-<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.price, strip_insignificant_zeros: true) %></p>
-
-<p><b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.reduced_price, strip_insignificant_zeros: true) %></p>
-
-<p><b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %></p>
-
-<p><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></p>
+<p>
+	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
+  <span class="fr"><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></span>
+</p>
 
 <p><b><%= t 'products.cross_sell' %></b>: <%= @product.cross_sell_products.map{|p| link_to(p.name, [:admin, p]) }.to_sentence.html_safe %></p>
 

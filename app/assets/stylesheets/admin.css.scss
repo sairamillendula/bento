@@ -3,6 +3,8 @@ $gray: #ebeff1;
 $blue: #55606e;
 $green: #6cc644;
 $red: #f26c4f;
+$yellow: #fffcee;
+$yellow-dark: #f0dbb4;
 
 body,html{
   height:100%;
@@ -31,18 +33,17 @@ body.admin {
 		position: relative;
 		height: 85px;
 		padding: 0 35px 0 40px;
-		// margin-left: 275px;
 		border-bottom: 1px solid  #e3e3e8;
 		zoom: 1;
 		@include box-sizing(border-box);
-		background: #FFF;
+		background: #ffffff;
 
 		h1 {
 			display: block;
 			font-size: 20px;
 			font-weight: bold;
 			line-height: 82px;
-			color: #363F48;
+			color: #363f48;
 			margin: 0;
 			text-overflow: ellipsis;
 			white-space: nowrap;
@@ -107,7 +108,7 @@ body.admin {
         line-height: 26px;
 
         &:hover a, &.active a {
-        	color: #fff;
+        	color: #ffffff;
         	cursor: pointer;
         }
 
@@ -131,7 +132,7 @@ body.admin {
 		min-height: 850px;
     position: relative;
     @include box-sizing(border-box);
-    background: #FFF;
+    background: #ffffff;
 
     .page-title {
 			margin-bottom: 30px;
@@ -155,7 +156,7 @@ body.admin {
 		}
 	}
 	#wrapper {
-		background: #FFF;
+		background: #ffffff;
 		margin-left: 275px;
 	}
 
@@ -338,8 +339,8 @@ body.admin {
 
   /* alerts */
 	.alert {
-		background: #fffcee;
-		border: 1px solid #f0dbb4;
+		background: $yellow;
+		border: 1px solid $yellow-dark;
 		color: #ce8f22;
 		@include border-radius(3px);
 		margin-top: 20px;
@@ -553,22 +554,5 @@ body.admin {
 	.pre-scrollable {
 	  max-height: 340px;
 	  overflow-y: scroll;
-	}
-
-	ul.pictures {
-		padding: 0;
-
-		li {
-			margin: 0 20px 20px 0;
-			width: 210px;
-
-			a.thumbnail {
-				margin-bottom: 10px;
-			}
-		}
-		li:nth-child(4n + 1) {
-			clear: left;
-		}
-
 	}
 }
