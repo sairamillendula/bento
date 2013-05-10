@@ -1,5 +1,5 @@
 <%= page_title("#{t 'collections.title'}") do %>
-  <%= icon_button_link_to "#{t 'collections.new.title'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, class: 'fr' %>
+  <%= icon_button_link_to "#{t 'collections.new'}", new_admin_collection_path, level: 'primary', icon: 'plus', white: true, class: 'fr' %>
 <% end %>
 
 <% if @collections.present? %>
