@@ -111,10 +111,6 @@ class Order < ActiveRecord::Base
     @subtotal ||= items.inject(0) { |sum, item| sum + item.subtotal }.round(2)
   end
 
-  def total
-    @total = subtotal # TODO add shipping, discount
-  end
-
   # process payment and save
   def save_with_payment(cart)
     Stripe.api_key = ENV['STRIPE_API_KEY']
