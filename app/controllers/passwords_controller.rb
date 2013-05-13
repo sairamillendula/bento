@@ -17,8 +17,8 @@ class PasswordsController < ApplicationController
     
   # This is the reset password form.
   def edit
-    @user = User.load_from_reset_password_token(params[:id])
-    @token = params[:id]
+    @user = User.load_from_reset_password_token(params[:token])
+    @token = params[:token]
     not_authenticated unless @user
   end
       

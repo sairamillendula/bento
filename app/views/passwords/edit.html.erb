@@ -1,7 +1,7 @@
 <div class="authentication">
 	<h1><%= t 'passwords.edit' %></h1>
 
-	<%= simple_form_for(@user, url: password_path(@user), method: :put) do |f| %>
+	<%= simple_form_for(@user, url: password_path, method: :put) do |f| %>
 	  <%= f.error_notification %>
 	  <p>Email: <b><%= @user.email %></b></p>
 	  <%= f.input :password, hint: false, label: false, placeholder: "#{t 'passwords.new_password_placeholder'}" %>

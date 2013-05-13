@@ -9,7 +9,7 @@ Bento::Application.routes.draw do
   get "profile" => "registrations#edit", as: "profile"
   post "profile" => "registrations#update", as: "update_profile"
   get "paswords/:token/edit" => "passwords#edit", as: "change_password"
-  resources :passwords, only: [:new, :create, :edit]
+  resource :password, only: [:new, :create, :edit, :update]
   resources :registrations, except: [:index, :show, :destroy]
   resources :sessions
   
