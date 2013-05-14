@@ -30,6 +30,9 @@ class Order < ActiveRecord::Base
     event :complete do
       transition :shipped => :completed
     end
+    event :cancel do
+      transition any => :cancelled
+    end
 
     before_transition :pending => :shipped do |order, transition|
       order.shipped_at = Time.now

@@ -5,7 +5,7 @@ class Address < ActiveRecord::Base
   
   # ATTRIBUTES
   attr_accessor :bypass_validation
-  attr_accessible :address1, :address2, :addressable_id, :addressable_type, :city, :country, :postal_code, :province, :type, 
+  attr_accessible :full_name, :address1, :address2, :addressable_id, :addressable_type, :city, :country, :postal_code, :province, :type, 
                   :bypass_validation
   
   PROVINCE = [ 'Alberta', 'British Columbia', 'Manitoba', 'New Brunswick', 'Newfoundland and Labrador', 'Northwest Territories', 'Nova Scotia', 'Nunavut', 'Prince Edward Island', 'Québec', 'Ontario', 'Saskatchewan', 'Yukon', 'Alabama', 'Alaska',
@@ -32,7 +32,7 @@ class Address < ActiveRecord::Base
       html << r3.join(' ')
     else
       r3 << city if city.present?
-      r3 << province if province.present?
+      r3 << Country[country].subdivisions[province]['name'] if province.present?
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
@@ -64,6 +64,7 @@ class Address < ActiveRecord::Base
 
   def copy(address)
     if address
+      self.full_name = address.full_name
       self.address1 = address.address1
       self.address2 = address.address2
       self.city = address.city
@@ -75,12 +76,13 @@ class Address < ActiveRecord::Base
   end
 
   def same_as(other_address)
-    ![:address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.try_with_default(attr, '') == other_address.try_with_default(attr, '')}.include?(false)
+    ![:full_name, :address1, :address2, :city, :country, :postal_code, :province].map {|attr| self.try_with_default(attr, '') == other_address.try_with_default(attr, '')}.include?(false)
   end
 
   def as_json(options={})
     {
       id: id,
+      full_name: full_name,
       address1: address1,
       address2: address2,
       city: city,

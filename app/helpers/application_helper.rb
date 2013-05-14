@@ -69,4 +69,11 @@ module ApplicationHelper
     content_tag(:i, '', class: "famfamfam-flag-#{Country[country].alpha2.downcase}") + " "
   end
 
+  def province_options
+    {
+      Country['CA'].name => Country['CA'].subdivisions.map {|x| [x.last["name"], x.first]},
+      Country['US'].name => Country['US'].subdivisions.map {|x| [x.last["name"], x.first]}
+    }
+  end
+
 end

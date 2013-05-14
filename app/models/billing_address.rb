@@ -1,6 +1,6 @@
 class BillingAddress < Address
 
-  validates_presence_of :address1, :city, :postal_code, :country, :unless => Proc.new{ |a| a.bypass_validation}
+  validates_presence_of :full_name, :address1, :city, :postal_code, :country, :unless => Proc.new{ |a| a.bypass_validation}
   attr_accessor :also_shipping_address
 
   attr_accessible :also_shipping_address

@@ -12,7 +12,7 @@
       <%
         default_billing_address = current_user.orders.try(:last).try(:billing_address) || current_user.addresses.try(:first)
         default_shipping_address = current_user.orders.try(:last).try(:shipping_address) || current_user.addresses.try(:first)
-        also_shipping_address = default_billing_address.same_as(default_shipping_address)
+        also_shipping_address = default_billing_address && default_billing_address.same_as(default_shipping_address)
         @cart.build_billing_address(also_shipping_address: also_shipping_address).copy(default_billing_address) unless @cart.billing_address
         @cart.build_shipping_address unless @cart.shipping_address
         @cart.shipping_address.copy(default_shipping_address) unless @cart.billing_address.also_shipping_address
@@ -26,12 +26,14 @@
           <% end %>
           <%= f.fields_for :billing_address do |ba| %>
             <div id="billing_address_fields" class="form-horizontal">
+              <%= ba.input :full_name, required: true %>
               <%= ba.input :address1, required: true %>
               <%= ba.input :address2 %>
               <%= ba.input :postal_code, required: true %>
               <%= ba.input :city, required: true %>
               <%= ba.input :country, required: true %>
-              <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
+              <%= ba.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
+
               <div class="checkbox inline">
                 <label> <%= ba.check_box :also_shipping_address, id: 'also_shipping_address' %>
                  <%= t 'shipping_and_billing_are_the_same' %>
@@ -48,12 +50,13 @@
               <p>Select address: <%= select_tag :shipping_address, options_for_select([''] + current_user.addresses.map{|a| a.display_name(', ')}, @cart.shipping_address.try(:display_name, ', ')), name: nil %></p>
             <% end %>
             <%= f.fields_for :shipping_address do |sa| %>
+              <%= sa.input :full_name, required: true %>
               <%= sa.input :address1, required: true %>
               <%= sa.input :address2 %>
               <%= sa.input :postal_code, required: true %>
               <%= sa.input :city, required: true %>
               <%= sa.input :country, required: true %>
-              <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
+              <%= sa.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
             <% end %>
           </div>
           <div id="same-address" class="alert alert-info" style="display: <%= @cart.billing_address.also_shipping_address ? 'block' : 'none' %>;">
@@ -125,12 +128,13 @@
           <h4 class="section-helper"><%= t 'billing_address' %></h4>
           <%= f.fields_for :billing_address do |ba| %>
             <div id="billing_address_fields" class="form-horizontal">
+              <%= ba.input :full_name, required: true %>
               <%= ba.input :address1, required: true %>
               <%= ba.input :address2 %>
               <%= ba.input :postal_code, required: true %>
               <%= ba.input :city, required: true %>
               <%= ba.input :country, required: true %>
-              <%= ba.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
+              <%= ba.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
               <div class="checkbox inline">
                 <label> <%= ba.check_box :also_shipping_address, id: 'also_shipping_address' %>
                  <%= t 'shipping_and_billing_are_the_same' %>
@@ -144,12 +148,13 @@
           <h4 class="section-helper"><%= t 'shipping_address' %></h4>
           <div id="shipping_address_fields" class="form-horizontal" style="display: <%= @cart.billing_address.also_shipping_address ? 'none' : 'block' %>;">
             <%= f.fields_for :shipping_address do |sa| %>
+              <%= sa.input :full_name, required: true %>
               <%= sa.input :address1, required: true %>
               <%= sa.input :address2 %>
               <%= sa.input :postal_code, required: true %>
               <%= sa.input :city, required: true %>
               <%= sa.input :country, required: true %>
-              <%= sa.input :province, collection: Address::PROVINCE, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
+              <%= sa.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
             <% end %>
           </div>
           <div id="same-address" class="alert alert-info" style="display: <%= @cart.billing_address.also_shipping_address ? 'block' : 'none' %>;">
@@ -164,7 +169,6 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    // PaymentGateway.init();
     <% if logged_in? %>
       var addresses = <%= raw current_user.addresses.to_json %>;
     <% else %>  

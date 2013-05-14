@@ -14,6 +14,7 @@
 ActiveRecord::Schema.define(:version => 20130501044513) do
 
   create_table "addresses", :force => true do |t|
+    t.string   "full_name"
     t.string   "address1"
     t.string   "address2"
     t.string   "city"
