@@ -6,6 +6,7 @@ class CreateProductVariants < ActiveRecord::Migration
       t.integer :in_stock, default: 0
       t.integer :product_id
     	t.integer :orders_count, default: 0
+      t.boolean :active, default: true
 
       t.timestamps
     end

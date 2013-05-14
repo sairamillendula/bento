@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
 
   # ASSOCICATIONS
   # -------------
-  has_many :variants, class_name: "ProductVariant", dependent: :destroy
+  has_many :variants, class_name: "ProductVariant", dependent: :destroy, :conditions  => { :active => true }
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
 
   has_many :options, class_name: "ProductOption", dependent: :destroy
@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
   has_many :cross_sells
   has_many :cross_sell_products, through: :cross_sells, source: :other_product
 
-  has_many :line_items
+  has_many :line_items, as: :buyable
   has_and_belongs_to_many :categories
 
   has_many :collection_products, dependent: :destroy
@@ -27,7 +27,7 @@ class Product < ActiveRecord::Base
 
   has_and_belongs_to_many :suppliers
   has_many :stocks
-  has_many :orders, through: :line_items
+  has_many :orders, through: :line_items, uniq: true
   has_many :reviews, class_name: "ProductReview", dependent: :destroy
 
   store :meta_tag, accessors: [:seo_title, :seo_description]
@@ -37,6 +37,7 @@ class Product < ActiveRecord::Base
   scope :visibles, where(visible: true)
   scope :in_stocks, where('in_stock > ?', 0)
   scope :exclude_products, lambda {|product_ids| where("id NOT IN (?)", product_ids)}
+  scope :active, where(active: true)
   
   # ATTRIBUTES
   # -------------
@@ -60,6 +61,12 @@ class Product < ActiveRecord::Base
   before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
   before_create :clean_up
+  before_destroy { |product|
+    unless product.can_be_deleted?
+      product.update_attribute(:active, false)
+    end
+    return product.can_be_deleted?
+  }
 
   def to_param
     slug
@@ -97,7 +104,7 @@ class Product < ActiveRecord::Base
   end
 
   def can_be_deleted?
-  	line_items.empty?
+  	!orders.any?
   end
 
   def generate_variants

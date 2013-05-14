@@ -238,8 +238,9 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.integer  "in_stock",                                    :default => 0
     t.integer  "product_id"
     t.integer  "orders_count",                                :default => 0
-    t.datetime "created_at",                                                 :null => false
-    t.datetime "updated_at",                                                 :null => false
+    t.boolean  "active",                                      :default => true
+    t.datetime "created_at",                                                    :null => false
+    t.datetime "updated_at",                                                    :null => false
   end
 
   add_index "product_variants", ["product_id"], :name => "index_product_variants_on_product_id"
@@ -257,6 +258,7 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
     t.integer  "supplier_id"
     t.text     "meta_tag"
     t.integer  "orders_count",                                 :default => 0
+    t.boolean  "active",                                       :default => true
     t.datetime "created_at",                                                      :null => false
     t.datetime "updated_at",                                                      :null => false
   end

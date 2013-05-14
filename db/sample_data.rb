@@ -31,18 +31,20 @@ puts "Created 3 admin users"
   )
   client.save!
   client.addresses.create!(
+    full_name: Faker::Name.name,
     address1: Faker::Base.numerify("#####") + " " + Faker::Address.street_name,
     city: Faker::Address.city,
     postal_code: Faker::Base.numerify("#####"),
-    country: ['CA', 'US'].sample,
-    province: Address::PROVINCE.sample
+    country: 'CA',
+    province: Country['CA'].subdivisions.map {|x| x.first}.sample
   )
   client.addresses.create!(
+    full_name: Faker::Name.name,
     address1: Faker::Base.numerify("#####") + " " + Faker::Address.street_name,
     city: Faker::Address.city,
     postal_code: Faker::Base.numerify("#####"),
-    country: ['CA', 'US'].sample,
-    province: Address::PROVINCE.sample
+    country: 'CA',
+    province: Country['CA'].subdivisions.map {|x| x.first}.sample
   )
 end
 puts "Created 10 clients"

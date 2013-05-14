@@ -5,8 +5,11 @@ class ProductVariant < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   has_many :stocks
+  has_many :line_items, as: :buyable
+  has_many :orders, through: :line_items, uniq: true
 
   scope :in_stocks, where('in_stock > ?', 0)
+  scope :active, where(active: true)
 
   attr_accessor :selected
   attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3, :selected, :options
@@ -17,6 +20,13 @@ class ProductVariant < ActiveRecord::Base
 
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   after_save :update_product_options
+
+  before_destroy { |variant|
+    unless variant.can_be_deleted?
+      variant.update_attribute(:active, false)
+    end
+    return variant.can_be_deleted?
+  }
 
   store :options, accessors: [:option1, :option2, :option3]
   
@@ -29,7 +39,7 @@ class ProductVariant < ActiveRecord::Base
   end
   
   def can_be_deleted?
-    line_items.any?
+    !orders.any?
   end
 
   def name(html=false)
