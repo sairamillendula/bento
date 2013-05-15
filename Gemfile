@@ -52,7 +52,7 @@ group :development do
   gem 'quiet_assets'
 end
 
-group :production, :staging do
+group :production do
   gem 'exception_notification'
   gem 'unicorn'
 end

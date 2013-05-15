@@ -61,7 +61,7 @@ en:
     update: Update Cart
     continue_as_guest: Continue as Guest
     continue: Continue
-    no_shipping_in_country: "Sorry, we cannot proceed with your order as we don't ship to"
+    no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
   articles:
     title: Articles
     new: New Article

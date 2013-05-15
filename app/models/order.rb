@@ -18,7 +18,6 @@ class Order < ActiveRecord::Base
   # scope :shipped, where(shipped: true)
 
   attr_accessible :stripe_card_token
-  #attr_accessor :stripe_card_token
 
   before_create :generate_code
   after_create :update_stocks
@@ -71,7 +70,7 @@ class Order < ActiveRecord::Base
       cart.tax_rate = shipping_country.tax.rate
       if cart.shipping_address.province.present? && shipping_country.tax.region_taxes_count > 0
         province_tax = shipping_country.tax.region_taxes.find_by_province(cart.shipping_address.province)
-        if province_tax && province_tax.rate > 0
+        if province_tax && province_tax.rate.present? && province_tax.rate > 0
           cart.tax_name = province_tax.name
           cart.tax_rate = province_tax.rate
         end

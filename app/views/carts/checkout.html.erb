@@ -26,7 +26,7 @@
           <% end %>
           <%= f.fields_for :billing_address do |ba| %>
             <div id="billing_address_fields" class="form-horizontal">
-              <%= ba.input :full_name, required: true %>
+              <%= ba.input :full_name, required: true, input_html: {value: current_user.full_name} %>
               <%= ba.input :address1, required: true %>
               <%= ba.input :address2 %>
               <%= ba.input :postal_code, required: true %>

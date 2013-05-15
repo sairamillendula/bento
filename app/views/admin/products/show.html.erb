@@ -13,7 +13,9 @@
 
 <p>
 	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
-  <span class="fr"><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></span>
+  <% if @product.suppliers.any? %>
+    <span class="fr"><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></span>
+  <% end %>
 </p>
 
 <p><b><%= t 'products.cross_sell' %></b>: <%= @product.cross_sell_products.map{|p| link_to(p.name, [:admin, p]) }.to_sentence.html_safe %></p>
