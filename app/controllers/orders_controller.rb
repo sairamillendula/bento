@@ -41,8 +41,8 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         auto_login(@order.client) unless current_user
+        StoreMailer.order_receipt(@order).deliver
         format.html { redirect_to @order, notice: "#{t 'orders.thank_you'}." }
-        # TODO send email
       else
         format.html { redirect_to action: "new" }
       end

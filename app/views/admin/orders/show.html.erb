@@ -17,7 +17,7 @@
 
 <h3>
   <%= @order.client.full_name %>
-  <% if @order.shipped? %><span class="fr">Shipped on <%= l @order.shipped_at, format: :long %></span><% end %>
+  <% if @order.shipped? %><span class="fr"><%= t 'shipped_on' %> <%= l @order.shipped_at, format: :long %></span><% end %>
 </h3>
 
 <%= render 'orders/items' %>
@@ -33,7 +33,7 @@
     <address>
       <strong><p><%= t 'billing_address' %></strong></p>
       <p><%= @order.client.full_name %></p>
-      <%= @order.billing_address.present? ? @order.billing_address.display_name : @order.shipping_address.display_name %>
+      <%= @order.billing_address.display_name %>
     </address>
   </div>
 
@@ -42,7 +42,7 @@
       <address>
         <strong><p><%= t 'shipping_address' %></strong></p>
         <p><%= @order.client.full_name %></p>
-        <%= @order.shipping_address.display_name if @order.shipping_address.present? %>
+        <%= @order.shipping_address.display_name %>
       </address>
     </div>
 

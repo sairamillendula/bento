@@ -240,9 +240,9 @@ en:
       action:
     reseller_request_approved:
       subject: Request approved
-    purchase_receipt:
+    order_receipt:
       subject: Purchase Receipt
-      intro:
+      intro: Thank you for your purchase
       action:
     welcome:
       subject: Welcome
