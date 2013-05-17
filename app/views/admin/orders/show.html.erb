@@ -1,15 +1,13 @@
 <%= page_title("##{@order.code}") do %>
   <%= status_tag(@order.state, class: "state-#{@order.state}") %> <span id='order_date'> <%= l @order.created_at, format: :long %></span>
   <div class="btn-group fr">
-    <button class="btn btn-large"><i class="icon-print"></i> <%= t 'print' %></button>
-    <button class="btn btn-large"><i class="icon-remove"></i> <%= t 'cancel' %></button>
-    <% if !@order.shipped? %>
-      <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", class: "btn", icon: "ok" %></td>
-    <% end %>
+    <%= icon_button_link_to "#{t 'print'}", admin_order_path(@order, format: :pdf), icon: "print" %></td>
+    <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", level: 'primary', white: true, icon: "ok" if @order.open? %></td>
+    <%= icon_button_link_to "#{t 'cancel'}", cancel_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", level: 'danger', white: true, icon: "remove" if @order.open? %></td>
   </div>
 <% end %>
 
-<% unless @order.completed? %>
+<% if @order.pending? %>
   <div class="progress progress-danger progress-striped active">
     <div class="bar" style="width:100%;"><%= t 'status.not_paid' %></div>
   </div>

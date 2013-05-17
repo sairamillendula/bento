@@ -5,6 +5,7 @@ class CreateAuditTrails < ActiveRecord::Migration
       t.text    :message
       t.integer :auditable_id
       t.string  :auditable_type
+      t.integer :user_id
 
       t.timestamps
     end

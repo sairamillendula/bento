@@ -91,6 +91,7 @@ Bento::Application.routes.draw do
     resources :orders, only: [:index, :show, :edit, :update] do
       member do
         post "mark_as_shipped"
+        post "cancel"
       end
     end
   end

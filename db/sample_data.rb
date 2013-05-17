@@ -122,8 +122,8 @@ puts "Created 15 products"
     rating: (1..5).to_a.sample,
     message: Faker::Lorem.paragraphs(2).join("<br/>"),
     approved: [true, false].sample,
-    user_id: User.pluck(:id).sample,
-    product_id: Product.pluck(:id).sample
+    user_id: User.pluck(:id).uniq.sample,
+    product_id: Product.pluck(:id).uniq.sample
   )
 end
 puts "Created 15 products reviews"

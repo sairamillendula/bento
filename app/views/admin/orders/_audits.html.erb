@@ -17,7 +17,10 @@
       		  <%= status_tag "#{t 'error'}", class: "label label-error" %>
       		<% end %>
       	</td>
-        <td><%= audit_trail.message %></td>
+        <td>
+          <%= audit_trail.message.titleize %> <%= "#{t 'by'} #{audit_trail.user.first_name}" if audit_trail.user_id.present? %>
+          <% if audit_trail.message == "open" %> - <%= "#{t 'payment_received_with_card_ending'} ##{@order.last4}" %><% end %>
+        </td>
         <td><%= l audit_trail.created_at, format: :long %></td>
       </tr>
     <% end %>

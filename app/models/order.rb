@@ -1,5 +1,17 @@
 class Order < ActiveRecord::Base
-
+  ## MACHINE STATES
+  module State
+    PENDING   = 'pending'
+    OPEN      = 'open'
+    SHIPPED   = 'shipped'
+    CANCELLED = 'cancelled'
+    
+    def self.options
+      [[I18n.t(PENDING), PENDING], [I18n.t(OPEN), OPEN], [I18n.t(SHIPPED), SHIPPED], [I18n.t(CANCELLED), CANCELLED]]
+    end
+  end
+  
+  ## ASSOCIATIONS
   belongs_to :client, :class_name => "User"
   accepts_nested_attributes_for :client
 
@@ -13,49 +25,40 @@ class Order < ActiveRecord::Base
 
   belongs_to :coupon, :foreign_key => "coupon_code"
   has_many :audits, :class_name => "AuditTrail", as: :auditable
+
+  ## SCOPES
+  scope :opens, where(state: State::OPEN)
   
-  # scope :completed, where(completed: true)
-  # scope :shipped, where(shipped: true)
-
-  attr_accessible :stripe_card_token
-
+  ## ATTRIBUTES
+  attr_accessible :stripe_card_token, :state, :shipped_at
+  
+  ## CALLBACKS
   before_create :generate_code
   after_create :update_stocks
-
-  state_machine :initial => :pending do
-    event :ship do
-      transition :pending => :shipped
-    end
-    event :complete do
-      transition :shipped => :completed
-    end
-    event :cancel do
-      transition any => :cancelled
-    end
-
-    before_transition :pending => :shipped do |order, transition|
-      order.shipped_at = Time.now
-    end
-
-    after_transition do |order, transition|
-      puts "******************************"
-      puts transition
-      puts "******************************"
-      # audits.create! message: 
-    end
-
-  end
-
-  state_machine.states.map do |state|
-    scope state.name, where(state: state.name.to_s)
-  end
-
+  
+  ## INSTANCE METHODS
   def to_param
-  	code
+    code
   end
 
-  def shipped?
-    shipped_at.present?
+  [State::PENDING, State::OPEN, State::SHIPPED, State::CANCELLED].each do |method|
+    define_method "#{method.downcase}?" do
+       self.state == method
+    end
+  end
+
+  def ship(user)
+    if open?
+      self.update_attributes(state: State::SHIPPED, shipped_at: Time.now)
+      audits.create!(message: State::SHIPPED, user_id: user.id)
+    end
+  end
+
+  def cancel(user)
+    if open?
+      self.update_attributes(state: State::CANCELLED)
+      audits.create!(message: State::CANCELLED, user_id: user.id)
+    end
   end
 
   def build_from_cart(cart, shipping_country, shipping_estimate)
@@ -128,7 +131,9 @@ class Order < ActiveRecord::Base
     self.currency = "cad"
     self.card_type = charge.card.type
     self.last4 = charge.card.last4
+    self.state = State::OPEN
     save!
+    self.audits.create(message: State::OPEN)
 
     # after order created, create user if guest
     if client_id.blank?

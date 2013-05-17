@@ -19,7 +19,9 @@ en:
   destroy: Delete
   remove: Remove
   view: View
+  print: Print
   or: or
+  by: by
   from: From
   name: Name
   status: Status
@@ -186,6 +188,11 @@ en:
   province_state: Province/State
   province: Province
   click_here: Click here
+  pending: Pending
+  open: Open
+  shipped: Shipped
+  cancelled: Cancelled
+  payment_received_with_card_ending: Payment received with card ending
   status:
     title: Status
     pending: Pending

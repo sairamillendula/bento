@@ -44,6 +44,8 @@ class User < ActiveRecord::Base
   validates_length_of :password, minimum: 6, if: :password
   validates_confirmation_of :password, if: :password
 
+  # INSTANCE METHODS
+  # ==================================================
   def admin?
    admin == true  
   end

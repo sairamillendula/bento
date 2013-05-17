@@ -28,11 +28,26 @@ class Admin::OrdersController < Admin::BaseController
 
   def mark_as_shipped
     @order = Order.find(params[:id])
-    @order.ship
+    @order.ship(current_user)
 
     respond_to do |format|
       if @order.errors.blank?
         format.html { redirect_to admin_order_url(@order), notice: 'Order shipped.' }
+        format.js
+      else
+        format.html { render action: "index", notice: 'An error occured. Please try again.' }
+        format.js
+      end
+    end
+  end
+
+  def cancel
+    @order = Order.find(params[:id])
+    @order.cancel(current_user)
+
+    respond_to do |format|
+      if @order.errors.blank?
+        format.html { redirect_to admin_order_url(@order), notice: 'Order cancelled.' }
         format.js
       else
         format.html { render action: "index", notice: 'An error occured. Please try again.' }
