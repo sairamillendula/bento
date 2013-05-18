@@ -105,7 +105,7 @@ en:
     title: Coupons
     new: New Coupon
     edit: Edit Coupon
-    sales_count: Sales count
+    orders_count: Orders count
     none: No coupons found
     code: Coupon code
   pages:

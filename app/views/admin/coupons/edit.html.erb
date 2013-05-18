@@ -1,5 +1,5 @@
-<%= page_title("#{t 'delete'}") do %>
-  <%= icon_button_link_to "#{t 'destroy'}", admin_coupon_path(@coupon), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" %>
+<%= page_title("#{t 'coupons.edit'}") do %>
+  <%= icon_button_link_to "#{t 'destroy'}", admin_coupon_path(@coupon), method: :delete, data: {confirm: "#{t 'are_you_sure'}"}, level: 'danger', icon: 'remove', white: true, class: "fr" if @coupon.can_be_deleted? %>
 <% end %>
 
 <%= render 'form' %>

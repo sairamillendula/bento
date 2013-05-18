@@ -14,10 +14,6 @@ class Coupon < ActiveRecord::Base
   	percentage = false
   end
 
-  def to_param
-    code
-  end
-
   def can_be_deleted?
   	orders.empty?
   end
