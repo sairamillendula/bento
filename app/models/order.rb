@@ -28,6 +28,12 @@ class Order < ActiveRecord::Base
 
   ## SCOPES
   scope :opens, where(state: State::OPEN)
+  scope :completed, where(state: State::OPEN) #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
+  scope :by_month, lambda { |month| where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
+  scope :by_day, lambda { |day| where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
+  scope :within_period, lambda {|from, to| where(created_at: (from..to))}
+  scope :from_date, lambda {|from| where("created_at >= ?", from)}
+  scope :to_date, lambda {|to| where("created_at <= ?", to)}
   
   ## ATTRIBUTES
   attr_accessible :stripe_card_token, :state, :shipped_at

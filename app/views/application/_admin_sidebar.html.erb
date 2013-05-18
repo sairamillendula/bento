@@ -25,10 +25,10 @@
   <li class="nav-header"><%= t 'resellers.title' %></li>
   <li><%= tab.resellers "#{t 'resellers.title'}", admin_resellers_path, icon: 'bullhorn' %></li>      
 
-  <li class="nav-header"><%= t 'reports' %></li>
-  <li><%= tab.monthly_sales_report "#{t 'monthly_sales_report'}", monthly_sales_admin_reports_path, icon: 'file' %></li>
-  <li><%= tab.sales_report "#{t 'sales_report'}", sales_admin_reports_path, icon: 'file' %></li>
-  <li><%= tab.orders_report "#{t 'orders_report'}", orders_admin_reports_path, icon: 'file' %></li>
+  <li class="nav-header"><%= t 'reports.title' %></li>
+  <li><%= tab.monthly_sales_report "#{t 'reports.monthly_sales'}", monthly_sales_admin_reports_path, icon: 'file' %></li>
+  <li><%= tab.sales_report "#{t 'reports.sales'}", sales_admin_reports_path, icon: 'file' %></li>
+  <li><%= tab.orders_report "#{t 'reports.orders'}", orders_admin_reports_path, icon: 'file' %></li>
 
   <li class="nav-header"><%= t 'logs' %></li>
   <li><%= tab.audit "#{t 'audit'}", admin_audit_path, icon: 'align-justify' %></li>

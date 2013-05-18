@@ -1,21 +1,19 @@
 <table id="orders" class="table table-striped">
-  <tr id="table-headers">
+  <tr>
     <th><%= sort_link @search, "code", "#" %></th>
-    <th><%= sort_link @search, "completed", "#{t 'statut'}" %></th>
+    <th><%= sort_link @search, "completed", "#{t 'status.title'}" %></th>
     <th><%= sort_link @search, :user_id, "#{t 'client'}" %></th>
-    <th><%= sort_link @search, :created_at, "#{t 'order_date'}" %></th>
+    <th><%= sort_link @search, :created_at, "#{t 'orders.date'}" %></th>
     <th><%= sort_link @search, "price", "#{t 'price'}" %></th>
-    <th></th>
   </tr>
   
   <% @orders.each do |order| %>
     <tr>
-      <td><%= order.code %></td>
-      <td><%= status(order.status) %></td>
-      <td><%= order.client.full_name %> <% if order.gift? %> <i class="icon-gift"></i><% end %></td>
-      <td><%= l order.created_at %></td>
+      <td><%= link_to order.code, admin_order_path(order) %></td>
+      <td><%= status_tag(order.state) %></td>
+      <td><%= order.client.full_name %></td>
+      <td><%= l order.created_at, format: :long %></td>
       <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
-      <td><%= icon_button_link_to "#{t 'view'}", admin_order_path(order), icon: 'file' %></td>
     </tr>
   <% end %>
 </table>

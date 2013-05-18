@@ -194,4 +194,23 @@ table#table-options {
 /* reports */
 #month_selector {
 	text-align: center;
+	font-size: 16px;
+}
+
+#criteria_selection {
+  form {
+  	margin-bottom: 0;
+  }
+}
+
+.report_totals {
+	h2 {
+		font-size: 24px;
+		line-height: 32px;
+		font-weight: normal;
+
+		span {
+			font-weight: bold;
+		}
+	}
 }

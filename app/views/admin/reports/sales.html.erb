@@ -17,21 +17,20 @@
       <% end %>
     </tr>
     <tr>
-      <td><%= t 'total_sales_count' %></td>
+      <td><%= t 'reports.total_sales_count' %></td>
       <% (1..12).each do |month| %>
         <% orders = @months[month] %>
         <td><%= orders.size if orders %></td>
       <% end %>
     </tr>
     <tr>
-      <td><%= t 'total_sales_amount' %></td>
+      <td><%= t 'reports.total_sales_amount' %></td>
       <% (1..12).each do |month| %>
         <% orders = @months[month] %>
         <td><%= number_to_currency(orders.sum(&:total), strip_insignificant_zeros: true) if orders %></td>
       <% end %>
     </tr>
   </table>
-
 <% else %>
   <div class="alert"><%= t 'orders.none' %>.</div>
 <% end %>

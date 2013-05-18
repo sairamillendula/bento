@@ -78,6 +78,7 @@ en:
     none: No orders found
     thank_you: Thank you for your order
     credit_card_provided: Credit card has been provided
+    date: Date
   work_list: Work List
   clients:
     title: Clients
@@ -131,10 +132,14 @@ en:
     calculator: Shipping rates calculator
   stats: Stats
   stocks: Stocks
-  reports: Reports
-  monthly_sales_report: Monthly Sales
-  sales_report: Sales Report
-  orders_report: Orders Report
+  reports:
+    title: Reports
+    monthly_sales: Monthly Sales
+    sales: Sales Report
+    orders: Orders Report
+    total_sales_count: Total sales count
+    total_sales_amount: Total sales amount
+    total_sales_average: Sales average
   logs: Logs
   audit: Audit
   content: Content

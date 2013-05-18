@@ -9,8 +9,9 @@
 
 <% if @orders.present? %>
   <div class="report_totals">
-    <h2><%= t 'total_sales_count' %>: <b><%= @orders.count %></b></h2>
-    <h2><%= t 'total_sales_amount' %>: <b><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></b></h2>
+    <h2><%= t 'reports.total_sales_count' %>: <span><%= @orders.count %></span></h2>
+    <h2><%= t 'reports.total_sales_amount' %>: <span><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></span></h2>
+    <h2><%= t 'reports.total_sales_average' %>: <span><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></span></h2>
   </div>
 
 <% else %>

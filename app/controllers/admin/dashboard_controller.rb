@@ -7,10 +7,10 @@ class Admin::DashboardController < Admin::BaseController
     @weekly_users = @users.weekly.length
     @monthly_users = @users.monthly.length
 
-    #@orders = Order.completed
-    #@today_orders = @orders.by_day(Date.today).length
-    #@weekly_orders = @orders.within_period(Date.today.beginning_of_week, Date.today.end_of_week).length
-    #@monthly_orders = @orders.by_month(Date.today).length
+    @orders = Order.completed
+    @today_orders = @orders.by_day(Date.today).length
+    @weekly_orders = @orders.within_period(Date.today.beginning_of_week, Date.today.end_of_week).length
+    @monthly_orders = @orders.by_month(Date.today).length
   end
 
 end

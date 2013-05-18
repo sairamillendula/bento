@@ -35,7 +35,7 @@ class Admin::ReportsController < Admin::BaseController
       format.csv { 
         content = @orders.to_csv
         content = Iconv.conv('ISO-8859-1','UTF-8', content)
-        send_data content, filename: "ventes.csv", type: 'text/csv; charset=utf-8; header=present'
+        send_data content, filename: "#{orders.title}.csv", type: 'text/csv; charset=utf-8; header=present'
       }
     end
   end
