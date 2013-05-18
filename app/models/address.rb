@@ -31,6 +31,18 @@ class Address < ActiveRecord::Base
     html.join(sep).titleize.html_safe
   end
 
+  def for_display
+    html = []
+    html << address1 if address1.present?
+    r3 = []
+    r3 << city if city.present?
+    r3 << province if province.present?
+    r3 << postal_code if postal_code.present?
+    html << r3.join(', ')
+    html << Country[country].name if country.present?
+    html.join("\n").html_safe
+  end
+
   def render_map
     html = []
     html << address1 if address1.present?

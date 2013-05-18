@@ -2,7 +2,7 @@
   <tr>
     <th><%= t 'item' %></th>
     <th><%= t 'quantity' %></th>
-    <th><%= t 'price' %></th>
+    <th><%= t 'unit_price' %></th>
     <th><%= t 'subtotal' %></th>
   </tr>
   <% @cart.items.each do |item| %>
@@ -18,25 +18,25 @@
     <td><span id="subtotal" data-value="<%= @cart.subtotal %>"><%= number_to_currency @cart.subtotal %></span></td>
   </tr>
   <% if @cart.discount > 0 %>
-  <tr>
+  <tr class="total">
     <td colspan="3"><%= t 'discount' %></td>
     <td><span id="discount" data-value="<%= @cart.discount %>"><%= number_to_currency(-@cart.discount) %></span></td>
   </tr>
   <% end %>
   <% if @cart.tax_amount > 0 %>
-  <tr>
+  <tr class="total">
     <td colspan="3"><%= @cart.tax_name.presence || "#{t 'tax'}" %> (<%= number_to_percentage @cart.tax_rate, precision: 0 %>)</td>
     <td><span id="tax" data-value="<%= @cart.tax_amount %>"><%= number_to_currency @cart.tax_amount %></span></td>
   </tr>
   <% end %>
   <% if @cart.try_with_default(:shipping, 0) > 0 %>
-  <tr>
+  <tr class="total">
     <td colspan="3">Shipping</td>
     <td><span id="shipping" data-value="<%= @cart.shipping %>"><%= number_to_currency @cart.shipping %></span></td>
   </tr>
   <% end %>
-  <tr>
+  <tr class="total">
     <td colspan="3">Total</td>
-    <td><b><span id="total" data-value="<%= @cart.total %>"><%= number_to_currency @cart.total %></span></b></td>
+    <td><span id="total" data-value="<%= @cart.total %>"><%= number_to_currency @cart.total %></span></td>
   </tr>
 </table>

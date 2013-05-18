@@ -44,6 +44,7 @@ en:
   tax: Tax
   shipping: Shipping
   total: Total
+  amount_due: Amount due
   connect: Connect
   your_details: Your details
   payment_info: Payment
@@ -139,6 +140,7 @@ en:
   content: Content
   price: Price
   reduced_price: Reduced price
+  unit_price: Unit price
   on_sale: Sale
   an_email_was_sent_to: An email was sent to
   is_deactivated: is deactivated

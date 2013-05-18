@@ -8,6 +8,14 @@ class Admin::OrdersController < Admin::BaseController
 
   def show
     @order = Order.includes(:client, :audits, :shipping_address, :billing_address).find(params[:id])
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = OrderPdf.new(@order)
+        send_data pdf.render, filename: "#{t 'order'} ##{@order.code}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   def edit

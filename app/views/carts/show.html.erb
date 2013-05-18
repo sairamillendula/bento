@@ -19,12 +19,10 @@
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-          <!-- <td><%#= icon_button_link_to "", cart_line_item_path(item), method: :delete, icon: 'remove', level: 'danger', white: true, size: 'mini' %></td> -->
   	      <td><%= link_to "remove", cart_line_item_path(item), method: :delete %></td>
   	    </tr>
       <% end %>
   	</table>
-    <%#= link_to "#{t 'carts.empty_action'}", cart_path, method: :delete, confirm: "#{t 'are_you_sure'}", class: "btn btn-warning" %>
   	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
     <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
   	<%= link_to "#{t 'checkout'}", checkout_cart_path, class: "btn btn-success" %>
@@ -32,7 +30,7 @@
 
   <div class="well">
     <% if @cart.coupon_applied? %>
-      Coupon code <b><%= @cart.coupon_code %></b> was applied. <%= link_to 'Remove', remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
+      Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to 'Remove', remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
     <% else %>
       <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
         <%= label_tag :coupon_code %>

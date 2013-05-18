@@ -162,6 +162,12 @@ class Order < ActiveRecord::Base
     false
   end
 
+  def coupon_formatted
+    if coupon_code.present?
+      coupon_percentage.present? ? subtotal*coupon_amount/100 : coupon_amount
+    end  
+  end
+
 private
 
   def generate_code

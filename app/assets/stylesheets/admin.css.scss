@@ -376,7 +376,7 @@ body.admin {
 
 	.label {
 		@include border-radius(2px);
-    
+
 		&.state-shipped { background-color: $green; }
 		&.state-cancelled { background-color: $red; }
 	}

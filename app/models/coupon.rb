@@ -1,10 +1,9 @@
 class Coupon < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
-	has_many :orders
+	has_many :orders, foreign_key: "coupon_code", primary_key: :code
 
 	scope :active, where(active: true)
-  #scope :nb_orders, where("orders.coupon_code = ?", :code)
 
   attr_accessible :active, :code, :percentage, :amount
 
@@ -15,12 +14,12 @@ class Coupon < ActiveRecord::Base
   	percentage = false
   end
 
-  def can_be_deleted?
-  	orders.empty?
+  def to_param
+    code
   end
 
-  def nb_orders
-    #Order.find_all_by_coupon_code("#{code}").count
+  def can_be_deleted?
+  	orders.empty?
   end
 
   def to_s

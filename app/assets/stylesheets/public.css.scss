@@ -74,6 +74,14 @@ body.public {
 	  text-transform: uppercase;
 	}
 
+	.table tr.total {
+		font-weight: bold;
+
+		td:first-of-type {
+			text-align: right;
+		}
+	}
+
 	.table thead th {
 	  vertical-align: bottom;
 	}
