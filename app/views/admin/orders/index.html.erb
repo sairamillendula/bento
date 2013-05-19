@@ -1,22 +1,27 @@
 <%= page_title("#{t 'orders.title'}") %>
 
 <% if @orders.present? %>
-  <table id="orders" class="table table-striped">
-	  <tr id="table-headers">
-	    <th><%= sortable "code", "#" %></th>
-	    <th><%= sortable "completed", "#{t 'status.title'}" %></th>
-	    <th><%= sortable "client.full_name", "#{t 'client'}" %></th>
-	    <th><%= sortable "created_at", "Date" %></th>
-	    <th><%= sortable "total", "#{t 'total'}" %></th>
-	    <th></th>
-	  </tr>
-	  
-	  <% @orders.each do |order| %>
-	    <%= render order %>
-	  <% end %>
-	</table>
+  <%= form_tag print_admin_orders_path, method: :put do %>
+    <div class="well well-small"><%= submit_tag "Print invoices", class: "btn btn-inverse" %></div>
 
-  <%= paginate @orders %>
+	  <table id="orders" class="table table-striped">
+		  <tr id="table-headers">
+		  	<th></th>
+		    <th><%= sortable "code", "#" %></th>
+		    <th><%= sortable "completed", "#{t 'status.title'}" %></th>
+		    <th><%= sortable "client.full_name", "#{t 'client'}" %></th>
+		    <th><%= sortable "created_at", "Date" %></th>
+		    <th><%= sortable "total", "#{t 'total'}" %></th>
+		    <th></th>
+		  </tr>
+		  
+		  <% @orders.each do |order| %>
+		    <%= render order %>
+		  <% end %>
+		</table>
+
+	  <%= paginate @orders %>
+	<% end %>
 <% else %>
   <div class="alert"><%= t 'orders.none' %>.</div>
 <% end %>

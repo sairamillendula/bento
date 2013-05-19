@@ -2,7 +2,7 @@
 
 <% if @audit_trails.any? %>
   <table id="logs" class="table table-striped">
-    <tr id="table-headers">
+    <tr>
       <th style="width:80px;"><%= sortable "success", "#{t 'status.title'}" %></th>
       <th>Message</th>
       <th><%= sortable "created_at", "Date" %></th>

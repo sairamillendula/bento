@@ -376,7 +376,8 @@ body.admin {
 
 	.label {
 		@include border-radius(2px);
-
+    
+    &.state-pending { background-color: #ce8f22; }
 		&.state-shipped { background-color: $green; }
 		&.state-cancelled { background-color: $red; }
 	}

@@ -3,8 +3,8 @@
 <% end %>
 
 <% if @clients.present? %>
-  <table id="packages" class="table table-striped">
-    <tr id="table-headers">
+  <table class="table table-striped">
+    <tr>
       <th><%= sortable "full_name", "#{t 'client'}" %></th>
       <th><%= sortable "email" %></th>
       <th><%= "#{t 'orders.title'}" %></th>

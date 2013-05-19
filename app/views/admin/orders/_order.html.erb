@@ -1,4 +1,5 @@
 <%= content_tag_for :tr, order do %>
+  <td><%= check_box_tag "order_ids[]", order.id %></td>
   <td><%= link_to order.code, admin_order_path(order) %></td>
   <td><%= status_tag(order.state, class: "state-#{order.state}") %></td>
   <td><%= order.client.full_name %></td>

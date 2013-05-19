@@ -64,6 +64,11 @@ class Admin::OrdersController < Admin::BaseController
     end
   end
 
+  def print
+    # find by id: params[:order_ids]
+    # send to pdf
+  end
+
 private
 
   def sort_direction
