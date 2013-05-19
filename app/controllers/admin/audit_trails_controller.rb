@@ -3,7 +3,7 @@ class Admin::AuditTrailsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
 
   def index
-    @audit_trails = AuditTrail.order(sort_column + " " + sort_direction).page(params[:page]).per(30)
+    @audit_trails = AuditTrail.includes(:user).order(sort_column + " " + sort_direction).page(params[:page]).per(30)
   end
 
 private

@@ -3,7 +3,7 @@
 <% if @audit_trails.any? %>
   <table id="logs" class="table table-striped">
     <tr id="table-headers">
-      <th style="width:80px;"><%= sortable "success", "#{t 'statut'}" %></th>
+      <th style="width:80px;"><%= sortable "success", "#{t 'status.title'}" %></th>
       <th>Message</th>
       <th><%= sortable "created_at", "Date" %></th>
     </tr>
@@ -11,7 +11,7 @@
     <% @audit_trails.each do |audit_trail| %>
       <tr>
         <td><%= status_tag(audit_trail.success? ? "success" : "error", level: "#{audit_trail.success? ? 'success' : 'important'}") %></td>
-        <td><%= "#{audit_trail.auditable_type} ##{audit_trail.auditable_id}" %> - <%= audit_trail.message %></td>
+        <td><%= "#{audit_trail.auditable_type} ##{audit_trail.auditable_id}" %> - <%= audit_trail.message %> <%= "(#{audit_trail.user.first_name})" if audit_trail.user.present? %></td>
         <td><%= l audit_trail.created_at, format: :long %></td>
       </tr>
     <% end %>

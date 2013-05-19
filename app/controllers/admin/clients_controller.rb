@@ -1,22 +1,25 @@
 class Admin::ClientsController < Admin::BaseController
+  require 'iconv'
   set_tab :clients
   helper_method :sort_column, :sort_direction
 
   def index
-    @clients = User.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @clients }
-    end
+    @clients = User.includes(:orders).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
   end
 
   def show
     @client = User.includes(:orders).find(params[:id])
+  end
+
+  def export
+    @clients = User.order('created_at DESC')
 
     respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @client }
+      format.csv { 
+        content = @clients.to_csv
+        content = Iconv.conv('ISO-8859-1','UTF-8', content)
+        send_data content, filename: "#{t 'clients.title'}.csv", type: 'text/csv; charset=utf-8; header=present'
+      }
     end
   end
 

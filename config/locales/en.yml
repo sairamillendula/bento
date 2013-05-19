@@ -20,6 +20,7 @@ en:
   remove: Remove
   view: View
   print: Print
+  export: Export
   or: or
   by: by
   from: From
@@ -200,6 +201,9 @@ en:
   shipped: Shipped
   cancelled: Cancelled
   payment_received_with_card_ending: Payment received with card ending
+  today: Today
+  month: Month
+  Week: Week
   status:
     title: Status
     pending: Pending

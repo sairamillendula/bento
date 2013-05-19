@@ -58,4 +58,25 @@ class User < ActiveRecord::Base
     "#{full_name} <#{email}>"
   end
 
+  def self.to_csv(options = {})
+    headers = %w{Email FirstName LastName}
+    header_indexes = Hash[headers.map.with_index{|*x| x}]
+
+    CSV.generate(options) do |csv|
+      csv << headers
+      all.each do |client|
+        data = {}
+        data["Email"] = client.email
+        data["FirstName"] = client.first_name
+        data["LastName"] = client.last_name
+
+        row = []
+        header_indexes.each do |field, index|
+          row << data[field] || ''
+        end
+        csv << row
+      end
+    end
+  end
+
 end

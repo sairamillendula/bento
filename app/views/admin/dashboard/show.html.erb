@@ -2,7 +2,7 @@
 
 <% unless Setting.stripe_access_token.present? %>
   <p class="alert">
-    <%= link_to image_tag('connect-button-blue.png', size: "190x33"), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
+    <%= link_to image_tag('connect-button.png', size: "190x33", alt: 'Stripe'), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
     <%= t 'stripe.and_start_accepting_payments' %>
   </p>
 <% end %>
@@ -10,13 +10,13 @@
 <div class="row-fluid stats-row">
   <h3><%= t 'users.title' %></h3>
   <div class="span3">
-    <h4>Aujourd'hui: <b><%= @today_users %></b></h4>
+    <h4><%= t 'today' %>: <b><%= @today_users %></b></h4>
   </div>
   <div class="span3">
-    <h4>Semaine: <b><%= @weekly_users %></b></h4>
+    <h4><%= t 'week' %>: <b><%= @weekly_users %></b></h4>
   </div>
   <div class="span3">
-    <h4>Mois: <b><%= @monthly_users %></b></h4>
+    <h4><%= t 'month' %>: <b><%= @monthly_users %></b></h4>
   </div>
   <div class="span3">
     <h4><%= t 'total' %>: <b><%= @users.length %></b></h4>
@@ -26,15 +26,15 @@
 <div class="row-fluid stats-row">
   <h3><%= t 'orders.title' %></h3>
   <div class="span3">
-    <h4>Aujourd'hui: <b><%= @today_orders %></b></h4>
+    <h4><%= t 'today' %>: <b><%= @today_orders %></b></h4>
   </div>
   <div class="span3">
-    <h4>Semaine: <b><%= @weekly_orders %></b></h4>
+    <h4><%= t 'week' %>: <b><%= @weekly_orders %></b></h4>
   </div>
   <div class="span3">
-    <h4>Mois: <b><%= @monthly_orders %></b></h4>
+    <h4><%= t 'month' %>: <b><%= @monthly_orders %></b></h4>
   </div>
   <div class="span3">
-    <h4>Total: <b><%= @orders.length %></b></h4>
+    <h4><%= t 'total' %>: <b><%= @orders.length %></b></h4>
   </div>
 </div>

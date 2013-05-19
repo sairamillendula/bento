@@ -174,6 +174,35 @@ class Order < ActiveRecord::Base
     end  
   end
 
+  # EXPORT
+  def self.to_csv(options = {})
+    headers = %w{Date Code Client Subtotal TaxName TaxRate ShippingMethod ShippingAmount Total Coupon}
+    header_indexes = Hash[headers.map.with_index{|*x| x}]
+
+    CSV.generate(options) do |csv|
+      csv << headers
+      all.each do |order|
+        data = {}
+        data["Date"] = I18n.l(order.created_at.to_date, format: :default)
+        data["Code"] = order.code
+        data["Client"] = order.client.full_name
+        data["Subtotal"] = order.subtotal
+        data["TaxName"] = order.tax_name
+        data["TaxRate"] = order.tax_rate
+        data["ShippingMethod"] = order.shipping_method
+        data["ShippingAmount"] = order.shipping_price
+        data["Total"] = order.total
+        data["Coupon"] = order.coupon_code
+
+        row = []
+        header_indexes.each do |field, index|
+          row << data[field] || ''
+        end
+        csv << row
+      end
+    end
+  end
+
 private
 
   def generate_code

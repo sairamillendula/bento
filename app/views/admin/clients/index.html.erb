@@ -1,4 +1,6 @@
-<%= page_title("#{t 'clients.title'}") %>
+<%= page_title("#{t 'clients.title'}") do %>
+  <%= icon_button_link_to "#{t 'export'}", export_admin_clients_path(format: :csv), icon: 'download-alt', class: 'fr' %>
+<% end %>
 
 <% if @clients.present? %>
   <table id="packages" class="table table-striped">
@@ -7,16 +9,14 @@
       <th><%= sortable "email" %></th>
       <th><%= "#{t 'orders.title'}" %></th>
       <th><%= sortable "created_at", "#{t 'users.member_since'}" %></th>
-      <th></th>
     </tr>
     
     <% @clients.each do |client| %>
       <tr>
         <td><%= link_to client.full_name, admin_client_path(client) %></td>
         <td><%= client.email %></td>
-        <td><%#= pluralize(client.orders.count, "#{t 'order'}") %></td>
+        <td><%= pluralize(client.orders.count, "#{(t 'order').downcase}") %></td>
         <td><%= distance_of_time_in_words_to_now(client.created_at) %></td>
-        <td><%= icon_button_link_to "#{t 'view'}", admin_client_path(client), icon: 'file' %></td>
       </tr>
     <% end %>
   </table>
