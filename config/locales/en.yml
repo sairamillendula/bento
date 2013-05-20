@@ -218,12 +218,15 @@ en:
     new: Reset Password
     edit: Choose a new password
     forgot: Forgot Password?
+    instructions_sent: Instructions have been sent to your email
+    password_updated_please_sign_in: Password was successfully updated. Please sign in
   registrations:
     terms_acceptance: By joining you agree with our terms and conditions
     new: Sign up
     edit: Profile
     create_account: Create Account
     update_profile: Update Profile
+    profile_updated: Profile was successfully updated
   social:
     twitter:
       username: Twitter username
@@ -234,10 +237,13 @@ en:
     signed_in: Signed in!
     signed_out: Successfully signed out.
     new: Sign in
+    error: 
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your
     and_start_accepting_payments: and start accepting payments
+    account_connected: Stripe was successfully connected
+    error: There was a problem with your credit card
   taxes:
     title: Taxes
     none: No taxes found. %{add_country_link} to add country first

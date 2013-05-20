@@ -4,30 +4,15 @@ class Admin::ArticlesController < Admin::BaseController
 
   def index
     @articles = Article.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @articles }
-    end
   end
 
   def show
     @article = Article.find(params[:id])
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @article }
-    end
   end
 
   def new
     @article = Article.new
     @article.author_id = current_user.id
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @article }
-    end
   end
 
   def edit
@@ -40,10 +25,8 @@ class Admin::ArticlesController < Admin::BaseController
     respond_to do |format|
       if @article.save
         format.html { redirect_to admin_article_url(@article), notice: 'Article was successfully created.' }
-        format.json { render json: @article, status: :created, location: @article }
       else
         format.html { render action: "new" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -54,10 +37,8 @@ class Admin::ArticlesController < Admin::BaseController
     respond_to do |format|
       if @article.update_attributes(params[:article])
         format.html { redirect_to admin_article_url(@article), notice: 'Article was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end

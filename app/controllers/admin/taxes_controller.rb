@@ -15,10 +15,8 @@ class Admin::TaxesController < Admin::BaseController
     respond_to do |format|
       if @tax.update_attributes(params[:tax])
         format.html { redirect_to admin_taxes_url, notice: 'Tax was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "show" }
-        format.json { render json: @tax.errors, status: :unprocessable_entity }
       end
     end
   end

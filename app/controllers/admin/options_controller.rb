@@ -10,7 +10,7 @@ class Admin::OptionsController < Admin::BaseController
     redirect_to [:edit, :admin, @product]
   end
 
-  private
+private
 
   def load_product
     @product = Product.find(params[:product_id])

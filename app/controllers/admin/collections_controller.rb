@@ -4,11 +4,6 @@ class Admin::CollectionsController < Admin::BaseController
 
   def index
     @collections = Collection.order('created_at DESC')
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @collections }
-    end
   end
 
   def show
@@ -18,20 +13,10 @@ class Admin::CollectionsController < Admin::BaseController
     else
       @products = Product.order('name')
     end
-
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json { render json: @collection }
-    end
   end
 
   def new
     @collection = Collection.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @collection }
-    end
   end
 
   def edit
@@ -44,10 +29,8 @@ class Admin::CollectionsController < Admin::BaseController
     respond_to do |format|
       if @collection.save
         format.html { redirect_to admin_collection_url(@collection), notice: 'Collection was successfully created.' }
-        format.json { render json: @collection, status: :created, location: @collection }
       else
         format.html { render action: "new" }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -58,10 +41,8 @@ class Admin::CollectionsController < Admin::BaseController
     respond_to do |format|
       if @collection.update_attributes(params[:collection])
         format.html { redirect_to admin_collection_url(@collection), notice: 'Collection was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @collection.errors, status: :unprocessable_entity }
       end
     end
   end

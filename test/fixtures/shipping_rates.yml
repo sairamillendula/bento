@@ -1,7 +1,5 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  shipping_country: 
+  shipping_country: shipping_countries(:canada)
   name: MyString
   criteria: MyString
   min_weight: 9.99
@@ -9,7 +7,7 @@ one:
   price: 9.99
 
 two:
-  shipping_country: 
+  shipping_country: shipping_countries(:worldwide)
   name: MyString
   criteria: MyString
   min_weight: 9.99

@@ -5,11 +5,6 @@ class Admin::PagesController < Admin::BaseController
 
   def index
     @pages = Page.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @pages }
-    end
   end
   
   def new
@@ -22,10 +17,8 @@ class Admin::PagesController < Admin::BaseController
     respond_to do |format|
       if @page.save
         format.html { redirect_to admin_page_path(@page) }
-        format.json { render json: @page, status: :created, location: @page }
       else
         format.html { render action: "new" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -49,10 +42,8 @@ class Admin::PagesController < Admin::BaseController
     respond_to do |format|
       if @page.update_attributes(params[:page])
         format.html { redirect_to admin_page_url(@page), notice: 'Page was successfully updated.' }
-        format.json { head :no_content }
       else
         format.html { render action: "edit" }
-        format.json { render json: @page.errors, status: :unprocessable_entity }
       end
     end
   end

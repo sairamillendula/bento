@@ -1,5 +1,6 @@
 class Order < ActiveRecord::Base
-  ## MACHINE STATES
+  # MACHINE STATES
+  # -------------
   module State
     PENDING   = 'pending'
     OPEN      = 'open'
@@ -11,7 +12,8 @@ class Order < ActiveRecord::Base
     end
   end
   
-  ## ASSOCIATIONS
+  # ASSOCIATIONS
+  # -------------
   belongs_to :client, :class_name => "User"
   accepts_nested_attributes_for :client
 
@@ -26,7 +28,8 @@ class Order < ActiveRecord::Base
   belongs_to :coupon, :foreign_key => "coupon_code"
   has_many :audits, :class_name => "AuditTrail", as: :auditable
 
-  ## SCOPES
+  # SCOPES
+  # -------------
   scope :opens, where(state: State::OPEN)
   scope :completed, where(state: State::OPEN) #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
   scope :by_month, lambda { |month| where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
@@ -35,14 +38,17 @@ class Order < ActiveRecord::Base
   scope :from_date, lambda {|from| where("created_at >= ?", from)}
   scope :to_date, lambda {|to| where("created_at <= ?", to)}
   
-  ## ATTRIBUTES
+  # ATTRIBUTES
+  # -------------
   attr_accessible :stripe_card_token, :state, :shipped_at
   
-  ## CALLBACKS
+  # CALLBACKS
+  # -------------
   before_create :generate_code
   after_create :update_stocks
   
-  ## INSTANCE METHODS
+  # INSTANCE METHODS
+  # -------------
   def to_param
     code
   end
@@ -164,7 +170,7 @@ class Order < ActiveRecord::Base
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
-    errors.add :base, "There was a problem with your credit card."
+    errors.add :base, "#{t 'stripe.error'}."
     false
   end
 

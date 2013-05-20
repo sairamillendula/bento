@@ -6,7 +6,6 @@ class Admin::ProductReviewsController < Admin::BaseController
   end
   
   def show
-    
   end
 
   def approve

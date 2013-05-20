@@ -11,7 +11,7 @@ class LineItemsController < ApplicationController
 		
 		respond_to do |format|
 			if @line_item.save
-        format.html { redirect_to cart_path, notice: 'Product successfully added to cart.' }
+        format.html { redirect_to cart_path }
         format.js
       else
         format.html { render action: "new" }
@@ -20,8 +20,7 @@ class LineItemsController < ApplicationController
     end
 	end
 
-	def update
-		
+	def update	
 	end
 
 	def destroy

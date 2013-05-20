@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
 
     unless @shipping_country
-      flash.now.alert = "Sorry, your order cannot complete. We don't ship to #{Country[@cart.shipping_address.country].name}"
+      flash.now.alert = "#{t 'carts.no_shipping_in_country'} #{Country[@cart.shipping_address.country].name}"
     end
 	end
 

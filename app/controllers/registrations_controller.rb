@@ -40,7 +40,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to profile_url, notice: 'Profile was successfully updated.' }
+        format.html { redirect_to profile_url, notice: "#{t 'registrations.profile_updated'}." }
       else
         format.html { render action: "edit" }
       end

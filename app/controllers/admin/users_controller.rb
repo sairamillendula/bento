@@ -7,11 +7,6 @@ class Admin::UsersController < Admin::BaseController
   
   def new
     @user = User.new(params[:user], as: :manager)
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.js
-    end
   end
 
   def create
@@ -25,10 +20,8 @@ class Admin::UsersController < Admin::BaseController
       if @user.save
         AdminMailer.new_admin_user(@user, random_password).deliver
         format.html { redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_created', default: 'is created'}. #{t 'an_email_was_sent_to', default: 'An email was sent to'} #{@user.email}." }
-        format.js
       else
         format.html { render action: "new" }
-        format.js
       end
     end
   end

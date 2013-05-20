@@ -19,7 +19,7 @@ class Admin::StocksController < Admin::BaseController
       return redirect_to [:admin, :stocks], alert: "Failed to update stocks. Please check input."
     end
     
-    return redirect_to [:admin, :stocks], notice: "Stocks successfully updated."
+    return redirect_to [:admin, :stocks], notice: "Stocks were successfully updated."
   end
 
 end

@@ -24,7 +24,6 @@ class User < ActiveRecord::Base
   scope :weekly, where(created_at: Time.now.beginning_of_week..Time.now.end_of_week)
   scope :monthly, where(created_at: Time.now.beginning_of_month..Time.now.end_of_month)
 
-
   # ATTRIBUTES
   # ==================================================
   attr_accessible :first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,

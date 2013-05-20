@@ -1,9 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
-
 one:
-  shipping_country: 
-  rate: 9.99
+  shipping_country: shipping_countries(:canada) 
+  rate: 5
 
 two:
-  shipping_country: 
+  shipping_country: shipping_countries(:worldwide)
   rate: 9.99

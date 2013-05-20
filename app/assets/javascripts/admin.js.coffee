@@ -27,14 +27,6 @@ jQuery ->
     prePopulate: $('#product_cross_sell_tokens').data('load')
   )
 
-  # for reference only -- not used
-  # toggle admin sale price visibility
-  $("#product_on_sale_true").click ->
-    $("#product_reduced_price_field").show()
-
-  $("#product_on_sale_false").click ->
-    $("#product_reduced_price_field").hide()
-
   window.NestedFormEvents.removeFields = (e) ->
     $link = $(e.currentTarget)
     assoc = $link.data('association')

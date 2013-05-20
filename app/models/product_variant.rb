@@ -1,4 +1,6 @@
 class ProductVariant < ActiveRecord::Base
+  # ASSOCIATIONS
+  # -------------
   belongs_to :product
 
   has_many :pictures, as: :picturable, dependent: :destroy
@@ -7,13 +9,20 @@ class ProductVariant < ActiveRecord::Base
   has_many :stocks
   has_many :line_items, as: :buyable
   has_many :orders, through: :line_items, uniq: true
-
+  
+  # SCOPES
+  # -------------
   scope :in_stocks, where('in_stock > ?', 0)
   scope :active, where(active: true)
-
+  
+  # ATTRIBUTES
+  # -------------
   attr_accessor :selected
   attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3, :selected, :options
-
+  store :options, accessors: [:option1, :option2, :option3]
+  
+  # VALIDATIONS
+  # -------------
   validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "'#{YAML.load(attributes[:value]).values.join(' / ')}' is duplicated"} }
   validates :price, numericality: {greater_than_or_equal_to: 0.0, allow_blank: true}
   validate :validate_options_presence
@@ -27,9 +36,9 @@ class ProductVariant < ActiveRecord::Base
     end
     return variant.can_be_deleted?
   }
-
-  store :options, accessors: [:option1, :option2, :option3]
   
+  # INSTANCE METHODS
+  # -------------  
   def current_price
   	price.present? ? price : product.price
   end

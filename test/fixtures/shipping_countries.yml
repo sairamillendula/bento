@@ -1,7 +1,8 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+france:
+  country: FR
 
-one:
-  country: MyString
+worldwide:
+  country: Worldwide
 
-two:
-  country: MyString
+canada:
+  country: CA
