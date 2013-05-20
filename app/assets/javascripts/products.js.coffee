@@ -144,7 +144,6 @@ class EditProductForm
   constructor: ->
 
   setup: ->
-    console.log 'setup'
     window.nestedFormEvents.insertFields = (content, assoc, link) =>
       if assoc == 'variants'
         return $('#table-variants tbody').append(content)
