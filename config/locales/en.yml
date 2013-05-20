@@ -98,6 +98,7 @@ en:
     edit_options: Edit options
     related: Related Products
     cross_sell: Cross-Sell Products
+    cannot_be_deleted: Product cannot be deleted because of existing orders associated. Mark it as private to hide from catalogue
   reviews:
     title: Product reviews
     none: No product reviews found

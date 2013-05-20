@@ -57,7 +57,7 @@ class Admin::ProductsController < Admin::BaseController
       end
     else
       respond_to do |format|
-        format.html { redirect_to admin_product_url(@product), alert: 'Product cannot be deleted because of existing orders associated.' }
+        format.html { redirect_to admin_product_url(@product), alert: "#{t 'products.cannot_be_deleted'}." }
       end
     end
   end
