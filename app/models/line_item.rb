@@ -16,7 +16,11 @@ class LineItem < ActiveRecord::Base
   end
 
   def is_variant?
-    buyable_type == 'Variant'
+    buyable_type == 'ProductVariant'
+  end
+
+  def name_for_display
+    is_variant? ? "#{buyable.product.name} (#{buyable.name})" : "#{buyable.product.name}"
   end
 
 private

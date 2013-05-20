@@ -8,7 +8,7 @@
 
   <% @order.items.each do |item| %>
     <tr>
-    	<td><%= item.buyable.name %> <% if item.is_variant? %>(<b><%= item.buyable.name %></b>)<% end %></td>
+    	<td><%= item.name_for_display %></td>
     	<td><%= number_to_currency(item.price) %></td>
       <td><%= item.quantity %></td>
       <td><%= number_to_currency(item.subtotal) %></td>
