@@ -18,7 +18,7 @@ class ShippingCountry < ActiveRecord::Base
 private
 
   def create_default_shipping_rate
-    rates.create!(name: 'International Shipping', criteria: 'weight-based', min_criteria: 0, max_criteria: 100, price: 25.0)
+    rates.create!(name: 'International Shipping', criteria: 'price-based', min_criteria: 0, price: 25.0)
 
     country_tax = create_tax!
 

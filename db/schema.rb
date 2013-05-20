@@ -314,12 +314,12 @@ ActiveRecord::Schema.define(:version => 20130501044513) do
   create_table "shipping_rates", :force => true do |t|
     t.integer  "shipping_country_id"
     t.string   "name"
-    t.string   "criteria"
+    t.string   "criteria",                                           :default => "price-based"
     t.decimal  "min_criteria",        :precision => 6,  :scale => 2
     t.decimal  "max_criteria",        :precision => 6,  :scale => 2
     t.decimal  "price",               :precision => 11, :scale => 2
-    t.datetime "created_at",                                         :null => false
-    t.datetime "updated_at",                                         :null => false
+    t.datetime "created_at",                                                                    :null => false
+    t.datetime "updated_at",                                                                    :null => false
   end
 
   add_index "shipping_rates", ["shipping_country_id"], :name => "index_shipping_rates_on_shipping_country_id"
