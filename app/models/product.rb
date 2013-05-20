@@ -104,7 +104,8 @@ class Product < ActiveRecord::Base
   end
 
   def can_be_deleted?
-  	!orders.any?
+    return false if (variants && variants.select{|x| !x.can_be_deleted?}.any?)
+  	!(orders_count > 0)
   end
 
   def generate_variants

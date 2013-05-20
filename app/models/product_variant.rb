@@ -48,7 +48,7 @@ class ProductVariant < ActiveRecord::Base
   end
   
   def can_be_deleted?
-    !orders.any?
+    !(orders_count > 0)
   end
 
   def name(html=false)
