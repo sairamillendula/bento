@@ -1,4 +1,4 @@
-jQuery ->
+Util.onReady ->
   $("#q_reset").click ->
     $(".form-search input, .form-search select").val('')
   

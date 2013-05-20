@@ -24,6 +24,7 @@
 //= require jquery-fileupload
 //= require bootbox
 //= require accounting
+//= require util
 //= require_tree .
 
 $(function () {
