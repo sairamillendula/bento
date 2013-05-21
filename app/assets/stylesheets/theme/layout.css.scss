@@ -1,0 +1,369 @@
+/* Variables */
+$green: #27ae60;
+$green-light: #2ecc71;
+$red: #ec565a;
+
+body.public {
+	/* layout */
+	padding-top: 40px;
+  padding-bottom: 40px;
+  font-family: 'Neuton', sans-serif;
+  color: #666666;
+  line-height: 1.5;
+  font-size: 14px;
+
+  #main-container {
+  	max-width: 980px;
+  }
+
+	#topbar {
+		margin-bottom: 30px;
+		border-bottom: 1px solid #f1f1f1;
+
+		#user-info {
+			padding-bottom: 15px;
+			font-style: italic;
+			font-weight: 300;
+			font-size: 15px;
+	  }
+	}
+	
+	#navbar {
+		//margin-bottom: 30px;
+		border-bottom: 1px solid #f1f1f1;
+
+		#logo {
+			font-family: 'BelloProRegular';
+			font-size: 56px;
+			line-height: 56px;
+			color: $red;
+			text-shadow: 0px 2px 2px rgba(0,0,0,0.45);
+			margin-top: 0;
+			margin-bottom: 30px;
+			width: 250px;
+			float: left;
+
+			a:hover {
+				color: $red;
+			}
+		}
+
+		ul {
+			list-style-type: none;
+			float: right;
+			margin: 0;
+			padding: 0;
+			text-transform: uppercase;
+			line-height: 56px;
+
+			li {
+				display: inline;
+				padding: 5px 10px;
+				letter-spacing: 2px;
+				line-height: 56px;
+        outline: none;
+        font-family: 'News Cycle', sans-serif;
+
+        &:last-child {
+        	padding-right: 0;
+        }
+
+        a {
+        	color: #333;        
+        }
+			}
+		}
+	}
+
+	/* links */
+  a {
+  	color: $red;
+  	text-decoration: none;
+  }
+  a:hover, a:focus, a:visited:hover { 
+  	color: #333;
+  }
+  a:visited {
+  	color: $red;
+  	text-decoration: none;
+  }
+
+  /* key components */
+  .page-title {
+  	text-align: center;
+  	margin-bottom: 40px;
+
+  	h1 {
+  		color: #333;
+      border-bottom: 1px solid #f1f1f1;
+      margin: 0;
+      line-height: 1.3;
+      -webkit-font-smoothing: antialiased;
+      font-size: 32px;
+      font-weight: 300;
+      padding: 18px 0 16px;
+  	}
+  }
+
+  .page-section {
+    border-top: 1px solid #d2d2d2;
+    text-align: center;
+  	margin-bottom: 40px;
+
+    h1 {
+    	font-family: 'News Cycle', sans-serif;
+    	font-size: 18px;
+    	font-weight: 300;
+    	color: #333333;
+    	border-bottom: 1px solid #f1f1f1;
+    	//margin: 0;
+    	line-height: 1.3;
+    	-webkit-font-smoothing: antialiased;
+    	text-transform: uppercase;
+    	padding: 20px 0;
+    	letter-spacing: 1px;
+    }
+  }
+
+  .accent-text {
+    font-family: 'News Cycle', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+	/* buttons */
+	a.btn, .btn {
+		display: inline-block;
+		zoom: 1;
+		background-color: $red;
+		color: #ffffff;
+		font-weight: 500;
+		@include border-radius(4px);
+		border: 0;
+		outline: 0;
+		padding: 0.750em 0.875em;
+		font-size: 0.813em;
+		-webkit-font-smoothing: antialiased;
+		text-transform: uppercase;
+		letter-spacing: 1px;
+
+		&:hover {
+			background-color: #333;
+			color: #ffffff;
+		}
+
+	  &.btn-add-to-cart	{
+      background: $green;
+      width: 100%;
+      border: none;
+      padding: 8px 14px;
+      color: #ffffff;
+
+      &:hover {
+      	background: $green-light;
+      }
+	  }
+	}
+  
+  /* tables */
+  table {
+    max-width: 100%;
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+	}
+
+	.table {
+	  width: 100%;
+	  margin-bottom: 20px;
+	}
+
+	.table th,
+	.table td {
+	  padding: 8px;
+	  line-height: 20px;
+	  text-align: left;
+	  vertical-align: top;
+	  border-top: 1px solid #dddddd;
+	}
+
+	.table th {
+	  font-weight: bold;
+	  text-transform: uppercase;
+	}
+
+	.table tr.total {
+		font-weight: bold;
+
+		td:first-of-type {
+			text-align: right;
+		}
+	}
+
+	.table thead th {
+	  vertical-align: bottom;
+	}
+
+	.table tbody + tbody {
+	  border-top: 2px solid #dddddd;
+	}
+
+	.table .table {
+	  background-color: #ffffff;
+	}
+
+	.table-striped tbody > tr:nth-child(odd) > td,
+  .table-striped tbody > tr:nth-child(odd) > th {
+    background-color: #f9f9f9;
+  }
+
+  /* alerts */
+  .alert {
+	  padding: 8px 35px 8px 14px;
+	  margin-bottom: 20px;
+	  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	  background-color: #fcf8e3;
+	  border: 1px solid #fbeed5;
+	  @include border-radius(4px);
+	}
+
+	.alert-success {
+	  color: #468847;
+	  background-color: #dff0d8;
+	  border-color: #d6e9c6;
+	}
+
+	.alert-danger,
+	.alert-error {
+	  color: #b94a48;
+	  background-color: #f2dede;
+	  border-color: #eed3d7;
+	}
+
+	.alert-info {
+	  color: #3a87ad;
+	  background-color: #d9edf7;
+	  border-color: #bce8f1;
+	}
+
+	.alert-block {
+	  padding-top: 14px;
+	  padding-bottom: 14px;
+	}
+
+	.alert-block > p,
+	.alert-block > ul {
+	  margin-bottom: 0;
+	}
+
+	.alert-block p + p {
+	  margin-top: 5px;
+	}
+
+	/* status */
+	.label {
+		&.state-pending {
+      // default
+		}
+		&.state-shipped {
+      background-color: #f89406; // warning level
+		}
+		&.state-completed {
+      background-color: #356635; // success level
+		}
+	}
+
+	.label,
+	.badge {
+	  display: inline-block;
+	  padding: 2px 4px;
+	  font-size: 11.844px;
+	  font-weight: bold;
+	  line-height: 14px;
+	  color: #ffffff;
+	  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+	  white-space: nowrap;
+	  vertical-align: baseline;
+	  background-color: #999999;
+	}
+
+	.label {
+		@include border-radius(3px);
+	}
+
+	.badge {
+	  padding-right: 9px;
+	  padding-left: 9px;
+	  @include border-radius(9px);
+	}
+
+	.label:empty,
+	.badge:empty {
+	  display: none;
+	}
+
+	a.label:hover,
+	a.label:focus,
+	a.badge:hover,
+	a.badge:focus {
+	  color: #ffffff;
+	  text-decoration: none;
+	  cursor: pointer;
+	}
+
+	.label-important,
+	.badge-important {
+	  background-color: #b94a48;
+	}
+
+	.label-important[href],
+	.badge-important[href] {
+	  background-color: #953b39;
+	}
+
+	.label-warning,
+	.badge-warning {
+	  background-color: #f89406;
+	}
+
+	.label-warning[href],
+	.badge-warning[href] {
+	  background-color: #c67605;
+	}
+
+	.label-success,
+	.badge-success {
+	  background-color: #468847;
+	}
+
+	.label-success[href],
+	.badge-success[href] {
+	  background-color: #356635;
+	}
+
+	.label-info,
+	.badge-info {
+	  background-color: #3a87ad;
+	}
+
+	.label-info[href],
+	.badge-info[href] {
+	  background-color: #2d6987;
+	}
+
+	.btn .label,
+	.btn .badge {
+	  position: relative;
+	  top: -1px;
+	}
+
+	/* Misc. */
+	.well.address {
+		h4 {
+			margin-top: 0;
+		}
+		p:last-child {
+			margin-bottom: 0;
+		}
+	}
+}

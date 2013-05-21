@@ -44,6 +44,12 @@ module ApplicationHelper
     end
   end
 
+  def page_section(section)
+    content_tag(:div, class: "page-section") do
+      content_tag(:h1, section)
+    end
+  end
+
   def subsection_title(title)
     content_tag(:div, class: "subsection-title") do
       content_tag(:h3, title)

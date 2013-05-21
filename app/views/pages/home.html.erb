@@ -1,20 +1,37 @@
 <%= content_for :body_id do %>homepage<% end %>
 
-<h1>Homepage</h1>
+<p id="site-intro">Subheading. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Subheading
+Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Subheading eget risus.</p>
 
-<p>Subheading. Donec id elit non mi porta gravida at eget metus. Maecenas faucibus mollis interdum. Subheading
-Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras mattis consectetur purus sit amet fermentum. Subheading. Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+<div id="homeCarousel" class="carousel slide">
+  <ol class="carousel-indicators">
+    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#homeCarousel" data-slide-to="1"></li>
+    <li data-target="#homeCarousel" data-slide-to="2"></li>
+  </ol>
+  <!-- Carousel items -->
+  <div class="carousel-inner">
+    <div class="active item"><%= image_tag "slides/slide1.jpg", alt: 'slide1' %></div>
+    <div class="item"><%= image_tag "slides/slide2.jpg", alt: 'slide2' %></div>
+    <div class="item"><%= image_tag "slides/slide3.jpg", alt: 'slide3' %></div>
+  </div>
+  <!-- Carousel nav -->
+  <a class="carousel-control left" href="#homeCarousel" data-slide="prev">&lsaquo;</a>
+  <a class="carousel-control right" href="#homeCarousel" data-slide="next">&rsaquo;</a>
+</div>
 
-<h3>Our Catalogue</h3>
+<%= page_section("#{t 'products.featured'}") %>
 <div class="row-fluid">
 	<ul id="products">
-	  <% @products.each do |product| %>
-	    <li class="span3" style="margin-bottom:20px;">
-	    	<div class="thumbnail">
-	        <img data-src="holder.js/300x200" alt="" width="360" height="270">
-	  	    <h4 style='height:40px;'><%= link_to product.name, product %> (<%= product.price_display %>)</h4>
-	  	    <%= truncate(markdown(product.description), length: 100).html_safe if product.description.present? %>
-	  	    <%= button_to 'Add to Cart', line_items_path(product_id: product), class: "btn btn-block" %>
+	  <% @products.each_with_index do |product, index| %>
+	    <li class="span3">
+	    	<div class="product-info">
+	        <%= link_to image_tag("samples/p#{index+1}.jpg", alt: ""), product %>
+	        <%= content_tag(:h2, 'On Sale', class: 'accent-text') if product.on_sale? %>
+	  	    <h4><%= link_to product.name, product %></h4>
+	  	    <p class="product-price"><%= product.price_display %>
+	  	    	<%= "- #{number_to_percentage(product.percentage_off, precision:0)} OFF" if product.on_sale? %></p>
+	  	    <%#= button_to 'Add to Cart', line_items_path(product_id: product), class: "btn btn-block" %>
 	  	  </div>
 	    </li>
 	  <% end %>

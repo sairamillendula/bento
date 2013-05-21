@@ -98,6 +98,10 @@ class Product < ActiveRecord::Base
   def price_display
     variants.any? ? "#{I18n.t('from_price')} #{number_to_currency(price)}" : "#{number_to_currency(price)}"
   end
+
+  def percentage_off
+    (1 - (reduced_price/price))*100 if reduced_price
+  end
   
   def in_stock?
     in_stock > 0

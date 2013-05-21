@@ -1,5 +1,7 @@
 <%= page_title(@product.name) do %>
   <%= status_tag("#{t 'private'}") if !@product.visible %>
+  <%= status_tag("#{t 'on_sale'}", level: 'warning') if @product.on_sale? %>
+  <%= status_tag("#{ t 'featured'}", level: 'success') if @product.featured? %>
   <%= icon_button_link_to "#{t 'destroy'}", admin_product_path(@product), method: :delete, data: { confirm: "#{t 'are_you_sure'}" }, level: 'danger', icon: 'remove', white: true, class: "fr" %>
   <%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(@product), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
 <% end %>

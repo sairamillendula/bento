@@ -31,4 +31,8 @@ $(function () {
     $('.date_picker').datepicker({
         format: 'yyyy-mm-dd'
     });
+
+    $('#homeCarousel').carousel({
+		interval: 3500
+	});
 });

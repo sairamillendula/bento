@@ -19,7 +19,16 @@ body.admin {
   padding: 0;
   -webkit-text-size-adjust: none;
   background: image-url('sidebar-bg.gif');
-
+  
+  a {
+	  color: #0088cc;
+	  text-decoration: none;
+	}
+	a:hover,
+	a:focus {
+	  color: #005580;
+	  text-decoration: underline;
+	}
 	a, a:visited {
 		text-decoration: none;
 	}
@@ -110,6 +119,7 @@ body.admin {
         &:hover a, &.active a {
         	color: #ffffff;
         	cursor: pointer;
+        	text-decoration: none;
         }
 
         a {
@@ -145,6 +155,7 @@ body.admin {
 			a.btn {
 				margin-left: 10px;
 				line-height: 30px;
+				text-decoration: none;
 			}
     }
 
@@ -182,6 +193,7 @@ body.admin {
     &:hover {
     	background: darken($gray, 10%);
     	color: $blue;
+    	text-decoration: none;
     }
 	}
 

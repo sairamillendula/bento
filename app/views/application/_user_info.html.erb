@@ -6,8 +6,7 @@
       <% if current_user.reseller? %>| <%= link_to "#{t 'resellers.account'}", reseller_dashboard_path %><% end %>
       | <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
     <% else %>
-      Welcome, please <%= link_to "#{t 'sign_in'}", login_path %> or
-      <%= link_to "#{t 'sign_up'}", signup_path %>
+      <%= link_to "#{t 'sign_in'}", login_path %>
     <% end %>
     <span class="fr"><i class="icon-shopping-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
       <%= pluralize(current_cart.items.length, "#{t 'item'}") %></span>

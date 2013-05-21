@@ -1,5 +1,5 @@
 en:
-  site_name: Bento
+  site_name: Bentooo
   site_slogan: Lunch Box from Japan
   site_description: "Original Bento lunch box from Japan and accessories"
   default_contact: "contact@email.com"
@@ -99,6 +99,7 @@ en:
     related: Related Products
     cross_sell: Cross-Sell Products
     cannot_be_deleted: Product cannot be deleted because of existing orders associated. Mark it as private to hide from catalogue
+    featured: Featured products
   reviews:
     title: Product reviews
     none: No product reviews found
@@ -228,6 +229,7 @@ en:
     create_account: Create Account
     update_profile: Update Profile
     profile_updated: Profile was successfully updated
+    no_account_yet: "No account, yet?"
   social:
     twitter:
       username: Twitter username
@@ -237,8 +239,9 @@ en:
     sign_in: Please sign in first
     signed_in: Signed in!
     signed_out: Successfully signed out.
-    new: Sign in
+    new: Customer login
     error: 
+    submit: Sign in
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your
