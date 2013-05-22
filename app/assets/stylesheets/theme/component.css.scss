@@ -34,7 +34,7 @@
 
 /* 100% width bar for menu */
 .cbp-hsinner {
-	background: #47a3da;
+	background: $red;
 	position: relative;
 	z-index: 100;
 }
@@ -70,7 +70,7 @@
 .no-touch .cbp-hsmenu > li > a:hover,
 .no-touch .cbp-hsmenu > li > a:focus,
 .cbp-hsmenu > li.cbp-hsitem-open > a {
-	color: #02639d;
+	color: #333; /*#02639d*/
 }
 
 /* Add an arrow to the main menu link if it has a submenu (not the only child) */
@@ -105,7 +105,7 @@
 	position: absolute;
 	pointer-events: none;
 	border-color: transparent;
-	border-top-color: #47a3da;
+	border-top-color: $red;
 	border-width: 10px;
 	left: 50%;
 	margin-left: -10px;

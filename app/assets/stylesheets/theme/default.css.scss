@@ -20,7 +20,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 
 body {
     font-family: 'Lato', Calibri, Arial, sans-serif;
-    color: #47a3da;
+    color: $red;
     font-weight: 400;
     min-height: 900px;
 }
@@ -83,7 +83,7 @@ a:hover {
 	margin-left: 4px;
 	position: absolute;
 	color: #fff;
-	background: #47a3da;
+	background: $red;
 }
 
 .container > header nav {
@@ -100,7 +100,7 @@ a:hover {
 	background: #fff;
 	border-radius: 50%;
 	margin: 0 0.1em;
-	border: 4px solid #47a3da;
+	border: 4px solid $red;
 }
 
 .container > header nav a > span {
@@ -109,7 +109,7 @@ a:hover {
 
 .container > header nav a:hover:before {
 	content: attr(data-info);
-	color: #47a3da;
+	color: $red;
 	position: absolute;
 	width: 600%;
 	top: 120%;
@@ -119,7 +119,7 @@ a:hover {
 }
 
 .container > header nav a:hover {
-	background: #47a3da;
+	background: $red;
 }
 
 .bp-icon:after {
@@ -130,7 +130,7 @@ a:hover {
 	font-variant: normal;
 	text-transform: none;
 	text-align: center;
-	color: #47a3da;
+	color: $red;
 	-webkit-font-smoothing: antialiased;
 }
 

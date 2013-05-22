@@ -47,24 +47,24 @@
 }
 
 .cbp-pgcontent {
-    border: 3px solid $red;
-    position: relative;
+  border: 3px solid $red;
+  position: relative;
 }
 
 .cbp-pgrotate {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    display: block;
-    color: transparent;
-    font-size: 0;
-    z-index: 10;
-    border-bottom: 3px solid $red;
-    border-left: 3px solid $red;
-    right: 0px;
-    top: 0px;
-    cursor: pointer;
-    text-align: center;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  display: block;
+  color: transparent;
+  font-size: 0;
+  z-index: 10;
+  border-bottom: 3px solid $red;
+  border-left: 3px solid $red;
+  right: 0px;
+  top: 0px;
+  cursor: pointer;
+  text-align: center;
 }
 
 .cbp-pgrotate:before {
@@ -98,31 +98,31 @@
 
 /* The flip container */
 .cbp-pgitem-flip {
-    -webkit-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    transform-style: preserve-3d;
-    -webkit-transition: -webkit-transform .4s ease-out;
-    -moz-transition: -moz-transform .4s ease-out;
-    transition: transform .4s ease-out;
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-transition: -webkit-transform .4s ease-out;
+  -moz-transition: -moz-transform .4s ease-out;
+  transition: transform .4s ease-out;
 }
 
 /* If you want to rotate on hover instead of click, you could use something like this: 
 .cbp-pgrotate:hover + .cbp-pgitem .cbp-pgitem-flip
 */
 .cbp-pgitem.cbp-pgitem-showback .cbp-pgitem-flip {
-    -webkit-transform: rotateY(180deg);
-    -moz-transform: rotateY(180deg);
-    transform: rotateY(180deg);
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  transform: rotateY(180deg);
 }
 
 .cbp-pgitem-flip img {
-    display: block;
-    margin: 0 auto;
-    max-width: 100%;
-    max-height: 100%;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
-    backface-visibility: hidden;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+  max-height: 100%;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 .cbp-pgitem img:first-child {
@@ -163,21 +163,21 @@
 }
 
 .cbp-pgoptions > li {
-    width: 25%;
-    height: 100%;
-    float: left;
-    position: relative;
-    display: block;
-    cursor: pointer;
-    color: transparent;
-    font-size: 0;
-    border-left: 3px solid $red;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+  width: 25%;
+  height: 100%;
+  float: left;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  color: transparent;
+  font-size: 0;
+  border-left: 3px solid $red;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .cbp-pgoptions > li:first-child {
@@ -185,37 +185,37 @@
 } 
 
 .no-touch .cbp-pgoptions li {
-    color: $red;
+  color: $red;
 }
 
 .no-touch .cbp-pgoptions li:hover,
 .cbp-pgoptions li.cbp-pgoption-active {
-    background: $red;
+  background: $red;
 }
 
 .cbp-pgoptions li:before,
 .cbp-pgoptions li > span {
-    font-size: 22px;
-    line-height: 60px;
-    text-indent: 0;
-    text-align: center;
-    color: $red;
+  font-size: 22px;
+  line-height: 60px;
+  text-indent: 0;
+  text-align: center;
+  color: $red;
 }
 
 .no-touch .cbp-pgoptions li:hover:before,
 .no-touch .cbp-pgoptions li:hover > span,
 .cbp-pgoptions li.cbp-pgoption-active > span  {
-    color: #fff;
+  color: #fff;
 }
 
 .cbp-pgoptions li > span {
-    display: block;
+  display: block;
 }
 
 .cbp-pgoptions li:before {
-    position: absolute;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 /* Icons */
@@ -223,14 +223,14 @@
 .cbp-pgoptcart, 
 .cbp-pgoptfav,
 .cbp-pgrotate {
-    font-family: 'pgicons';
-    speak: none;
-    font-style: normal;
-    font-weight: normal;
-    font-variant: normal;
-    text-transform: none;
-    line-height: 1;
-    -webkit-font-smoothing: antialiased;
+  font-family: 'pgicons';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
 }
 
 .cbp-pgoptcompare:before {
@@ -238,24 +238,24 @@
 }
 
 .cbp-pgoptfav:before {
-    content: "\e003";
+  content: "\e003";
 }
 
 .cbp-pgoptfav.cbp-pgoptfav-selected:before {
-    content: "\e002";
-    color: #ee73b8;
+  content: "\e002";
+  color: #ee73b8;
 }
 
 .cbp-pgoptfav.cbp-pgoptfav-selected:hover:before {
-    color: #f9c0e0;
+  color: #f9c0e0;
 }
 
 .cbp-pgoptcart:before {
-    content: "\e000";
+  content: "\e000";
 }
 
 .cbp-pgrotate:before {
-    content: "\e004";
+  content: "\e004";
 }
 
 /* Tooltips */
@@ -280,130 +280,130 @@
 
 .cbp-pgoptions li:hover .cbp-pgopttooltip,
 .cbp-pgoptions li.cbp-pgoption-active .cbp-pgopttooltip {
-    visibility: visible;
-    opacity: 1;
-    -webkit-transition-delay: 0s;
-    -moz-transition-delay: 0s;
-    transition-delay: 0s;
-    bottom: 100%;
-    pointer-events: auto;
+  visibility: visible;
+  opacity: 1;
+  -webkit-transition-delay: 0s;
+  -moz-transition-delay: 0s;
+  transition-delay: 0s;
+  bottom: 100%;
+  pointer-events: auto;
 }
 
 .cbp-pgopttooltip:after,
 .cbp-pgopttooltip:before {
-    top: 100%;
-    border: solid transparent;
-    content: " ";
-    height: 0;
-    width: 0;
-    position: absolute;
-    pointer-events: none;
+  top: 100%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
 }
 
 .cbp-pgopttooltip:after {
-    border-color: transparent;
-    border-top-color: #fff;
-    border-width: 10px;
-    left: 50%;
-    margin-left: -10px;
+  border-color: transparent;
+  border-top-color: #fff;
+  border-width: 10px;
+  left: 50%;
+  margin-left: -10px;
 }
 
 .cbp-pgopttooltip:before {
-    border-color: transparent;
-    border-top-color: $red;
-    border-width: 14px;
-    left: 50%;
-    margin-left: -14px;
+  border-color: transparent;
+  border-top-color: $red;
+  border-width: 14px;
+  left: 50%;
+  margin-left: -14px;
 }
 
 /* Color tooltip */
 .cbp-pgoptcolor .cbp-pgopttooltip {
-    padding: 5px;
+  padding: 5px;
 }
  
 .cbp-pgoptions li.cbp-pgoptcolor > span,
 .cbp-pgoptcolor .cbp-pgopttooltip span {
-    display: block;
-    margin: 12px auto 0;
-    text-indent: -900em;
+  display: block;
+  margin: 12px auto 0;
+  text-indent: -900em;
 }
 
 .cbp-pgoptions li.cbp-pgoptcolor > span {
-    width: 36px;
-    height: 36px;
-    border: 3px solid #fff;
+  width: 36px;
+  height: 36px;
+  border: 3px solid #fff;
 }
 
 .cbp-pgoptcolor .cbp-pgopttooltip span {
-    float: left;
-    margin: 4px;
-    width: 34px;
-    height: 34px;
+  float: left;
+  margin: 4px;
+  width: 34px;
+  height: 34px;
 }
 
 .no-touch .cbp-pgoptcolor .cbp-pgopttooltip span:hover {
-    -webkit-transform: scale(1.1);
-    -moz-transform: scale(1.1);
-    transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -moz-transform: scale(1.1);
+  transform: scale(1.1);
 }
 
 .cbp-pgoptcolor span[data-color="c1"] {
-    background: #72bbe9;
+  background: #72bbe9;
 }
 
 .cbp-pgoptcolor span[data-color="c2"] {
-    background: #e577aa;
+  background: #e577aa;
 }
 
 .cbp-pgoptcolor span[data-color="c3"] {
-    background: #e5b178;
+  background: #e5b178;
 }
 
 .cbp-pgoptcolor span[data-color="c4"] {
-    background: #7abe93;
+  background: #7abe93;
 }
 
 .cbp-pginfo {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .cbp-pginfo:before,
 .cbp-pginfo:after {
-    content: " ";
-    display: table;
+  content: " ";
+  display: table;
 }
 
 .cbp-pginfo:after {
-    clear: both;
+  clear: both;
 }
 
 .cbp-pginfo h3,
 .cbp-pginfo span {
-    float: left;
-    width: 50%;
-    font-size: 1.8em;
-    padding: 10px 5px;
-    margin: 0;
+  float: left;
+  width: 50%;
+  font-size: 1.8em;
+  padding: 10px 5px;
+  margin: 0;
 }
 
 .cbp-pginfo h3 {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .cbp-pginfo span {
-    font-weight: 700;
-    text-align: right;
+  font-weight: 700;
+  text-align: right;
 }
 /* Media Queries */
  
 @media screen and (max-width: 68.125em) {
-    .cbp-pggrid > li {
-        width: 48%;
-    }
+  .cbp-pggrid > li {
+      width: 48%;
+  }
 }
 
 @media screen and (max-width: 46.125em) {
-    .cbp-pggrid > li {
-        width: 100%;
-    }
+  .cbp-pggrid > li {
+      width: 100%;
+  }
 }
