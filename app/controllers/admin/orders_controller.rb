@@ -3,7 +3,15 @@ class Admin::OrdersController < Admin::BaseController
   helper_method :sort_column, :sort_direction
 
   def index
-    @orders = Order.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
+    @orders = Order.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(20)
+
+    respond_to do |format|
+      format.html
+      format.pdf do
+        pdf = OrdersPdf.new(@orders)
+        send_data pdf.render, filename: "#{t 'order'}.pdf", type: "application/pdf", disposition: "inline"
+      end
+    end
   end
 
   def show
@@ -12,7 +20,7 @@ class Admin::OrdersController < Admin::BaseController
     respond_to do |format|
       format.html
       format.pdf do
-        pdf = OrderPdf.new(@order)
+        pdf = OrdersPdf.new([@order])
         send_data pdf.render, filename: "#{t 'order'} ##{@order.code}.pdf", type: "application/pdf", disposition: "inline"
       end
     end
