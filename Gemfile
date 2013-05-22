@@ -7,7 +7,6 @@ gem 'capistrano'
 gem 'sorcery'
 gem 'nested_form'
 gem 'simple_form'
-gem 'country_select'
 gem 'jquery-rails'
 gem 'rails_bootstrap_helper', :git => "https://github.com/hoangnghiem/rails_bootstrap_helper.git"
 gem 'tabs_on_rails', "~> 2.1.1"

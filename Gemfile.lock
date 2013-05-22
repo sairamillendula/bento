@@ -278,7 +278,6 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   compass-rails
   countries!
-  country_select
   exception_notification
   faker (= 1.0.1)
   famfamfam_flags_rails
