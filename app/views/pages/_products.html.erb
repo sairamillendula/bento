@@ -1,0 +1,48 @@
+<div id="cbp-pgcontainer" class="cbp-pgcontainer" style="margin-top:40px;">
+  <ul class="cbp-pggrid">
+  	<%= @products.limit(4).each_with_index do |product, index| %>
+	    <li>
+	      <div class="cbp-pgcontent">
+	        <span class="cbp-pgrotate">Rotate Item</span>
+	        <div class="cbp-pgitem">
+	          <div class="cbp-pgitem-flip">
+	          	<%= image_tag("/assets/samples/#{index+1}_front.png") %>
+	          	<%= image_tag("/assets/samples/#{index+1}_back.png") %>
+	          </div>
+	        </div><!-- /cbp-pgitem -->
+	        <ul class="cbp-pgoptions">
+	          <li class="cbp-pgoptcompare">Compare</li>
+	          <li class="cbp-pgoptfav">Favorite</li>
+	          <li class="cbp-pgoptsize">                                
+	            <span data-size="XL">XL</span>
+	            <div class="cbp-pgopttooltip">
+	              <span data-size="XL">XL</span>
+	              <span data-size="L">L</span>
+	              <span data-size="M">M</span>
+	              <span data-size="S">S</span>
+	            </div>
+	          </li>
+	          <li class="cbp-pgoptcolor">
+	            <span data-color="c1">Blue</span>
+	            <div class="cbp-pgopttooltip">
+	              <span data-color="c1">Blue</span>
+	              <span data-color="c2">Pink</span>
+	              <span data-color="c3">Orange</span>
+	              <span data-color="c4">Green</span>
+	            </div>
+	          </li>
+	          <li class="cbp-pgoptcart"></li>
+	        </ul><!-- cbp-pgoptions -->
+	      </div><!-- cbp-pgcontent -->
+	      <div class="cbp-pginfo">
+	        <h3><%= product.name %></h3>
+	        <span class="cbp-pgprice"><%= product.price_display %></span>
+	      </div>
+	    </li>
+	  <% end %>
+  </ul><!-- /cbp-pggrid -->
+</div><!-- /cbp-pgcontainer -->
+
+<script>
+	var shop = new cbpShop( document.getElementById( 'cbp-pgcontainer' ) ); 
+</script>
