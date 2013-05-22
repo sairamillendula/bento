@@ -27,6 +27,9 @@ Util.onReady ->
     prePopulate: $('#product_cross_sell_tokens').data('load')
   )
 
+  $('.date_picker').datepicker
+    format: 'yyyy-mm-dd'
+
   window.NestedFormEvents.removeFields = (e) ->
     $link = $(e.currentTarget)
     assoc = $link.data('association')

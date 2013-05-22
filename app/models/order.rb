@@ -46,6 +46,10 @@ class Order < ActiveRecord::Base
   # -------------
   before_create :generate_code
   after_create :update_stocks
+
+  ransacker :created_at_casted do |parent|
+    Arel::Nodes::SqlLiteral.new("date(orders.created_at)")
+  end
   
   # INSTANCE METHODS
   # -------------
