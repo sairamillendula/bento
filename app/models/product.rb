@@ -67,7 +67,9 @@ class Product < ActiveRecord::Base
     end
     return product.can_be_deleted?
   }
-
+  
+  # INSTANCE METHODS
+  # -------------
   def to_param
     slug
   end

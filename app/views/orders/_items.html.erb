@@ -8,7 +8,7 @@
 
   <% @order.items.each do |item| %>
     <tr>
-    	<td><%= item.buyable.cart_name %></td>
+    	<td><%= item.buyable.cart_name %> <%= item.is_variant? ? (item.buyable.product.sku.present? ? content_tag(:small, "[SKU: #{item.buyable.product.sku}]") : '') : (item.buyable.sku.present? ? content_tag(:small, "[SKU: #{item.buyable.sku}]") : '') %></td>
     	<td><%= number_to_currency(item.price) %></td>
       <td><%= item.quantity %></td>
       <td><%= number_to_currency(item.subtotal) %></td>
