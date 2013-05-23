@@ -1,6 +1,6 @@
 <div id="cbp-pgcontainer" class="cbp-pgcontainer" style="margin-top:40px;">
   <ul class="cbp-pggrid">
-  	<%= @products.limit(4).each_with_index do |product, index| %>
+  	<% @products.limit(8).each_with_index do |product, index| %>
 	    <li>
 	      <div class="cbp-pgcontent">
 	        <span class="cbp-pgrotate">Rotate Item</span>

@@ -38,7 +38,7 @@
   width: 24%;
   min-width: 335px;
   max-width: 555px;
-  padding: 20px 2% 50px 2%;
+  padding: 20px 2% 40px 2%;
   text-align: left;
 }
 
@@ -365,6 +365,25 @@
 
 .cbp-pginfo {
   padding-top: 10px;
+
+  h3, span {
+    float: left;
+    text-align: center;
+    //width: 50%;
+    font-size: 1.8em;
+    margin: 0;
+  }
+
+  h3 {
+    font-weight: 300;
+    padding: 10px 0;
+  }
+
+  span {
+    font-weight: 700;
+    width: 100%;
+    //text-align: right;
+  }
 }
 
 .cbp-pginfo:before,
@@ -377,23 +396,6 @@
   clear: both;
 }
 
-.cbp-pginfo h3,
-.cbp-pginfo span {
-  float: left;
-  width: 50%;
-  font-size: 1.8em;
-  padding: 10px 5px;
-  margin: 0;
-}
-
-.cbp-pginfo h3 {
-  font-weight: 300;
-}
-
-.cbp-pginfo span {
-  font-weight: 700;
-  text-align: right;
-}
 /* Media Queries */
  
 @media screen and (max-width: 68.125em) {

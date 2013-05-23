@@ -19,22 +19,23 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 .clearfix:after { clear: both; }
 
 body {
-    font-family: 'Lato', Calibri, Arial, sans-serif;
-    color: $red;
-    font-weight: 400;
-    min-height: 900px;
+  font-family: 'Lato', Calibri, Arial, sans-serif;
+  color: $red;
+  font-weight: 400;
+  min-height: 900px;
 }
 
 a {
-	color: #f0f0f0;
+	color: #666666;
 	text-decoration: none;
 }
 
 a:hover {
-	color: #000;
+	color: #333;
 }
 
-.container > header {
+.container > header,
+.container > footer > .inner {
 	width: 90%;
 	max-width: 69em;
 	margin: 0 auto;
@@ -83,7 +84,7 @@ a:hover {
 	margin-left: 4px;
 	position: absolute;
 	color: #fff;
-	background: $red;
+	background: $pink;
 }
 
 .container > header nav {
@@ -100,7 +101,7 @@ a:hover {
 	background: #fff;
 	border-radius: 50%;
 	margin: 0 0.1em;
-	border: 4px solid $red;
+	border: 4px solid $pink;
 }
 
 .container > header nav a > span {
@@ -109,7 +110,7 @@ a:hover {
 
 .container > header nav a:hover:before {
 	content: attr(data-info);
-	color: $red;
+	color: $pink;
 	position: absolute;
 	width: 600%;
 	top: 120%;
@@ -119,7 +120,7 @@ a:hover {
 }
 
 .container > header nav a:hover {
-	background: $red;
+	background: $pink;
 }
 
 .bp-icon:after {
@@ -130,7 +131,7 @@ a:hover {
 	font-variant: normal;
 	text-transform: none;
 	text-align: center;
-	color: $red;
+	color: $pink;
 	-webkit-font-smoothing: antialiased;
 }
 
@@ -163,6 +164,75 @@ a:hover {
 .bp-icon-prev:after {
 	content: "\e004";
 }
+
+/* Custom */
+#footer {
+	position: relative;
+	width: 100%;
+	bottom: 0px;
+	padding: 15px 0;
+	background: $pink;
+
+  .inner {
+	  margin: 0 auto;
+	  overflow: hidden;
+	  position: relative;
+  }
+
+  nav {
+    float: left;
+    width: 600px;
+  }
+
+	ul {
+    float: left;
+    width: 33%;
+    list-style: none;
+    margin: 15px 0 0 0;
+    padding: 0;
+
+    li {
+    	display: block;
+      line-height: 25px;
+      text-align: -webkit-match-parent;
+
+      a {
+      	color: #fff;
+				font-size: 15px;
+				text-decoration: none;
+				white-space: nowrap;
+
+				&:hover {
+					color: $red;
+				}
+      }
+    }
+  }
+
+  .item {
+    float: left;
+    clear: none;
+    margin: 15px 0 0 0;
+
+    span {
+    	font-size: 13px;
+      color: $red;
+    }
+  }
+  .copyright {
+    margin-right: 0px;
+
+    a {
+    	color: $red;
+    	font-size: 13px;
+
+    	&:hover {
+    		color: #fff;
+    	}
+    }
+  }
+}
+/* end */
 
 @media screen and (max-width: 55em) {
 
