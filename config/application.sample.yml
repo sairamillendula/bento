@@ -1,0 +1,7 @@
+development:
+  STRIPE_API_KEY: 
+  STRIPE_PUBLIC_KEY: 
+  STRIPE_CONNECT_CLIENT_ID: 
+  STRIPE_APPLICATION_FEE: 1
+  DEFAULT_EMAIL_SENDER: "app@domain.com"
+  DEFAULT_ADMIN_EMAIL: "admin@domain.com"

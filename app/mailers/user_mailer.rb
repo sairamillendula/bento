@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "#{I18n.t 'default_email_sender'}"
+  default from: ENV['DEFAULT_EMAIL_SENDER']
   layout "email"
 
   def reset_password_email(user)

@@ -1,6 +1,7 @@
 class AdminMailer < ActionMailer::Base
-  default from: "#{I18n.t 'default_email_sender'}"
-  default to: "admin@email.com"
+  default from: ENV['DEFAULT_EMAIL_SENDER']
+  default to: ENV['DEFAULT_ADMIN_EMAIL']
+  layout "email"
   
   def new_admin_user(user, random_password)
   	@user = user
