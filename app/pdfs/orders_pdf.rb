@@ -2,7 +2,6 @@
 
 class OrdersPdf < Prawn::Document
   include ActionView::Helpers::NumberHelper
-  #include ApplicationHelper
 
   PAGE_WIDTH = 752
   FONT_SIZE = 11
@@ -13,7 +12,6 @@ class OrdersPdf < Prawn::Document
 
     default_leading 2
 
-    # page_layout
     layout
   end
 
