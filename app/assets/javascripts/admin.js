@@ -13,11 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
+//= require turbolinks
 //= require bootstrap
-//= require_tree ./site
-
-$(function () {
-    $('#homeCarousel').carousel({
-		interval: 3500
-	});
-});
+//= require bootstrap-datepicker
+//= require nested_form
+//= require jquery.tokeninput
+//= require jquery.tagsinput
+//= require jquery.rateit
+//= require holder
+//= require jquery-fileupload
+//= require bootbox
+//= require accounting
+//= require util
+//= require_tree ./admin

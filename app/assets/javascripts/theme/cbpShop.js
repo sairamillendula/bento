@@ -27,22 +27,21 @@
 			Array.prototype.slice.call( this.products ).forEach( function( el, i ) {
 				var content = el.querySelector( 'div.cbp-pgcontent' ),
 					item = content.querySelector( 'div.cbp-pgitem' ),
-					rotate = content.querySelector( 'span.cbp-pgrotate' );
+					rotate = content.querySelector( 'span.cbp-pgrotate' ),
+					options = content.querySelector( 'ul.cbp-pgoptions' ),
+					size = options.querySelector( 'li.cbp-pgoptsize > span' ),
+					color = options.querySelector( 'li.cbp-pgoptcolor > span' );
 
 				if( self.touch ) {
-
 					rotate.addEventListener( 'touchstart', function() { self._rotateItem( this, item ); } );
-
-					var options = content.querySelector( 'ul.cbp-pgoptions' ),
-						size = options.querySelector( 'li.cbp-pgoptsize > span' ),
-						color = options.querySelector( 'li.cbp-pgoptcolor > span' );
-					
 					size.addEventListener( 'touchstart', function() { self._showItemOptions( this ); } );
 					color.addEventListener( 'touchstart', function() { self._showItemOptions( this ); } );
 				}
 				else {
 					rotate.addEventListener( 'click', function() { self._rotateItem( this, item ); } );
 				}
+				var addToCart = options.querySelector('cbp-pgoptcart');
+				addToCart.addEventListener( 'click', function() { self._addToCart( this ); } );
 			} );
 		},
 		_rotateItem : function( trigger, item ) {
@@ -70,6 +69,9 @@
 		/*
 		other functions..
 		*/
+		_addToCart: function(trigger) {
+			alert('abc');
+		},
 	}
 
 	window.cbpShop = cbpShop;
