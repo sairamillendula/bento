@@ -272,4 +272,6 @@ en:
     welcome:
       subject: Welcome
       intro:
-      action: 
+      action:
+    contact_us: 
+      subject: New message from user   

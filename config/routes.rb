@@ -144,6 +144,7 @@ Bento::Application.routes.draw do
   get "/collection/:slug", to: "collections#show", as: 'collection'
   get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
+  resource :contact, only: [:show, :create]
   
   get "/:slug" => 'pages#show', as: 'page'
   

@@ -13,4 +13,9 @@ class AdminMailer < ActionMailer::Base
   	@user = user
   	mail(subject: "#{I18n.t 'email.new_reseller_request.subject'}")
   end
+
+  def contact_us(contact)
+    @contact = contact
+    mail(from: contact.email, subject: "#{I18n.t 'email.contact_us.subject'}")
+  end
 end
