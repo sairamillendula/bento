@@ -1,32 +1,22 @@
 <footer id="footer">
-	<div class="container">
-		<div class="row-fluid">
-			<div id="ff-left" class="span4">
-				<div id="ff-leftt" class="span12 nomg">
-					<span class="left icons mail"></span>
-					<p>
-					Hello ! <span> <%= image_tag("arrow-pink.png", alt: "Arrow") %></span>
-					<%= link_to("contact@lesbonbecs.com", "mailto:contact@lesbonbecs.com") %></p>
-				</div>
-		  </div>
-
-			<div id="ff-logo" class="span3 nomg center-text"><%= image_tag("logo-footer.png", alt: "Boite à Bonbons") %></div>
-
-			<div id="social" class="span4">
-				<ul>
-					<li class="icons fb"><%= link_to "Facebook", "#{t 'facebook_url'}", target: "_blank" %></li>
-					<li class="icons pin"><%= link_to "Pinterest", "#{t 'pinterest_url'}", target: "_blank" %></li>
-					<li class="icons tw"><%= link_to "Twitter", "#{t 'twitter_url'}", target: "_blank" %></li>
-				</ul>
-			</div>
-	    
-	    <ul>
-				<li><%= link_to "#{t 'faq'}", "/faq" %></li>
-				<li><%= link_to "#{t 'cgv'}", "/cgv" %></li>
-				<li><%= link_to "#{t 'in_the_news'}", "/media" %></li>
-				<li><%= link_to "Blog", blog_path %></li>
+	<div class="inner">
+		<nav>
+			<ul>
+				<li><%= link_to "Facebook", "#{t 'facebook_url'}", target: "_blank" %></li>
+				<li><%= link_to "Pinterest", "#{t 'pinterest_url'}", target: "_blank" %></li>
+				<li><%= link_to "Twitter", "#{t 'twitter_url'}", target: "_blank" %></li>
 			</ul>
-			<p id="made-by"><%= link_to "Une réalisation e-commerce de yafoy", "http://yafoy.com", target: "_blank" %></p>
+			<ul>
+				<li><%= link_to "#{t 'theme.faq'}", "/faq" %></li>
+				<li><%= link_to "#{t 'theme.cgv'}", "/cgv" %></li>
+				<li><%= link_to "#{t 'theme.in_the_news'}", "/media" %></li>
+				<li><%= link_to "#{t 'theme.blog'}", blog_path %></li>
+			</ul>
+		</nav>
+		<div class="items">
+			<div class="item copyright">
+				<%= link_to "Une réalisation e-commerce de yafoy", "http://yafoy.com", target: "_blank" %>
+			</div>
 		</div>
 	</div>
 </footer>
