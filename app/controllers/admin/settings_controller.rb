@@ -1,6 +1,6 @@
 class Admin::SettingsController < Admin::BaseController
   
-  def edit
+  def show
     set_tab :settings
   end
 
@@ -28,6 +28,13 @@ class Admin::SettingsController < Admin::BaseController
     end
 
     redirect_to admin_dashboard_path, notice: 'Settings were successfully saved.'
+  end
+
+  def remove_logo
+    logo = Picture.find_by_id(Setting.logo)
+    logo.destroy if logo
+
+    redirect_to admin_settings_path, notice: 'Settings were successfully saved.'
   end
 
 end

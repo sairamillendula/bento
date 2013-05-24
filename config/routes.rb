@@ -72,8 +72,9 @@ Bento::Application.routes.draw do
       end
     end
 
-    resource :settings, only: [:edit, :update]
-    match "settings" => "settings#edit"
+    resource :settings, only: [:show, :update] do
+      delete :remove_logo
+    end
     
     resource :reports do
       collection do
