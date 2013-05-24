@@ -18,10 +18,22 @@ class ProductVariant < ActiveRecord::Base
   # ATTRIBUTES
   # -------------
   attr_accessor :selected
-  attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :option1, :option2, :option3, :selected, :options
-  # store :options, accessors: [:option1, :option2, :option3]
+  attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :selected, :options
 
   serialize :options, ActiveRecord::Coders::Hstore
+
+  %w[option1 option2 option3].each do |key|
+    attr_accessible key
+    scope "has_#{key}", lambda { |value| where("options @> hstore(?, ?)", key, value) }
+    
+    define_method(key) do
+      options && options[key]
+    end
+  
+    define_method("#{key}=") do |value|
+      self.options = (options || {}).merge(key => value)
+    end
+  end
   
   # VALIDATIONS
   # -------------

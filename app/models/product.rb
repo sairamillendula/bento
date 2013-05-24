@@ -115,31 +115,43 @@ class Product < ActiveRecord::Base
   end
 
   def generate_variants
-    temp = variants.dup unless auto_generate_variants == '1'
-    variants.destroy_all
+    if has_options
+      temp = variants.dup unless auto_generate_variants
+      variants.destroy_all
 
-    if options.size > 0
-      existings = temp ? temp.index_by{|v| v.options.symbolize_keys} : {}
-      result = []
-      result = pushOpt(options[0].values.try(:split, ',') || [], []) if options[0]
-      result = pushOpt(result, options[1].values.try(:split, ',') || []) if options[1]
-      result = pushOpt(result, options[2].values.try(:split, ',') || []) if options[2]
-      result.each do |variant_options|
-        opts = variant_options.each.with_index.inject({}) {|h, (opt, idx)| h[:"option#{idx + 1}"] = opt; h }
-        unless existings[opts]
-          variants.build(
-            options: opts,
-            price: price,
-            in_stock: in_stock
-          )
-        else
-          variants << existings[opts]
+      if options.size > 0
+        existings = temp ? temp.index_by{|v| v.options.symbolize_keys} : {}
+        result = []
+        result = pushOpt(options[0].values.try(:split, ',') || [], []) if options[0]
+        result = pushOpt(result, options[1].values.try(:split, ',') || []) if options[1]
+        result = pushOpt(result, options[2].values.try(:split, ',') || []) if options[2]
+        result.each do |variant_options|
+          opts = variant_options.each.with_index.inject({}) {|h, (opt, idx)| h[:"option#{idx + 1}"] = opt; h }
+          unless existings[opts]
+            variants.build(
+              options: opts,
+              price: price,
+              in_stock: in_stock
+            )
+          else
+            variants << existings[opts]
+          end
         end
       end
+    else
+      options.clear
     end
   end
 
   alias_attribute :cart_name, :name
+
+  def has_options
+    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(@has_options)
+  end
+
+  def auto_generate_variants
+    ActiveRecord::ConnectionAdapters::Column.value_to_boolean(@auto_generate_variants)
+  end
 
 private
 
@@ -149,7 +161,7 @@ private
   end
 
   def clean_up
-    variants.each {|v| v.selected = '1'} if auto_generate_variants == '1'
+    variants.each {|v| v.selected = '1'} if auto_generate_variants
     variants.each {|v| v.mark_for_destruction unless v.selected == '1'}
   end
 
