@@ -6,8 +6,10 @@
 	        <span class="cbp-pgrotate">Rotate Item</span>
 	        <div class="cbp-pgitem">
 	          <div class="cbp-pgitem-flip">
-	          	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "240x200") %>
-	          	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "240x200") %>
+	          	<%= link_to product do %>
+		          	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "240x200") %>
+		          	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "240x200") %>
+		          <% end %>
 	          </div>
 	        </div><!-- /cbp-pgitem -->
 	        <ul class="cbp-pgoptions">
@@ -22,7 +24,7 @@
 	              <span data-color="c4">Green</span>
 	            </div>
 	          </li>
-	          <li class="cbp-pgoptcart"></li>
+	          <li class="cbp-pgoptcart" data-url="<%= line_items_path(product_id: product.id) %>"></li>
 	        </ul><!-- cbp-pgoptions -->
 	      </div><!-- cbp-pgcontent -->
 	      <div class="cbp-pginfo">
@@ -35,5 +37,6 @@
 </div><!-- /cbp-pgcontainer -->
 
 <script>
-var shop = new cbpShop( document.getElementById( 'cbp-pgcontainer' ) ); 
+// var shop = new cbpShop( document.getElementById( 'cbp-pgcontainer' ) ); 
+BentoShop.setup('#cbp-pgcontainer');
 </script>

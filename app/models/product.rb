@@ -57,7 +57,7 @@ class Product < ActiveRecord::Base
   
   # CALLBACKS
   # -------------
-  before_create :generate_sku, :if => Proc.new { |product| product.sku.empty? }
+  before_create :generate_sku, :if => Proc.new { |product| product.sku.blank? }
   before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
   before_create :clean_up

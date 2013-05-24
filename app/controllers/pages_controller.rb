@@ -1,8 +1,8 @@
 class PagesController < ApplicationController
   
   #before_filter(only: [:index, :show]) { @page_caching = true }
-  before_filter { @page_caching = true }
-  caches_page :home, :show
+  before_filter(except: [:home]) { @page_caching = false }
+  caches_page :show
 
 	def show
     @page = Page.find(params[:slug])
