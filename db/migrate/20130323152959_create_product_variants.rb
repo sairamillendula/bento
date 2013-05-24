@@ -1,7 +1,7 @@
 class CreateProductVariants < ActiveRecord::Migration
   def change
     create_table :product_variants do |t|
-    	t.text    :options
+    	t.hstore  :options
       t.decimal :price, precision: 11, scale: 2
       t.integer :in_stock, default: 0
       t.integer :product_id
@@ -12,5 +12,6 @@ class CreateProductVariants < ActiveRecord::Migration
     end
 
     add_index :product_variants, :product_id
+    add_hstore_index :product_variants, :options
   end
 end

@@ -50,6 +50,10 @@ GEM
       activesupport (= 3.2.13)
       arel (~> 3.0.2)
       tzinfo (~> 0.3.29)
+    activerecord-postgres-hstore (0.7.6)
+      activerecord (>= 3.1)
+      pg-hstore (>= 1.1.5)
+      rake
     activeresource (3.2.13)
       activemodel (= 3.2.13)
       activesupport (= 3.2.13)
@@ -145,7 +149,6 @@ GEM
     mime-types (1.21)
     multi_json (1.7.2)
     multipart-post (1.2.0)
-    mysql2 (0.3.11)
     nested_form (0.3.1)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
@@ -182,6 +185,8 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
+    pg (0.14.1)
+    pg-hstore (1.1.7)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -272,6 +277,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord-postgres-hstore
   acts_as_list
   better_errors
   capistrano
@@ -289,10 +295,10 @@ DEPENDENCIES
   kaminari-bootstrap
   letter_opener
   meta-tags
-  mysql2
   nested_form
   omniauth-stripe-connect
   paperclip
+  pg
   prawn!
   quiet_assets
   rails (= 3.2.13)
