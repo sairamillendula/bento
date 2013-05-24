@@ -57,7 +57,7 @@ class NewProductForm
         $('#select-variants').show()
 
     $('.option_values').tagsInput
-      'defaultText': ''
+      'defaultText': 'Separate values by a comma'
       'onAddTag': @addOption
       'onRemoveTag': @removeOption    
 

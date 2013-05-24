@@ -6,6 +6,7 @@
   <div class="form-inputs">
     <%= f.input :name, input_html: {class: 'span12'} %>
     <%= f.input :slug, input_html: {class: 'span12'} %>
+    <%= f.input :sku, input_html: {class: 'input-small'} %>
     <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
     <%= f.input :price, input_html: {class: 'input-small'} %>
     <%= f.input :reduced_price, input_html: {class: 'input-small'} %>
@@ -48,18 +49,18 @@
         <table class="table" id="options_fields">
           <thead>
             <tr>
-              <th class="span3">OPTION NAME</th>
-              <th class="span8">OPTION VALUES</th>
-              <th></th>
+              <th style="width:30%;">OPTION NAME</th>
+              <th style="width:50%;">OPTION VALUES</th>
+              <th style="width:20%;"></th>
             </tr>
           </thead>
           <tbody>
           <%= f.fields_for :options, wrapper: false do |ff| %>
             <%=  %>
             <tr class="option">
-              <td><%= ff.input_field :name, class: 'option_name', placeholder: "Color, Size, Material..." %></td>
-              <td><%= ff.text_field :values, class: "span12 option_values", placeholder: "Enter any options separated by a comma" %></td>
-              <td><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'}, style: "display: #{@product.options.size > 1 ? 'block' : 'none'}" %></td>
+              <td style="width:30%;"><%= ff.input_field :name, class: 'option_name', placeholder: "Color, Size, Material..." %></td>
+              <td style="width:50%; margin-left:0;"><%= ff.text_field :values, class: "option_values", placeholder: "Enter any options separated by a comma" %></td>
+              <td style="width:20%; margin-left:0;"><%= ff.link_to_remove "#{t 'remove'}", data: {wrapper: 'tr'}, style: "display: #{@product.options.size > 1 ? 'block' : 'none'}" %></td>
             </tr>
           <% end %>
           </tbody>

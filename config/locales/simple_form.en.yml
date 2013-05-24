@@ -24,6 +24,7 @@ en:
         seo_title: Title
         seo_description: Description
         slug: URL
+        sku: SKU
       page:
         klass: Type
       tax:
