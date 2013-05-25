@@ -1,22 +1,21 @@
-.cbp-pgcontainer {
+.pgcontainer {
   position: relative;
   width: 100%;
   padding: 0 30px 100px 30px;
+
+  ul, li {
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+  }
 }
 
-.cbp-pgcontainer ul,
-.cbp-pgcontainer li {
-  padding: 0;
-  margin: 0;
-  list-style-type: none;
-}
-
-.cbp-pggrid {
+.pggrid {
   position: relative;
   text-align: center;
 }
 /* If flexbox is supported we'll use it to lay out the grid */
-.flexbox .cbp-pggrid {
+.flexbox .pggrid {
   display: -webkit-flex;
   display: -moz-flex;
   display: -ms-flex;
@@ -31,7 +30,7 @@
   -webkit-justify-content: center;
 }
 
-.cbp-pggrid > li {
+.pggrid > li {
   display: inline-block;
   vertical-align: top;
   position: relative;
@@ -42,49 +41,46 @@
   text-align: left;
 }
 
-.flexbox .cbp-pggrid > li {
+.flexbox .pggrid > li {
   display: block;
 }
 
-.cbp-pgcontent {
+.product {
   border: 3px solid $red;
   position: relative;
-}
 
-.cbp-pgrotate {
-  width: 36px;
-  height: 36px;
-  position: absolute;
-  display: block;
-  color: transparent;
-  font-size: 0;
-  z-index: 10;
-  border-bottom: 3px solid $red;
-  border-left: 3px solid $red;
-  right: 0px;
-  top: 0px;
-  cursor: pointer;
-  text-align: center;
-}
-
-.cbp-pgrotate:before {
-  font-size: 18px;
-  line-height: 32px;
-  color: $red;
-}
-
-.no-touch .cbp-pgrotate:hover,
-.cbp-pgrotate.cbp-pgrotate-active {
-  background: $red;
-}
-
-.no-touch .cbp-pgrotate:hover:before,
-.cbp-pgrotate.cbp-pgrotate-active:before {
-  color: #fff;
+  .rotate {
+    width: 36px;
+    height: 36px;
+    position: absolute;
+    display: block;
+    color: transparent;
+    font-size: 0;
+    z-index: 10;
+    border-bottom: 3px solid $red;
+    border-left: 3px solid $red;
+    right: 0px;
+    top: 0px;
+    cursor: pointer;
+    text-align: center;
+  }
+  .rotate:before {
+    font-size: 18px;
+    line-height: 32px;
+    color: $red;
+  }
+  .no-touch .rotate:hover,
+  .rotate.rotate-active {
+    background: $red;
+  }
+  .no-touch .rotate:hover:before,
+  .rotate.rotate-active:before {
+    color: #fff;
+  }
 }
 
 /* The item with the images will have perspective */
-.cbp-pgitem {
+.item {
   width: 100%;
   position: relative;
   padding: 2em;
@@ -97,7 +93,7 @@
 }
 
 /* The flip container */
-.cbp-pgitem-flip {
+.item-flip {
   -webkit-transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   transform-style: preserve-3d;
@@ -109,13 +105,13 @@
 /* If you want to rotate on hover instead of click, you could use something like this: 
 .cbp-pgrotate:hover + .cbp-pgitem .cbp-pgitem-flip
 */
-.cbp-pgitem.cbp-pgitem-showback .cbp-pgitem-flip {
+.item.item-showback .item-flip {
   -webkit-transform: rotateY(180deg);
   -moz-transform: rotateY(180deg);
   transform: rotateY(180deg);
 }
 
-.cbp-pgitem-flip img {
+.item-flip img {
   display: block;
   margin: 0 auto;
   max-width: 100%;
@@ -125,12 +121,12 @@
   backface-visibility: hidden;
 }
 
-.cbp-pgitem img:first-child {
+.item img:first-child {
   position: relative;
 }
 
 /* The second image will be rotated so that we'd be looking at the back of it */
-.cbp-pgitem img:nth-child(2) {
+.item img:nth-child(2) {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -140,29 +136,29 @@
 }
 
 /* Fallback for browsers that don't support 3d transforms */
-.no-csstransforms3d .cbp-pgitem img:nth-child(2) {
+.no-csstransforms3d .item img:nth-child(2) {
   position: relative;
   top: 0;
   left: 0;
   display: none;
 }
 
-.no-csstransforms3d .cbp-pgitem.cbp-pgitem-showback img:first-child {
+.no-csstransforms3d .item.item-showback img:first-child {
   display: none;
 }
 
-.no-csstransforms3d .cbp-pgitem.cbp-pgitem-showback img:nth-child(2) {
+.no-csstransforms3d .item.item-showback img:nth-child(2) {
   display: block;
 }
 
 /* The options bar */
-.cbp-pgoptions {
+.options {
   height: 60px;
   width: 100%;
   border-top: 3px solid $red;
 }
 
-.cbp-pgoptions > li {
+.options > li {
   width: 25%;
   height: 100%;
   float: left;
@@ -180,21 +176,21 @@
   user-select: none;
 }
 
-.cbp-pgoptions > li:first-child {
+.options > li:first-child {
   border-left: none;
 } 
 
-.no-touch .cbp-pgoptions li {
+.no-touch .options li {
   color: $red;
 }
 
-.no-touch .cbp-pgoptions li:hover,
-.cbp-pgoptions li.cbp-pgoption-active {
+.no-touch .options li:hover,
+.options li.option-active {
   background: $red;
 }
 
-.cbp-pgoptions li:before,
-.cbp-pgoptions li > span {
+.options li:before,
+.options li > span {
   font-size: 22px;
   line-height: 60px;
   text-indent: 0;
@@ -202,27 +198,27 @@
   color: $red;
 }
 
-.no-touch .cbp-pgoptions li:hover:before,
-.no-touch .cbp-pgoptions li:hover > span,
-.cbp-pgoptions li.cbp-pgoption-active > span  {
+.no-touch .options li:hover:before,
+.no-touch .options li:hover > span,
+.options li.option-active > span  {
   color: #fff;
 }
 
-.cbp-pgoptions li > span {
+.options li > span {
   display: block;
 }
 
-.cbp-pgoptions li:before {
+.options li:before {
   position: absolute;
   width: 100%;
   height: 100%;
 }
 
 /* Icons */
-.cbp-pgoptcompare,
-.cbp-pgoptcart, 
-.cbp-pgoptfav,
-.cbp-pgrotate {
+.opt-compare,
+.opt-cart, 
+.opt-fav,
+.rotate {
   font-family: 'pgicons';
   speak: none;
   font-style: normal;
@@ -233,33 +229,33 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.cbp-pgoptcompare:before {
+.opt-compare:before {
   content: "\e001";
 }
 
-.cbp-pgoptfav:before {
+.opt-fav:before {
   content: "\e003";
 }
 
-.cbp-pgoptfav.cbp-pgoptfav-selected:before {
+.opt-fav.opt-fav-selected:before {
   content: "\e002";
   color: #ee73b8;
 }
 
-.cbp-pgoptfav.cbp-pgoptfav-selected:hover:before {
+.opt-fav.opt-fav-selected:hover:before {
   color: #f9c0e0;
 }
 
-.cbp-pgoptcart:before {
+.opt-cart:before {
   content: "\e000";
 }
 
-.cbp-pgrotate:before {
+.rotate:before {
   content: "\e004";
 }
 
 /* Tooltips */
-.cbp-pgopttooltip {
+.opt-tooltip {
   position: absolute;
   bottom: 180%;
   margin-bottom: 0px;
@@ -278,8 +274,8 @@
   transition: visibility 0s 0.3s, opacity 0.3s, bottom 0.3s;
 }
 
-.cbp-pgoptions li:hover .cbp-pgopttooltip,
-.cbp-pgoptions li.cbp-pgoption-active .cbp-pgopttooltip {
+.options li:hover .opt-tooltip,
+.options li.option-active .opt-tooltip {
   visibility: visible;
   opacity: 1;
   -webkit-transition-delay: 0s;
@@ -289,8 +285,8 @@
   pointer-events: auto;
 }
 
-.cbp-pgopttooltip:after,
-.cbp-pgopttooltip:before {
+.opt-tooltip:after,
+.opt-tooltip:before {
   top: 100%;
   border: solid transparent;
   content: " ";
@@ -300,7 +296,7 @@
   pointer-events: none;
 }
 
-.cbp-pgopttooltip:after {
+.opt-tooltip:after {
   border-color: transparent;
   border-top-color: #fff;
   border-width: 10px;
@@ -308,7 +304,7 @@
   margin-left: -10px;
 }
 
-.cbp-pgopttooltip:before {
+.opt-tooltip:before {
   border-color: transparent;
   border-top-color: $red;
   border-width: 14px;
@@ -317,53 +313,53 @@
 }
 
 /* Color tooltip */
-.cbp-pgoptcolor .cbp-pgopttooltip {
+.opt-color .opt-tooltip {
   padding: 5px;
 }
  
-.cbp-pgoptions li.cbp-pgoptcolor > span,
-.cbp-pgoptcolor .cbp-pgopttooltip span {
+.options li.opt-color > span,
+.opt-color .opt-tooltip span {
   display: block;
   margin: 12px auto 0;
   text-indent: -900em;
 }
 
-.cbp-pgoptions li.cbp-pgoptcolor > span {
+.options li.opt-color > span {
   width: 36px;
   height: 36px;
   border: 3px solid #fff;
 }
 
-.cbp-pgoptcolor .cbp-pgopttooltip span {
+.opt-color .opt-tooltip span {
   float: left;
   margin: 4px;
   width: 34px;
   height: 34px;
 }
 
-.no-touch .cbp-pgoptcolor .cbp-pgopttooltip span:hover {
+.no-touch .opt-color .opt-tooltip span:hover {
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   transform: scale(1.1);
 }
 
-.cbp-pgoptcolor span[data-color="c1"] {
+.opt-color span[data-color="c1"] {
   background: #72bbe9;
 }
 
-.cbp-pgoptcolor span[data-color="c2"] {
+.opt-color span[data-color="c2"] {
   background: #e577aa;
 }
 
-.cbp-pgoptcolor span[data-color="c3"] {
+.opt-color span[data-color="c3"] {
   background: #e5b178;
 }
 
-.cbp-pgoptcolor span[data-color="c4"] {
+.opt-color span[data-color="c4"] {
   background: #7abe93;
 }
 
-.cbp-pginfo {
+.info {
   padding-top: 10px;
 
   h3, span {
@@ -386,26 +382,26 @@
   }
 }
 
-.cbp-pginfo:before,
-.cbp-pginfo:after {
+.info:before,
+.info:after {
   content: " ";
   display: table;
 }
 
-.cbp-pginfo:after {
+.info:after {
   clear: both;
 }
 
 /* Media Queries */
  
 @media screen and (max-width: 68.125em) {
-  .cbp-pggrid > li {
+  .pggrid > li {
       width: 48%;
   }
 }
 
 @media screen and (max-width: 46.125em) {
-  .cbp-pggrid > li {
+  .pggrid > li {
       width: 100%;
   }
 }

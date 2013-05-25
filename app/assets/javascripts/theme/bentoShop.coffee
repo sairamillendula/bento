@@ -5,27 +5,27 @@ class @BentoShop
 
     console.log 
     
-    $('ul.cbp-pggrid > li', $container).each (index, product) ->
+    $('ul.pggrid > li', $container).each (index, product) ->
       $product = $(product)
-      $rotate = $product.find('span.cbp-pgrotate').first()
+      $rotate = $product.find('span.rotate').first()
       $rotate.click -> rotateItem(this, $product)
 
       # add to cart
-      $product.find('.cbp-pgoptcart').first().click ->
+      $product.find('.opt-cart').first().click ->
         addToCart $(this).data('url') + "&authenticity_token=#{$('meta[name="csrf-token"]').attr('content')}"
         
   rotateItem = (trigger, $product) ->
     $trigger = $(trigger)
-    $item = $product.find('div.cbp-pgitem').first()
+    $item = $product.find('div.item').first()
 
     if $item.data('open') == 'open'
       $item.data('open', '')
-      $trigger.removeClass('cbp-pgrotate-active')
-      $item.removeClass('cbp-pgitem-showback')
+      $trigger.removeClass('rotate-active')
+      $item.removeClass('item-showback')
     else
       $item.data('open', 'open')
-      $trigger.addClass('cbp-pgrotate-active')
-      $item.addClass('cbp-pgitem-showback')  
+      $trigger.addClass('rotate-active')
+      $item.addClass('item-showback')  
 
   addToCart = (url) ->
     $('body').append($('<form/>', {

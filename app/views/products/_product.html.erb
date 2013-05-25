@@ -1,0 +1,32 @@
+<li>
+  <div class="product">
+    <span class="rotate">Rotate Item</span>
+    <div class="item">
+      <div class="item-flip">
+      	<%= link_to product do %>
+        	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "240x200") %>
+        	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "240x200") %>
+        <% end %>
+      </div>
+    </div>
+    <ul class="options">
+      <li class="opt-compare">Compare</li>
+      <li class="opt-fav">
+      </li>
+      <li class="opt-color">
+        <span data-color="c1">Blue</span>
+        <div class="opt-tooltip">
+          <span data-color="c1">Blue</span>
+          <span data-color="c2">Pink</span>
+          <span data-color="c3">Orange</span>
+          <span data-color="c4">Green</span>
+        </div>
+      </li>
+      <li class="opt-cart" data-url="<%= line_items_path(product_id: product.id) %>"></li>
+    </ul>
+  </div>
+  <div class="info">
+    <h3><%= link_to product.name, product %></h3>
+    <span class="price"><%= product.price_display %></span>
+  </div>
+</li>

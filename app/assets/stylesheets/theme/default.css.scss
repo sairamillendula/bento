@@ -48,43 +48,10 @@ a:hover {
 	margin: 0 0 0.6em 0;
 	float: left;
 	font-weight: 400;
-}
 
-.container > header > span {
-	display: block;
-	position: relative;
-	z-index: 9999;
-	font-weight: 700;
-	text-transform: uppercase;
-	letter-spacing: 0.5em;
-	padding: 0 0 0.6em 0.1em;
-}
-
-.container > header > span span:after {
-	width: 30px;
-	height: 30px;
-	left: -12px;
-	font-size: 50%;
-	top: -8px;
-	font-size: 75%;
-	position: relative;
-}
-
-.container > header > span span:hover:before {
-	content: attr(data-content);
-	text-transform: none;
-	text-indent: 0;
-	letter-spacing: 0;
-	font-weight: 300;
-	font-size: 110%;
-	padding: 0.8em 1em;
-	line-height: 1.2;
-	text-align: left;
-	left: auto;
-	margin-left: 4px;
-	position: absolute;
-	color: #fff;
-	background: $pink;
+	.site-slogan {
+		font-size: 14px;
+	}
 }
 
 .container > header nav {
