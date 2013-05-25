@@ -2,12 +2,17 @@
 	<h1><%= link_to "#{t 'site_name'}", root_url %>
 		<span class="site-slogan"><%= t 'site_slogan' %></span>
 	</h1>
-	<nav>
-		<%= link_to "", "#{t 'theme.facebook_url'}", class: 'iconmoo icon-facebook', 'data-info'=>'Facebook' %>
-		<%= link_to "", "theme.twitter_url", class: 'iconmoo icon-twitter', 'data-info'=>'Twitter' %>
-		<%= link_to "", "theme.pinterest_url", class: 'iconmoo icon-pinterest', 'data-info'=>'Pinterest' %>
-	</nav>
-</header>	
+	<ul id="user-info">
+		<% if current_user %>
+		  <li>Welcome <%= link_to current_user.first_name, profile_path %></li>
+		  <li><%= link_to "#{t 'orders.mine'}", orders_path %></li>
+		<% else %>
+		  <li><%= link_to "#{t 'theme.login'}", login_path %> or <%= link_to "#{t 'theme.register'}", signup_path %></li>
+		<% end %>
+		<li><i class="icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
+      <%= pluralize(current_cart.items.length, "#{t 'item'}") %></li>
+	</span>
+</header>
 <div class="main">
 	<nav class="cbp-hsmenu-wrapper" id="cbp-hsmenu-wrapper">
 		<div class="cbp-hsinner">

@@ -13,4 +13,6 @@ en:
     about: About
     contact: Contact
     blog: Blog
-    login: Login
+    login: Sign in
+    register: Sign up
+    cart: Cart
