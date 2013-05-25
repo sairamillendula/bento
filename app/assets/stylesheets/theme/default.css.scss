@@ -1,16 +1,4 @@
 /* General Blueprint Style */
-@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
-@font-face {
-	font-family: 'bpicons';
-	src: url('bpicons/bpicons.eot');
-	src: url('bpicons/bpicons.eot?#iefix') format('embedded-opentype'),
-		   url('bpicons/bpicons.woff') format('woff'),
-		   url('bpicons/bpicons.ttf') format('truetype'),
-		   url('bpicons/bpicons.svg#bpicons') format('svg');
-	font-weight: normal;
-	font-style: normal;
-} /* Made with http://icomoon.io/ */
-
 *, *:after, *:before { -webkit-box-sizing: border-box; -moz-box-sizing: border-box; box-sizing: border-box; }
 body, html { font-size: 100%; padding: 0; margin: 0;}
 
@@ -90,8 +78,8 @@ a:hover {
 	background: $pink;
 }
 
-.bp-icon:after {
-	font-family: 'bpicons';
+.iconmoo:after {
+	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
 	font-weight: normal;
@@ -102,7 +90,7 @@ a:hover {
 	-webkit-font-smoothing: antialiased;
 }
 
-.container > header nav .bp-icon:after {
+.container > header nav .iconmoo:after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -114,22 +102,6 @@ a:hover {
 
 .container > header nav a:hover:after {
 	color: #fff;
-}
-
-.bp-icon-next:after {
-	content: "\e000";
-}
-.bp-icon-drop:after {
-	content: "\e001";
-}
-.bp-icon-archive:after {
-	content: "\e002";
-}
-.bp-icon-about:after {
-	content: "\e003";
-}
-.bp-icon-prev:after {
-	content: "\e004";
 }
 
 /* Custom */

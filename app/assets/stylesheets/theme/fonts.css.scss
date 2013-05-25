@@ -1,95 +1,25 @@
-/* Bello Pro
-------------------------------------------------*/
-@font-face {
-	font-family: 'BelloProRegular';
-	src: url('bello_pro-webfont.eot');
-	src: url('bello_pro-webfont.eot?#iefix') format('embedded-opentype'),
-		 url('bello_pro-webfont.woff') format('woff'),
-		 url('bello_pro-webfont.ttf') format('truetype'),
-		 url('bello_pro-webfont.svg#BelloProRegular') format('svg');
-	font-weight: 400;
-	font-style: normal;
-}
+@import url(http://fonts.googleapis.com/css?family=Lato:300,400,700);
 
-/* News Cycle
-------------------------------------------------*/
 @font-face {
-  font-family: 'News Cycle';
+  font-family: 'icomoon';
+  src: url('icomoon/icomoon.eot');
+  src: url('icomoon/icomoon.eot?#iefix') format('embedded-opentype'),
+       url('icomoon/icomoon.woff') format('woff'),
+       url('icomoon/icomoon.ttf') format('truetype'),
+       url('icomoon/icomoon.svg#icomoon') format('svg');
+  font-weight: normal;
   font-style: normal;
-  font-weight: 400;
-  src: local('News Cycle Regular'), local('NewsCycle-Regular'), url(http://themes.googleusercontent.com/static/fonts/newscycle/v9/9Xe8dq6pQDsPyVH2D3tMQr3hpw3pgy2gAi-Ip7WPMi0.woff) format('woff');
-}
-@font-face {
-  font-family: 'News Cycle';
-  font-style: normal;
-  font-weight: 700;
-  src: local('News Cycle Bold'), local('NewsCycle-Bold'), url(http://themes.googleusercontent.com/static/fonts/newscycle/v9/G28Ny31cr5orMqEQy6ljt3bFhgvWbfSbdVg11QabG8w.woff) format('woff');
-}
+} /* Made with http://icomoon.io/ */
 
-
-/* Neuton italics
-------------------------------------------------*/
-@font-face {
-  font-family: 'Neuton';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Neuton Regular'), local('Neuton-Regular'), url(http://themes.googleusercontent.com/static/fonts/neuton/v5/gnRXLi5FhzDFeHiZv-6NgevvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+.icon-facebook:after {
+  content: "\e007";
 }
-@font-face {
-  font-family: 'Neuton';
-  font-style: normal;
-  font-weight: 700;
-  src: local('Neuton Bold'), local('Neuton-Bold'), url(http://themes.googleusercontent.com/static/fonts/neuton/v5/MK-qWv3o5LiGs6rxlk2eu7O3LdcAZYWl9Si6vvxL-qU.woff) format('woff');
+.icon-twitter:after {
+  content: "\e008";
 }
-  
-  /* Light
-  ===================================== */
-  @font-face {
-    font-family: 'Neuton';
-    src: url('neuton-light.eot?829');
-    src: url('neuton-light.eot?829?#iefix') format('embedded-opentype'),
-         url('neuton-light.woff?829') format('woff'),
-         url('neuton-light.ttf?829') format('truetype'),
-         url('neuton-light.svg?829#neuton') format('svg');
-    font-weight: 300;
-    font-style: normal;
-  }
-  
-  /* Light italic (Alegraya substitute)
-  ===================================== */
-  @font-face {
-    font-family: 'Neuton';
-    src: url('alegreya-italic.eot?829');
-    src: url('alegreya-italic.eot?829?#iefix') format('embedded-opentype'),
-         url('alegreya-italic.woff?829') format('woff'),
-         url('alegreya-italic.ttf?829') format('truetype'),
-         url('alegreya-italic.svg?829#neuton') format('svg');
-    font-weight: 300;
-    font-style: italic;
-  }
-
-  /* Regular italic (Alegraya substitute)
-  ===================================== */
-  @font-face {
-    font-family: 'Neuton';
-    src: url('alegreya-italic.eot?829');
-    src: url('alegreya-italic.eot?829?#iefix') format('embedded-opentype'),
-         url('alegreya-italic.woff?829') format('woff'),
-         url('alegreya-italic.ttf?829') format('truetype'),
-         url('alegreya-italic.svg?829#neuton') format('svg');
-    font-weight: 400;
-    font-style: italic;
-  }
-  
-  /* Bold italic (Alegraya substitute)
-  ===================================== */
-  @font-face {
-    font-family: 'Neuton';
-    src: url('alegreya-bolditalic.eot?829');
-    src: url('alegreya-bolditalic.eot?829?#iefix') format('embedded-opentype'),
-         url('alegreya-bolditalic.woff?829') format('woff'),
-         url('alegreya-bolditalic.ttf?829') format('truetype'),
-         url('alegreya-bolditalic.svg?829#neuton') format('svg');
-    font-weight: 700;
-    font-style: italic;
-  }
+.icon-pinterest:after {
+  content: "\e009";
+}
+.icon-cart:after {
+  content: "\e000";
+}
