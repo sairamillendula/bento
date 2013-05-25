@@ -1,10 +1,11 @@
 <header class="clearfix">
 	<h1><%= link_to "#{t 'site_name'}", root_url %>
-		<span class="site-slogan"><%= t 'site_slogan' %></span></h1>
+		<span class="site-slogan"><%= t 'site_slogan' %></span>
+	</h1>
 	<nav>
-		<%= link_to "", "_path", class: 'iconmoo icon-facebook', 'data-info'=>'Facebook' %>
-		<%= link_to "", "_path", class: 'iconmoo icon-twitter', 'data-info'=>'Twitter' %>
-		<%= link_to "", "_path", class: 'iconmoo icon-pinterest', 'data-info'=>'Pinterest' %>
+		<%= link_to "", "#{t 'theme.facebook_url'}", class: 'iconmoo icon-facebook', 'data-info'=>'Facebook' %>
+		<%= link_to "", "theme.twitter_url", class: 'iconmoo icon-twitter', 'data-info'=>'Twitter' %>
+		<%= link_to "", "theme.pinterest_url", class: 'iconmoo icon-pinterest', 'data-info'=>'Pinterest' %>
 	</nav>
 </header>	
 <div class="main">
@@ -12,7 +13,7 @@
 		<div class="cbp-hsinner">
 			<ul class="cbp-hsmenu">
 				<li>
-					<a href="#">Bento Lunch Box</a>
+					<%= link_to "#{t 'theme.bento_lunch_box'}", "#" %>
 					<ul class="cbp-hssubmenu">
 						<li><a href="#"><img src="assets/samples/1.png" alt="img01"/><span>Delicate Wine</span></a></li>
 						<li><a href="#"><img src="assets/samples/2.png" alt="img02"/><span>Fine Spirit</span></a></li>
@@ -23,7 +24,7 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#">Accessories</a>
+					<%= link_to "#{t 'theme.accessories'}", "#" %>
 					<ul class="cbp-hssubmenu cbp-hssub-rows">
 						<li><a href="#"><img src="assets/samples/7.png" alt="img07"/><span>Lovely Slurp</span></a></li>
 						<li><a href="#"><img src="assets/samples/8.png" alt="img08"/><span>Lemony Grappa</span></a></li>
@@ -40,16 +41,21 @@
 					</ul>
 				</li>
 				<li>
-					<a href="#">Category</a>
+					<%= link_to "#{t 'theme.categories'}", "#" %>
 					<ul class="cbp-hssubmenu">
 						<li><a href="#"><img src="assets/samples/10.png" alt="img10"/><span>Fresh Juice</span></a></li>
 						<li><a href="#"><img src="assets/samples/6.png" alt="img06"/><span>Sweet Rum</span></a></li>
 						<li><a href="#"><img src="assets/samples/9.png" alt="img09"/><span>Eggy Liquor</span></a></li>
 					</ul>
 				</li>
-				<li><a href="#">About</a></li>
-				<li><%= link_to 'Contact', contact_path %></li>
-				<li><a href="#">Blog</a></li>
+				<li><%= link_to "#{t 'theme.about'}", "/about" %></li>
+				<li><%= link_to "#{t 'theme.contact'}", contact_path %></li>
+				<li><%= link_to "#{t 'theme.blog'}", blog_path %></li>
+		    <li>
+		    	<%= link_to "", "#{t 'theme.facebook_url'}", class: 'iconmoo icon-facebook' %>
+		    	<%= link_to "", "theme.twitter_url", class: 'iconmoo icon-twitter' %>
+		    	<%= link_to "", "theme.pinterest_url", class: 'iconmoo icon-pinterest' %>
+		    </li>
 			</ul>
 		</div>
 	</nav>

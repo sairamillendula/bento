@@ -25,30 +25,41 @@
 	padding: 0 1.875em;
 }
 
-.cbp-hsmenu > li {
+.cbp-hsmenu li {
 	margin-left: 4em;
 	display: inline-block;
-}
 
-.cbp-hsmenu > li:first-child {
-	margin-left: 0;
-}
+	&:first-child {
+	  margin-left: 0;
+  }
 
-/* Main menu link style */
-.cbp-hsmenu > li > a {
-	color: #fff;
-	font-size: 1.2em;
-	line-height: 3em;
-	display: inline-block;
-	position: relative;
-	z-index: 10000;
-	outline: none;
+  a {
+		color: #ffffff;
+		font-size: 1.2em;
+		line-height: 3em;
+		display: inline-block;
+		position: relative;
+		z-index: 10000;
+		outline: none;
+  }
+  a.iconmoo {
+  	margin-right: 10px;
+  }
+  a.iconmoo:before {
+   	content: '' !important;
+  }
+  a.iconmoo:after {
+    color: #ffffff !important;
+  }
+  a.iconmoo:last-child {
+  	margin-right: 0;
+  }
 }
 
 .no-touch .cbp-hsmenu > li > a:hover,
 .no-touch .cbp-hsmenu > li > a:focus,
 .cbp-hsmenu > li.cbp-hsitem-open > a {
-	color: $pink; /*#02639d*/
+	color: $pink;
 }
 
 /* Add an arrow to the main menu link if it has a submenu (not the only child) */
