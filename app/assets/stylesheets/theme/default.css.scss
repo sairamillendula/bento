@@ -14,7 +14,7 @@ body {
 }
 
 a {
-	color: #666666;
+	color: $red;
 	text-decoration: none;
 }
 
@@ -52,7 +52,7 @@ a:hover {
 	padding: 0;
 	height: 44px;
 	list-style-type: none;
-	color: $red;
+	color: #666;
 
 	li {
 		display: inline;
@@ -202,6 +202,10 @@ a:hover {
       }
     }
   }
+}
+
+.fr {
+	float: right;
 }
 /* end */
 

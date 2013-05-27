@@ -22,7 +22,11 @@
         <div id="billing-address" class="span6">
           <h4 class="section-helper"><%= t 'billing_address' %></h4>
           <% if current_user.addresses.any? %>
-            <p>Select address: <%= select_tag :billing_address, options_for_select([''] + current_user.addresses.map{|a| a.display_name(', ')}, @cart.billing_address.try(:display_name, ', ')), name: nil %></p>
+            <div class="control-group">
+              <label class="control-label">Select address</label>
+              <div class="controls"><%= select_tag :billing_address, options_for_select([''] + current_user.addresses.map{|a| a.display_name(', ')}, @cart.billing_address.try(:display_name, ', ')), name: nil %>
+              </div>
+            </div>
           <% end %>
           <%= f.fields_for :billing_address do |ba| %>
             <div id="billing_address_fields" class="form-horizontal">
@@ -47,7 +51,11 @@
           <h4 class="section-helper"><%= t 'shipping_address' %></h4>
           <div id="shipping_address_fields" class="form-horizontal" style="display: <%= @cart.billing_address.also_shipping_address ? 'none' : 'block' %>;">
             <% if current_user.addresses.any? %>
-              <p>Select address: <%= select_tag :shipping_address, options_for_select([''] + current_user.addresses.map{|a| a.display_name(', ')}, @cart.shipping_address.try(:display_name, ', ')), name: nil %></p>
+              <div class="control-group">
+                <label class="control-label">Select address</label>
+                <div class="controls"><%= select_tag :shipping_address, options_for_select([''] + current_user.addresses.map{|a| a.display_name(', ')}, @cart.shipping_address.try(:display_name, ', ')), name: nil %>
+                </div>
+              </div>
             <% end %>
             <%= f.fields_for :shipping_address do |sa| %>
               <%= sa.input :full_name, required: true %>
@@ -60,11 +68,11 @@
             <% end %>
           </div>
           <div id="same-address" class="alert alert-info" style="display: <%= @cart.billing_address.also_shipping_address ? 'block' : 'none' %>;">
-            Same as billing address
+            <%= t 'theme.same_as_billing_address' %>
           </div>
         </div>
       </div>
-      <p><%= f.button :submit, "#{t 'carts.continue'}", class: "btn btn-primary" %></p>
+      <p><%= f.button :submit, "#{t 'carts.continue'}", class: "btn btn-primary nolabel" %></p>
       <% end %>
   </section>
 <% else %>

@@ -1,11 +1,12 @@
 //@import "bootstrap";
 //@import "bootstrap-responsive";
 
-//@import "global";
+@import "compass";
 //@import "theme/*";
 
 @import "theme/variables";
 @import "theme/fonts";
+@import "theme/form";
 @import "theme/default";
 @import "theme/menu";
 @import "theme/public_pages";

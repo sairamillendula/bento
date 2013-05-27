@@ -8,14 +8,14 @@
 
 <div class="row-fluid">
   <div class="span6">
-    <div class="well">
-      <h3>Billing Address <%= link_to 'Edit', checkout_cart_url, style: 'float: right;' %></h3>
+    <div class="well address">
+      <h4>Billing Address <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr' %></h4>
       <p><%= @cart.billing_address.display_name %></p>
     </div>
   </div>
   <div class="span6">
-    <div class="well">
-      <h3>Shipping Address <%= link_to 'Edit', checkout_cart_url, style: 'float: right;' %></h3>
+    <div class="well address">
+      <h4>Shipping Address <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr' %></h4>
       <p><%= @cart.shipping_address.display_name %></p>
     </div>
   </div>
@@ -24,7 +24,7 @@
 <%= form_for @order do |f| %>
   <%= f.hidden_field :stripe_card_token %>
   <div class="well">
-    <h3>Shipping Method</h3>
+    <h4>Shipping Method</h4>
     <hr>
     <p>Please select how you would like your products to be delivered</p>
     <%= select_tag :shipping_rate, options_for_select(@shipping_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
@@ -33,7 +33,7 @@
   <%= render 'carts/summary' %>
 
   <div class="well">
-    <h3 class="section"><%= t 'payment_info' %></h3>
+    <h4 class="section"><%= t 'payment_info' %></h4>
 
     <% if @order.stripe_card_token.present? %>
       <%= t 'orders.credit_card_provided' %>.

@@ -1,6 +1,9 @@
 /* pages */
 #homepage.public {
-  
+  .container > .main {
+	width: 100%;
+	//max-width: 69em;
+  }
 }
 
 #product.public {
@@ -40,4 +43,15 @@
 
 #order.public {
 
+}
+
+.well.address, .well {
+	h4 {
+		margin-top: 0;
+		margin-bottom: 10px;
+	}
+
+	p:last-of-type {
+		margin-bottom: 0;
+	}
 }

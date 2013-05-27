@@ -16,3 +16,5 @@ en:
     login: Sign in
     register: Sign up
     cart: Cart
+    same_as_billing_address: Same as billing address
+    edit: Edit
