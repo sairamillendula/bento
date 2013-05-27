@@ -15,9 +15,3 @@
 //= require jquery-ui
 //= require bootstrap
 //= require_tree ./site
-
-$(function () {
-    $('#homeCarousel').carousel({
-		interval: 3500
-	});
-});
