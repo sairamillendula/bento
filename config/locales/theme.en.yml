@@ -18,3 +18,8 @@ en:
     cart: Cart
     same_as_billing_address: Same as billing address
     edit: Edit
+    contact:
+      title: Contact Us
+      submit: Send message
+      menu_tab: Contact
+      success_notice: Message sent! Thank you for contacting us

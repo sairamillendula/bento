@@ -8,7 +8,7 @@ class ContactsController < ApplicationController
     @contact = Contact.new(params[:contact])
     if @contact.valid?
       AdminMailer.contact_us(@contact).deliver
-      flash[:notice] = "Message sent! Thank you for contacting us."
+      flash[:notice] = "#{t 'theme.contact.success_notice'}."
       redirect_to root_url
     else
       render :action => 'show'

@@ -1,8 +1,8 @@
-<h1>Contact Us</h1>
+<%= page_title("#{t 'theme.contact.title'}") %>
 
 <%= simple_form_for @contact, url: contact_path do |f| %>
   <%= f.input :name %>
   <%= f.input :email %>
-  <%= f.input :content, as: :text %>
-  <%= submit_tag 'Send Message' %>
+  <%= f.input :content, label: "Message", as: :text %>
+  <%= submit_tag "#{t 'theme.contact.submit'}" %>
 <% end %>
