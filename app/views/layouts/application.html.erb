@@ -21,10 +21,14 @@
 	<body class="public" <% if content_for?(:body_id) %>id="<%= yield(:body_id) %>"<% end %>>
 	  <div id="main-container" class="container">
 	  	<%#= render 'navbar' %>
-	  	<%#= render 'flash' unless @page_caching %>
 	    
 			<%= render 'header' %>
-      <%= yield %>
+			<%= render 'menu' %>
+			<div class="main">
+				<%= render 'flash' unless @page_caching %>
+        <%= yield %>
+			</div>
+
       <%= render 'footer' %>
 		
 			<script>

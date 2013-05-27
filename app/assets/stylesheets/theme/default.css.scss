@@ -8,7 +8,7 @@ body, html { font-size: 100%; padding: 0; margin: 0;}
 
 body {
   font-family: 'Lato', Calibri, Arial, sans-serif;
-  color: $red;
+  color: #666666;
   font-weight: 400;
   min-height: 900px;
 }
@@ -23,11 +23,13 @@ a:hover {
 }
 
 .container > header,
-.container > footer > .inner {
+.container > footer > .inner,
+.container > .main {
 	width: 90%;
 	max-width: 69em;
 	margin: 0 auto;
 	padding: 2.875em 1.875em 1.875em;
+	line-height: 28px;
 }
 
 .container > header h1 {
@@ -50,6 +52,7 @@ a:hover {
 	padding: 0;
 	height: 44px;
 	list-style-type: none;
+	color: $red;
 
 	li {
 		display: inline;
@@ -146,7 +149,7 @@ a:hover {
 	  .item {
 	    float: left;
 	    clear: none;
-	    margin: 15px 0 0 0;
+	    //margin: 15px 0 0 0;
 
 	    span {
 	    	font-size: 13px;
@@ -156,7 +159,7 @@ a:hover {
 	  .copyright {
 	    margin-right: 0px;
 	    float: right;
-	    margin: 15px 0 0 0;
+	    //margin: 15px 0 0 0;
 	    line-height: 25px;
 
 	    a {
@@ -179,7 +182,7 @@ a:hover {
     float: left;
     width: 33%;
     list-style: none;
-    margin: 15px 0 0 0;
+    //margin: 15px 0 0 0;
     padding: 0;
 
     li {
@@ -199,9 +202,6 @@ a:hover {
       }
     }
   }
-
-  
-  
 }
 /* end */
 

@@ -210,6 +210,8 @@
 	transition: height 0.3s;
 }
 
+/* Media queries */
+
 @media screen and (max-width: 65em){
 	.cbp-hsmenu-wrapper {
 		font-size: 80%;
@@ -297,6 +299,7 @@
 	.cbp-hsmenu-wrapper .cbp-hssubmenu > li {
 		box-shadow: 0 1px #cecece;
 		text-align: left;
+		margin-left: 0;
 	}
 
 	.cbp-hssubmenu > li a {

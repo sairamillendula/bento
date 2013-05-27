@@ -1,3 +1,8 @@
+/* tables */
+.table {
+  
+}
+
 /* forms */
 body.public {
 	textarea {
@@ -69,8 +74,6 @@ body.public {
     /* IE6-9 */
     @include box-shadow(none);
   }
-
- 
 
   .well {
     min-height: 20px;
