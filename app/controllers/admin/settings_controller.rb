@@ -27,7 +27,7 @@ class Admin::SettingsController < Admin::BaseController
       Setting[k] = v
     end
 
-    redirect_to admin_dashboard_path, notice: 'Settings were successfully saved.'
+    redirect_to admin_settings_path, notice: 'Settings were successfully saved.'
   end
 
   def remove_logo
