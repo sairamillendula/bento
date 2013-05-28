@@ -30,7 +30,7 @@
 
 <%= render 'related' %>
 
-<%= render 'reviews' %>
+<%#= render 'reviews' %>
 
 <script type="text/javascript">
   var variants = <%= raw @product.variants.to_json(only: [:id, :price, :in_stock, :options]) %>;

@@ -1,4 +1,4 @@
-<p>There <%= @shipping_rates.size > 1 ? 'is'.pluralize : 'is' %> <%= pluralize(@shipping_rates.size, 'shipping rate') %> available for <%= Country[@country].name %>.</p>
+<p><%= t 'theme.shipping_rate.there' %> <%= @shipping_rates.size > 1 ? 'is'.pluralize : 'is' %> <%= pluralize(@shipping_rates.size, "#{t 'theme.shipping_rate.title'}") %> <%= t 'theme.shipping_rate.available_for' %> <%= Country[@country].name %>.</p>
 <ul>
   <% @shipping_rates.each do |shipping_rate| %>
   <li><%= "#{shipping_rate.name} on order of #{shipping_rate.rate} at #{number_to_currency shipping_rate.price}" %></li>

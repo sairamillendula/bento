@@ -1,14 +1,14 @@
 <%= content_for :body_id do %>cart<% end %>
-<%= page_title("#{t 'carts.title'}") %>
+<%= page_title("#{t 'theme.cart.title'}") %>
 
 <% if @cart.items.any? %>
   <%= form_for @cart, url: cart_path do |f| %>
   	<table id="cart" class="table table-striped">
   	  <tr>
-  	    <th><%= t 'item' %></th>
-  	    <th><%= t 'quantity' %></th>
-        <th><%= t 'price' %></th>
-  	    <th><%= t 'subtotal' %></th>
+  	    <th><%= t 'theme.item' %></th>
+  	    <th><%= t 'theme.quantity' %></th>
+        <th><%= t 'theme.price' %></th>
+  	    <th><%= t 'theme.subtotal' %></th>
   	    <th></th>
   	  </tr>
   	 
@@ -19,42 +19,42 @@
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-  	      <td><%= link_to "remove", cart_line_item_path(item), method: :delete %></td>
+  	      <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
   	    </tr>
       <% end %>
   	</table>
-  	<%= link_to "#{t 'carts.continue_shopping'}", products_path, class: "btn" %>
-    <%= f.submit disable_with: "Updating...", class: 'btn btn-info' %>
-  	<%= link_to "#{t 'checkout'}", checkout_cart_path, class: "btn btn-success" %>
+  	<%= link_to "#{t 'theme.cart.continue_shopping'}", products_path, class: "btn" %>
+    <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn btn-info' %>
+  	<%= link_to "#{t 'theme.checkout'}", checkout_cart_path, class: "btn btn-success" %>
   <% end %>
 
   <div class="well">
     <% if @cart.coupon_applied? %>
-      Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to 'Remove', remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
+      Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
     <% else %>
       <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
         <%= label_tag :coupon_code %>
         <%= text_field_tag :coupon_code, @cart.coupon_code, class: 'input-small' %>
-        <%= submit_tag 'Apply', disable_with: "Updating...", class: 'btn' %>    
+        <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.updating'}", class: 'btn' %>    
       <% end %>
     <% end %>
   </div>
 
   <div class="well">
-    <h6>SUMMARY</h6>
+    <h6><%= t 'theme.cart.summary' %></h6>
     <table>
       <tr>
-        <td><%= t 'subtotal' %></td>
+        <td><%= t 'theme.subtotal' %></td>
         <td><%= number_to_currency(@cart.subtotal) %></td>
       </tr>
       <% if @cart.discount > 0 %>
       <tr class="total">
-        <td><%= t 'discount' %></td>
+        <td><%= t 'theme.discount' %></td>
         <td><%= number_to_currency(-@cart.discount) %></td>
       </tr>
       <% end %>
       <tr id="shipping" style="display:none;">
-        <td><%= t 'estimated_shipping' %></td>
+        <td><%= t 'theme.estimated_shipping' %></td>
         <td><span id="shipping-price"></span></td>
       </tr>
     </table>
@@ -62,7 +62,7 @@
 
   <% if ShippingCountry.count > 0 %>
   <div id="shipping_calculator">
-    <h3><%= t 'shipping_rates.calculator' %></h3>
+    <h3><%= t 'theme.shipping_rate.calculator' %></h3>
     <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
       <div class="row-fluid">
         <div class="span4">
@@ -73,7 +73,7 @@
           <div class="control-group string optional">
             <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
             <div class="controls">
-              <%= f.submit 'Calculate', class: 'btn', disable_with: 'Calculating...' %>
+              <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}" %>
             </div>
           </div>
         </div>
@@ -83,5 +83,5 @@
   </div>
   <% end %>
 <% else %>
-  <p class="alert"><%= t 'carts.is_empty' %>. <%= link_to "#{t 'products.browse'}", products_path %></p>
+  <p class="alert"><%= t 'theme.cart.is_empty' %>. <%= link_to "#{t 'theme.products.browse'}", products_path %></p>
 <% end %>

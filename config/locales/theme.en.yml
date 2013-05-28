@@ -15,7 +15,23 @@ en:
     blog: Blog
     login: Sign in
     register: Sign up
-    cart: Cart
+    item: Item
+    quantity: Quantity
+    price: Price
+    subtotal: Subtotal
+    updating: Updating...
+    calculating: Calculating...
+    checkout: Checkout
+    discount: Discount
+    estimated_shipping: Estimated shipping
+    apply_coupon: Apply
+    cart:
+      title: Cart
+      remove: remove
+      continue_shopping: Continue shopping
+      summary: Summary
+      calculate: Calculate
+      is_empty: Cart is empty
     same_as_billing_address: Same as billing address
     edit: Edit
     contact:
@@ -23,3 +39,10 @@ en:
       submit: Send message
       menu_tab: Contact
       success_notice: Message sent! Thank you for contacting us
+    products:
+      browse: Browse our catalogue
+    shipping_rate:
+      title: Shipping rate
+      calculator: Shipping rate calculator
+      there: There
+      available_for: available for

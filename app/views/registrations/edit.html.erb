@@ -1,15 +1,13 @@
-<div class="authentication">
-	<h1><%= t 'registrations.edit' %></h1>
+<%= page_title("#{t 'registrations.edit'}") %>
 
-  <%= simple_form_for(@user, url: update_profile_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
-	  <%= f.error_notification %>
+<%= simple_form_for(@user, url: update_profile_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
 
-	  <%= f.input :email %>
-	  <%= f.input :first_name %>
-	  <%= f.input :last_name %>
-    <%= f.input :password, required: false %>
-    <%= f.input :password_confirmation %>
+  <%= f.input :email %>
+  <%= f.input :first_name %>
+  <%= f.input :last_name %>
+  <%= f.input :password, required: false %>
+  <%= f.input :password_confirmation %>
 
-	  <%= f.button :submit, "#{t 'registrations.update_profile'}", class: "btn btn-primary nolabel" %>
-	<% end %>
-</div>
+  <%= f.button :submit, "#{t 'registrations.update_profile'}", class: "btn btn-primary nolabel" %>
+<% end %>
