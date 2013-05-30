@@ -19,15 +19,49 @@
 }
 
 #cart.public {
-	#cart {
-		.total {
-			text-transform: uppercase;
-			font-weight: bold;
+	#cart-actions {
+    .btn {
+    	margin-left: 10px;
+    }
+	}
 
-			.total-type {
-        text-align: right;
-			}
+	#cart-totals {
+		font-size: 1.5em;
+		margin: 20px 0;
+
+		tr {
+			line-height: 2em;
 		}
+
+		tr td:first-of-type {
+			text-transform: uppercase;
+    	color: #666;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: 1px;
+      padding-right: 25px;
+      text-align: right;
+		}
+		tr td:last-of-type {
+
+		}
+	}
+
+	#cart-checkout {
+		float: right;
+
+    h2 {
+    	text-transform: uppercase;
+    	color: #666;
+    	font-size: 1.125em;
+      -webkit-font-smoothing: antialiased;
+      letter-spacing: 1px;
+    }
+	}
+
+	#shipping_calculator {
+		border-top: 1px solid #dddddd;
+		clear: both;
+		//margin-top: 20px;
 	}
 }
 

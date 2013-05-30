@@ -5,75 +5,73 @@
   <%= form_for @cart, url: cart_path do |f| %>
   	<table id="cart" class="table table-striped">
   	  <tr>
+        <th></th>
   	    <th><%= t 'theme.item' %></th>
   	    <th><%= t 'theme.quantity' %></th>
         <th><%= t 'theme.price' %></th>
   	    <th><%= t 'theme.subtotal' %></th>
-  	    <th></th>
   	  </tr>
   	 
       <%= f.fields_for :items do |ff| %>
         <% item = ff.object %>
   	    <tr>
+          <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
   	      <td><%= item.buyable.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
-  	      <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
   	    </tr>
       <% end %>
   	</table>
-  	<%= link_to "#{t 'theme.cart.continue_shopping'}", products_path, class: "btn" %>
-    <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn btn-info' %>
-  	<%= link_to "#{t 'theme.checkout'}", checkout_cart_path, class: "btn btn-success" %>
-  <% end %>
 
-  <div class="well">
-    <% if @cart.coupon_applied? %>
-      Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, class: 'btn btn-danger', method: :post %>
-    <% else %>
-      <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
-        <%= label_tag :coupon_code %>
-        <%= text_field_tag :coupon_code, @cart.coupon_code, class: 'input-small' %>
-        <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.updating'}", class: 'btn' %>    
-      <% end %>
+
+    <div id="cart-actions" class="row-fluid">
+      
+      <%= link_to "#{t 'theme.checkout'}", checkout_cart_path, class: "btn btn-success fr" %>
+      <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn fr' %>
+      <%#= link_to "#{t 'theme.updating'}", cart_path(@cart), method: :put, class: 'btn fr' %>
+    </div>
     <% end %>
-  </div>
-
-  <div class="well">
-    <h6><%= t 'theme.cart.summary' %></h6>
-    <table>
+<% if @cart.coupon_applied? %>
+        Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, method: :post %>
+      <% else %>
+        <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
+        <%= label_tag :coupon_code %>
+        <%= text_field_tag :coupon_code, @cart.coupon_code %>
+        <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.updating'}", class: 'btn' %>
+        <% end %>
+      <% end %>
+  <table id="cart-totals" style="float:right;" class="span6">
+    <tr>
+      <td><%= t 'theme.subtotal' %></td>
+      <td><%= number_to_currency(@cart.subtotal) %></td>
+    </tr>
+    <% if @cart.discount > 0 %>
       <tr>
-        <td><%= t 'theme.subtotal' %></td>
-        <td><%= number_to_currency(@cart.subtotal) %></td>
-      </tr>
-      <% if @cart.discount > 0 %>
-      <tr class="total">
         <td><%= t 'theme.discount' %></td>
         <td><%= number_to_currency(-@cart.discount) %></td>
       </tr>
-      <% end %>
-      <tr id="shipping" style="display:none;">
-        <td><%= t 'theme.estimated_shipping' %></td>
-        <td><span id="shipping-price"></span></td>
-      </tr>
-    </table>
-  </div>
+    <% end %>
+    <tr id="shipping" style="display:none;">
+      <td><%= t 'theme.estimated_shipping' %></td>
+      <td><span id="shipping-price"></span></td>
+    </tr>
+  </table>
 
   <% if ShippingCountry.count > 0 %>
-  <div id="shipping_calculator">
+  <div id="shipping_calculator" class="row-fluid">
     <h3><%= t 'theme.shipping_rate.calculator' %></h3>
     <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
       <div class="row-fluid">
-        <div class="span4">
+        <div class="span3">
           <%= f.hidden_field :subtotal, value: @cart.subtotal %>
           <%= f.input :country, input_html: {class: 'input-block-level'} %>
         </div>
-        <div class="span4">
+        <div class="span3" style="margin-left:0;">
           <div class="control-group string optional">
             <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
             <div class="controls">
-              <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}" %>
+              <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}", style: 'margin-left:0;' %>
             </div>
           </div>
         </div>
