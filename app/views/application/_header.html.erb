@@ -9,7 +9,7 @@
 		<% else %>
 		  <li><%= link_to "#{t 'theme.login'}", login_path %> or <%= link_to "#{t 'theme.register'}", signup_path %></li>
 		<% end %>
-		<li><i class="icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
+		<li><i class="icomoon icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
       <%= pluralize(current_cart.items.length, "#{t 'item'}") %></li>
 	</span>
 </header>

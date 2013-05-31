@@ -1,7 +1,7 @@
 .pgcontainer {
   position: relative;
   width: 100%;
-  padding: 0 30px 100px 30px;
+  padding: 0 30px 0 30px;
 
   ul, li {
     padding: 0;
@@ -419,6 +419,7 @@
   h3 {
     font-weight: 300;
     padding: 10px 0;
+    width: 100%;
 
     a { 
       color: #666;

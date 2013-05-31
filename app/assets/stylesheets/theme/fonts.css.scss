@@ -11,6 +11,12 @@
   font-style: normal;
 } /* Made with http://icomoon.io/ */
 
+[class^="icomoon icon-"],
+[class*="icomoon icon-"] {
+  font-family: 'icomoon';
+  font-style: normal;
+}
+
 .icon-facebook:after {
   content: "\e007";
 }
@@ -22,4 +28,7 @@
 }
 .icon-cart:before {
   content: "\e000";
+}
+.icon-lock:before {
+  content: "\e005"
 }

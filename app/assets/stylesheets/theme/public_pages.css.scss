@@ -19,10 +19,8 @@
 }
 
 #cart.public {
-	#cart-actions {
-    .btn {
-    	margin-left: 10px;
-    }
+	.btn {
+		margin: 2px 0 2px 10px;
 	}
 
 	#cart-totals {
@@ -41,27 +39,11 @@
       padding-right: 25px;
       text-align: right;
 		}
-		tr td:last-of-type {
-
-		}
-	}
-
-	#cart-checkout {
-		float: right;
-
-    h2 {
-    	text-transform: uppercase;
-    	color: #666;
-    	font-size: 1.125em;
-      -webkit-font-smoothing: antialiased;
-      letter-spacing: 1px;
-    }
 	}
 
 	#shipping_calculator {
 		border-top: 1px solid #dddddd;
 		clear: both;
-		//margin-top: 20px;
 	}
 }
 

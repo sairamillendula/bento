@@ -5,11 +5,14 @@ class ArticlesController < ApplicationController
 
   def index
     if params[:tag]
-      @tag = Tag.find_by_name(params[:tag])
+      @tag = Tag.find_by_name!(params[:tag])
       @articles = @tag.articles.visibles.order('created_at DESC').page(params[:page]).per(10)
     else
       @articles = Article.visibles.order('created_at DESC').page(params[:page]).per(10)
     end
+
+    rescue ActiveRecord::RecordNotFound
+    redirect_to blog_url, flash: { error: "Record not found." }
   end
 
 	def show

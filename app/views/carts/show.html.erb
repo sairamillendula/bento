@@ -24,23 +24,22 @@
       <% end %>
   	</table>
 
-
-    <div id="cart-actions" class="row-fluid">
-      
+    <div id="cart-actions" class="row-fluid">      
       <%= link_to "#{t 'theme.checkout'}", checkout_cart_path, class: "btn btn-success fr" %>
       <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn fr' %>
-      <%#= link_to "#{t 'theme.updating'}", cart_path(@cart), method: :put, class: 'btn fr' %>
     </div>
+  <% end %>
+  
+  <% if @cart.coupon_applied? %>
+    Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, method: :post %>
+  <% else %>
+    <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
+    <%= label_tag :coupon_code %>
+    <%= text_field_tag :coupon_code, @cart.coupon_code %>
+    <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.apply_coupon'}", class: 'btn' %>
     <% end %>
-<% if @cart.coupon_applied? %>
-        Coupon code <b>"<%= @cart.coupon_code %>"</b> was applied. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, method: :post %>
-      <% else %>
-        <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
-        <%= label_tag :coupon_code %>
-        <%= text_field_tag :coupon_code, @cart.coupon_code %>
-        <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.updating'}", class: 'btn' %>
-        <% end %>
-      <% end %>
+  <% end %>
+  
   <table id="cart-totals" style="float:right;" class="span6">
     <tr>
       <td><%= t 'theme.subtotal' %></td>

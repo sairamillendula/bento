@@ -1,15 +1,9 @@
-<%= page_title("Products") %>
+<%= page_title("#{t 'theme.products.title'}") %>
 
 <% if params[:category] %>
-  <h3><%= t 'category' %>: <%= @category.name %></h3>
+  <h3><%= t 'theme.category' %>: <%= @category.name %></h3>
 <% end %>
 
-<div id="products">
-	<% @products.each do |product| %>
-	  <div class="product">
-	  	<h3><%= link_to product.name, product_path(product.slug) %></h3>
-	  </div>
-	<% end %>
-</div>
+<%= render 'products/products' %>
 
 <%= paginate @products %>

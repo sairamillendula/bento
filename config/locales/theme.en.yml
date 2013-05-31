@@ -34,12 +34,17 @@ en:
       is_empty: Cart is empty
     same_as_billing_address: Same as billing address
     edit: Edit
+    category: Category
+    checkout:
+      title: Checkout
+      secure_connection: You're browsing our secure server
     contact:
       title: Contact Us
       submit: Send message
       menu_tab: Contact
       success_notice: Message sent! Thank you for contacting us
     products:
+      title: Products
       browse: Browse our catalogue
     shipping_rate:
       title: Shipping rate

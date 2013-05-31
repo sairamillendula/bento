@@ -1,8 +1,8 @@
 <%= content_for :body_id do %>checkout<% end %>
 
-<%= page_title("#{t 'checkout'}") %>
+<%= page_title("#{t 'theme.checkout.title'}") %>
 
-<p class="alert"><i class="icon-lock"></i> <%= t 'you_re_browsing_our_secure_server' %>.</p>
+<p class="alert"><i class="icomoon icon-lock"></i> <%= t 'theme.secure_connection' %>.</p>
 
 <% if logged_in? %>
   <section id="order-addreses">
@@ -20,7 +20,7 @@
 
       <div class="row-fluid">
         <div id="billing-address" class="span6">
-          <h4 class="section-helper"><%= t 'billing_address' %></h4>
+          <h4 class="section-helper"><%= t 'theme.billing_address' %></h4>
           <% if current_user.addresses.any? %>
             <div class="control-group">
               <label class="control-label">Select address</label>
@@ -48,7 +48,7 @@
         </div>
 
         <div id="shipping-address" class="span6">
-          <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+          <h4 class="section-helper"><%= t 'theme.shipping_address' %></h4>
           <div id="shipping_address_fields" class="form-horizontal" style="display: <%= @cart.billing_address.also_shipping_address ? 'none' : 'block' %>;">
             <% if current_user.addresses.any? %>
               <div class="control-group">
