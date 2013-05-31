@@ -291,6 +291,21 @@ a:hover {
   -moz-border-radius-topright: 4px;
   -moz-border-radius-bottomright: 4px;
 }
+
+#remember-control {
+	font-family: 'News Cycle', sans-serif;
+  text-transform: uppercase;
+  font-size: 13px;
+  letter-spacing: 1px;
+
+	input#remember_me {
+	  height: 14px;
+		width: 14px;
+		margin-top: -4px;
+		margin-right: 4px;
+	}
+}
+
 /* end */
 
 @media screen and (max-width: 55em) {

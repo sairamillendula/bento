@@ -225,12 +225,14 @@ en:
     update_profile: Update Profile
     profile_updated: Profile was successfully updated
     no_account_yet: "No account, yet?"
+    already_have_an_account: Already have an account?
   social:
     twitter:
       username: Twitter username
     facebook:
       username: Facebook username/Page name
   sessions:
+    login: Sign in
     sign_in: Please sign in first
     signed_in: Signed in!
     signed_out: Successfully signed out.

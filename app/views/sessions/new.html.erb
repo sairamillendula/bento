@@ -1,23 +1,24 @@
 <%= page_title("#{t 'sessions.new'}") %>
 
-<div id="connect-forms" class="row-fluid">
-	<div id="login-form" class="span6">
-		<%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
+<div class="row-fluid">
+  <div class="span6">
+    <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
 	    <%= f.error_notification %>
 	  
 	    <%= f.input :email %>
 	    <%= f.input :password %>
-	    <label class="checkbox nolabel">
-	      <input id="remember_me" type="checkbox" name="remember_me" value="1"> <%= t 'remember_me' %>
-	    </label>
-	    <%= f.button :submit, "#{t 'sessions.submit'}", class: "btn-primary nolabel", style: 'margin-top:20px;' %>
-	  <% end %>
-	  <p class="nolabel" style="margin-top:20px;"><i><%= link_to "#{t 'passwords.forgot'}", new_password_path %></i></p>
-	</div>
 
-	<div id="signup-form" class="span6">
-		<div class="control-group">
-		  <%= label_tag "", "#{t 'registrations.no_account_yet'}", class: 'control-label', style: 'line-height:38px;' %>
-		  <%= link_to "Sign up", signup_path, class: 'btn' %>
-	</div>
+	    <p id="remember-control" class="nolabel">
+        <%= check_box_tag :remember_me %> <%= t 'remember_me' %>
+	    </p>
+
+	    <p><%= f.button :submit, "#{t 'sessions.submit'}", class: "nolabel btn", style: 'margin-top:10px;' %></p>
+   <% end %> 
+	  <p class="nolabel" style="margin-top:20px;"><i><%= link_to "#{t 'passwords.forgot'}", new_password_path %></i></p>
+  </div>
+
+  <div class="span6">
+    <p style="margin-top:0;"><%= t 'registrations.no_account_yet' %></p>
+		<%= link_to "Sign up", signup_path, class: 'btn' %>
+  </div>
 </div>
