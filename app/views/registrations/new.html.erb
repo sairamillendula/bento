@@ -11,7 +11,7 @@
 		  <%= f.input :password, hint: false %>
 		  <%= f.input :password_confirmation, required: true %>
 		 
-		  <p><label class="nolabel"><%= t 'registrations.terms_acceptance', default: 'By joining you agree with our terms and conditions' %></label></p>
+		  <p><label class="nolabel"><%= t 'theme.registrations.terms_acceptance' %></label></p>
 
 		  <%= f.button :submit, "#{t 'registrations.create_account'}", class: "btn nolabel" %>
 		<% end %>

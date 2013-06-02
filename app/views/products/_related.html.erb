@@ -1,4 +1,4 @@
-<% if @product.cross_sells %>
+<% if @product.cross_sell_products.any? %>
   <h3><%= t 'products.related' %></h3>
 
   <ul id="related_products" class="row-fluid">

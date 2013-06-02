@@ -717,7 +717,7 @@ input[type="checkbox"]:focus {
     background: #66ba5c;
 
     &:hover {
-      background: lighten(#66ba5c, 10%);
+      background: $red;
     }
 
     &.active {

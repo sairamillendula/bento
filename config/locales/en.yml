@@ -44,8 +44,6 @@ en:
   total: Total
   amount_due: Amount due
   connect: Connect
-  your_details: Your details
-  payment_info: Payment
   shipped_on: Shipped on
   first_name: First name
   last_name: Last name
@@ -53,16 +51,6 @@ en:
   remove_country: remove country
   current_month: Current month
   website_management: Website management
-  carts:
-    title: Cart
-    is_empty: Your cart is currently empty
-    empty_action: Empty cart
-    invalid: Invalid cart
-    continue_shopping: Continue Shopping
-    update: Update Cart
-    continue_as_guest: Continue as Guest
-    continue: Continue
-    no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
   articles:
     title: Articles
     new: New Article
@@ -72,11 +60,6 @@ en:
   order: Order
   orders:
     title: Orders
-    mine: My Orders
-    none: No orders found
-    thank_you: Thank you for your order
-    credit_card_provided: Credit card has been provided
-    date: Date
   work_list: Work List
   clients:
     title: Clients
@@ -218,7 +201,6 @@ en:
     instructions_sent: Instructions have been sent to your email
     password_updated_please_sign_in: Password was successfully updated. Please sign in
   registrations:
-    terms_acceptance: By joining you agree with our terms and conditions
     new: Sign up
     edit: Profile
     create_account: Create Account

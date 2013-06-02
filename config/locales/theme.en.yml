@@ -22,33 +22,62 @@ en:
     quantity: Quantity
     price: Price
     subtotal: Subtotal
+    full_price: Full price
     updating: Updating...
     calculating: Calculating...
     checkout: Checkout
     discount: Discount
     estimated_shipping: Estimated shipping
     apply_coupon: Apply
+    coupon_code: Coupon code
+    was_applied: was applied
+    add_to_cart: Add to Cart
+    select_address: Select address
     cart:
       title: Cart
       remove: remove
+      continue: Continue
       continue_shopping: Continue shopping
       summary: Summary
       calculate: Calculate
       is_empty: Cart is empty
+      empty_action: Empty cart
+      invalid: Invalid cart
+      update: Update Cart
+      no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
     same_as_billing_address: Same as billing address
     edit: Edit
     category: Category
     checkout:
       title: Checkout
       secure_connection: You're browsing our secure server
+      as_guest: Checkout as guest
+      your_details: Your details
     contact:
       title: Contact Us
       submit: Send message
       menu_tab: Contact
       success_notice: Message sent! Thank you for contacting us
+    orders:
+      thank_you: Thank you for your order
+      mine: My orders
+      none: No orders found
+      date: Date
+    payment:
+      title: Payment Information
+      credit_card_provided: Credit card has been provided
+      complete_order: Complete my purchase
     products:
       title: Products
       browse: Browse our catalogue
+    registrations:
+      terms_acceptance: By joining you agree with our terms and conditions
+    review_order:
+      title: "Shipping & Payment"
+    shipping:
+      title: Shipping
+      shipping_method: Shipping Method
+      select_shipping_rate: Please select how you would like your products to be delivered
     shipping_rate:
       title: Shipping rate
       calculator: Shipping rate calculator

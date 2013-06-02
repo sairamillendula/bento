@@ -1,23 +1,23 @@
 <%= content_for :body_id do %>order<% end %>
 
-<%= page_title("#{t 'orders.mine'}") %>
+<%= page_title("#{t 'theme.orders.mine'}") %>
 
 <% if @orders.any? %>
   <table class="table table-striped">
     <tr>
-      <th>code</th>
-      <th>total</th>
-      <th>date</th>
+      <th><%= t 'theme.code' %></th>
+      <th><%= t 'theme.total' %></th>
+      <th><%= t 'theme.orders.date' %></th>
     </tr>
     
     <% @orders.each do |order| %>
 	    <tr>
-	      <td><%= link_to order.code, order %></td>
+	      <td><%= link_to order.code, order %> <%= status_tag(order.state, class: "status-#{order.state}") %></td>
 	      <td><%= number_to_currency(order.total) %></td>
 	      <td><%= l order.created_at, format: :long %></td>
 	    </tr>
 	  <% end %>
   </table>
 <% else %>
-  <p class="alert"><%= t 'orders.none' %>.</p>
+  <p class="alert"><%= t 'theme.orders.none' %>.</p>
 <% end %>

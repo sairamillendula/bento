@@ -4,7 +4,7 @@
 
 <div class="row-fluid">
   <div class="span8">
-    <img data-src="holder.js/770x360" alt="" width="770" height="360">
+    <img data-src="holder.js/688x360" alt="" width="688" height="360">
   </div>
   
   <div class="span4">
@@ -16,10 +16,10 @@
       <% end %>
 
       <h2 id="price"><%= number_to_currency default_variant.price %></h2>
-      <%= button_to 'Add to Cart', line_items_path(product_variant_id: default_variant.id), class: "btn btn-add-to-cart", id: 'add-to-cart' %>
+      <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: default_variant.id), class: "btn btn-add-to-cart", id: 'add-to-cart' %>
     <% else %>  
       <h2 id="price"><%= number_to_currency @product.price, strip_insignificant_zeros: true %></h2>
-      <%= button_to 'Add to Cart', line_items_path(product_id: @product.id), class: "btn btn-add-to-cart", id: 'add-to-cart' %>
+      <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_id: @product.id), class: "btn btn-add-to-cart", id: 'add-to-cart' %>
     <% end %>
   </div>
 </div>

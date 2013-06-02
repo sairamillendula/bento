@@ -7,7 +7,7 @@
 		<span class="site-slogan"><%= t 'site_slogan' %></span>
 	</h1>
 	<span class="fr">
-		<i class="icomoon icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
+		<i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path %> - 
     <%= pluralize(current_cart.items.length, "#{t 'item'}") %>
   </span>
 </header>
