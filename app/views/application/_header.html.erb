@@ -1,15 +1,13 @@
 <header class="clearfix">
+  <ul id="user-info">
+		
+	</ul>
+
 	<h1><%= link_to "#{t 'site_name'}", root_url %>
 		<span class="site-slogan"><%= t 'site_slogan' %></span>
 	</h1>
-	<ul id="user-info">
-		<% if current_user %>
-		  <li>Welcome <%= link_to current_user.first_name, profile_path %></li>
-		  <li><%= link_to "#{t 'orders.mine'}", orders_path %></li>
-		<% else %>
-		  <li><%= link_to "#{t 'theme.login'}", login_path %> or <%= link_to "#{t 'theme.register'}", signup_path %></li>
-		<% end %>
-		<li><i class="icomoon icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
-      <%= pluralize(current_cart.items.length, "#{t 'item'}") %></li>
-	</span>
+	<span class="fr">
+		<i class="icomoon icon-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
+    <%= pluralize(current_cart.items.length, "#{t 'item'}") %>
+  </span>
 </header>

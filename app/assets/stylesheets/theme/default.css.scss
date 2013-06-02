@@ -45,28 +45,22 @@ a:hover {
 }
 
 #user-info {
-	float: right;
-	font-size: 16px;
-	line-height: 58px;
+	font-size: 12px;
 	margin: 0;
 	padding: 0;
-	height: 44px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid #eaeaea;
 	list-style-type: none;
 	color: #666;
 
 	li {
 		display: inline;
 		list-style-type: none;
-		margin-right: 15px;
+		margin-right: 20px;
 
 		&:last-child {
 			margin-right: 0;
 		}
-	}
-
-	.icon-cart {
-		color: #666;
-		margin-right: 5px;
 	}
 }
 

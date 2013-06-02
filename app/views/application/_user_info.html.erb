@@ -1,14 +1,10 @@
-<div id="topbar" class="row-fluid">
-  <div id="user-info">
-    <% if current_user %>
-      Welcome, <%= link_to current_user.first_name, profile_path %> | <%= link_to "#{t 'orders.mine'}", orders_path %>
-      <% if current_user.admin? %>| <%= link_to "Administration", admin_dashboard_path %><% end %>
-      <% if current_user.reseller? %>| <%= link_to "#{t 'resellers.account'}", reseller_dashboard_path %><% end %>
-      | <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
-    <% else %>
-      <%= link_to "#{t 'sign_in'}", login_path %>
-    <% end %>
-    <span class="fr"><i class="icon-shopping-cart"></i> <%= link_to "#{t 'carts.title'}", cart_path %> - 
-      <%= pluralize(current_cart.items.length, "#{t 'item'}") %></span>
-  </div>
-</div>
+<% if current_user %>
+  <li><%= t 'theme.welcome' %>, <%= link_to current_user.first_name, profile_path %></li>
+  <li><%= link_to "#{t 'orders.mine'}", orders_path %></li>
+  <% if current_user.admin? %>
+    <li><%= link_to "#{t 'theme.manage_store'}", admin_dashboard_path %></li>
+  <% end %>
+  <li class="fr"><%= link_to("#{t 'logout'}", logout_path, method: :delete) %></li>
+<% else %>
+  <li><%= t 'theme.welcome' %>, <%= link_to "#{t 'theme.login'}", login_path %> <%= t 'theme.or' %> <%= link_to "#{t 'theme.register'}", signup_path %></li>
+<% end %>
