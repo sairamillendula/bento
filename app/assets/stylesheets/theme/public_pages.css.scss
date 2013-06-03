@@ -7,6 +7,21 @@
 }
 
 #product.public {
+	#share-product {
+		margin: 19px 0;
+		padding: 0;
+
+		li {
+			list-style-type: none;
+			display: inline;
+			margin-right: 8px;
+			font-size: 32px;
+
+			a.icomoon::after {
+				color: #666;
+      }
+		}
+	}
 	#related_products {
     padding-left: 0;
 

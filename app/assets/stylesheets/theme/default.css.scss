@@ -108,7 +108,7 @@ a:hover {
 	}
 }
 
-.iconmoo:after {
+.icomoon:after {
 	font-family: 'icomoon';
 	speak: none;
 	font-style: normal;
@@ -116,11 +116,11 @@ a:hover {
 	font-variant: normal;
 	text-transform: none;
 	text-align: center;
-	color: $red;
+	//color: $red;
 	-webkit-font-smoothing: antialiased;
 }
 
-.container > header nav .iconmoo:after {
+.container > header nav .icomoon:after {
 	position: absolute;
 	top: 0;
 	left: 0;
@@ -149,7 +149,6 @@ a:hover {
 	  .item {
 	    float: left;
 	    clear: none;
-	    //margin: 15px 0 0 0;
 
 	    span {
 	    	font-size: 13px;
@@ -159,7 +158,6 @@ a:hover {
 	  .copyright {
 	    margin-right: 0px;
 	    float: right;
-	    //margin: 15px 0 0 0;
 	    line-height: 25px;
 
 	    a {
@@ -182,7 +180,6 @@ a:hover {
     float: left;
     width: 33%;
     list-style: none;
-    //margin: 15px 0 0 0;
     padding: 0;
 
     li {
@@ -306,8 +303,7 @@ a:hover {
 		margin-right: 4px;
 	}
 }
-
-/* end */
+/* end custom */
 
 @media screen and (max-width: 55em) {
 
