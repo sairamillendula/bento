@@ -11,7 +11,8 @@ class Admin::ProductsController < Admin::BaseController
 
   def new
     @product = Product.new
-    @product.auto_generate_variants = '1'
+    @product.has_options = false
+    @product.auto_generate_variants = true
     @product.options.build unless @product.options.any?
   end
 

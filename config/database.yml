@@ -4,18 +4,18 @@ production:
   encoding: unicode
   database: bento_production
   pool: 5
-  username: 
+  username: hoangnghiem
   password: 
-  host: 
+  host: localhost
 
 development:
   adapter: postgresql
   encoding: unicode
   database: bento_development
   pool: 5
-  username: 
+  username: hoangnghiem
   password: 
-  host: 
+  host: localhost
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
@@ -24,7 +24,6 @@ test:
   encoding: unicode
   database: bento_test
   pool: 5
-  username: 
+  username: hoangnghiem
   password: 
-  host: 
-
+  host: localhost

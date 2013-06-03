@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <div class="control-group" id="options-container" style="display: <%= @product.has_options == '1' && @product.options.any? ? 'block' : 'none' %>;">
+    <div class="control-group" id="options-container" style="display: <%= @product.has_options && @product.options.any? ? 'block' : 'none' %>;">
       <div class="controls well">
         <table class="table" id="options_fields">
           <thead>
@@ -72,7 +72,7 @@
           <label class="checkbox"><%= f.input_field :auto_generate_variants, label: false, as: :boolean %> Automatically create <strong><span id="variant-count"><%= @product.variants.size %></span> variants</strong> based on the options defined above.</label>
         </div>
         
-        <div id="select-variants" style="display: <%= @product.auto_generate_variants == '1' ? 'none' : 'block' %>;">
+        <div id="select-variants" style="display: <%= @product.auto_generate_variants ? 'none' : 'block' %>;">
           <p>Select which variants will be created</p>
           <table class="table" id="table-variants">
             <thead>
