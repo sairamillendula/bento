@@ -5,19 +5,19 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category]
-      @page_title = "#{params[:category]} | #{t 'site_name'}"
+      @page_title = "#{params[:category]} | #{t 'theme.site_name'}"
 
       @category = Category.find_by_name(params[:category])
       @products = @category.products.visibles.order('name').page(params[:page]).per(10)
     else
-      @page_title = "#{I18n.t 'products.title'} | #{t 'site_name'}"
+      @page_title = "#{I18n.t 'products.title'} | #{t 'theme.site_name'}"
       @products = Product.visibles.order('name').page(params[:page]).per(10)
     end
   end
 
 	def show
     @product = Product.includes(:categories).find(params[:id])
-    @page_title       = "#{@product.seo_title.present? ? @product.seo_title : @product.name} | #{t 'site_name'}"
+    @page_title       = "#{@product.seo_title.present? ? @product.seo_title : @product.name} | #{t 'theme.site_name'}"
     @page_description = @product.seo_description
     
     if !@product.visible?

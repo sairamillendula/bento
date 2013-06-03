@@ -4,7 +4,7 @@ class CollectionsController < ApplicationController
 
 	def show
     @collection = Collection.includes(:products).find(params[:slug])
-    @page_title       = "#{@collection.seo_title.present? ? @collection.seo_title : @collection.name} | #{t 'site_name'}"
+    @page_title       = "#{@collection.seo_title.present? ? @collection.seo_title : @collection.name} | #{t 'theme.site_name'}"
     @page_description = @collection.seo_description
     
     if !@collection.visible?

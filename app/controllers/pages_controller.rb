@@ -6,7 +6,7 @@ class PagesController < ApplicationController
 
 	def show
     @page = Page.find(params[:slug])
-    @page_title       = "#{@page.seo_title.present? ? @page.seo_title : @page.name} | #{t 'site_name'}"
+    @page_title       = "#{@page.seo_title.present? ? @page.seo_title : @page.name} | #{t 'theme.site_name'}"
     @page_description = @page.seo_description
 
     if !@page.visible?

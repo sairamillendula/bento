@@ -48,7 +48,7 @@ class OrdersPdf < Prawn::Document
   end
 
   def header(order)
-    data = [["#{I18n.t 'site_name'}", "##{order.code}"]]
+    data = [["#{I18n.t 'theme.site_name'}", "##{order.code}"]]
     
     table(data, width: bounds.width, cell_style: {size: 24, border_width: 0, font_style: :bold }) do
       row(0).column(1).align = :right
