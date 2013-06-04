@@ -15,16 +15,18 @@ class Admin::SettingsController < Admin::BaseController
   end
   
   def update
-    if file = params[:setting].delete(:logo)
-      logo = Picture.new
-      logo.upload = file
-      logo.save
-      Setting.logo.destroy if Setting.logo
-      Setting['logo'] = logo.id
-    end
+    if params[:setting]
+      if file = params[:setting].delete(:logo)
+        logo = Picture.new
+        logo.upload = file
+        logo.save
+        Setting.logo.destroy if Setting.logo
+        Setting['logo'] = logo.id
+      end
 
-    params[:setting].each do |k, v|
-      Setting[k] = v
+      params[:setting].each do |k, v|
+        Setting[k] = v
+      end
     end
 
     redirect_to admin_settings_path, notice: 'Settings were successfully saved.'
