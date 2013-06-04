@@ -197,6 +197,7 @@ en:
     forgot: Forgot Password?
     instructions_sent: Instructions have been sent to your email
     password_updated_please_sign_in: Password was successfully updated. Please sign in
+    reset_submit: Send reset instructions
   registrations:
     new: Sign up
     edit: Profile

@@ -3,7 +3,7 @@
 
 	<%= simple_form_for(:password, url: password_path, method: :post) do |f| %>
 	  <%= f.error_notification %>
-	  <%= f.input :email, label: false %>
-	  <%= f.button :submit, "Send reset instructions", class: "btn btn-primary" %>
+	  <%= f.input :email %>
+	  <%= f.button :submit, "#{t 'passwords.reset_submit'}", class: "btn btn-primary" %>
 	<% end %>
 </div>
