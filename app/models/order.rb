@@ -140,7 +140,7 @@ class Order < ActiveRecord::Base
       amount: (total * 100).to_i,
       currency: "cad",
       description: "#{cart.email}"
-      # application_fee: amount * ENV['STRIPE_APPLICATION_FEE'] / 100
+      # application_fee: total * ENV['STRIPE_APPLICATION_FEE'].to_i / 100
     )
 
     self.stripe_card_token = charge.id
@@ -174,7 +174,7 @@ class Order < ActiveRecord::Base
 
   rescue Stripe::InvalidRequestError => e
     logger.error "Stripe error while creating customer: #{e.message}"
-    errors.add :base, "#{t 'stripe.error'}."
+    errors.add :base, "#{I18n.t 'stripe.error'}."
     false
   end
 
