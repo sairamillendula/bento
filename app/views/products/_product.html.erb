@@ -13,9 +13,9 @@
       <li class="opt-compare">Compare</li>
       <li class="opt-fav">
 				<div class="opt-tooltip">
-					<span data-social="facebook" data-url="http://facebook.com/pages/<%= ENV['FACEBOOK_NIC'] %>"></span>
-					<span data-social="twitter" data-url="http://twitter.com/<%= ENV['TWITTER_NIC'] %>"></span>
-					<span data-social="pinterest" data-url="http://pinterest.com/<%= ENV['PINTEREST_NIC'] %>"></span>
+					<span data-social="facebook" data-url="#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}"></span>
+					<span data-social="twitter" data-url="#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}"></span>
+					<span data-social="pinterest" data-url="#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}"></span>
 				</div>
       </li>
       <li class="opt-color">

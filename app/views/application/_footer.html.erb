@@ -2,9 +2,9 @@
 	<div class="inner">
 		<nav>
 			<ul>
-				<li><%= link_to "Facebook", "http://facebook.com/pages/#{ENV['FACEBOOK_NIC']}", target: "_blank" %></li>
-				<li><%= link_to "Pinterest", "http://pinterest.com/#{ENV['PINTEREST_NIC']}", target: "_blank" %></li>
-				<li><%= link_to "Twitter", "http://twitter.com/#{ENV['TWITTER_NIC']}", target: "_blank" %></li>
+				<li><%= link_to "", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %></li>
+	    	<li><%= link_to "", "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %></li>
+	    	<li><%= link_to "", "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", class: 'icomoon icon-pinterest', target: "_blank" %></li>
 			</ul>
 			<ul>
 				<li><%= link_to "#{t 'theme.faq'}", "/faq" %></li>

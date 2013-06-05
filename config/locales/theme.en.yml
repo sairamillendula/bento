@@ -7,9 +7,9 @@ en:
     cgv: "Terms & conditions"
     in_the_news: Media
     blog: Blog
-    facebook_url: "http://facebook.com/bentooo"
-    twitter_url: "http://twitter.com/bentooobox"
-    pinterest_url: "http://pinterest.com/bentooobox"
+    facebook_url: "http://facebook.com/pages/%{fb_nic}"
+    twitter_url: "http://twitter.com/%{twitter_nic}"
+    pinterest_url: "http://pinterest.com/%{pinterest_nic}"
     bento_lunch_box: Bento Lunch Box
     manage_store: Administration
     welcome: Welcome
