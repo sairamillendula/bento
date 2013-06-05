@@ -17,12 +17,32 @@
 .stats-row {
 	margin-bottom: 20px;
 
-	div.span3:first-of-type {
+	.span3:first-of-type {
 	  margin-left: 0;
   }
 
-	.span3 h4 {
-		font-weight: normal;
+  .span3 {
+  	border: 1px solid #e3e3e8;
+  	@include border-radius(4px);
+  	padding: 20px;
+  	text-align: center;
+
+  	h4 {
+  		text-transform: uppercase;
+  		font-weight: normal;
+  	}
+  	.money {
+      font-size: 30px;
+      font-weight: bold;
+  	}
+  	.count {
+  		text-transform: lowercase;
+  	}
+  }
+
+	p span {
+		font-weight: bold;
+		font-size: 20px;
 	}
 }
 
@@ -200,6 +220,11 @@ table#table-options {
 #criteria_selection {
   form {
   	margin-bottom: 0;
+
+  	button { 
+  		min-width: 45px;
+  		padding: 4px 8px;
+  	}
   }
 }
 

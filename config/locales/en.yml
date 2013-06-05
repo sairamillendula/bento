@@ -57,6 +57,7 @@ en:
   order: Order
   orders:
     title: Orders
+    date: Date
   work_list: Work List
   clients:
     title: Clients
@@ -81,6 +82,9 @@ en:
     none: No product reviews found
     is_now_disapproved: Product review is now disapproved
     is_now_approved: Product review is now approved
+  cart:
+    is_empty: Cart is empty
+    no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
   coupons:
     title: Coupons
     new: New Coupon
@@ -182,7 +186,7 @@ en:
   payment_received_with_card_ending: Payment received with card ending
   today: Today
   month: Month
-  Week: Week
+  week: Week
   status:
     title: Status
     pending: Pending

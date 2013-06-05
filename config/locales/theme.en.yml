@@ -43,11 +43,9 @@ en:
       continue_shopping: Continue shopping
       summary: Summary
       calculate: Calculate
-      is_empty: Cart is empty
       empty_action: Empty cart
       invalid: Invalid cart
       update: Update Cart
-      no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
     same_as_billing_address: Same as billing address
     edit: Edit
     category: Category

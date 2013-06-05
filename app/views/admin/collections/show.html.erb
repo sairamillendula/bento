@@ -15,11 +15,11 @@
 
 <div class="row-fluid">
 	<% if @products.any? %>
-	  <ul id="products-list" class="span4">
+	  <ul id="products-list" class="span5">
 		  <%= render 'admin/collections/from' %>
 		</ul>
 
-	  <ul id="collection-products" class="span8" data-update-url="<%= sort_products_admin_collection_url %>">
+	  <ul id="collection-products" class="span7" data-update-url="<%= sort_products_admin_collection_url %>">
 		  <%= render 'admin/collections/to' %>
 		</ul>
 	<% else %>

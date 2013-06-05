@@ -33,7 +33,7 @@ class CartsController < ApplicationController
     @cart = current_cart
     
     if @cart.items.empty?
-      redirect_to products_url, notice: "#{t 'carts.is_empty'}."
+      redirect_to products_url, notice: "#{t 'cart.is_empty'}."
       return
     end
   end
@@ -46,7 +46,7 @@ class CartsController < ApplicationController
       if @cart.shipping_availability?
         redirect_to new_order_url
       else
-        redirect_to checkout_cart_url, alert: "#{t 'carts.no_shipping_in_country'} #{Country[@cart.shipping_address.country].name}"
+        redirect_to checkout_cart_url, alert: "#{t 'cart.no_shipping_in_country'} #{Country[@cart.shipping_address.country].name}"
       end
     else
       render :checkout
