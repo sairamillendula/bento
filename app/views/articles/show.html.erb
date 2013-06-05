@@ -4,7 +4,7 @@
 	<%= l @article.created_at.to_date %> par <%= @article.author.first_name %>
   <span class="fr">
     <%= link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-via"=>"#{ENV['TWITTER_NIC']}" %>
-    <div class="fb-like" data-href="https://facebook.com/#{ENV['FACEBOOK_NIC']}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
+    <div class="fb-like" data-href="https://facebook.com/pages/#{ENV['FACEBOOK_NIC']}" data-send="false" data-layout="button_count" data-width="450" data-show-faces="false"></div>
   </span>
 </h5>
 

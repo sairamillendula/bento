@@ -4,8 +4,8 @@
     <div class="item">
       <div class="item-flip">
       	<%= link_to product do %>
-        	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "150x200") %>
-        	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "150x200") %>
+        	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "200x200") %>
+        	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "200x200") %>
         <% end %>
       </div>
     </div>
@@ -13,7 +13,7 @@
       <li class="opt-compare">Compare</li>
       <li class="opt-fav">
 				<div class="opt-tooltip">
-					<span data-social="facebook" data-url="http://facebook.com/<%= ENV['FACEBOOK_NIC'] %>"></span>
+					<span data-social="facebook" data-url="http://facebook.com/pages/<%= ENV['FACEBOOK_NIC'] %>"></span>
 					<span data-social="twitter" data-url="http://twitter.com/<%= ENV['TWITTER_NIC'] %>"></span>
 					<span data-social="pinterest" data-url="http://pinterest.com/<%= ENV['PINTEREST_NIC'] %>"></span>
 				</div>

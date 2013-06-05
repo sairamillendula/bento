@@ -5,6 +5,7 @@ development:
   STRIPE_APPLICATION_FEE: 1
   DEFAULT_EMAIL_SENDER: "app@domain.com"
   DEFAULT_ADMIN_EMAIL: "admin@domain.com"
+  DEFAULT_CONTACT_EMAIL: "contact@domain.com"
   FACEBOOK_NIC:
   TWITTER_NIC:
   PINTEREST_NIC: 

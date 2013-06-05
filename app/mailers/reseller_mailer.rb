@@ -1,6 +1,8 @@
 class ResellerMailer < ActionMailer::Base
   default from: ENV['DEFAULT_EMAIL_SENDER']
-  layout "email"
+  default reply_to: ENV['DEFAULT_CONTACT_EMAIL']
+  
+  layout "email_theme"
 
   def reseller_request_approved(user)
   	@user = user

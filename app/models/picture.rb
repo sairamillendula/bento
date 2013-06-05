@@ -6,9 +6,9 @@ class Picture < ActiveRecord::Base
   attr_accessible :upload, :name
 
   has_attached_file :upload, 
-                    :url => "/upload/pictures/:id/:style/:basename.:extension",
-                    :path => ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
-                    :styles => { :thumb =>  "200x138#" }
+                    url: "/upload/pictures/:id/:style/:basename.:extension",
+                    path: ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
+                    styles: { thumb: "200x138#" }
 
   validates_attachment_size :upload, less_than: 5.megabytes
   validates_attachment_content_type :upload, content_type: ['image/jpeg', 'image/jpg',  'image/png', 'image/gif']

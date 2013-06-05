@@ -7,12 +7,13 @@
     <img data-src="holder.js/688x360" alt="" width="688" height="360">
   </div>
   
-  <div class="span4">
+  <div id="product-sidebar" class="span4">
     <% if @product.options.any? && @product.variants.any? %>
       <% default_variant = @product.variants.in_stocks.first || @product.variants.first %>
       <% valid_options = @product.variants.map{|v| v.options}.map(&:to_a).flatten(1).reduce({}) {|h,(k,v)| (h[k] ||= []) << v; h}.symbolize_keys %>
       <% @product.options.each do |option| %>
-        <p><%= option.name %>: <%= select_tag option.name, options_for_select(valid_options[:"option#{option.position}"].uniq, default_variant.send(:"option#{option.position}")), class: 'option' %></p>
+        <p><%= option.name %><br>
+           <%= select_tag option.name, options_for_select(valid_options[:"option#{option.position}"].uniq, default_variant.send(:"option#{option.position}")), class: 'option' %></p>
       <% end %>
 
       <h2 id="price"><%= number_to_currency default_variant.price %></h2>
@@ -22,7 +23,7 @@
       <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_id: @product.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
     <% end %>
     <ul id="share-product">
-      <li><%= link_to '', "http://facebook.com/#{ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %></li>
+      <li><%= link_to '', "http://facebook.com/pages/#{ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %></li>
       <li><%= link_to '', "http://twitter.com/#{ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %></li>
       <li><%= link_to '', "http://pinterest.com/#{ENV['PINTEREST_NIC']}", class: 'icomoon icon-pinterest', target: "_blank" %></li>
     </ul>

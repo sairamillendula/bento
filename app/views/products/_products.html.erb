@@ -1,6 +1,6 @@
-<div id="pgcontainer" class="pgcontainer" style="margin-top:40px;">
+<div id="pgcontainer" class="pgcontainer">
   <ul class="pggrid">
-  	<% @products.limit(8).each_with_index do |product, index| %>
+  	<% @products.each_with_index do |product, index| %>
 	    <%= render product, index: index %>
 	  <% end %>
   </ul>

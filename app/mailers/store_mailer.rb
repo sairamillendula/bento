@@ -1,5 +1,7 @@
 class StoreMailer < ActionMailer::Base
 	default from: ENV['DEFAULT_EMAIL_SENDER']
+	default reply_to: ENV['DEFAULT_CONTACT_EMAIL']
+	
   layout "email_theme"
 
   def order_receipt(order)
