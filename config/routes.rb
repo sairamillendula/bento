@@ -23,6 +23,7 @@ Bento::Application.routes.draw do
   # ============================================================
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
     root to: 'dashboard#show', as: :dashboard
+    get 'search', to: 'dashboard#search', as: :search
     get 'audit', to: 'audit_trails#index', as: 'audit'
     resource :stock, only: [:show, :update], path: 'stocks', as: 'stocks'
     resources :articles

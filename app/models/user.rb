@@ -1,6 +1,17 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
 
+  include PgSearch
+  multisearchable :against => [:first_name, :last_name, :email]
+  pg_search_scope :search_by_keyword, 
+                  :against => [:first_name, :last_name, :email],
+                  :using => {
+                    :tsearch => {
+                      :prefix => true # match any characters
+                    }
+                  },
+                  :ignoring => :accents
+
   # ASSOCIATIONS
   # ==================================================
   has_many :orders, :dependent => :destroy, foreign_key: 'client_id'

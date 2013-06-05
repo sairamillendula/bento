@@ -1,0 +1,2 @@
+<% product = Product.find(result.searchable_id) %>
+<p><%= status_tag(t(result.searchable_type)) %> <%= link_to product.name, [:admin, product] %></p>

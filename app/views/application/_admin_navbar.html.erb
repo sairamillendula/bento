@@ -1,7 +1,12 @@
-<h1>
+<h1 class="fl">
   <%= "#{t 'theme.site_name'}" %> <%= link_to "#{t 'go_to_store'}", root_path, class: "view-site", 'data-no-turbolink'=>true %>
-  <span id="user-info" class="fr">
-    <%= t 'welcome' %> <%= link_to current_user.first_name, profile_path, 'data-no-turbolink'=>true %> | 
-    <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
-  </span>
 </h1>
+
+<span id="user-info" class="fr">
+  <%= t 'welcome' %> <%= link_to current_user.first_name, profile_path, 'data-no-turbolink'=>true %> | 
+  <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
+</span>
+
+<form class="fr" id="global-search" action="<%= admin_search_path %>" method="GET">
+  <input type="text" class="input-medium search-query" placeholder="Search" name="query">
+</form>

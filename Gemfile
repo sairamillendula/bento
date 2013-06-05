@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 
 gem 'pg'
+gem 'pg_search'
 gem 'activerecord-postgres-hstore'
 gem 'capistrano'
 gem 'sorcery'

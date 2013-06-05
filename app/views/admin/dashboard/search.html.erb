@@ -1,0 +1,11 @@
+<% if @results.present? %>
+  <% @results.each do |result| %>
+    <%= render result.searchable_type.downcase, result: result %>
+  <% end %>
+
+  <div class="clearfix">
+    <%= paginate @results, remote: true %>
+  </div>
+<% else %>
+  <div class="alert"><%= t 'search_results.none' %>.</div>
+<% end %>

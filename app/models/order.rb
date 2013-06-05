@@ -1,4 +1,16 @@
 class Order < ActiveRecord::Base
+  include PgSearch
+
+  multisearchable :against => :code
+  pg_search_scope :search_by_keyword, 
+                  :against => [:code],
+                  :using => {
+                    :tsearch => {
+                      :prefix => true # match any characters
+                    }
+                  },
+                  :ignoring => :accents
+                  
   # MACHINE STATES
   # -------------
   module State

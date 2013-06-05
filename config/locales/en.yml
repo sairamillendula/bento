@@ -141,7 +141,9 @@ en:
     title: Collections
     none: No Collections found
     new: New Collection
-    edit: Edit Collection  
+    edit: Edit Collection
+  search_results:
+    none: No search result found    
   resellers:
     title: Resellers
     become_reseller: Become Reseller

@@ -75,6 +75,8 @@ body.admin {
     
     #user-info {
     	color: $light-gray;
+    	display: block;
+    	margin-top: 35px;
    
 			a {
 				color: $blue;
@@ -83,6 +85,10 @@ body.admin {
 					text-decoration: underline;
 				}
 			}
+		}
+
+		#global-search {
+			margin-top: 30px;
 		}
 	}
 

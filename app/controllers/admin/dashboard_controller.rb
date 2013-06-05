@@ -13,4 +13,8 @@ class Admin::DashboardController < Admin::BaseController
     @monthly_orders = @orders.by_month(Date.today).length
   end
 
+  def search
+    @results = PgSearch.multisearch(params[:query]).page(params[:page] || 1).per(20)
+  end
+
 end

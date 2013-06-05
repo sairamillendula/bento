@@ -2,6 +2,17 @@ class Collection < ActiveRecord::Base
 	extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
   include Sluggable
+  include PgSearch
+
+  multisearchable :against => :name
+  pg_search_scope :search_by_keyword, 
+                  :against => [:name],
+                  :using => {
+                    :tsearch => {
+                      :prefix => true # match any characters
+                    }
+                  },
+                  :ignoring => :accents
 
   before_save :format_slug
   

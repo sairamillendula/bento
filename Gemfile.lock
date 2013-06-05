@@ -187,6 +187,9 @@ GEM
       ttfunk
     pg (0.14.1)
     pg-hstore (1.1.7)
+    pg_search (0.5.7)
+      activerecord (>= 3)
+      activesupport (>= 3)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -299,6 +302,7 @@ DEPENDENCIES
   omniauth-stripe-connect
   paperclip
   pg
+  pg_search
   prawn!
   quiet_assets
   rails (= 3.2.13)
