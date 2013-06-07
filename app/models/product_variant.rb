@@ -7,7 +7,7 @@ class ProductVariant < ActiveRecord::Base
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   has_many :stocks
-  has_many :line_items, as: :buyable
+  has_many :line_items
   has_many :orders, through: :line_items, uniq: true
   
   # SCOPES
@@ -18,7 +18,7 @@ class ProductVariant < ActiveRecord::Base
   # ATTRIBUTES
   # -------------
   attr_accessor :selected
-  attr_accessible :price, :in_stock, :product_id, :pictures_attributes, :selected, :options
+  attr_accessible :price, :reduced_price, :in_stock, :product_id, :pictures_attributes, :selected, :options, :sku
 
   serialize :options, ActiveRecord::Coders::Hstore
 
@@ -38,9 +38,11 @@ class ProductVariant < ActiveRecord::Base
   # VALIDATIONS
   # -------------
   # validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "'#{YAML.load(attributes[:value]).values.join(' / ')}' is duplicated"} }
-  validates :options, uniqueness: {scope: :product_id}
+  validates :options, uniqueness: {scope: :product_id}, :unless => :master?
+  validate :validate_options_presence, :unless => :master?
   validates :price, numericality: {greater_than_or_equal_to: 0.0, allow_blank: true}
-  validate :validate_options_presence
+  validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
+  # validates_numericality_of :in_stock, only_integer: true
 
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   after_save :update_product_options
@@ -55,7 +57,7 @@ class ProductVariant < ActiveRecord::Base
   # INSTANCE METHODS
   # -------------  
   def current_price
-  	price.present? ? price : product.price
+  	price.present? ? price : product.master.price
   end
 
   def in_stock?
@@ -75,7 +77,11 @@ class ProductVariant < ActiveRecord::Base
   end
 
   def cart_name
-    "#{product.name} (#{name})"
+    if master
+      product.name
+    else
+      "#{product.name} (#{name})"
+    end
   end
 
 private

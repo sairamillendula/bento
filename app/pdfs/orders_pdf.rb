@@ -141,7 +141,7 @@ class OrdersPdf < Prawn::Document
     [["Product", "Qty", "Unit Price", "Full Price"]] +
     order.items.map do |item|
       [
-        item.buyable.name,
+        item.variant.name,
         item.quantity,
         price(item.price),
         price(item.subtotal)

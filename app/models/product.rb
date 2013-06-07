@@ -17,8 +17,13 @@ class Product < ActiveRecord::Base
 
   # ASSOCICATIONS
   # -------------
-  has_many :variants, class_name: "ProductVariant", dependent: :destroy, :conditions  => { :active => true }
+  has_many :all_variants, class_name: 'ProductVariant'
+  
+  has_many :variants, class_name: "ProductVariant", dependent: :destroy, :conditions => { :active => true, :master => false }
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
+
+  has_one :master, class_name: "ProductVariant", :conditions => { :master => true, :active => true }
+  accepts_nested_attributes_for :master
 
   has_many :options, class_name: "ProductOption", dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
@@ -30,7 +35,7 @@ class Product < ActiveRecord::Base
   has_many :cross_sells
   has_many :cross_sell_products, through: :cross_sells, source: :other_product
 
-  has_many :line_items, as: :buyable
+  has_many :line_items, through: :all_variants
   has_and_belongs_to_many :categories
 
   has_many :collection_products, dependent: :destroy
@@ -52,24 +57,24 @@ class Product < ActiveRecord::Base
   
   # ATTRIBUTES
   # -------------
-  attr_accessible :name, :description, :reduced_price, :price, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+  attr_accessible :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-                  :meta_tag, :seo_title, :seo_description, :auto_generate_variants
+                  :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   attr_accessor :has_options, :auto_generate_variants
   
   # VALIDATIONS
   # -------------
   validates_uniqueness_of :name, :sku
-  validates_presence_of :name, :price, :slug, :description
-  validates_numericality_of :price, greater_than_or_equal_to: 0.01
-  validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
-  validates_numericality_of :in_stock, only_integer: true
+  validates_presence_of :name, :slug, :description
+  # validates_numericality_of :price, greater_than_or_equal_to: 0.01
+  # validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
+  # validates_numericality_of :in_stock, only_integer: true
   
   # CALLBACKS
   # -------------
   before_create :generate_sku, :if => Proc.new { |product| product.sku.blank? }
-  before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
+  # before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
   before_create :clean_up
   before_destroy { |product|
@@ -101,23 +106,23 @@ class Product < ActiveRecord::Base
   end
 
   def on_sale?
-    reduced_price.present? && reduced_price > 0
+    master.reduced_price.present? && master.reduced_price > 0
   end
 
   def current_price
-    reduced_price.present? ? reduced_price : price
+    master.reduced_price.present? ? master.reduced_price : master.price
   end
 
   def price_display
-    variants.any? ? "#{I18n.t('from_price')} #{number_to_currency(price)}" : "#{number_to_currency(price)}"
+    variants.any? ? "#{I18n.t('from_price')} #{number_to_currency(master.price)}" : "#{number_to_currency(master.price)}"
   end
 
   def percentage_off
-    (1 - (reduced_price/price))*100 if reduced_price
+    (1 - (master.reduced_price/master.price))*100 if master.reduced_price
   end
   
   def in_stock?
-    in_stock > 0
+    master.in_stock > 0
   end
 
   def can_be_deleted?
@@ -141,8 +146,9 @@ class Product < ActiveRecord::Base
           unless existings[opts]
             variants.build(
               options: opts,
-              price: price,
-              in_stock: in_stock
+              price: master.price,
+              reduced_price: master.reduced_price,
+              in_stock: master.in_stock
             )
           else
             variants << existings[opts]

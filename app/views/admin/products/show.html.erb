@@ -11,7 +11,7 @@
 	<span class="fr"><b>SKU</b>: <%= @product.sku %></span>
 </p>
 
-<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.price) %> || <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.reduced_price) %></p>
+<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.master.price) %> || <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.master.reduced_price) %></p>
 
 <p>
 	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
@@ -22,7 +22,7 @@
 
 <p><b><%= t 'products.cross_sell' %></b>: <%= @product.cross_sell_products.map{|p| link_to(p.name, [:admin, p]) }.to_sentence.html_safe %></p>
 
-<p><b><%= t 'in_stock' %></b>: <%= @product.in_stock || 0 %></p>
+<p><b><%= t 'in_stock' %></b>: <%= @product.master.in_stock || 0 %></p>
 
 <%= markdown(@product.description) %>
 

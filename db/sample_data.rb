@@ -100,16 +100,19 @@ puts "Created 15 articles"
 25.times do |x|
   print '.'
   p = x + 1
-  product = Product.create!(
+  product = Product.new(
     name: Faker::Lorem.words(5).join(' ').titleize,
     slug: Faker::Lorem.words(5).join('-'),
     description: Faker::Lorem.paragraphs(3).join("<br/>"),
     visible: [true, false].sample,
-    featured: [true, false].sample,
+    featured: [true, false].sample
+  )
+  product.build_master(
     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     reduced_price: ["", 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     in_stock: (0..10).to_a.sample
   )
+  product.save!
 end
 puts "Created 15 products"
 

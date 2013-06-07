@@ -19,8 +19,8 @@
       <h2 id="price"><%= number_to_currency default_variant.price %></h2>
       <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: default_variant.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
     <% else %>  
-      <h2 id="price"><%= number_to_currency @product.price, strip_insignificant_zeros: true %></h2>
-      <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_id: @product.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
+      <h2 id="price"><%= number_to_currency @product.master.price, strip_insignificant_zeros: true %></h2>
+      <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: @product.master.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
     <% end %>
     <ul id="share-product">
       <li><%= link_to "", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %></li>

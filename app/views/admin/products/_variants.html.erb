@@ -3,13 +3,15 @@
   
   <table class="table table-striped">
   	<tr>
-  		<th></th>
-  		<th>PRICE</th>
+      <th></th>
+  		<th>SKU</th>
+      <th>PRICE</th>
   		<th>IN STOCK</th>
   	</tr>
     <% @product.variants.each do |variant| %>
       <tr>
         <td><b><%= variant.name %></b></td>
+        <td><%= variant.sku %></td>
         <td><%= number_to_currency(variant.current_price) %></td>
         <td><%= variant.in_stock %></td>
       </tr>

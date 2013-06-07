@@ -1,9 +1,9 @@
 class LineItem < ActiveRecord::Base
-	belongs_to :buyable, polymorphic: true
+	belongs_to :variant, class_name: 'ProductVariant'
   belongs_to :cart
   belongs_to :order, counter_cache: true
   
-  attr_accessible :cart_id, :buyable_id, :buyable_type, :quantity, :price, :order_id
+  attr_accessible :cart_id, :variant_id, :quantity, :price, :order_id
 
   before_save :ensure_valid_quantity
 
@@ -12,11 +12,7 @@ class LineItem < ActiveRecord::Base
   end
 
   def current_price
-  	buyable.price
-  end
-
-  def is_variant?
-    buyable_type == 'ProductVariant'
+  	variant.price
   end
 
 private

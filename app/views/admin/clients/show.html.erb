@@ -15,9 +15,9 @@
     <% @client.orders.order('created_at DESC').each do |order| %>
       <tr>
       	<td><%= order.code %></td>
-      	<td><%= status(order.status) %></td>
+      	<td><%= status(order.state) %></td>
         <td><%= l order.created_at %></td>
-        <td><%= number_to_currency(order.amount, strip_insignificant_zeros: true) %></td>
+        <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
         <td><%= icon_button_link_to "#{t 'view'}", admin_order_path(order), icon: 'file' %></td>
       </tr>
     <% end %>

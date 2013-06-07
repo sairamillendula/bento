@@ -429,8 +429,7 @@ ALTER SEQUENCE friendly_id_slugs_id_seq OWNED BY friendly_id_slugs.id;
 
 CREATE TABLE line_items (
     id integer NOT NULL,
-    buyable_id integer,
-    buyable_type character varying(255),
+    variant_id integer,
     quantity integer DEFAULT 1,
     price numeric(11,2),
     cart_id integer,
@@ -725,10 +724,13 @@ CREATE TABLE product_variants (
     id integer NOT NULL,
     options hstore,
     price numeric(11,2),
+    reduced_price numeric(11,2),
     in_stock integer DEFAULT 0,
     product_id integer,
     orders_count integer DEFAULT 0,
     active boolean DEFAULT true,
+    master boolean DEFAULT false,
+    sku character varying(255),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -762,12 +764,9 @@ CREATE TABLE products (
     name character varying(255),
     slug character varying(255),
     sku character varying(255),
-    price numeric(11,2),
-    reduced_price numeric(11,2),
     description text,
     visible boolean DEFAULT true,
     featured boolean DEFAULT false,
-    in_stock integer DEFAULT 0,
     supplier_id integer,
     meta_tag text,
     orders_count integer DEFAULT 0,
@@ -1708,10 +1707,24 @@ CREATE INDEX index_friendly_id_slugs_on_sluggable_type ON friendly_id_slugs USIN
 
 
 --
--- Name: index_line_items_on_buyable_id_and_buyable_type; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_line_items_on_cart_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_line_items_on_buyable_id_and_buyable_type ON line_items USING btree (buyable_id, buyable_type);
+CREATE INDEX index_line_items_on_cart_id ON line_items USING btree (cart_id);
+
+
+--
+-- Name: index_line_items_on_order_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_line_items_on_order_id ON line_items USING btree (order_id);
+
+
+--
+-- Name: index_line_items_on_variant_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_line_items_on_variant_id ON line_items USING btree (variant_id);
 
 
 --

@@ -24,16 +24,10 @@ class Cart < ActiveRecord::Base
   
   # buyable can be product or variant
   # return: line item
-  def add_to_cart(buyable)
-    if buyable.is_a?(Product)
-	    current_item = items.where(buyable_id: buyable.id, buyable_type: 'Product').first_or_initialize
-    elsif buyable.is_a?(ProductVariant)
-      current_item = items.where(buyable_id: buyable.id, buyable_type: 'ProductVariant').first_or_initialize
-    else
-      raise ArgumentError.new('give argument must be an instance of Product or ProductVariant')
-    end
+  def add_to_cart(variant)
+    current_item = items.where(variant_id: variant.id).first_or_initialize
     current_item.quantity += 1 unless current_item.new_record?
-    current_item.price = buyable.price
+    current_item.price = variant.price
     current_item.save
     calculate
 	  current_item

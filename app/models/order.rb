@@ -234,10 +234,10 @@ private
 
   def update_stocks
     items.each do |item|
-      buyable = item.buyable
-      buyable.in_stock -= item.quantity
-      buyable.orders_count += 1
-      buyable.save
+      variant = item.variant
+      variant.in_stock -= item.quantity
+      variant.orders_count += 1
+      variant.save
     end
     if coupon
       coupon.orders_count += 1

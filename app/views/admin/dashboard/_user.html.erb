@@ -1,2 +1,2 @@
 <% user = User.find(result.searchable_id) %>
-<p><%= status_tag(t(result.searchable_type)) %> <%= link_to user.full_name, [:admin, user] %></p>
+<p><%= status_tag(t(result.searchable_type)) %> <%= link_to user.full_name, admin_client_path(user.id) %></p>

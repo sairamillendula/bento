@@ -16,7 +16,7 @@
         <% item = ff.object %>
   	    <tr>
           <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
-  	      <td><%= item.buyable.cart_name %></td>
+  	      <td><%= item.variant.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
