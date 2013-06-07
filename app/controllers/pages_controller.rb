@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
-  
+  skip_before_filter :load_cart, only: [:user_info]
+
   #before_filter(only: [:index, :show]) { @page_caching = true }
   before_filter(except: [:home]) { @page_caching = false }
   caches_page :show
@@ -22,6 +23,9 @@ class PagesController < ApplicationController
 
   def become_reseller
     @reseller_request = ResellerRequest.new if current_user
+  end
+
+  def user_info
   end
 
 end

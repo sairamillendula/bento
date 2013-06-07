@@ -1,7 +1,7 @@
 ready = ->
 
 	if $('.public').length
-	  $.getScript('/application/users')
+	  $.getScript('/user_info')
 
 $(document).ready(ready)
 $(document).on('page:load', ready)
