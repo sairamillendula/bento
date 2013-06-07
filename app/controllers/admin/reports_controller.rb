@@ -21,7 +21,7 @@ class Admin::ReportsController < Admin::BaseController
     @years = AuditYear.all.map(&:year)
     @years << @year unless @years.include?(@year)
     @years = @years.sort
-    @orders_months = Order.completed.where(["YEAR(created_at) = ?", @year])
+    @orders_months = Order.completed.where(["EXTRACT(year from created_at) = ?", @year])
     @months = @orders_months.group_by{|orders| orders.created_at.month}
   end
 
