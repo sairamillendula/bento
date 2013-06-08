@@ -10,9 +10,9 @@
   	</tr>
     <% @product.variants.each do |variant| %>
       <tr>
-        <td><b><%= variant.name %></b></td>
+        <td><b><%= variant.name %></b> <%= status_tag("#{t 'on_sale'}", level: 'warning') if variant.on_sale? %></td>
         <td><%= variant.sku %></td>
-        <td><%= number_to_currency(variant.current_price) %></td>
+        <td><%= number_to_currency(variant.on_sale? ? variant.reduced_price : variant.current_price) %></td>
         <td><%= variant.in_stock %></td>
       </tr>
     <% end %>

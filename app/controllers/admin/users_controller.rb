@@ -31,7 +31,7 @@ class Admin::UsersController < Admin::BaseController
     @user.active = false
 
     if @user.save
-      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
+      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_inactive', default: 'is inactive'}."
     else
       redirect_to admin_users_url, alert: "Cannot deactivate user #{@user.full_name}. Please contact system administrator."
     end
@@ -42,7 +42,7 @@ class Admin::UsersController < Admin::BaseController
     @user.active = true
 
     if @user.save
-      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_activated', default: 'is activated'}."
+      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_active', default: 'is activate'}."
     else
       redirect_to admin_users_url, alert: "Cannot activate user #{@user.full_name}. Please contact system administrator."
     end

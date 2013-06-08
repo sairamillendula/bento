@@ -7,7 +7,7 @@
 <% end %>
 
 <p>
-	<b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug) %>
+	<b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug), 'data-no-turbolink'=>true %>
 	<span class="fr"><b>SKU</b>: <%= @product.sku %></span>
 </p>
 

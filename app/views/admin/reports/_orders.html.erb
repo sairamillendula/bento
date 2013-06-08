@@ -10,7 +10,7 @@
   <% @orders.each do |order| %>
     <tr>
       <td><%= link_to order.code, admin_order_path(order) %></td>
-      <td><%= status_tag(order.state) %></td>
+      <td><%= status_tag(order.state, class: "state-#{order.state}") %></td>
       <td><%= order.client.full_name %></td>
       <td><%= l order.created_at, format: :long %></td>
       <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>

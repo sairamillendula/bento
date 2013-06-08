@@ -10,7 +10,9 @@
           <td><%= link_to product.name, [:admin, product] %></td>
           <td>
             <%= ff.hidden_field :id %>
-            <%= ff.number_field :in_stock, class: 'input-mini' %>
+            <%= ff.fields_for :master do |fm| %>
+              <%= fm.number_field :in_stock, class: 'input-mini' %>
+            <% end %>
           </td>
         </tr>
         <% if product.variants.size > 0 %>

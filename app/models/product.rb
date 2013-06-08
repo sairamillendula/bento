@@ -19,10 +19,10 @@ class Product < ActiveRecord::Base
   # -------------
   has_many :all_variants, class_name: 'ProductVariant'
   
-  has_many :variants, class_name: "ProductVariant", dependent: :destroy, :conditions => { :active => true, :master => false }
+  has_many :variants, class_name: "ProductVariant", dependent: :destroy, conditions: { active: true, master: false }
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
 
-  has_one :master, class_name: "ProductVariant", :conditions => { :master => true, :active => true }
+  has_one :master, class_name: "ProductVariant", conditions: { master: true, active: true }
   accepts_nested_attributes_for :master
 
   has_many :options, class_name: "ProductOption", dependent: :destroy
@@ -67,9 +67,6 @@ class Product < ActiveRecord::Base
   # -------------
   validates_uniqueness_of :name, :sku
   validates_presence_of :name, :slug, :description
-  # validates_numericality_of :price, greater_than_or_equal_to: 0.01
-  # validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
-  # validates_numericality_of :in_stock, only_integer: true
   
   # CALLBACKS
   # -------------

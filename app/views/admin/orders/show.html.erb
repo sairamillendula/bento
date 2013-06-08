@@ -15,7 +15,7 @@
 
 <h3>
   <%= @order.client.full_name %>
-  <% if @order.shipped? %><span class="fr"><%= t 'shipped_on' %> <%= l @order.shipped_at, format: :long %></span><% end %>
+  <% if @order.shipped? %><span class="fr normal-text"><%= t 'shipped_on' %> <%= l @order.shipped_at, format: :long %></span><% end %>
 </h3>
 
 <%= render 'orders/items' %>

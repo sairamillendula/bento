@@ -38,11 +38,12 @@ class ProductVariant < ActiveRecord::Base
   # VALIDATIONS
   # -------------
   # validates :options, uniqueness: {scope: :product_id, message: Proc.new {|error, attributes| "'#{YAML.load(attributes[:value]).values.join(' / ')}' is duplicated"} }
-  validates :options, uniqueness: {scope: :product_id}, :unless => :master?
-  validate :validate_options_presence, :unless => :master?
-  validates :price, numericality: {greater_than_or_equal_to: 0.0, allow_blank: true}
+  validates :options, uniqueness: {scope: :product_id}, unless: :master?
+  validate :validate_options_presence, unless: :master?
+  validates_numericality_of :price, greater_than_or_equal_to: 0.0, allow_blank: true
   validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
-  # validates_numericality_of :in_stock, only_integer: true
+  validates_numericality_of :in_stock, only_integer: true
+  validates_presence_of :price
 
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   after_save :update_product_options
@@ -66,6 +67,10 @@ class ProductVariant < ActiveRecord::Base
   
   def can_be_deleted?
     !(orders_count > 0)
+  end
+
+  def on_sale?
+    reduced_price.present? && reduced_price > 0
   end
 
   def name(html=false)

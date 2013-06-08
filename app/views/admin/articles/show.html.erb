@@ -6,7 +6,7 @@
 
 <p>
   <b>URL:</b>
-  <%= link_to "#{article_url(@article.slug)}", article_url(@article.slug) %>
+  <%= link_to "#{article_url(@article.slug)}", article_url(@article.slug), 'data-no-turbolink'=>true %>
 </p>
 
 <p>

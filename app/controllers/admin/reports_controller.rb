@@ -7,7 +7,7 @@ class Admin::ReportsController < Admin::BaseController
   def monthly_sales
     set_tab :monthly_sales_report
     @date = params[:month] ? Date.strptime(params[:month], "%Y-%m") : Date.today
-    @orders = Order.completed.where(created_at: (@date).beginning_of_month..(@date).end_of_month).order('created_at DESC')
+    @orders = Order.where(created_at: (@date).beginning_of_month..(@date).end_of_month).order('created_at DESC')
 
     respond_to do |format|
       format.html
@@ -21,13 +21,13 @@ class Admin::ReportsController < Admin::BaseController
     @years = AuditYear.all.map(&:year)
     @years << @year unless @years.include?(@year)
     @years = @years.sort
-    @orders_months = Order.completed.where(["EXTRACT(year from created_at) = ?", @year])
+    @orders_months = Order.where(["EXTRACT(year from created_at) = ?", @year])
     @months = @orders_months.group_by{|orders| orders.created_at.month}
   end
 
   def orders
     set_tab :orders_report
-    @search = Order.completed.search(params[:q])
+    @search = Order.search(params[:q])
     @orders = @search.result.order('created_at DESC').page(params[:page]).per(15)
 
     respond_to do |format|

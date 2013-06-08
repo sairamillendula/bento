@@ -58,6 +58,7 @@ en:
   orders:
     title: Orders
     date: Date
+    thank_you: Thank you for your order!
   work_list: Work List
   clients:
     title: Clients
@@ -131,8 +132,8 @@ en:
   unit_price: Unit price
   on_sale: Sale
   an_email_was_sent_to: An email was sent to
-  is_deactivated: is deactivated
-  is_activated: is activated
+  is_now_active: is now active
+  is_now_inactive: is now inactive
   contact_us: Contact
   about: About
   checkout: Checkout
@@ -147,7 +148,7 @@ en:
     new: New Collection
     edit: Edit Collection
   search_results:
-    none: No search result found    
+    none: Nothing found    
   resellers:
     title: Resellers
     become_reseller: Become Reseller

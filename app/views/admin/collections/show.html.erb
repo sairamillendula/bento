@@ -6,12 +6,12 @@
 
 <p>
   <b>URL:</b>
-  <%= link_to "#{collection_url(@collection.slug)}", collection_url(@collection.slug) %>
+  <%= link_to "#{collection_url(@collection.slug)}", collection_url(@collection.slug), 'data-no-turbolink'=>true %>
 </p>
 
 <%= markdown(@collection.description) %>
 
-<%= subsection_title('Products') %>
+<%= subsection_title("#{t 'products.title'}") %>
 
 <div class="row-fluid">
 	<% if @products.any? %>
