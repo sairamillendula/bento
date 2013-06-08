@@ -1,7 +1,7 @@
 class LineItemsController < ApplicationController
 
 	def create
-    variant = ProductVariant.find(params[:product_variant_id])
+    variant = ProductVariant.find(params[:product_id])
 		@line_item = @cart.add_to_cart(variant)
 		
 		respond_to do |format|

@@ -213,13 +213,9 @@ legend + .control-group {
   height: auto;
 }
 input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: #999999;
-}
+textarea:-moz-placeholder,
 input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: #999999;
-}
+textarea:-ms-input-placeholder,
 input::-webkit-input-placeholder,
 textarea::-webkit-input-placeholder {
   color: #999999;
@@ -711,6 +707,10 @@ input[type="checkbox"]:focus {
   &:disabled {
     cursor: default;
     opacity: 0.65;
+
+    &:hover {
+      opacity: 0.65;
+    }
   }
 
   &.btn-success {
@@ -723,6 +723,12 @@ input[type="checkbox"]:focus {
     &.active {
       border-color: #227618;
       @include box-shadow(inset 0 0 7px rgba(0, 0, 0, 0.3), 0 1px 0 #ffffff);
+    }
+
+    &[disabled="disabled"] {
+      background: $red;
+      opacity: 0.65;
+      cursor: default;
     }
   }
 }
