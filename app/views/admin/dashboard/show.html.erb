@@ -1,4 +1,4 @@
-<%= page_title("#{t 'dashboard'}") %>
+<%= page_title("#{t 'dashboard.title'}") %>
 
 <% unless Setting.stripe_access_token.present? %>
   <p class="alert">
@@ -8,28 +8,33 @@
 <% end %>
 
 <div class="row-fluid stats-row">
-  <div class="span3">
-    <h4><%= t 'today' %></h4>
-    <p class="money"><%= number_to_currency(@today_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
-    <p class="count"><%= pluralize(@today_orders.length, "#{t 'order'}") %></p>
-    <p class="count"><%= pluralize(@today_users.length, "#{t 'user'}") %></p>
-  </div>
-  <div class="span3">
-    <h4><%= t 'week' %></h4>
-    <p class="money"><%= number_to_currency(@weekly_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
-    <p class="count"><%= pluralize(@weekly_orders.length, "#{t 'order'}") %></p>
-    <p class="count"><%= pluralize(@weekly_users.length, "#{t 'user'}") %></p>
-  </div>
-  <div class="span3">
-    <h4><%= t 'month' %></h4>
-    <p class="money"><%= number_to_currency(@monthly_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
-    <p class="count"><%= pluralize(@monthly_orders.length, "#{t 'order'}") %></p>
-    <p class="count"><%= pluralize(@monthly_users.length, "#{t 'user'}") %></p>
-  </div>
-  <div class="span3">
-    <h4><%= t 'total' %></h4>
-    <p class="money"><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
-    <p class="count"><%= pluralize(@orders.length, "#{t 'order'}") %></p>
-    <p class="count"><%= pluralize(@users.length, "#{t 'user'}") %></p>
-  </div>
+  <% if @orders.any? %>
+    <div class="span3">
+      <h4><%= t 'today' %></h4>
+      <p class="money"><%= number_to_currency(@today_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
+      <p class="count"><%= pluralize(@today_orders.length, "#{t 'order'}") %></p>
+      <p class="count"><%= pluralize(@today_users.length, "#{t 'user'}") %></p>
+    </div>
+    <div class="span3">
+      <h4><%= t 'week' %></h4>
+      <p class="money"><%= number_to_currency(@weekly_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
+      <p class="count"><%= pluralize(@weekly_orders.length, "#{t 'order'}") %></p>
+      <p class="count"><%= pluralize(@weekly_users.length, "#{t 'user'}") %></p>
+    </div>
+    <div class="span3">
+      <h4><%= t 'month' %></h4>
+      <p class="money"><%= number_to_currency(@monthly_orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
+      <p class="count"><%= pluralize(@monthly_orders.length, "#{t 'order'}") %></p>
+      <p class="count"><%= pluralize(@monthly_users.length, "#{t 'user'}") %></p>
+    </div>
+    <div class="span3">
+      <h4><%= t 'total' %></h4>
+      <p class="money"><%= number_to_currency(@orders.map{|o| o.total}.sum, strip_insignificant_zeros: true) %></p>
+      <p class="count"><%= pluralize(@orders.length, "#{t 'order'}") %></p>
+      <p class="count"><%= pluralize(@users.length, "#{t 'user'}") %></p>
+    </div>
+  <% else %>
+    <p style="text-align:center;"><%= t 'dashboard.no_orders' %>.</p>
+  <% end %>
+  
 </div>

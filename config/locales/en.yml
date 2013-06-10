@@ -32,7 +32,9 @@ en:
   error: Error
   featured: Featured
   discount: Discount
-  dashboard: Dashboard
+  dashboard:
+    title: Dashboard
+    no_orders: Looks like you don't have any orders yet. We'll display statistics as soon as you you make your first sale 
   item: Product
   quantity: Quantity
   subtotal: Subtotal

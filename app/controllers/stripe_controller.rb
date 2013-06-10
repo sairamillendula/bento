@@ -13,7 +13,7 @@ class StripeController < ApplicationController
     response = YAML.load(res.body)
     Setting.stripe_access_token = response['access_token']
 
-    redirect_to admin_dashboard_path, notice: "#{t 'stripe.account_conencted'}."
+    redirect_to admin_dashboard_path, notice: "#{t 'stripe.account_connected'}."
 	end
 
 end
