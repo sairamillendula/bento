@@ -15,7 +15,7 @@ gem 'tabs_on_rails', "~> 2.1.1"
 gem 'friendly_id'
 gem 'redcarpet'
 gem 'prawn', :git => "git://github.com/prawnpdf/prawn.git"
-gem 'whenever', :require => false
+#gem 'whenever', :require => false
 gem 'ransack'
 gem 'kaminari-bootstrap'
 gem 'paperclip'
@@ -28,6 +28,7 @@ gem 'famfamfam_flags_rails'
 gem 'turbolinks'
 gem 'omniauth-stripe-connect'
 gem 'rails-settings-cached', "0.2.4"
+gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -2,8 +2,8 @@ require "bundler/capistrano"
 
 server "50.116.63.166", :web, :app, :db, primary: true
 
-set :whenever_command, "bundle exec whenever"
-require "whenever/capistrano"
+#set :whenever_command, "bundle exec whenever"
+#require "whenever/capistrano"
 
 set :application, "bentooo"
 set :user, "deployer"
@@ -44,7 +44,6 @@ namespace :init do
 production:
   adapter: postgresql
   encoding: unicode
-  database: bento_production
   username: #{db_user}
   password: #{db_password}
   database: #{db_name}
