@@ -13,13 +13,13 @@ class @Helpers
       modal_options = $.extend(modal_options, {modal_width: width})
 
     callback = [{
-      "label" : I18n.t('save')
+      "label" : 'Save'
       "class" : "btn-primary"
       "callback": ->
         if confirmable
           # confirm before submit
           bootbox.setLocale(CURRENT_LOCALE);
-          bootbox.confirm I18n.t('are_you_sure_this_cannot_be_undone'), (confirmed) ->
+          bootbox.confirm 'Are you sure? This is definitive', (confirmed) ->
             if confirmed
               $("form", modal).submit()
             else
@@ -28,7 +28,7 @@ class @Helpers
           $("form", modal).submit()
         return false
     }, {
-      "label" : I18n.t('cancel')
+      "label" : 'Cancel'
       "class" : "btn btn-inverse"
       "callback": ->
         bootbox.hideAll()

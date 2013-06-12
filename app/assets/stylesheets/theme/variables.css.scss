@@ -5,3 +5,25 @@ $pink: #f49d9f;
 $blue: #47a3da;
 $yellow: #f3f29e;
 $yellow-dark: #c09853;
+
+.opt-color span[data-color="green"] { 
+  background: $green;
+}
+.opt-color span[data-color="green-light"] { 
+  background: $green-light;
+}
+.opt-color span[data-color="red"] { 
+  background: $red;
+}
+.opt-color span[data-color="pink"] { 
+  background: $pink;
+}
+.opt-color span[data-color="blue"] { 
+  background: $blue;
+}
+.opt-color span[data-color="yellow"] { 
+  background: $yellow;
+}
+.opt-color span[data-color="yellow-dark"] { 
+  background: $yellow-dark;
+}

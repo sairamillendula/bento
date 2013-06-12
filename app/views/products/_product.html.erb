@@ -20,16 +20,25 @@
 					<span data-social="pinterest" data-url="#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}"></span>
 				</div>
       </li>
-      <li class="opt-color">
-        <span data-color="c1">Blue</span>
-        <div class="opt-tooltip">
-          <span data-color="c1">Blue</span>
-          <span data-color="c2">Pink</span>
-          <span data-color="c3">Orange</span>
-          <span data-color="c4">Green</span>
-        </div>
-      </li>
-      <li class="opt-cart" data-url="<%= line_items_path(product_id: product.id) %>"></li>
+      <% if product.variants.any? %>
+        <% color_option = product.options.find_by_name('Color') %>
+        <% if color_option %>
+          <li class="opt-color">
+            <% default_variant = product.variants.first %>
+            <span data-color="<%= default_variant.options["option#{color_option.position}"].parameterize %>"><%= default_variant.options["option#{color_option.position}"] %></span>
+            <div class="opt-tooltip">
+              <% product.variants.each do |variant| %>
+                <span data-color="<%= variant.options["option#{color_option.position}"].parameterize %>" data-image-url="<%= product.photo_mapping[variant.sku].upload.url(:thumb) %>" data-add-to-cart="<%= line_items_path(product_variant_id: variant.id) %>">
+                  <%= variant.options["option#{color_option.position}"] %>
+                </span>
+              <% end %>
+            </div>
+          </li>
+        <% end %>
+        <li class="opt-cart" data-url="<%= line_items_path(product_variant_id: default_variant.id) %>"></li>
+      <% else %>
+        <li class="opt-cart" data-url="<%= line_items_path(product_variant_id: product.master.id) %>"></li>
+      <% end %>
     </ul>
   </div>
   <div class="info">

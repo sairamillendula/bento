@@ -158,6 +158,10 @@ class Product < ActiveRecord::Base
     end
   end
 
+  def photo_mapping
+    @photos ||= pictures.index_by(&:name)
+  end
+
   alias_attribute :cart_name, :name
 
   def has_options

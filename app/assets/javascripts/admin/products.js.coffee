@@ -178,7 +178,7 @@ class @ProductUploader
   @setup: ->
     Holder.add_theme("bright", { background: "#eee", foreground: "#aaa", size: 60}).run()
 
-    $('ul.pictures').on('click', '.modalable', Helpers.modalableHandler)
+    $('ul#pictures-container').on('click', '.modalable', Helpers.modalableHandler)
 
     $pictures_container = $('#pictures-container')
     $('#fileupload').fileupload
