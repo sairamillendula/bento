@@ -18,7 +18,7 @@ body.admin {
 	margin: 0;
   padding: 0;
   -webkit-text-size-adjust: none;
-  background: image-url('sidebar-bg.gif');
+  background: url('sidebar-bg.gif');
   
   a {
 	  color: #0088cc;
@@ -97,7 +97,7 @@ body.admin {
     width: 275px;
     min-height: 100%;
 		padding: 40px 0;
-    background: image-url('sidebar-bg.gif');
+    background: url('sidebar-bg.gif');
     position: absolute;
     top: 0;
     left: 0;
@@ -108,7 +108,7 @@ body.admin {
 			padding: 30px 0 40px 35px;
 
 			li > a > [class^="icon-"], li > [class*="icon-"] {
-        background-image: image-url('glyphicons-halflings-white.png') !important;
+        background-image: url('glyphicons-halflings-white.png') !important;
         margin-right: 3px;
         opacity: .3;
       }

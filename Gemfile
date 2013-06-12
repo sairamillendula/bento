@@ -28,7 +28,6 @@ gem 'famfamfam_flags_rails'
 gem 'turbolinks'
 gem 'omniauth-stripe-connect'
 gem 'rails-settings-cached', "0.2.4"
-gem 'therubyracer'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -46,7 +45,7 @@ group :development, :test do
 end
 
 group :development do
-  #gem 'rack-mini-profiler'
+  gem 'rack-mini-profiler'
   gem 'thin'
   gem 'letter_opener'
   gem 'better_errors'
@@ -57,4 +56,5 @@ end
 group :production do
   gem 'exception_notification'
   gem 'unicorn'
+  gem 'therubyracer'
 end
