@@ -101,6 +101,8 @@
   -webkit-transition: -webkit-transform .4s ease-out;
   -moz-transition: -moz-transform .4s ease-out;
   transition: transform .4s ease-out;
+  min-width: 200px;
+  min-height: 200px;
 }
 
 /* If you want to rotate on hover instead of click, you could use something like this: 

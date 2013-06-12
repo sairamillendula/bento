@@ -4,8 +4,10 @@
     <div class="item">
       <div class="item-flip">
       	<%= link_to product do %>
-        	<%= image_tag("/assets/samples/#{index+1}_front.png", size: "200x200") %>
-        	<%= image_tag("/assets/samples/#{index+1}_back.png", size: "200x200") %>
+          <% product.pictures.limit(2).each do |picture| %>
+          <%#= product.quick_pictures.each do |picture| %>
+            <%= image_tag(picture.upload.url(:thumb), size: "200x200") %>
+          <% end %>
         <% end %>
       </div>
     </div>

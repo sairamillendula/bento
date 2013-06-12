@@ -8,6 +8,14 @@
  * Copyright 2013, Codrops
  * http://www.codrops.com
  */
+
+$(function () {
+  $("#pGallery").responsiveSlides({
+    manualControls: '#pGallery-pager',
+    maxwidth: 540
+  });
+});
+
 ;( function( window ) {
      
     'use strict';

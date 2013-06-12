@@ -30,6 +30,7 @@ class Product < ActiveRecord::Base
 
   has_many :pictures, as: :picturable, dependent: :destroy, order: "position"
   accepts_nested_attributes_for :pictures, allow_destroy: true
+  has_many :quick_pictures, as: :picturable, limit: 2, order: 'position'
 
   has_many :product_relationships, dependent: :destroy
   has_many :cross_sells
