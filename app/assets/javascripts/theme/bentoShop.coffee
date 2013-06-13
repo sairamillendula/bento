@@ -5,7 +5,7 @@ class @BentoShop
 
     $('ul.pggrid > li', $container).each (index, product) ->
       $product = $(product)
-      $rotate = $product.find('span.rotate').first()
+      $rotate = $product.find('li.opt-rotate').first()
       $rotate.click -> rotateItem(this, $product)
 
       # add to cart
@@ -13,16 +13,7 @@ class @BentoShop
         addToCart $(this).data('url') + "&authenticity_token=#{$('meta[name="csrf-token"]').attr('content')}"
 
       $product.find('.opt-fav span').click ->
-        window.open($(this).data('url'), '_blank')
-
-      $product.find('.opt-tooltip span').click ->
-        $this = $(this)
-        $('.item-flip img').attr('src', $this.data('image-url'))
-        $placeholder = $this.closest('.opt-tooltip').prev()
-        $placeholder.attr('data-color', $this.data('color'))
-        $placeholder.text($this.text())
-        $product.find('.opt-cart').first().attr('data-url', $this.data('add-to-cart'))
-        
+        window.open($(this).data('url'), '_blank')   
         
   rotateItem = (trigger, $product) ->
     $trigger = $(trigger)

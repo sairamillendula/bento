@@ -50,33 +50,10 @@
   border: 3px solid $red;
   position: relative;
 
-  .rotate {
-    width: 36px;
-    height: 36px;
-    position: absolute;
-    display: block;
-    color: transparent;
-    font-size: 0;
-    z-index: 10;
-    border-bottom: 3px solid $red;
-    border-left: 3px solid $red;
-    right: 0px;
-    top: 0px;
-    cursor: pointer;
-    text-align: center;
-  }
-  .rotate:before {
-    font-size: 18px;
-    line-height: 32px;
-    color: $red;
-  }
-  .no-touch .rotate:hover,
-  .rotate.rotate-active {
-    background: $red;
-  }
-  .no-touch .rotate:hover:before,
-  .rotate.rotate-active:before {
+  .no-touch .opt-rotate:hover:before,
+  .opt-rotate.rotate-active:before, {
     color: #fff;
+    background: $red;
   }
 }
 
@@ -221,6 +198,7 @@
 .opt-compare,
 .opt-cart, 
 .opt-fav,
+.opt-rotate,
 .rotate {
   font-family: 'icomoon';
   speak: none;
@@ -253,7 +231,7 @@
   content: "\e000";
 }
 
-.rotate:before {
+.rotate:before, .opt-rotate:before {
   content: "\e004";
 }
 
