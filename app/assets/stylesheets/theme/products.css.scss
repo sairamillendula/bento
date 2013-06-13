@@ -162,7 +162,7 @@
 }
 
 .options > li {
-  width: 25%;
+  width: 33%;
   height: 100%;
   float: left;
   position: relative;
@@ -334,7 +334,6 @@
 }
 
 .opt-fav .opt-tooltip span:hover {
-  //color: #0968a1;
   -webkit-transform: scale(1.1);
   -moz-transform: scale(1.1);
   transform: scale(1.1);
@@ -414,7 +413,6 @@
   h3, span {
     float: left;
     text-align: center;
-    //width: 50%;
     font-size: 1.5em;
     margin: 0;
   }
@@ -427,7 +425,7 @@
     a { 
       color: #666;
 
-      &.hover { color: #333; }
+      &:hover { color: #333; }
     }
   }
 
@@ -435,7 +433,6 @@
     font-weight: 700;
     width: 100%;
     color: $red;
-    //text-align: right;
   }
 }
 

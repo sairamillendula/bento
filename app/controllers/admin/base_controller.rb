@@ -6,6 +6,6 @@ class Admin::BaseController < ApplicationController
 private
     
   def verify_admin
-    redirect_to root_url unless current_user && current_user.admin?
+    redirect_to login_url unless current_user && current_user.admin?
   end
 end
