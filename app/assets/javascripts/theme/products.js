@@ -10,7 +10,7 @@
  */
 
 $(function () {
-  $("#pGallery").responsiveSlides({
+  $(".rslides").responsiveSlides({
     manualControls: '#pGallery-pager',
     maxwidth: 540
   });

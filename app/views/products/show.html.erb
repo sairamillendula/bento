@@ -3,14 +3,18 @@
 <%= page_title(@product.name) %>
 
 <div class="row-fluid">
-  <div class="span8">
+  <div class="span6">
     <ul class="rslides" id="pGallery">
       <% @product.pictures.order('position').each do |picture| %>
-        <li><%= image_tag(picture.upload.url(:large), alt: "#{picture.name}", size:"688") %></li>
+        <li><%= image_tag(picture.upload.url(:large), alt: "#{picture.name}") %></li>
+      <% end %>  
     </ul>
+  </div>
 
+  <div class="span2">
     <ul id="pGallery-pager">
-      <li><%= link_to image_tag(picture.upload.url(:thumb), alt: "#{picture.name}"), "#" %></li>
+      <% @product.pictures.order('position').each do |picture| %>
+        <li><%= link_to image_tag(picture.upload.url(:thumb), alt: "#{picture.name}"), "#" %></li>
       <% end %>
     </ul>
   </div>

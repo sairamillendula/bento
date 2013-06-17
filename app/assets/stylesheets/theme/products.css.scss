@@ -159,6 +159,9 @@
 .options > li:first-child {
   border-left: none;
 } 
+.options > li:last-child {
+  width: 34%;
+}
 
 .no-touch .options li {
   color: $red;
