@@ -3,8 +3,7 @@
     <div class="item">
       <div class="item-flip">
       	<%= link_to product do %>
-          <% product.pictures.limit(2).each do |picture| %>
-          <%#= product.quick_pictures.each do |picture| %>
+          <% product.quick_pictures.each do |picture| %>
             <%= image_tag(picture.upload.url(:thumb), size: "200x200") %>
           <% end %>
         <% end %>

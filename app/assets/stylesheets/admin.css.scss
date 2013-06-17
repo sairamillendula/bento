@@ -32,6 +32,9 @@ body.admin {
 	a, a:visited {
 		text-decoration: none;
 	}
+	a.close:hover {
+		text-decoration: none; // modal window
+	}
 
 	h1 {
 		color: #363f48;

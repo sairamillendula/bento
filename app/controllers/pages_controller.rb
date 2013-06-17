@@ -25,7 +25,4 @@ class PagesController < ApplicationController
     @reseller_request = ResellerRequest.new if current_user
   end
 
-  def user_info
-  end
-
 end
