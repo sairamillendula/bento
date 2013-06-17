@@ -264,3 +264,8 @@ en:
       action:
     contact_us: 
       subject: New message from contact form   
+  search:
+    order: Order
+    product: Product
+    user: Client    
+    collection: Collection

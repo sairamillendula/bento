@@ -1,2 +1,2 @@
 <% product = Product.find(result.searchable_id) %>
-<p><%= status_tag(t(result.searchable_type)) %> <%= link_to product.name, [:admin, product] %></p>
+<p><%= status_tag(t("search.#{result.searchable_type.parameterize}")) %> <%= link_to product.name, [:admin, product] %></p>

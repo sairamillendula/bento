@@ -14,9 +14,9 @@
       <li class="opt-rotate">Rotate</li>
       <li class="opt-fav">
 				<div class="opt-tooltip">
-					<span data-social="facebook" data-url="#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}"></span>
-					<span data-social="twitter" data-url="#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}"></span>
-					<span data-social="pinterest" data-url="#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}"></span>
+					<span data-social="facebook" data-url="<%= t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC'] %>"></span>
+					<span data-social="twitter" data-url="<%= t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC'] %>"></span>
+					<span data-social="pinterest" data-url="<%= t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC'] %>"></span>
 				</div>
       </li>
       <% if product.variants.any? %>

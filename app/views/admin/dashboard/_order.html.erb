@@ -1,2 +1,2 @@
 <% order = Order.find(result.searchable_id) %>
-<p><%= status_tag(t(result.searchable_type)) %> <%= link_to order.code, [:admin, order] %></p>
+<p><%= status_tag(t("search.#{result.searchable_type.parameterize}")) %> <%= link_to order.code, [:admin, order] %></p>
