@@ -49,7 +49,10 @@
    	content: '' !important;
   }
   a.icomoon:after {
-    color: #ffffff !important;
+    color: #ffffff;
+  }
+  a.icomoon:hover:after {
+    color: $pink;
   }
   a.icomoon:last-child {
   	margin-right: 0;

@@ -176,8 +176,6 @@ class EditProductForm
 
 class @ProductUploader
   @setup: ->
-    Holder.add_theme("bright", { background: "#eee", foreground: "#aaa", size: 60}).run()
-
     $('ul#pictures-container').on('click', '.modalable', Helpers.modalableHandler)
 
     $pictures_container = $('#pictures-container')
@@ -200,7 +198,7 @@ class @ProductUploader
 
     $("ul.pictures").sortable
       items: "li.picture"
-      placeholder: "alert",
+      placeholder: "alert nomargin",
       forcePlaceholderSize: true,
       update: ->
         $.post($(this).data('update-url'), $(this).sortable('serialize'))

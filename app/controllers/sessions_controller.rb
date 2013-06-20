@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
 			  end
 			end
 		else
-			flash.now.alert = "#{t 'sessions.error'}"
+			flash.now.alert = "#{t 'sessions.error'}."
 			if params[:checkout]
 				render template: "carts/checkout"
 			else

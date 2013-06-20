@@ -5,12 +5,12 @@ class Cart < ActiveRecord::Base
   attr_accessor :tax_amount
   attr_accessible :items_attributes, :coupon_code, :billing_address_attributes, :shipping_address_attributes, :email, :first_name, :last_name
 
-  validate :validate_coupon_code_exists, :if => :coupon_code?
+  validate :validate_coupon_code_exists, if: :coupon_code?
 
-  has_one :billing_address, :as => :addressable, :class_name => "BillingAddress", :dependent => :destroy
+  has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address
 
-  has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
+  has_one :shipping_address, as: :addressable, class_name: "ShippingAddress", dependent: :destroy
   accepts_nested_attributes_for :shipping_address
 
   before_validation do |cart|

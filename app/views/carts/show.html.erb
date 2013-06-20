@@ -16,7 +16,7 @@
         <% item = ff.object %>
   	    <tr>
           <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
-  	      <td><%= item.variant.cart_name %></td>
+  	      <td><%= image_tag(item.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.variant.product.pictures.any? %> <%= item.variant.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
           <td><%= number_to_currency(item.current_price) %></td>
   	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
@@ -58,26 +58,26 @@
   </table>
 
   <% if ShippingCountry.count > 0 %>
-  <div id="shipping_calculator" class="row-fluid">
-    <h3><%= t 'theme.shipping_rate.calculator' %></h3>
-    <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
-      <div class="row-fluid">
-        <div class="span3">
-          <%= f.hidden_field :subtotal, value: @cart.subtotal %>
-          <%= f.input :country, input_html: {class: 'input-block-level'} %>
-        </div>
-        <div class="span3" style="margin-left:0;">
-          <div class="control-group string optional">
-            <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
-            <div class="controls">
-              <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}", style: 'margin-left:0;' %>
+    <div id="shipping_calculator" class="row-fluid">
+      <h3><%= t 'theme.shipping_rate.calculator' %></h3>
+      <%= simple_form_for :shipping, url: search_shippings_path, remote: true do |f| %>
+        <div class="row-fluid">
+          <div class="span3">
+            <%= f.hidden_field :subtotal, value: @cart.subtotal %>
+            <%= f.input :country, input_html: {class: 'input-block-level'} %>
+          </div>
+          <div class="span3" style="margin-left:0;">
+            <div class="control-group string optional">
+              <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
+              <div class="controls">
+                <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}", style: 'margin-left:0;' %>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    <% end %>
-    <div id="shipping-rate-feedback" style="display: none;"></div>
-  </div>
+      <% end %>
+      <div id="shipping-rate-feedback" style="display:none;"></div>
+    </div>
   <% end %>
 <% else %>
   <p class="alert"><%= t 'cart.is_empty' %>. <%= link_to "#{t 'theme.products.browse'}", products_path %></p>

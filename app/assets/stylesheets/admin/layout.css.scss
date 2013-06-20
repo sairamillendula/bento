@@ -384,6 +384,10 @@ body.admin {
     border-color: #eed3d7;
 	}
 
+	.alert.nomargin {
+		margin-top: 0;
+	}
+
 	/* labels, badges */
 	.label, .badge {
 	  display: inline-block;

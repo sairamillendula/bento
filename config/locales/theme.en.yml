@@ -36,6 +36,14 @@ en:
     was_applied: was applied
     add_to_cart: Add to Cart
     select_address: Select address
+    nav:
+      modern: Modern Bento
+      traditional: Traditional Bento
+      kid: Kids Bento
+      bag: Bag
+      cutlery: "Cutlery & Chopstick"
+      napkin: Napkin
+      kit: Bento Kit
     cart:
       title: Cart
       remove: remove
