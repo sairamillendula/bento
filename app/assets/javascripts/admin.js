@@ -20,7 +20,6 @@
 //= require jquery.tokeninput
 //= require jquery.tagsinput
 //= require jquery.rateit
-//= require holder
 //= require jquery-fileupload
 //= require bootbox
 //= require accounting
