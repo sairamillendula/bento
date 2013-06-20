@@ -60,6 +60,6 @@ module Bento
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
-    config.assets.precompile += ['admin.js', 'admin.css' 'theme.js', 'theme.css']
+    config.assets.precompile += ['admin.js', 'admin.css', 'theme.js', 'theme.css']
   end
 end
