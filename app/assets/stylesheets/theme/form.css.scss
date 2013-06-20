@@ -23,6 +23,9 @@ input, textarea, .uneditable-input {
   margin-left: 2.127659574468085%;
   *margin-left: 2.074468085106383%;
   @include box-sizing(border-box);
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 .row-fluid [class*="span"]:first-child {
   margin-left: 0;
