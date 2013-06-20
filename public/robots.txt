@@ -1,4 +1,4 @@
 User-Agent: *
+Disallow: /
 Disallow: /adm1nistr8tion/
 Disallow: /orders/
-Disallow: /cgv
