@@ -61,6 +61,7 @@ en:
     title: Orders
     date: Date
     thank_you: Thank you for your order!
+    none: No orders found
   work_list: Work List
   clients:
     title: Clients
