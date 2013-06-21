@@ -1,5 +1,5 @@
 class AdminMailer < ActionMailer::Base
-  default from: ENV['DEFAULT_EMAIL_SENDER']
+  default from: "#{I18n.t 'theme.site_name'} <#{ENV['DEFAULT_EMAIL_SENDER']}>"
   default to: ENV['DEFAULT_ADMIN_EMAIL']
   layout "email_admin"
   

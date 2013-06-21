@@ -9,7 +9,7 @@ gem 'capistrano'
 gem 'sorcery'
 gem 'nested_form'
 gem 'simple_form'
-gem 'jquery-rails'
+gem 'jquery-rails', "2.3.0" # important since jquery-ui was removed from the gem
 gem 'rails_bootstrap_helper', :git => "https://github.com/hoangnghiem/rails_bootstrap_helper.git"
 gem 'tabs_on_rails', "~> 2.1.1"
 gem 'friendly_id'

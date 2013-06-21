@@ -1,11 +1,11 @@
 <%= page_title("#{t 'dashboard.title'}") %>
 
-<% unless Setting.stripe_access_token.present? %>
-  <p class="alert">
-    <%= link_to image_tag('connect-button.png', size: "190x33", alt: 'Stripe'), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
-    <%= t 'stripe.and_start_accepting_payments' %>
-  </p>
-<% end %>
+<%# unless Setting.stripe_access_token.present? %>
+  <!-- <p class="alert"> -->
+    <%#= link_to image_tag('connect-button.png', size: "190x33", alt: 'Stripe'), "/auth/stripe_connect?scope=read_write&stripe_landing=register" %>
+    <%#= t 'stripe.and_start_accepting_payments' %>
+  <!-- </p> -->
+<%# end %>
 
 <div class="row-fluid stats-row">
   <% if @orders.any? %>

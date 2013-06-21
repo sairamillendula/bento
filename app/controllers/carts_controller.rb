@@ -33,7 +33,7 @@ class CartsController < ApplicationController
     @cart = current_cart
     
     if @cart.items.empty?
-      redirect_to products_url, notice: "#{t 'cart.is_empty'}."
+      redirect_to products_url, notice: "#{t 'theme.cart.is_empty'}."
       return
     end
   end

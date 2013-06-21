@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: ENV['DEFAULT_EMAIL_SENDER']
+  default from: "#{I18n.t 'theme.site_name'} <#{ENV['DEFAULT_EMAIL_SENDER']}>"
   default reply_to: ENV['DEFAULT_CONTACT_EMAIL']
 
   layout "email_theme"

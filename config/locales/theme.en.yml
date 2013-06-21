@@ -36,6 +36,7 @@ en:
     was_applied: was applied
     add_to_cart: Add to Cart
     select_address: Select address
+    no_js: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings"
     nav:
       modern: Modern Bento
       traditional: Traditional Bento
@@ -44,6 +45,11 @@ en:
       cutlery: "Cutlery & Chopstick"
       napkin: Napkin
       kit: Bento Kit
+    card:
+      name: Name on card
+      number: Credit Card Number
+      code: Security Code on Card (CVV)
+      expiration: Card Expiration
     cart:
       title: Cart
       remove: remove
@@ -52,6 +58,7 @@ en:
       summary: Summary
       calculate: Calculate
       empty_action: Empty cart
+      is_empty: Cart is empty
       invalid: Invalid cart
       update: Update Cart
     same_as_billing_address: Same as billing address

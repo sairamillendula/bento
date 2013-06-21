@@ -721,6 +721,10 @@ input[type="checkbox"]:focus {
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 8px 35px 8px 14px;
+
+  i.icomoon:hover {
+    color: #ce8f22;
+  }
 }
 
 .alert-success {
