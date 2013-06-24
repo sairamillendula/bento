@@ -1,0 +1,6 @@
+$("#pgcontainer").append("<%= j(render(@products)) %>"
+<% if (@products.current_page < @products.num_pages) %>
+  $('.pagination').replaceWith('<%= j paginate(@products) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>
