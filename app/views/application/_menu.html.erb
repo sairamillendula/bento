@@ -5,21 +5,18 @@
 			<li>
 				<%= link_to "#{t 'theme.bento_lunch_box'}", "#" %>
 				<ul class="cbp-hssubmenu">
-					<li><a href="category/modern"><img src="assets/samples/1.png" alt="img01"/><span><%= t 'theme.nav.modern' %></span></a></li>
-					<li><a href="category/traditional"><img src="assets/samples/2.png" alt="img02"/><span><%= t 'theme.nav.traditional' %></span></a></li>
-					<li><a href="category/kid"><img src="assets/samples/3.png" alt="img03"/><span><%= t 'theme.nav.kid' %></span></a></li>
-					<li><a href="category/kit"><img src="assets/samples/4.png" alt="img04"/><span><%= t 'theme.nav.kit' %></span></a></li>
-					<li><a href="category/"><img src="assets/samples/5.png" alt="img05"/><span>Wise Whiskey</span></a></li>
-					<li><a href="category/"><img src="assets/samples/6.png" alt="img06"/><span>Sweet Rum</span></a></li>
+					<li><a href="category/modern"><%= image_tag('theme/products/bento-modern.png', alt: "Modern bento") %><span><%= t 'theme.nav.modern' %></span></a></li>
+					<li><a href="category/traditional"><%= image_tag('theme/products/bento-traditional.png', alt: "Traditional bento") %><span><%= t 'theme.nav.traditional' %></span></a></li>
+					<li><a href="category/kid"><%= image_tag('theme/products/bento-kid.png', alt: "Bento for kids") %><span><%= t 'theme.nav.kid' %></span></a></li>
+					<li><a href="category/kit"><%= image_tag('theme/products/bento-kit.png', alt: "Bento kit") %><span><%= t 'theme.nav.kit' %></span></a></li>
 				</ul>
 			</li>
 			<li>
 				<%= link_to "#{t 'theme.accessories'}", "#" %>
 				<ul class="cbp-hssubmenu">
-					<li><a href="category/bag"><img src="assets/samples/10.png" alt="img10"/><span><%= t 'theme.nav.bag' %></span></a></li>
-					<li><a href="category/napkin"><img src="assets/samples/6.png" alt="img06"/><span><%= t 'theme.nav.napkin' %></span></a></li>
-					<li><a href="category/cutlery"><img src="assets/samples/9.png" alt="img09"/><span><%= t 'theme.nav.cutlery' %></span></a></li>
-					<li><a href="category/kit"><img src="assets/samples/9.png" alt="img09"/><span><%= t 'theme.nav.kit' %></span></a></li>
+					<li><a href="category/napkin"><%= image_tag('theme/products/bento-napkin.png', alt: "Bento napkin") %><span><%= t 'theme.nav.napkin' %></span></a></li>
+					<li><a href="category/cutlery"><%= image_tag('theme/products/bento-cutlery.png', alt: "Cutlery & Chopstick") %><span><%= t 'theme.nav.cutlery' %></span></a></li>
+					<li><a href="category/kit"><%= image_tag('theme/products/bento-kit.png', alt: "Bento kit") %><span><%= t 'theme.nav.kit' %></span></a></li>
 				</ul>
 			</li>
 			<li><%= link_to "#{t 'theme.about'}", "/about" %></li>

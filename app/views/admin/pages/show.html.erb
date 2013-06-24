@@ -4,6 +4,6 @@
   <%= icon_button_link_to "#{t 'edit'}", edit_admin_page_path(@page), level: 'primary', icon: 'pencil', white: true, class: "fr" %>
 <% end %>
 
-<p><b>URL:</b> <%= link_to "#{page_url(@page.slug)}", page_url(@page.slug) %></p>
+<p><b>URL:</b> <%= link_to "#{page_url(@page.slug)}", page_url(@page.slug), 'data-no-turbolink'=>true %></p>
 
 <%= markdown(@page.content) %>
