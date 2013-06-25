@@ -1,0 +1,45 @@
+fr:
+  simple_form:
+    "yes": 'Oui'
+    "no": 'Non'
+    required:
+      text: 'Requis'
+      mark: '*'
+    buttons:
+      or: ou
+      cancel: Annulez
+    error_notification:
+      default_message: "Des erreurs ont été détectées, merci de vérifier:"
+    please_wait: "Merci d'attendre..."
+    labels:
+      #   user:
+      #     new:
+      #       email: 'E-mail para efetuar o sign in.'
+      #     edit:
+      #       email: 'E-mail.'
+      defaults:
+        login: Adresse email
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        address1: Adresse
+        seo_title: Titre
+        seo_description: Description
+        slug: URL
+        sku: SKU
+      page:
+        klass: Type
+      tax:
+        rate: Taxes
+    hints:
+      defaults:
+        slug: Séparez les mots par un trait d'union '-'
+      user:
+        password: "(laissez vide, si vous ne souhaitez pas changer)"
+      picture:
+        name: "Nommez votre image, utile pour les moteurs de recherche. Gardez le texte court mais descriptif."
+    helpers:
+      submit:
+        order:
+          create: Finaliser la commande
+          update: Mettre à jour votre commande
+        

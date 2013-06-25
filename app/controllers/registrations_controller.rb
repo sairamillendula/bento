@@ -1,6 +1,5 @@
 class RegistrationsController < ApplicationController
   before_filter :require_login, only: [:edit, :update]
-  #layout "login"
 
   def new
     @user = User.new
@@ -15,7 +14,7 @@ class RegistrationsController < ApplicationController
       if params[:checkout]
         redirect_to checkout_cart_url
       else
-	  	  redirect_to products_url, notice: "#{t 'registrations.success'}"
+	  	  redirect_to products_url, notice: "#{t 'theme.registrations.welcome', default: 'Thanks for signing up!' }"
       end
 	  else
       if params[:checkout]
@@ -40,7 +39,7 @@ class RegistrationsController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        format.html { redirect_to profile_url, notice: "#{t 'registrations.profile_updated'}." }
+        format.html { redirect_to profile_url, notice: "#{t 'theme.registrations.profile_updated', default: 'Profile was successfully updated'}." }
       else
         format.html { render action: "edit" }
       end

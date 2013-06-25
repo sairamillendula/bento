@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-	#layout "login"
 
 	def new
 	end
@@ -16,15 +15,15 @@ class SessionsController < ApplicationController
 	  		redirect_to checkout_cart_url
 	  	else
 				if user.admin?
-			    redirect_to admin_dashboard_url, notice: "#{t 'sessions.signed_in'}"
+			    redirect_to admin_dashboard_url
 			  elsif user.reseller?
-		      redirect_to reseller_dashboard_url, notice: "#{t 'sessions.signed_in'}"
+		      redirect_to reseller_dashboard_url
 			  else
-			  	redirect_back_or_to root_url, notice: "#{t 'sessions.signed_in'}"	  	
+			  	redirect_back_or_to root_url 	
 			  end
 			end
 		else
-			flash.now.alert = "#{t 'sessions.error'}."
+			flash.now.alert = "#{t 'theme.sessions.error', default: 'Invalid email/password combination'}."
 			if params[:checkout]
 				render template: "carts/checkout"
 			else
@@ -35,6 +34,6 @@ class SessionsController < ApplicationController
 
 	def destroy
 	  logout
-	  redirect_to root_url, notice: "#{t 'sessions.signed_out'}."
+	  redirect_to root_url, notice: "#{t 'theme.sessions.signed_out', default: 'Signed out'}."
 	end
 end

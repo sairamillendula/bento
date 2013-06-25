@@ -20,7 +20,7 @@ p[class=footer-content-left] { text-align: center !important; }
 img { height: auto; line-height: 100%;}
  } 
 /* Client-specific Styles */
-#outlook a { padding: 0; }	/* Force Outlook to provide a "view in browser" button. */
+#outlook a { padding: 0; }  /* Force Outlook to provide a "view in browser" button. */
 body { width: 100% !important; }
 .ReadMsgBody { width: 100%; }
 .ExternalClass { width: 100%; display:block !important; } /* Force Hotmail to display emails at full width */
@@ -31,14 +31,14 @@ img { outline: none; text-decoration: none; display: block;}
 br, strong br, b br, em br, i br { line-height:100%; }
 h1, h2, h3, h4, h5, h6 { line-height: 100% !important; -webkit-font-smoothing: antialiased; }
 h1 a, h2 a, h3 a, h4 a, h5 a, h6 a { color: blue !important; }
-h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active {	color: red !important; }
+h1 a:active, h2 a:active,  h3 a:active, h4 a:active, h5 a:active, h6 a:active { color: red !important; }
 /* Preferably not the same color as the normal header link color.  There is limited support for psuedo classes in email clients, this was added just for good measure. */
 h1 a:visited, h2 a:visited,  h3 a:visited, h4 a:visited, h5 a:visited, h6 a:visited { color: purple !important; }
 /* Preferably not the same color as the normal header link color. There is limited support for psuedo classes in email clients, this was added just for good measure. */  
 table td, table tr { border-collapse: collapse; }
 .yshortcuts, .yshortcuts a, .yshortcuts a:link,.yshortcuts a:visited, .yshortcuts a:hover, .yshortcuts a span {
 color: black; text-decoration: none !important; border-bottom: none !important; background: none !important;
-}	/* Body text color for the New Yahoo.  This example sets the font of Yahoo's Shortcuts to black. */
+} /* Body text color for the New Yahoo.  This example sets the font of Yahoo's Shortcuts to black. */
 /* This most probably won't work in all email clients. Don't include <code _tmplitem="821" > blocks in email. */
 code {
   white-space: normal;
@@ -88,13 +88,13 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
 }
 </style>
 <![endif]--></head><body><table width="100%" cellpadding="0" cellspacing="0" border="0" id="background-table">
-	<tbody><tr>
-		<td align="center" bgcolor="#ececec">
-        	<table class="w640" style="margin:0 10px;" width="640" cellpadding="0" cellspacing="0" border="0">
-            	<tbody><tr><td class="w640" width="640" height="20"></td></tr>
+  <tbody><tr>
+    <td align="center" bgcolor="#ececec">
+          <table class="w640" style="margin:0 10px;" width="640" cellpadding="0" cellspacing="0" border="0">
+              <tbody><tr><td class="w640" width="640" height="20"></td></tr>
                 
-            	<tr>
-                	<td class="w640" width="640">
+              <tr>
+                  <td class="w640" width="640">
                         <table id="top-bar" class="w640" width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#ec565a">
     <tbody><tr>
         <td class="w15" width="15"></td>
@@ -115,19 +115,19 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
             <table cellpadding="0" cellspacing="0" border="0">
     <tbody><tr>
         
-        <td valign="middle"><fblike><img src="https://img.createsend1.com/img/templatebuilder/like-glyph.png" border="0" width="8" height="14" alt="Facebook icon"=""></fblike></td>
+        <td valign="middle"><fblike><img src="https://img.createsend1.com/img/templatebuilder/like-glyph.png" border="0" width="8" height="14" alt="Facebook"></fblike></td>
         <td width="3"></td>
         <td valign="middle"><div class="header-content"><fblike>Like</fblike></div></td>
         
         
         <td class="w10" width="10"></td>
-        <td valign="middle"><tweet><img src="https://img.createsend1.com/img/templatebuilder/tweet-glyph.png" border="0" width="17" height="13" alt="Twitter icon"=""></tweet></td>
+        <td valign="middle"><tweet><img src="https://img.createsend1.com/img/templatebuilder/tweet-glyph.png" border="0" width="17" height="13" alt="Twitter"></tweet></td>
         <td width="3"></td>
         <td valign="middle"><div class="header-content"><tweet>Tweet</tweet></div></td>
         
         
         <td class="w10" width="10"></td>
-        <td valign="middle"><forwardtoafriend lang="en"><img src="https://img.createsend1.com/img/templatebuilder/forward-glyph.png" border="0" width="19" height="14" alt="Forward icon"=""></forwardtoafriend></td>
+        <td valign="middle"><forwardtoafriend lang="en"><img src="https://img.createsend1.com/img/templatebuilder/forward-glyph.png" border="0" width="19" height="14" alt="Forward"></forwardtoafriend></td>
         <td width="3"></td>
         <td valign="middle"><div class="header-content"><forwardtoafriend lang="en">Forward</forwardtoafriend></div></td>
         
@@ -153,7 +153,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
             <td class="w580" width="580">
                 <div align="center" id="headline">
                     <p>
-                        <strong><a href="http://bentooo.com"><singleline label="Title"><%= t 'theme.site_name' %></singleline></a></strong>
+                        <strong><a href="http://bentooo.com" style="color: #ffffff; font-size:24px; text-decoration:none;"><singleline label="Title"><%= t 'theme.site_name' %></singleline></a></strong>
                     </p>
                 </div>
             </td>
@@ -195,7 +195,7 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                 
                 <tr>
                 <td class="w640" width="640">
-    <table id="footer" class="w640" width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#322d4d">
+    <table id="footer" class="w640" width="640" cellpadding="0" cellspacing="0" border="0" bgcolor="#eb999c">
         <tbody><tr><td class="w30" width="30"></td><td class="w580 h0" width="360" height="30"></td><td class="w0" width="60"></td><td class="w0" width="160"></td><td class="w30" width="30"></td></tr>
         <tr>
             <td class="w30" width="30"></td>
@@ -213,5 +213,5 @@ body, td { font-family: 'Helvetica Neue', Arial, Helvetica, Geneva, sans-serif; 
                 <tr><td class="w640" width="640" height="60"></td></tr>
             </tbody></table>
         </td>
-	</tr>
+  </tr>
 </tbody></table></body></html>

@@ -1,4 +1,4 @@
-en:
+fr:
   sign_in: Sign in
   please_sign_in: Please sign in
   sign_up: Sign up
@@ -208,11 +208,27 @@ en:
     instructions_sent: Instructions have been sent to your email
     password_updated_please_sign_in: Password was successfully updated. Please sign in
     reset_submit: Send reset instructions
+  registrations:
+    new: Sign up
+    edit: Profile
+    create_account: Create Account
+    update_profile: Update Profile
+    profile_updated: Profile was successfully updated
+    no_account_yet: "No account, yet?"
+    already_have_an_account: Already have an account?
   social:
     twitter:
       username: Twitter username
     facebook:
       username: Facebook username/Page name
+  sessions:
+    login: Sign in
+    sign_in: Please sign in first
+    signed_in: Signed in!
+    signed_out: Successfully signed out.
+    new: Customer login
+    error: Invalid email/password
+    submit: Sign in
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your

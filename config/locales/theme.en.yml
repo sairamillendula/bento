@@ -4,7 +4,6 @@ en:
     site_slogan: Lunch Box from Japan
     site_description: "Original Bento lunch box from Japan and accessories"
     faq: FAQ
-    cgv: "Terms & conditions"
     in_the_news: Media
     blog: Blog
     facebook_url: "http://facebook.com/pages/%{fb_nic}"
@@ -87,9 +86,23 @@ en:
       title: Products
       browse: Browse our catalogue
     registrations:
-      terms_acceptance: By joining you agree with our terms and conditions
+      new: Sign up
+      edit: Profile
+      create_account: Create Account
+      update_profile: Update Profile
+      profile_updated: Profile was successfully updated
+      no_account_yet: "No account, yet?"
+      already_have_an_account: Already have an account?
+      welcome: All set. Thanks for signing up!
     review_order:
       title: "Shipping & Payment"
+    sessions:
+      new: Sign in
+      sign_in: Please sign in first
+      signed_out: Signed out
+      title: Sign in
+      error: Invalid email/password combination
+      submit: Sign in
     shipping:
       title: Shipping
       shipping_method: Shipping Method

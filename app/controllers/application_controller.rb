@@ -1,11 +1,17 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   before_filter :load_cart
+  before_filter :set_locale
+
   helper_method :current_cart
 
   http_basic_authenticate_with name: "temp", password: "temp" if Rails.env.production?
 
 private
+
+  def set_locale
+    I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].scan(/^[a-z]{2}/).first || I18n.default_locale
+  end
 
   def load_cart
     begin

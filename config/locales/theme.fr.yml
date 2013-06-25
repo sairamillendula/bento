@@ -1,0 +1,114 @@
+fr:
+  theme:
+    site_name: Bentooo
+    site_slogan: Spécialiste de la boite à lunch japonaise
+    site_description: "Spécialiste de boites à lunch, furoshiki et acccessoires du Japon"
+    faq: FAQ
+    in_the_news: La presse en parle
+    blog: Blog
+    facebook_url: "http://facebook.com/pages/%{fb_nic}"
+    twitter_url: "http://twitter.com/%{twitter_nic}"
+    pinterest_url: "http://pinterest.com/%{pinterest_nic}"
+    bento_lunch_box: Bento Boite à lunch
+    manage_store: Administration
+    welcome: Bienvenue
+    or: ou
+    accessories: Accessoires
+    categories: Catégories
+    about: A propos
+    contact: Contact
+    blog: Blog
+    login: Se connecter
+    register: S'enregistrer
+    item: Item
+    quantity: Quantité
+    price: Prix
+    subtotal: Sous-total
+    full_price: Total
+    updating: Veuillez patienter...
+    calculating: Calcule...
+    checkout: Passer la commande
+    discount: Bon de réduction
+    estimated_shipping: Estimation frais de port
+    apply_coupon: Appliquer
+    coupon_code: Code coupon
+    was_applied: a été appliqué
+    add_to_cart: Ajouter au panier
+    select_address: Selectionnez une adresse
+    no_js: "JavaScript n'est pas activé or il est nécessaire pour ce formulaire. Veuillez l'activer dans les paramètres de votre navigateur web"
+    nav:
+      modern: Bento moderne
+      traditional: Bento traditionnel
+      kid: Bento pour enfants
+      bag: Sac
+      cutlery: Couverts
+      napkin: Serviette de table
+      kit: Kit bento
+    card:
+      name: Nom sur la carte
+      number: Numéro de carte de crédit
+      code: Code de sécurité (CVV)
+      expiration: Date d'expiration
+    cart:
+      title: Panier
+      remove: retirer
+      continue: Continuer
+      continue_shopping: Continuer vos achats
+      summary: Résumé de la commande
+      calculate: Calculer
+      empty_action: Vider le panier
+      is_empty: Panier vide
+      invalid: Panier invalide
+      update: Mettre à jour le panier
+    same_as_billing_address: Même adresse de facturation
+    edit: Éditer
+    category: Catégorie
+    checkout:
+      title: Passer la commande
+      secure_connection: Vous naviguez sur un serveur sécurisé
+      as_guest: Commander en tant qu'invité
+      your_details: Vos informations personnelles
+    contact:
+      title: Contactez nous
+      submit: Envoyer le message
+      menu_tab: Contact
+      success_notice: Message envoyé. Merci!
+    orders:
+      thank_you: Merci pour votre commande
+      mine: Mes commandes
+      none: Aucune commande trouvée
+      date: Date
+    payment:
+      title: Choix du mode de paiement
+      credit_card_provided: Carte de crédit reçue
+      complete_order: Compléter vos achats
+    products:
+      title: Produits
+      browse: Voir nos produits
+    registrations:
+      new: S'enregistrer
+      edit: Profil
+      create_account: Créer un compte
+      update_profile: Mettre à jour le profil
+      profile_updated: Profil mis à jour
+      no_account_yet: "Pas encore inscrit?"
+      already_have_an_account: Déjà inscrit?
+      welcome: Merci de nous avoir rejoint!
+    review_order:
+      title: Livraison et paiement
+    sessions:
+      new: Se connecter
+      sign_in: Veuillez vous connecter
+      signed_out: Session terminée.
+      title: Se connecter
+      error: Email/mot de passe introuvable
+      submit: Se connecter
+    shipping:
+      title: Livraison
+      shipping_method: Mode de livraison
+      select_shipping_rate: Veuillez sélectionner votre mode de livraison
+    shipping_rate:
+      title: Frais de port
+      calculator: Calcul des frais de port
+      there: Il existe
+      available_for: pour

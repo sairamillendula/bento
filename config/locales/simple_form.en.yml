@@ -20,6 +20,7 @@ en:
       defaults:
         login: Email or Username
         password: Password
+        password_confirmation: Password confirmation
         address1: Address
         seo_title: Title
         seo_description: Description
