@@ -1,6 +1,9 @@
 <% content_for :head do %>
   <%= javascript_include_tag "https://js.stripe.com/v1/" %>
   <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
+  <style type="text/css" media="screen">
+    input.invalid { border: 3px solid #b94a48; }
+  </style>
 <% end %>
 <%= content_for :body_id do %>checkout<% end %>
 
@@ -43,11 +46,11 @@
       </div>
       <div class="field">
         <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
-        <%= text_field_tag :card_number, '', name: nil %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "pattern"=>"\d*", "x-autocompletetype"=>"cc-number" %>
       </div>
       <div class="field">
         <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
-        <%= text_field_tag :card_code, '', name: nil %>
+        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', "autocomplete"=>"off", "pattern"=>"\d*", "x-autocompletetype"=>"cc-csc" %>
       </div>
       <div class="field">
         <%= label_tag :card_month, "#{t 'theme.card.expiration'}" %>
@@ -69,5 +72,20 @@
   $(function() {
     var shipping_methods = <%= raw @shipping_rates.to_json(only: [:id, :price]) %>;
     Order.setup(shipping_methods);
+  });
+
+  jQuery(function($){
+    $('.cc-number').payment('formatCardNumber');
+    $('.cc-cvc').payment('formatCardCVC');
+
+    $('#new_order').submit(function(e){
+      e.preventDefault();
+      $('input').removeClass('invalid');
+
+      var cardType = $.payment.cardType($('.cc-number').val());
+
+      $('.cc-number').toggleClass('invalid', !$.payment.validateCardNumber($('.cc-number').val()));
+      $('.cc-cvc').toggleClass('invalid', !$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
+    });
   });
 </script>
