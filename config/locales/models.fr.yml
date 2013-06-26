@@ -8,8 +8,8 @@ fr:
       session:
         submit: Se connecter
       order:
-        create: Complete order
-        update: Update order
+        create: Passer commande
+        update: Mettre à jour la commande
       user:
         create: S'enregistrer
         update: Mettre à jour

@@ -97,7 +97,6 @@ fr:
     payment:
       title: Choix du mode de paiement
       credit_card_provided: Carte de crédit reçue
-      complete_order: Compléter vos achats
     products:
       title: Produits
       browse: Voir nos produits

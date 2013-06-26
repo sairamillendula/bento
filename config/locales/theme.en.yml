@@ -97,7 +97,6 @@ en:
     payment:
       title: Payment Information
       credit_card_provided: Credit card has been provided
-      complete_order: Complete my purchase
     products:
       title: Products
       browse: Browse our catalogue
