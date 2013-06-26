@@ -1,8 +1,8 @@
 <table class="table table-striped" style="margin-top:20px;" >
   <tr id="table-headers">
-  	<th>Item</th>
-  	<th>Price</th>
-    <th>Quantity</th>
+  	<th><%= t 'theme.item' %></th>
+  	<th><%= t 'theme.price' %></th>
+    <th><%= t 'theme.quantity' %></th>
     <th></th>
   </tr>
 
@@ -15,27 +15,27 @@
     </tr>
   <% end %>
   <tr class="total">
-    <th colspan="3" style="text-align:right;"><%= t 'subtotal' %></th>
+    <th colspan="3" style="text-align:right;"><%= t 'theme.subtotal' %></th>
     <th><%= number_to_currency(@order.subtotal) %></th>
   </tr>
   <% if @order.coupon_code.present? %>
     <tr class="total">
-      <th colspan="3" style="text-align:right;"><%= "#{t 'discount'} (#{@order.coupon_amount}#{@order.coupon_percentage? ? '%' : '$'})" %></th>
+      <th colspan="3" style="text-align:right;"><%= "#{t 'theme.discount'} (#{@order.coupon_amount}#{@order.coupon_percentage? ? '%' : '$'})" %></th>
       <th><%= number_to_currency("-#{@order.coupon_formatted}") %></th>
     </tr>
   <% end %>
   <tr class="total">
-    <th colspan="3" style="text-align:right;"><%= t 'shipping' %></th>
+    <th colspan="3" style="text-align:right;"><%= t 'theme.shipping.title' %></th>
     <th><%= number_to_currency(@order.shipping_price) %></th>
   </tr>
   <% if @order.tax_rate > 0 %>
     <tr class="total">
-      <th colspan="3" style="text-align:right;"><%= @order.tax_name || "#{t 'tax'}" %></th>
+      <th colspan="3" style="text-align:right;"><%= @order.tax_name || "#{t 'theme.tax'}" %></th>
       <th><%= number_to_currency(@order.subtotal * @order.tax_rate/100) %></th>
     </tr>
   <% end %>
   <tr class="total">
-    <th colspan="3" style="text-align:right;"><%= t 'total' %></th>
+    <th colspan="3" style="text-align:right;"><%= t 'theme.total' %></th>
     <th><%= number_to_currency(@order.total) %></th>
   </tr>
 </table>

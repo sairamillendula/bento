@@ -5,7 +5,7 @@
 		<span class="site-slogan"><%= t 'theme.site_slogan' %></span>
 		<span class="cart-summary">
 		  <i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path %> - 
-      <%= pluralize(current_cart.items.length, "#{t 'item'}") %>
+      <%= t('theme.products', count: current_cart.items.length) %>
     </span>
 	</h1>
 </header>

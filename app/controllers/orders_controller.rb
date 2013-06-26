@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
 		@cart = current_cart
 
     if @cart.items.empty?
-      redirect_to products_url, notice: "#{t 'cart.is_empty'}."
+      redirect_to products_url, notice: "#{t 'cart.is_empty', default: 'Cart is empty'}."
       return
     end
 
@@ -21,7 +21,7 @@ class OrdersController < ApplicationController
     @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
 
     unless @shipping_country
-      flash.now.alert = "#{t 'cart.no_shipping_in_country'} #{Country[@cart.shipping_address.country].name}"
+      flash.now.alert = "#{t 'theme.cart.no_shipping_in_country', default: 'Sorry, we cannot proceed with your order as we currently do not ship to'} #{Country[@cart.shipping_address.country].name}"
     end
 	end
 

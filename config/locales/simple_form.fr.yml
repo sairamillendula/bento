@@ -18,14 +18,21 @@ fr:
       #     edit:
       #       email: 'E-mail.'
       defaults:
-        login: Adresse email
+        email: Courriel
         password: Mot de passe
         password_confirmation: Confirmation du mot de passe
         address1: Adresse
+        address2: Adresse 2
+        postal_code: Code postal
+        city: Ville
+        country: Pays
         seo_title: Titre
         seo_description: Description
         slug: URL
         sku: SKU
+        first_name: Prénom
+        last_name: Nom de famille
+        full_name: Nom complet
       page:
         klass: Type
       tax:
@@ -34,7 +41,7 @@ fr:
       defaults:
         slug: Séparez les mots par un trait d'union '-'
       user:
-        password: "(laissez vide, si vous ne souhaitez pas changer)"
+        password: "(laissez vide, si vous ne souhaitez pas le changer)"
       picture:
         name: "Nommez votre image, utile pour les moteurs de recherche. Gardez le texte court mais descriptif."
     helpers:
@@ -42,4 +49,5 @@ fr:
         order:
           create: Finaliser la commande
           update: Mettre à jour votre commande
-        
+        cart:
+          update: Mettre à jour le panier

@@ -1,4 +1,4 @@
-<%= page_title("#{t 'registrations.edit'}") %>
+<%= page_title("#{t 'theme.registrations.edit'}") %>
 
 <%= simple_form_for(@user, url: update_profile_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
@@ -9,5 +9,5 @@
   <%= f.input :password, required: false %>
   <%= f.input :password_confirmation %>
 
-  <%= f.button :submit, "#{t 'registrations.update_profile'}", class: "btn btn-primary nolabel" %>
+  <%= f.button :submit, class: "btn btn-primary nolabel" %>
 <% end %>

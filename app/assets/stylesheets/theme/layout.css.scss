@@ -134,11 +134,13 @@ a {
 }
 
 /* Custom */
+#main_footer { clear: both; }
 #footer {
 	position: relative;
 	bottom: 0px;
 	padding: 15px 0;
 	background: $pink;
+	clear: both;
 
   .inner {
 	  margin: 0 auto;

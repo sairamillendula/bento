@@ -1,5 +1,5 @@
 <%= content_for :email_body do %>
-  <h3><%= "#{t 'order'}" %> #<%= @order.code %></h3>
+  <h3><%= "#{t 'theme.orders.title'}" %> #<%= @order.code %></h3>
   <p><%= l @order.created_at, format: :long %></p>
 
   <layout label="Two columns">
@@ -9,7 +9,7 @@
           <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
             <tbody><tr>
               <td class="w275" width="275">
-                <p align="left" class="article-title"><singleline label="Title"><%= t 'billing_address' %></singleline></p>
+                <p align="left" class="article-title"><singleline label="Title"><%= t 'theme.billing_address' %></singleline></p>
                 <div align="left" class="article-content">
                   <multiline label="Description"><address><%= @order.shipping_address.display_name %></address></multiline>
                 </div>
@@ -23,7 +23,7 @@
           <table class="w275" width="275" cellpadding="0" cellspacing="0" border="0">
             <tbody><tr>
               <td class="w275" width="275">
-                <p align="left" class="article-title"><singleline label="Title"><%= t 'shipping_address' %></singleline></p>
+                <p align="left" class="article-title"><singleline label="Title"><%= t 'theme.shipping_address' %></singleline></p>
                 <div align="left" class="article-content">
                   <multiline label="Description"><address><%= @order.shipping_address.display_name %></address></multiline>
                 </div>

@@ -46,7 +46,7 @@ class CartsController < ApplicationController
       if @cart.shipping_availability?
         redirect_to new_order_url
       else
-        redirect_to checkout_cart_url, alert: "#{t 'cart.no_shipping_in_country'} #{Country[@cart.shipping_address.country].name}"
+        redirect_to checkout_cart_url, alert: "#{t 'theme.cart.no_shipping_in_country', default: 'Sorry, we cannot proceed with your order as we currently do not ship to'} #{Country[@cart.shipping_address.country].name}"
       end
     else
       render :checkout

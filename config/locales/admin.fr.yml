@@ -88,7 +88,6 @@ fr:
     is_now_approved: Product review is now approved
   cart:
     is_empty: Cart is empty
-    no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
   coupons:
     title: Coupons
     new: New Coupon
@@ -200,35 +199,6 @@ fr:
     not_paid: Payment not received
   payments:
     title: Payments
-  passwords:
-    new_password_placeholder: New password (6 characters min.)
-    new: Reset Password
-    edit: Choose a new password
-    forgot: Forgot Password?
-    instructions_sent: Instructions have been sent to your email
-    password_updated_please_sign_in: Password was successfully updated. Please sign in
-    reset_submit: Send reset instructions
-  registrations:
-    new: Sign up
-    edit: Profile
-    create_account: Create Account
-    update_profile: Update Profile
-    profile_updated: Profile was successfully updated
-    no_account_yet: "No account, yet?"
-    already_have_an_account: Already have an account?
-  social:
-    twitter:
-      username: Twitter username
-    facebook:
-      username: Facebook username/Page name
-  sessions:
-    login: Sign in
-    sign_in: Please sign in first
-    signed_in: Signed in!
-    signed_out: Successfully signed out.
-    new: Customer login
-    error: Invalid email/password
-    submit: Sign in
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your

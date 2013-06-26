@@ -19,10 +19,12 @@ en:
     contact: Contact
     blog: Blog
     login: Sign in
+    logout: Log out
     register: Sign up
     item: Item
     quantity: Quantity
     price: Price
+    unit_price: Unit Price
     subtotal: Subtotal
     full_price: Full price
     updating: Updating...
@@ -36,6 +38,7 @@ en:
     add_to_cart: Add to Cart
     select_address: Select address
     no_js: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings"
+    remember_me: Remember me
     nav:
       modern: Modern Bento
       traditional: Traditional Bento
@@ -60,7 +63,11 @@ en:
       is_empty: Cart is empty
       invalid: Invalid cart
       update: Update Cart
+      no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
     same_as_billing_address: Same as billing address
+    billing_address: Billing Address
+    shipping_address: Shipping Address
+    shipping_and_billing_are_the_same: Shipping address is identical
     edit: Edit
     category: Category
     checkout:
@@ -74,10 +81,19 @@ en:
       menu_tab: Contact
       success_notice: Message sent! Thank you for contacting us
     orders:
+      title: Order
       thank_you: Thank you for your order
       mine: My orders
       none: No orders found
       date: Date
+      shipped_on: Order was shipped on
+    passwords:
+      new_password_placeholder: 6 characters min.
+      new: Reset Password
+      edit: Choose a new password
+      forgot: Forgot Password?
+      instructions_sent: Instructions have been sent to your email
+      password_updated_please_sign_in: Password was successfully updated. Please sign in
     payment:
       title: Payment Information
       credit_card_provided: Credit card has been provided
@@ -85,6 +101,9 @@ en:
     products:
       title: Products
       browse: Browse our catalogue
+      one: "1 product"
+      zero: 0 product
+      other: "%{count} products"
     registrations:
       new: Sign up
       edit: Profile
@@ -102,11 +121,12 @@ en:
       signed_out: Signed out
       title: Sign in
       error: Invalid email/password combination
-      submit: Sign in
     shipping:
       title: Shipping
       shipping_method: Shipping Method
       select_shipping_rate: Please select how you would like your products to be delivered
+      free: FREE shipping
+      no_shipping_to: "Sorry, we currently do not ship to"
     shipping_rate:
       title: Shipping rate
       calculator: Shipping rate calculator

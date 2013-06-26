@@ -1,13 +1,11 @@
-<div class="authentication">
-	<h1><%= t 'passwords.edit' %></h1>
+<h1><%= t 'theme.passwords.edit' %></h1>
 
-	<%= simple_form_for(@user, url: password_path, method: :put) do |f| %>
-	  <%= f.error_notification %>
-	  <p>Email: <b><%= @user.email %></b></p>
-	  <%= f.input :password, hint: false, label: false, placeholder: "#{t 'passwords.new_password_placeholder'}" %>
-	  <%= f.input :password_confirmation, label: false %>
-	  <%= hidden_field_tag :token, @token %>
+<%= simple_form_for(@user, url: password_path, method: :put, html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+  <p>Email: <b><%= @user.email %></b></p>
+  <%= f.input :password, hint: false, placeholder: "#{t 'theme.passwords.new_password_placeholder'}" %>
+  <%= f.input :password_confirmation %>
+  <%= hidden_field_tag :token, @token %>
 
-	  <%= f.button :submit, "#{t 'passwords.new'}", class: "btn btn-primary" %>
-	<% end %>
-</div>
+  <%= f.button :submit, "#{t 'theme.passwords.new'}", class: "btn btn-primary nolabel" %>
+<% end %>

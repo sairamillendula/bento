@@ -2,13 +2,10 @@
 
 <%= page_title("#{t 'theme.checkout.title'}") %>
 
-<p class="alert"><i class="icomoon icon-lock"></i> <%= t 'theme.secure_connection' %>.</p>
-
 <% if logged_in? %>
   <section id="order-addreses">
     <%= simple_form_for(@cart, url: continue_cart_path, method: :post, html: {class: 'form-horizontal'}) do |f| %>
       <%= f.error_notification %>
-
       <%
         default_billing_address = current_user.orders.try(:last).try(:billing_address) || current_user.addresses.try(:first)
         default_shipping_address = current_user.orders.try(:last).try(:shipping_address) || current_user.addresses.try(:first)
@@ -40,7 +37,7 @@
 
               <div class="checkbox inline nolabel">
                 <label> <%= ba.check_box :also_shipping_address, id: 'also_shipping_address' %>
-                 <%= t 'shipping_and_billing_are_the_same' %>
+                 <%= t 'theme.shipping_and_billing_are_the_same' %>
                 </label>
               </div>
             </div>
@@ -87,12 +84,12 @@
         <%= f.input :password %>
         
         <p id="remember-control" class="nolabel">
-          <%= check_box_tag :remember_me %> <%= t 'remember_me' %>
+          <%= check_box_tag :remember_me %> <%= t 'theme.remember_me' %>
         </p>
-        <%= f.button :submit, "#{t 'sessions.submit'}", class: "btn nolabel" %>
+        <%= f.button :submit, class: "btn nolabel" %>
       <% end %>
 
-      <p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'passwords.forgot'}", new_password_path %></p>
+      <p class="nolabel" style="margin-top:20px;"><%= link_to "#{t 'theme.passwords.forgot'}", new_password_path %></p>
     </section>
 
     <section id="signup" class="span6">
@@ -108,7 +105,7 @@
         <%= f.input :password, hint: false %>
         <%= f.input :password_confirmation, required: true %>
 
-        <%= f.button :submit, "#{t 'registrations.create_account'}", class: "btn nolabel" %>
+        <%= f.button :submit, class: "btn nolabel" %>
       <% end %>
     </section>
   </div>
@@ -131,7 +128,7 @@
 
       <div class="row-fluid">
         <div id="billing-address" class="span6">
-          <h4 class="section-helper"><%= t 'billing_address' %></h4>
+          <h4 class="section-helper"><%= t 'theme.billing_address' %></h4>
           <%= f.fields_for :billing_address do |ba| %>
             <div id="billing_address_fields" class="form-horizontal">
               <%= ba.input :full_name, required: true %>
@@ -143,7 +140,7 @@
               <%= ba.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
               <div class="checkbox inline nolabel">
                 <label> <%= ba.check_box :also_shipping_address, id: 'also_shipping_address' %>
-                 <%= t 'shipping_and_billing_are_the_same' %>
+                 <%= t 'theme.shipping_and_billing_are_the_same' %>
                 </label>
               </div>
             </div>
@@ -151,7 +148,7 @@
         </div>
 
         <div id="shipping-address" class="span6">
-          <h4 class="section-helper"><%= t 'shipping_address' %></h4>
+          <h4 class="section-helper"><%= t 'theme.shipping_address' %></h4>
           <div id="shipping_address_fields" class="form-horizontal" style="display: <%= @cart.billing_address.also_shipping_address ? 'none' : 'block' %>;">
             <%= f.fields_for :shipping_address do |sa| %>
               <%= sa.input :full_name, required: true %>

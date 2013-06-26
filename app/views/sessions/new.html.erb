@@ -1,4 +1,4 @@
-<%= page_title("#{t 'sessions.new'}") %>
+<%= page_title("#{t 'theme.sessions.new'}") %>
 
 <div class="row-fluid">
   <div class="span6">
@@ -9,16 +9,16 @@
 	    <%= f.input :password %>
 
 	    <p id="remember-control" class="nolabel">
-        <%= check_box_tag :remember_me %> <%= t 'remember_me' %>
+        <%= check_box_tag :remember_me %> <%= t 'theme.remember_me' %>
 	    </p>
 
-	    <p><%= f.button :submit, "#{t 'sessions.submit'}", class: "nolabel btn", style: 'margin-top:10px;' %></p>
+	    <p><%= f.button :submit, class: "nolabel btn", style: 'margin-top:10px;' %></p>
    <% end %> 
-	  <p class="nolabel" style="margin-top:20px;"><i><%= link_to "#{t 'passwords.forgot'}", new_password_path %></i></p>
+	  <p class="nolabel" style="margin-top:20px;"><i><%= link_to "#{t 'theme.passwords.forgot'}", new_password_path %></i></p>
   </div>
 
   <div class="span6">
-    <p style="margin-top:0;"><%= t 'registrations.no_account_yet' %></p>
-		<%= link_to "Sign up", signup_path, class: 'btn' %>
+    <p style="margin-top:0;"><%= t 'theme.registrations.no_account_yet' %></p>
+		<%= link_to "#{t 'theme.registrations.new'}", signup_path, class: 'btn' %>
   </div>
 </div>

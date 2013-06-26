@@ -1,0 +1,15 @@
+en:
+  helpers:
+    submit:
+      cart:
+        update: Update cart
+      password:
+        submit: Send reset instructions
+      session:
+        submit: Sign in
+      order:
+        create: Complete order
+        update: Update order
+      user:
+        submit: Sign up
+        update: Update profile

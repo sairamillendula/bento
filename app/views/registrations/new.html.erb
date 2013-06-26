@@ -11,12 +11,12 @@
 		  <%= f.input :password, hint: false %>
 		  <%= f.input :password_confirmation, required: true %>
 
-		  <%= f.button :submit, "#{t 'theme.registrations.create_account'}", class: "btn nolabel" %>
+		  <%= f.button :submit, class: "btn nolabel" %>
 		<% end %>
   </div>
 
   <div class="span6">
-  	<p><%= t 'theme.registrations.already_have_an_account' %></p>
-		<%= link_to "#{t 'theme.sessions.login'}", login_path, class: 'btn' %>
+  	<p style="margin-top:0;"><%= t 'theme.registrations.already_have_an_account' %></p>
+		<%= link_to "#{t 'theme.sessions.new'}", login_path, class: 'btn' %>
   </div>
 </div>

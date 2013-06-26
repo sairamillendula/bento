@@ -200,19 +200,6 @@ en:
     not_paid: Payment not received
   payments:
     title: Payments
-  passwords:
-    new_password_placeholder: New password (6 characters min.)
-    new: Reset Password
-    edit: Choose a new password
-    forgot: Forgot Password?
-    instructions_sent: Instructions have been sent to your email
-    password_updated_please_sign_in: Password was successfully updated. Please sign in
-    reset_submit: Send reset instructions
-  social:
-    twitter:
-      username: Twitter username
-    facebook:
-      username: Facebook username/Page name
   stripe:
     please_connect: You need to set up your stripe account to accept payments
     account_set_up: Payments successfully set up. Manage revenues through your
@@ -233,20 +220,8 @@ en:
       subject: Account created
     new_reseller_request:
       subject: New reseller request
-    reset_password_email:
-      subject: Your password has been reset
-      intro:
-      action:
     reseller_request_approved:
       subject: Request approved
-    order_receipt:
-      subject: Purchase Receipt
-      intro: Thank you for your purchase
-      action:
-    welcome:
-      subject: Welcome
-      intro:
-      action:
     contact_us: 
       subject: New message from contact form   
   search:

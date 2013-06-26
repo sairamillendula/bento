@@ -1,9 +1,7 @@
-<div class="authentication">
-	<h1><%= t 'passwords.new' %></h1>
+<h1><%= t 'theme.passwords.new' %></h1>
 
-	<%= simple_form_for(:password, url: password_path, method: :post) do |f| %>
-	  <%= f.error_notification %>
-	  <%= f.input :email %>
-	  <%= f.button :submit, "#{t 'passwords.reset_submit'}", class: "btn btn-primary" %>
-	<% end %>
-</div>
+<%= simple_form_for(:password, url: password_path, method: :post) do |f| %>
+  <%= f.error_notification %>
+  <%= f.input :email %>
+  <%= f.button :submit, class: "btn btn-primary" %>
+<% end %>

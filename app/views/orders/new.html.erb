@@ -9,13 +9,13 @@
 <div class="row-fluid">
   <div class="span6">
     <div class="well address">
-      <h4><%= t 'billing_address' %> <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr', style: "font-size:12px;" %></h4>
+      <h4><%= t 'theme.billing_address' %> <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr', style: "font-size:12px;" %></h4>
       <p><%= @cart.billing_address.display_name %></p>
     </div>
   </div>
   <div class="span6">
     <div class="well address">
-      <h4><%= t 'shipping_address' %> <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr', style: "font-size:12px;" %></h4>
+      <h4><%= t 'theme.shipping_address' %> <%= link_to "#{t 'theme.edit'}", checkout_cart_url, class: 'fr', style: "font-size:12px;" %></h4>
       <p><%= @cart.shipping_address.display_name %></p>
     </div>
   </div>

@@ -18,10 +18,11 @@ en:
       #     edit:
       #       email: 'E-mail.'
       defaults:
-        login: Email or Username
+        email: Email
         password: Password
         password_confirmation: Password confirmation
         address1: Address
+        country: Country
         seo_title: Title
         seo_description: Description
         slug: URL
@@ -37,9 +38,3 @@ en:
         password: "(leave blank if you don't want to change it)"
       picture:
         name: "Name your picture, useful for search engines. Keep the text brief but descriptive."
-    helpers:
-      submit:
-        order:
-          create: Complete order
-          update: Update order
-        

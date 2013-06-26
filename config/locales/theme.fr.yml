@@ -19,10 +19,12 @@ fr:
     contact: Contact
     blog: Blog
     login: Se connecter
+    logout: Se déconnecter
     register: S'enregistrer
-    item: Item
+    item: Produit
     quantity: Quantité
     price: Prix
+    unit_price: Prix unitaire
     subtotal: Sous-total
     full_price: Total
     updating: Veuillez patienter...
@@ -31,11 +33,12 @@ fr:
     discount: Bon de réduction
     estimated_shipping: Estimation frais de port
     apply_coupon: Appliquer
-    coupon_code: Code coupon
+    coupon_code: Coupon
     was_applied: a été appliqué
     add_to_cart: Ajouter au panier
     select_address: Selectionnez une adresse
     no_js: "JavaScript n'est pas activé or il est nécessaire pour ce formulaire. Veuillez l'activer dans les paramètres de votre navigateur web"
+    remember_me: Se souvenir
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel
@@ -60,11 +63,15 @@ fr:
       is_empty: Panier vide
       invalid: Panier invalide
       update: Mettre à jour le panier
-    same_as_billing_address: Même adresse de facturation
+      no_shipping_in_country: "Désolé, nous ne pouvons procéder avec votre commande car nous ne livrons pas dans ce pays: "
+    same_as_billing_address: Même adresse de que celle de facturation
+    billing_address: Adresse de facturation
+    shipping_address: Adresse de livraison
+    shipping_and_billing_are_the_same: Adresse de livraison identique
     edit: Éditer
     category: Catégorie
     checkout:
-      title: Passer la commande
+      title: Compte & adresse
       secure_connection: Vous naviguez sur un serveur sécurisé
       as_guest: Commander en tant qu'invité
       your_details: Vos informations personnelles
@@ -74,10 +81,19 @@ fr:
       menu_tab: Contact
       success_notice: Message envoyé. Merci!
     orders:
+      title: Commande
       thank_you: Merci pour votre commande
       mine: Mes commandes
       none: Aucune commande trouvée
       date: Date
+      shipped_on: Commande expédiée le
+    passwords:
+      new_password_placeholder: 6 caractères min.
+      new: Changer votre mot de passe
+      edit: Changer votre mot de passe
+      forgot: Mot de passe oublié?
+      instructions_sent: Merci de vérifier votre messagerie courriel
+      password_updated_please_sign_in: Mot de passe changé. Veuillez vos connecter
     payment:
       title: Choix du mode de paiement
       credit_card_provided: Carte de crédit reçue
@@ -85,6 +101,9 @@ fr:
     products:
       title: Produits
       browse: Voir nos produits
+      one: "1 produit"
+      zero: 0 produit
+      other: "%{count} produits"
     registrations:
       new: S'enregistrer
       edit: Profil
@@ -99,14 +118,15 @@ fr:
     sessions:
       new: Se connecter
       sign_in: Veuillez vous connecter
-      signed_out: Session terminée.
+      signed_out: Session terminée
       title: Se connecter
       error: Email/mot de passe introuvable
-      submit: Se connecter
     shipping:
       title: Livraison
       shipping_method: Mode de livraison
       select_shipping_rate: Veuillez sélectionner votre mode de livraison
+      free: Gratuit
+      no_shipping_to: "Désolé, nous ne livrons pas encore en"
     shipping_rate:
       title: Frais de port
       calculator: Calcul des frais de port

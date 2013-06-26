@@ -8,7 +8,7 @@
         <th></th>
   	    <th><%= t 'theme.item' %></th>
   	    <th><%= t 'theme.quantity' %></th>
-        <th><%= t 'theme.price' %></th>
+        <th><%= t 'theme.unit_price' %></th>
   	    <th><%= t 'theme.subtotal' %></th>
   	  </tr>
   	 
@@ -25,7 +25,7 @@
   	</table>
 
     <div id="cart-actions" class="row-fluid">      
-      <%= link_to "#{t 'theme.checkout.title'}", checkout_cart_path, class: "btn btn-success fr" %>
+      <%= link_to "#{t 'theme.cart.continue'}", checkout_cart_path, class: "btn btn-success fr" %>
       <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn fr' %>
     </div>
   <% end %>
@@ -34,7 +34,7 @@
     <%= t 'theme.coupon_code' %> <b>"<%= @cart.coupon_code %>"</b> <%= t 'theme.was_applied' %>. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, method: :post %>
   <% else %>
     <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
-      <%= label_tag :coupon_code %>
+      <%= label_tag :coupon_code, "#{t 'theme.coupon_code'}" %>
       <%= text_field_tag :coupon_code, @cart.coupon_code %>
       <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.apply_coupon'}", class: 'btn' %>
     <% end %>
