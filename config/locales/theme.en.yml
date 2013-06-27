@@ -2,7 +2,7 @@ en:
   theme:
     site_name: Bentooo
     site_slogan: Lunch Box from Japan
-    site_description: "Original Bento lunch box from Japan and accessories"
+    site_description: "bento, bento box, bento lunch box, bento boxes, bento bag, bento kit, sushi box, furoshiki and japanese accessories"
     faq: FAQ
     in_the_news: Media
     blog: Blog
@@ -129,5 +129,8 @@ en:
     shipping_rate:
       title: Shipping rate
       calculator: Shipping rate calculator
-      there: There
-      available_for: available for
+      order_between: order between
+    shipping_rates_found:
+      one: 1 shipping rate found
+      zero: "Sorry, we do not ship to this country yet"
+      other: "%{count} shipping rates found"

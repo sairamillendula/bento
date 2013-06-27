@@ -1,7 +1,7 @@
 <% if @shipping_rates %>
   $('#shipping-rate-feedback').empty().append('<%= j render("results") %>').show();
   <% if @shipping_estimate %>
-    $('#shipping-price').text("<%= @shipping_estimate.is_free? ? #{t 'theme.shipping.free'} : number_to_currency(@shipping_estimate.price) %>");
+    $('#shipping-price').text("<%= @shipping_estimate.is_free? ? I18n.t('theme.shipping.free') : number_to_currency(@shipping_estimate.price) %>");
     $('#shipping').show();
   <% else %>
     $('#shipping').hide();

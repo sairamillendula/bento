@@ -2,7 +2,7 @@ fr:
   theme:
     site_name: Bentooo
     site_slogan: Spécialiste de la boite à lunch japonaise
-    site_description: "Spécialiste de boites à lunch, furoshiki et acccessoires du Japon"
+    site_description: "bento, boites à lunch, boite à sushis, bento box, sac à bento, bento kit, furoshiki et acccessoires japonais"
     faq: FAQ
     in_the_news: La presse en parle
     blog: Blog
@@ -129,5 +129,8 @@ fr:
     shipping_rate:
       title: Frais de port
       calculator: Calcul des frais de port
-      there: Il existe
-      available_for: pour
+      order_between: commande comprise entre
+    shipping_rates_found:
+      one: 1 seule option de livraison trouvée
+      zero: "Désolé, nous ne livrons pas encore dans ce pays"
+      other: "%{count} options de livraison trouvées"

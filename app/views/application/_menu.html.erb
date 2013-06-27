@@ -5,18 +5,18 @@
 			<li>
 				<%= link_to "#{t 'theme.bento_lunch_box'}", "#" %>
 				<ul class="cbp-hssubmenu">
-					<li><a href="category/modern"><%= image_tag('theme/products/bento-modern.png', alt: "Modern bento") %><span><%= t 'theme.nav.modern' %></span></a></li>
-					<li><a href="category/traditional"><%= image_tag('theme/products/bento-traditional.png', alt: "Traditional bento") %><span><%= t 'theme.nav.traditional' %></span></a></li>
-					<li><a href="category/kid"><%= image_tag('theme/products/bento-kid.png', alt: "Bento for kids") %><span><%= t 'theme.nav.kid' %></span></a></li>
-					<li><a href="category/kit"><%= image_tag('theme/products/bento-kit.png', alt: "Bento kit") %><span><%= t 'theme.nav.kit' %></span></a></li>
+					<li><%= link_to(image_tag('theme/products/bento-modern.png', alt: "Modern bento") + content_tag(:span, "#{t 'theme.nav.modern'}"), "/category/modern") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-traditional.png', alt: "Traditional bento") + content_tag(:span, "#{t 'theme.nav.traditional'}"), "/category/traditional") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-kid.png', alt: "Bento for kids") + content_tag(:span, "#{t 'theme.nav.kid'}"), "/category/kid") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-kit.png', alt: "Bento kit") + content_tag(:span, "#{t 'theme.nav.kit'}"), "/category/kit") %></li>
 				</ul>
 			</li>
 			<li>
 				<%= link_to "#{t 'theme.accessories'}", "#" %>
 				<ul class="cbp-hssubmenu">
-					<li><a href="category/napkin"><%= image_tag('theme/products/bento-napkin.png', alt: "Bento napkin") %><span><%= t 'theme.nav.napkin' %></span></a></li>
-					<li><a href="category/cutlery"><%= image_tag('theme/products/bento-cutlery.png', alt: "Cutlery & Chopstick") %><span><%= t 'theme.nav.cutlery' %></span></a></li>
-					<li><a href="category/kit"><%= image_tag('theme/products/bento-kit.png', alt: "Bento kit") %><span><%= t 'theme.nav.kit' %></span></a></li>
+					<li><%= link_to(image_tag('theme/products/bento-napkin.png', alt: "Bento napkin") + content_tag(:span, "#{t 'theme.nav.napkin'}"), "/category/napkin") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-cutlery.png', alt: "Cutlery & Chopsticks") + content_tag(:span, "#{t 'theme.nav.cutlery'}"), "/category/cutlery") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-kit.png', alt: "Bento kit") + content_tag(:span, "#{t 'theme.nav.kit'}"), "/category/kit") %></li>
 				</ul>
 			</li>
 			<li><%= link_to "#{t 'theme.about'}", "/about" %></li>
