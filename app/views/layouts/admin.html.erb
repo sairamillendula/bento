@@ -10,6 +10,9 @@
     <%= javascript_include_tag "admin" %>
     <%= csrf_meta_tags %>
     <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] if @checkout_script %>
+    <script type="text/javascript">
+      CURRENT_LOCALE = '<%= I18n.locale %>';
+    </script>
   </head>
 
   <body class="admin">

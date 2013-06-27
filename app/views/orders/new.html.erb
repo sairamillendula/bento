@@ -46,11 +46,11 @@
       </div>
       <div class="field">
         <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
-        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "pattern"=>"\d*", "x-autocompletetype"=>"cc-number" %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "x-autocompletetype"=>"cc-number" %>
       </div>
       <div class="field">
         <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
-        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', "autocomplete"=>"off", "pattern"=>"\d*", "x-autocompletetype"=>"cc-csc" %>
+        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', "autocomplete"=>"off", "x-autocompletetype"=>"cc-csc" %>
       </div>
       <div class="field">
         <%= label_tag :card_month, "#{t 'theme.card.expiration'}" %>

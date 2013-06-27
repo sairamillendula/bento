@@ -27,7 +27,7 @@ class @Order
       $('#order_stripe_card_token').val(response.id)
       $('#new_order')[0].submit()
     else
-      $('#stripe_error').text(response.error.message)
+      $('#stripe_error').text(I18n.t(response.error.code))
       $('input[type=submit]').attr('disabled', false)
 
   calculateOrder = ->

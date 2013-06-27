@@ -9,6 +9,9 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
 	  <%= csrf_meta_tags unless @page_caching %>
 	  <%= render 'scripts' %>
+    <script type="text/javascript">
+      CURRENT_LOCALE = '<%= I18n.locale %>';
+    </script>
 
     <%= yield :head %>
     <!--[if lt IE 9]>
