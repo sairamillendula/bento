@@ -4,6 +4,17 @@
   <h3><%= t 'theme.category' %>: <%= @category.name %></h3>
 <% end %>
 
-<%= render 'products/products' %>
+<div id="pgcontainer" class="pgcontainer">
+  <ul class="pggrid" id="product-list">
+    <%= render partial: 'products/product', collection: @products, as: :product %>
+  </ul>
+</div>
 
 <%= paginate @products %>
+
+<script type="text/javascript">
+$(function() {
+  BentoShop.setup('#pgcontainer');
+  EndlessScrolling.setup();
+});
+</script>

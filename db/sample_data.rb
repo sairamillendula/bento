@@ -97,7 +97,7 @@ end
 puts "Created 15 articles"
 
 
-25.times do |x|
+100.times do |x|
   print '.'
   p = x + 1
   product = Product.new(

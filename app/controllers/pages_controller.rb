@@ -18,7 +18,12 @@ class PagesController < ApplicationController
   end
 
   def home
-    @products = Product.visibles.order('name').limit(8)
+    @products = Product.visibles.order('name').page(params[:page]).per(12)
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def become_reseller

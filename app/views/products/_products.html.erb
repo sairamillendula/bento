@@ -1,11 +1,3 @@
-<div id="pgcontainer" class="pgcontainer">
-  <ul class="pggrid">
-  	<% @products.each_with_index do |product, index| %>
-	    <%= render product, product: product %>
-	  <% end %>
-  </ul>
-</div>
-
-<script>
-  BentoShop.setup('#pgcontainer');
-</script>
+<% @products.each_with_index do |product, index| %>
+  <%= render product, product: product %>
+<% end %>

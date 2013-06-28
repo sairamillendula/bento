@@ -2,10 +2,19 @@
 
 <%= markdown(@collection.description) if @collection.description.present? %>
 
-<% if @collection.products.any? %>
-  <ul>
-  	<% @collection.products.order('position').each do |p| %>
-      <li><%= p.name %> (<%= number_to_currency(p.current_price) %>)</li>
-    <% end %>
-  </ul>
+<% if @products.any? %>
+  <div id="pgcontainer" class="pgcontainer">
+    <ul class="pggrid" id="product-list">
+      <%= render partial: 'products/product', collection: @products, as: :product %>
+    </ul>
+  </div>
 <% end %>
+
+<%= paginate @products %>
+
+<script type="text/javascript">
+$(function() {
+  BentoShop.setup('#pgcontainer');
+  EndlessScrolling.setup();
+});
+</script>

@@ -8,10 +8,15 @@ class ProductsController < ApplicationController
       @page_title = "#{params[:category]} | #{t 'theme.site_name'}"
 
       @category = Category.find_by_name(params[:category])
-      @products = @category.products.visibles.order('name').page(params[:page]).per(10)
+      @products = @category.products.visibles.order('name').page(params[:page]).per(12)
     else
       @page_title = "#{I18n.t 'products.title'} | #{t 'theme.site_name'}"
-      @products = Product.visibles.order('name').page(params[:page]).per(10)
+      @products = Product.visibles.order('name').page(params[:page]).per(12)
+    end
+
+    respond_to do |format|
+      format.html
+      format.js
     end
   end
 

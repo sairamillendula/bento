@@ -1,3 +1,18 @@
 <%= content_for :body_id do %>homepage<% end %>
 
-<%= render 'products/products' %>
+<%#= render 'products/products' %>
+
+<div id="pgcontainer" class="pgcontainer">
+  <ul class="pggrid" id="product-list">
+    <%= render partial: 'products/product', collection: @products, as: :product %>
+  </ul>
+</div>
+
+<%= paginate @products %>
+
+<script type="text/javascript">
+$(function() {
+  BentoShop.setup('#pgcontainer');
+  EndlessScrolling.setup();
+});
+</script>
