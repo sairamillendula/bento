@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<%= form_for @order do |f| %>
+<%= form_for @order, html: {autocomplete: 'on', novalidate: 'novalidate'} do |f| %>
   <%= f.hidden_field :stripe_card_token %>
   <div class="well">
     <h4><%= t 'theme.shipping.shipping_method' %></h4>
@@ -46,11 +46,11 @@
       </div>
       <div class="field">
         <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
-        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "x-autocompletetype"=>"cc-number" %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', pattern: '\d*', "x-autocompletetype"=>"cc-number" %>
       </div>
       <div class="field">
         <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
-        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', "autocomplete"=>"off", "x-autocompletetype"=>"cc-csc" %>
+        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', pattern: '\d*', "autocomplete"=>"off", "x-autocompletetype"=>"cc-csc" %>
       </div>
       <div class="field">
         <%= label_tag :card_month, "#{t 'theme.card.expiration'}" %>
@@ -72,20 +72,5 @@
   $(function() {
     var shipping_methods = <%= raw @shipping_rates.to_json(only: [:id, :price]) %>;
     Order.setup(shipping_methods);
-  });
-
-  jQuery(function($){
-    $('.cc-number').payment('formatCardNumber');
-    $('.cc-cvc').payment('formatCardCVC');
-
-    $('#new_order').submit(function(e){
-      e.preventDefault();
-      $('input').removeClass('invalid');
-
-      var cardType = $.payment.cardType($('.cc-number').val());
-
-      $('.cc-number').toggleClass('invalid', !$.payment.validateCardNumber($('.cc-number').val()));
-      $('.cc-cvc').toggleClass('invalid', !$.payment.validateCardCVC($('.cc-cvc').val(), cardType));
-    });
   });
 </script>

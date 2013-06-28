@@ -1,6 +1,23 @@
 class @Order
   @setup: (shipping_methods) ->
     Stripe.setPublishableKey($('meta[name="stripe-key"]').attr('content'))
+
+    $('.cc-number').payment('formatCardNumber');
+    $('.cc-cvc').payment('formatCardCVC');
+
+    $('.cc-number').keyup ->
+      $(this).next().remove()
+      cardType = $.payment.cardType($(this).val())
+      switch cardType
+        when "visa"
+          $(this).after('<a class="card visa" href="#">Visa</a>')
+        when "mastercard"
+          $(this).after('<a class="card mastercard" href="#">Master Card</a>')
+        when "discover"
+          $(this).after('<a class="card discover" href="#">Discover</a>')
+        when "amex"
+          $(this).after('<a class="card amex" href="#">American Express</a>')
+
     $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)
       processCard()

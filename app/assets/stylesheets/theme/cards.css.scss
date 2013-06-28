@@ -1,0 +1,28 @@
+@import "cards/*.png";
+
+.card {
+  width: 51px;
+  height: 32px;
+  display: inline-block;
+  text-indent: -9999px;
+}
+
+.visa { 
+  @include cards-sprite(visa);
+  border: none;
+}
+
+.amex { 
+  @include cards-sprite(amex);
+  border: none;
+}
+
+.mastercard { 
+  @include cards-sprite(mastercard);
+  border: none;
+}
+
+.discover { 
+  @include cards-sprite(discover);
+  border: none;
+}
