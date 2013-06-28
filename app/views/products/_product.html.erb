@@ -19,6 +19,7 @@
 				</div>
       </li>
       <% if product.variants.any? %>
+        <% default_variant = product.variants.in_stocks.first || product.variants.first %>
         <li class="opt-cart" data-url="<%= line_items_path(product_variant_id: default_variant.id) %>"></li>
       <% else %>
         <li class="opt-cart" data-url="<%= line_items_path(product_variant_id: product.master.id) %>"></li>
