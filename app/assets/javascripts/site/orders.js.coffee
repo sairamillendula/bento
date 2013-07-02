@@ -10,13 +10,13 @@ class @Order
       cardType = $.payment.cardType($(this).val())
       switch cardType
         when "visa"
-          $(this).after('<a class="card visa" href="#">Visa</a>')
+          $(this).after('<span class="card visa">Visa</span>')
         when "mastercard"
-          $(this).after('<a class="card mastercard" href="#">Master Card</a>')
+          $(this).after('<span class="card mastercard">Master Card</span>')
         when "discover"
-          $(this).after('<a class="card discover" href="#">Discover</a>')
+          $(this).after('<span class="card discover">Discover</span>')
         when "amex"
-          $(this).after('<a class="card amex" href="#">American Express</a>')
+          $(this).after('<span class="card amex">American Express</span>')
 
     $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)

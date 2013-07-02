@@ -114,7 +114,7 @@ puts "Created 15 articles"
   )
   product.save!
 end
-puts "Created 15 products"
+puts "Created 100 products"
 
 
 15.times do |x|
