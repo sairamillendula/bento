@@ -7,6 +7,10 @@
 }
 
 #product.public {
+	#pGallery-pager li {
+		display: inline;
+	}
+
 	#product-sidebar {
     p:first-of-type {
     	margin-top: 0
@@ -34,6 +38,7 @@
       }
 		}
 	}
+
 	#related_products {
     padding-left: 0;
 
@@ -41,6 +46,12 @@
 			list-style-type: none;
 			display: inline;
 			margin-bottom: 10px;
+		}
+	}
+
+	@media screen and (max-width: 46.125em) {
+		#product-thumbs {
+		  display: none;
 		}
 	}
 }

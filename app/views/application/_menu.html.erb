@@ -22,7 +22,7 @@
 			<li><%= link_to "#{t 'theme.about'}", "/about" %></li>
 			<li><%= link_to "#{t 'theme.contact.menu_tab'}", contact_path %></li>
 			<li><%= link_to "#{t 'theme.blog'}", blog_path %></li>
-	    <li>
+	    <li class="get-social">
 	    	<%= link_to "", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %>
 	    	<%= link_to "", "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %>
 	    	<%= link_to "", "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", class: 'icomoon icon-pinterest', target: "_blank" %>
