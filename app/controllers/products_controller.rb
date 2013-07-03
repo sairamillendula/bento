@@ -33,7 +33,7 @@ class ProductsController < ApplicationController
   end
 
   def search
-    @products = Product.where("name like ?", "%#{params[:q]}%")
+    @products = Product.where("lower(name) like ?", "%#{params[:q].strip.downcase}%")
 
     respond_to do |format|
       format.json {render json: @products}
