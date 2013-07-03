@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 try {
   $("#product-list").append("<%= j(render(partial: 'products/product', collection: @products, as: :product)) %>");
   <% if (@products.current_page < @products.num_pages) %>
@@ -8,3 +9,11 @@ try {
 } catch (e) {
   console.log(e);
 }
+=======
+$("#product-list").append("<%= j(render(partial: 'products/product', collection: @products, as: :product)) %>");
+<% if (@products.current_page < @products.num_pages) %>
+  $('.pagination').replaceWith('<%= j paginate(@products) %>');
+<% else %>
+  $('.pagination').remove();
+<% end %>  
+>>>>>>> a1a3805b99ee894a85b69e6e28f2f8614554d8fd
