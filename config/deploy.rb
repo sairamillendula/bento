@@ -78,11 +78,6 @@ EOF
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-
-    # LINK UPLOADS DIR
-    puts "Link upload directory"
-    sudo "rm -rf #{release_path}/public/upload"
-    sudo "ln -s  #{shared_path}/upload #{release_path}/public/upload"
   end
 end
 
@@ -99,6 +94,11 @@ namespace :deploy do
     run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
     run "ln -nfs #{shared_path}/config/production.rb #{release_path}/config/environments/production.rb"
     run "ln -nfs #{shared_path}/config/application.yml #{release_path}/config/application.yml"
+
+    # LINK UPLOADS DIR
+    puts "Link upload directory"
+    run "rm -rf #{release_path}/public/upload"
+    run "ln -s  #{shared_path}/upload #{release_path}/public/upload"
   end
   after "deploy:finalize_update", "deploy:symlink_config"
 
