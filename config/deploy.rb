@@ -80,9 +80,9 @@ EOF
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
 
     # LINK UPLOADS DIR
-    puts "Link uploads dir"
-    run "rm -rf #{release_path}/public/upload"
-    run "ln -s  #{shared_path}/upload #{release_path}/public/upload"
+    puts "Link upload directory"
+    sudo "rm -rf #{release_path}/public/upload"
+    sudo "ln -s  #{shared_path}/upload #{release_path}/public/upload"
   end
 end
 

@@ -20,6 +20,8 @@ class @I18n
       'card_declined': "The card was declined."
       'missing': "There is no card on a customer that is being charged."
       'processing_error': "An error occurred while processing the card."
+      'out_of_stock' : 'Out of stock'
+      'not_available' : 'Not available'
     'fr':  
       'save': "Sauvegarder"
       'delete': "Supprimer"
@@ -40,5 +42,7 @@ class @I18n
       'card_declined': "La carte a été déclinée"
       'missing': "Il n'y a pas de carte attachée à ce client"
       'processing_error': "Une erreur est survenue"
+      'out_of_stock' : 'Stock épuisé'
+      'not_available' : 'Non disponible'
   @t: (key) ->
     @_locales[CURRENT_LOCALE][key]

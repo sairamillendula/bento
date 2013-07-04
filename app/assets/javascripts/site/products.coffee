@@ -18,8 +18,8 @@ class @ProductOptionSelector
             url = url.replace(/product_id/, 'product_variant_id').replace(/(\=)\d+/, "$1#{variant_refs[variant].id}")
             $('#add-to-cart').closest('form').attr('action', url)
           else
-            $('#price').text('Out of stock')
+            $('#price').text(I18n.t('out_of_stock'))
             $('#add-to-cart').hide()  
         else
-          $('#price').text('Not available')
+          $('#price').text(I18n.t('not_available'))
           $('#add-to-cart').hide()
