@@ -103,6 +103,7 @@ en:
       one: "1 product"
       zero: 0 product
       other: "%{count} products"
+      related: Related products
     registrations:
       new: Sign up
       edit: Profile

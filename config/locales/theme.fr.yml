@@ -103,6 +103,7 @@ fr:
       one: "1 produit"
       zero: 0 produit
       other: "%{count} produits"
+      related: Vous aimerez peut-être aussi
     registrations:
       new: S'enregistrer
       edit: Profil

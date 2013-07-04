@@ -7,7 +7,7 @@
     <ul class="rslides" id="pGallery">
       <% @product.pictures.order('position').each do |picture| %>
         <li><%= image_tag(picture.upload.url(:large), alt: "#{picture.name}") %></li>
-      <% end %>  
+      <% end %>
     </ul>
   </div>
 
