@@ -5,7 +5,7 @@
     <li><%= link_to "#{t 'theme.manage_store'}", admin_dashboard_path %></li>
   <% end %>
   <li class="fr"><%= link_to("#{t 'theme.logout'}", logout_path, method: :delete) %></li>
-  <li class="fr"><%= I18n.locale == :fr ? (link_to "English", language_set_to_english_path, method: :post, class: 'fr') : (link_to "Français", language_set_to_french_path, method: :post, class: 'fr') %></li>
+  <li class="fr"><%= I18n.locale == :fr ? (link_to "English", language_set_to_english_path, method: :post) : (link_to "Français", language_set_to_french_path, method: :post) %></li>
 <% else %>
   <li><%= t 'theme.welcome' %>, <%= link_to "#{t 'theme.login'}", login_path %> <%= t 'theme.or' %> <%= link_to "#{t 'theme.register'}", signup_path %></li>
   <li class="fr"><%= I18n.locale == :fr ? (link_to "English", language_set_to_english_path, method: :post) : (link_to "Français", language_set_to_french_path, method: :post) %></li>

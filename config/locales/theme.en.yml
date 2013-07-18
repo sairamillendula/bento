@@ -40,6 +40,7 @@ en:
     no_js: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings"
     remember_me: Remember me
     required: required
+    from_price: From
     nav:
       modern: Modern Bento
       traditional: Traditional Bento

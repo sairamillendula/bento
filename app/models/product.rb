@@ -111,7 +111,7 @@ class Product < ActiveRecord::Base
   end
 
   def price_display
-    variants.any? ? "#{I18n.t('from_price')} #{number_to_currency(master.price)}" : "#{number_to_currency(master.price)}"
+    variants.any? ? "#{I18n.t('theme.from_price', default: 'From')} #{number_to_currency(master.price)}" : "#{number_to_currency(master.price)}"
   end
 
   def percentage_off
