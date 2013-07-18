@@ -18,6 +18,7 @@ fr:
       #     edit:
       #       email: 'E-mail.'
       defaults:
+        name: Nom
         email: Courriel
         password: Mot de passe
         password_confirmation: Confirmation du mot de passe

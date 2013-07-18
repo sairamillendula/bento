@@ -22,6 +22,7 @@ class @I18n
       'processing_error': "An error occurred while processing the card."
       'out_of_stock' : 'Out of stock'
       'not_available' : 'Not available'
+      'fetching_more_products' : 'Fetching more products...'
     'fr':  
       'save': "Sauvegarder"
       'delete': "Supprimer"
@@ -44,5 +45,6 @@ class @I18n
       'processing_error': "Une erreur est survenue"
       'out_of_stock' : 'Stock épuisé'
       'not_available' : 'Non disponible'
+      'fetching_more_products' : 'Et bien plus encore...'
   @t: (key) ->
     @_locales[CURRENT_LOCALE][key]
