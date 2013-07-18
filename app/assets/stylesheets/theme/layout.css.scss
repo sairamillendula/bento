@@ -70,7 +70,7 @@ a {
 		list-style-type: none;
 		margin-right: 20px;
 
-		&:last-child {
+		&:nth-last-child(2) {
 			margin-right: 0;
 		}
 	}

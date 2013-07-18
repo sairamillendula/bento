@@ -10,7 +10,9 @@ class ApplicationController < ActionController::Base
 private
 
   def set_locale
-    I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first) || I18n.default_locale
+    #I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first) || I18n.default_locale
+    I18n.locale = session[:locale] || I18n.default_locale
+    session[:locale] = I18n.locale
   end
 
   def load_cart

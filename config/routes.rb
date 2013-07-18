@@ -111,6 +111,8 @@ Bento::Application.routes.draw do
   # ============================================================
   # PUBLIC ROUTES
   # ============================================================
+  post "language/set_to_english"
+  post "language/set_to_french"
   get "application/users" # used for dynamic caching only
   
   scope "/blog" do
