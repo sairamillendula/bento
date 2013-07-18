@@ -39,6 +39,7 @@ fr:
     select_address: Selectionnez une adresse
     no_js: "JavaScript n'est pas activé or il est nécessaire pour ce formulaire. Veuillez l'activer dans les paramètres de votre navigateur web"
     remember_me: Se souvenir
+    required: requis
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel

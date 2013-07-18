@@ -1,15 +1,14 @@
 fr:
-  email:
-    signature: Passez untrès bonne journée!
-    reset_password_email:
-      subject: Confirmation du changement de mot de passe
-      intro:
-      action:
-    order_receipt:
-      subject: Purchase Receipt
-      intro: Merci pour votre achat
-      action:
-    welcome:
-      subject: Bienvenue
-      intro:
-      action:
+  theme:
+    email:
+      signature: Passez une très bonne journée!
+      reset_password_email:
+        subject: Confirmation du changement de mot de passe
+        intro: Nous avons reçu une demande de changement de mot de passe
+        action: Veuillez suivre le lien suivant pour le changer
+      order_receipt:
+        subject: Confirmation de commande
+      welcome:
+        subject: Bienvenue
+        intro: Merci de nous avoir rejoint
+        action: Vous pouvez à tout moment vous connecter à votre compte

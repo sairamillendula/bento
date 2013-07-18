@@ -3,7 +3,7 @@
  
 	<p><%= t 'theme.email.welcome.intro', default: "Thank you for joining #{t 'theme.site_name'}" %>.</p>
 
-	<p><%= t 'theme.email.welcome.action', default: 'You can access your account anytime' %>. <%= link_to "#{t 'sign_in'}", login_url %></p>
+	<p><%= t 'theme.email.welcome.action', default: 'You can access your account anytime' %>. <%= link_to "#{t 'theme.login', default: 'Sign in'}", login_url %></p>
 	 
-	<p><%= t 'theme.email.signature' %></p>
+	<p><%= t 'theme.email.signature', default: 'Have a great day!' %></p>
 <% end %>

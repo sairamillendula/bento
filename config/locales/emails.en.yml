@@ -1,15 +1,14 @@
 en:
-  email:
-    signature: Have a great day!
-    reset_password_email:
-      subject: Your password has been reset
-      intro:
-      action:
-    order_receipt:
-      subject: Purchase Receipt
-      intro: Thank you for your purchase
-      action:
-    welcome:
-      subject: Welcome
-      intro:
-      action:
+  theme:
+    email:
+      signature: Have a great day!
+      reset_password_email:
+        subject: Your password has been reset
+        intro:
+        action:
+      order_receipt:
+        subject: Purchase Receipt
+      welcome:
+        subject: Welcome
+        intro:
+        action:

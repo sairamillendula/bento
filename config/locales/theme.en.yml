@@ -39,6 +39,7 @@ en:
     select_address: Select address
     no_js: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings"
     remember_me: Remember me
+    required: required
     nav:
       modern: Modern Bento
       traditional: Traditional Bento
@@ -92,7 +93,7 @@ en:
       new: Reset Password
       edit: Choose a new password
       forgot: Forgot Password?
-      instructions_sent: Instructions have been sent to your email
+      instructions_sent: Instructions sent. Please check your inbox
       password_updated_please_sign_in: Password was successfully updated. Please sign in
     payment:
       title: Payment Information

@@ -11,5 +11,5 @@ en:
         create: Complete order
         update: Update order
       user:
-        submit: Sign up
+        create: Sign up
         update: Update profile
