@@ -14,7 +14,7 @@
 <%= subsection_title("#{t 'products.title'}") %>
 
 <div class="row-fluid">
-	<% if @products.any? %>
+	<% if Product.count > 0 %>
 	  <ul id="products-list" class="span5">
 		  <%= render 'admin/collections/from' %>
 		</ul>
