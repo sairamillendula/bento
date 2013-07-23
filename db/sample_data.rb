@@ -145,4 +145,12 @@ puts "Created 15 products reviews"
 
 ShippingCountry.create!(country: 'Worldwide')
 puts "Added shipping country"
+
+Collection.create!(name: 'homepage', slug: 'homepage')
+
+Product.visibles.each do |product|
+  CollectionProduct.create!(collection_id: Collection.first.id.to_i, product_id: product.id)
+end
+puts "Created collection for homepage"
+
 puts "All set"
