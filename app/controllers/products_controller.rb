@@ -5,10 +5,14 @@ class ProductsController < ApplicationController
 
   def index
     if params[:category]
-      @page_title = "#{params[:category]} | #{t 'theme.site_name'}"
+      @category = Category.where(name: params[:category]).first
 
-      @category = Category.find_by_name(params[:category])
-      @products = @category.products.visibles.order('name').page(params[:page]).per(12)
+      if @category.present?
+        @page_title = "#{params[:category]} | #{t 'theme.site_name'}"
+        @products = @category.products.visibles.order('name').page(params[:page]).per(12)
+      else
+        raise ActionController::RoutingError.new('Not Found')
+      end
     else
       @page_title = "#{I18n.t 'products.title'} | #{t 'theme.site_name'}"
       @products = Product.visibles.order('name').page(params[:page]).per(12)
