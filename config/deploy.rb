@@ -23,6 +23,7 @@ after "deploy:setup", "init:database_yaml"
 after "deploy:setup", "init:production_file"
 after "deploy:setup", "init:config_file"
 after "deploy:setup", "init:setup_config"
+after "deploy:setup", "init:create_upload_directory"
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
@@ -73,11 +74,15 @@ EOF
     puts "Now edit the config file in #{shared_path}."
   end
 
-
   desc "Create server config symlinks"
   task :setup_config, roles: :app do
     sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
     sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
+  end
+
+  desc "Create upload directory for pictures"
+  task :create_upload_directory do
+    run "mkdir -p #{shared_path}/upload" 
   end
 end
 
