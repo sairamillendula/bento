@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_cart
 
-  http_basic_authenticate_with name: "temp", password: "temp" if Rails.env.production?
+  #http_basic_authenticate_with name: "temp", password: "temp" if Rails.env.production?
 
 private
 
