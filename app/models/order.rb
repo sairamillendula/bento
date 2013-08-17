@@ -150,13 +150,13 @@ class Order < ActiveRecord::Base
     charge = Stripe::Charge.create(
       card: stripe_card_token,
       amount: (total * 100).to_i,
-      currency: "cad",
+      currency: ENV['STRIPE_CURRENCY'],
       description: "#{cart.email}"
       # application_fee: total * ENV['STRIPE_APPLICATION_FEE'].to_i / 100
     )
 
     self.stripe_card_token = charge.id
-    self.currency = "cad"
+    self.currency = ENV['STRIPE_CURRENCY']
     self.card_type = charge.card.type
     self.last4 = charge.card.last4
     self.state = State::OPEN
