@@ -12,7 +12,7 @@
     
     <% @orders.each do |order| %>
 	    <tr>
-	      <td><%= link_to order.code, order %> <%= status_tag(order.state, class: "status-#{order.state}") %></td>
+	      <td><%= link_to order.code, order %> <%= status_tag(t("status.#{order.state}"), class: "state-#{order.state}") %></td>
 	      <td><%= number_to_currency(order.total) %></td>
 	      <td><%= l order.created_at, format: :long %></td>
 	    </tr>

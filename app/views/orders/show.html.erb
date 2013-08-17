@@ -1,6 +1,6 @@
 <%= content_for :body_id do %>order<% end %>
 
-<%= page_title("#{t 'theme.orders.title'} ##{@order.code}") do %> <%= status_tag(@order.state, class: "state-#{@order.state}") %><% end %>
+<%= page_title("#{t 'theme.orders.title'} ##{@order.code}") do %> <%= status_tag(t("status.#{@order.state}"), class: "state-#{@order.state}") %><% end %>
 
 <% if @order.shipped? %>
   <p class="alert alert-info"><%= t 'theme.orders.shipped_on' %> <%= l @order.shipped_at, format: :long %></p>

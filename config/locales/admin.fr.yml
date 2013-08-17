@@ -192,9 +192,10 @@ fr:
   week: Week
   status:
     title: Status
-    pending: Pending
-    completed: Completed
-    shipped: Shipped
+    open: Ouvert
+    pending: En attente
+    completed: Complété
+    shipped: Envoyé
     mark_as_shipped: Mark as shipped
     not_paid: Payment not received
   payments:

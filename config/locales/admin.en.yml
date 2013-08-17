@@ -193,6 +193,7 @@ en:
   week: Week
   status:
     title: Status
+    open: Open
     pending: Pending
     completed: Completed
     shipped: Shipped
