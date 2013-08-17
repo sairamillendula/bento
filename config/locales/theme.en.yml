@@ -6,7 +6,7 @@ en:
     faq: FAQ
     in_the_news: Media
     blog: Blog
-    facebook_url: "http://facebook.com/pages/%{fb_nic}"
+    facebook_url: "http://facebook.com/%{fb_nic}"
     twitter_url: "http://twitter.com/%{twitter_nic}"
     pinterest_url: "http://pinterest.com/%{pinterest_nic}"
     bento_lunch_box: Bento Lunch Box
