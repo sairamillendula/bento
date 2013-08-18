@@ -18,14 +18,6 @@ class @Order
         when "amex"
           $(this).after('<span class="card amex">American Express</span>')
 
-    if CURRENT_LOCALE == 'fr'
-      accounting.settings.currency.thousand = "."
-      accounting.settings.currency.decimal = ","
-      accounting.settings.currency.format = "%v %s"
-    else
-      accounting.settings.currency.format = "%s%v"
-
-
     $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)
       processCard()
@@ -36,10 +28,6 @@ class @Order
     $('#shipping_rate').change ->
       shipping_price = mappings[$(this).val()]
       $('#shipping').data('value', shipping_price)
-      if shipping_price > 0
-        $('#shipping-row').show()
-      else
-        $('#shipping-row').hide()
       calculateOrder()      
 
   processCard = ->
