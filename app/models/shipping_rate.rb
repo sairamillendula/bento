@@ -19,7 +19,7 @@ class ShippingRate < ActiveRecord::Base
       if max_criteria.present?
         "#{number_to_currency(min_criteria)} - #{number_to_currency(max_criteria)}"
       else
-        "#{number_to_currency(min_criteria)} and up"
+        "#{number_to_currency(min_criteria)} #{I18n.t 'and_up', default: 'and up'}"
       end
     else
       "#{min_criteria} kg - #{max_criteria} kg"

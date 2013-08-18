@@ -191,6 +191,7 @@ en:
   today: Today
   month: Month
   week: Week
+  and_up: and up
   status:
     title: Status
     open: Open

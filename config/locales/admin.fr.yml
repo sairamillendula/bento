@@ -190,6 +190,7 @@ fr:
   today: Today
   month: Month
   week: Week
+  and_up: et plus
   status:
     title: Status
     open: Ouvert

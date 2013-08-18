@@ -17,6 +17,13 @@ class @Order
           $(this).after('<span class="card discover">Discover</span>')
         when "amex"
           $(this).after('<span class="card amex">American Express</span>')
+    
+    if CURRENT_LOCALE == 'fr'
+      accounting.settings.currency.thousand = "."
+      accounting.settings.currency.decimal = ","
+      accounting.settings.currency.format = "%v %s"
+    else
+      accounting.settings.currency.format = "%s%v"
 
     $('#new_order').submit ->
       $('input[type=submit]').attr('disabled', true)
