@@ -5,7 +5,13 @@
     <div class="span2"><%= image_tag(product.pictures.first.upload.url(:thumb), size: "180x180") if product.pictures.any? %></div>
 	  <%= content_tag :div, class: "span9" do %>
 			<h3><%= product.name %> <span class="fr"><%= product.sku %></span></h3>
-			<p><b><%= t 'public_price' %>:</b> <%= number_to_currency(product.current_price) %></p>
+			<p>
+				<b><%= t 'public_price' %>:</b> <%= number_to_currency(product.current_price) %>
+				<% if product.master.cost_price.present? && current_user.admin? %>
+				  || <b><%= t 'cost_price' %></b>: <%= number_to_currency(product.master.cost_price) %>
+          (<%= t 'price_margin' %>: <%= number_to_percentage(product.price_margin, precision: 0) %>)
+        <% end %>
+			</p>
 			<%= markdown(product.description) %>
 		<% end %>
   </div>

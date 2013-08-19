@@ -11,7 +11,14 @@
 	<span class="fr"><b>SKU</b>: <%= @product.master.sku %></span>
 </p>
 
-<p><b><%= t 'price' %></b>: <%= number_to_currency(@product.master.price) %> || <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.master.reduced_price) %></p>
+<p>
+  <b><%= t 'price' %></b>: <%= number_to_currency(@product.master.price) %> || 
+  <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.master.reduced_price) %> ||
+  <b><%= t 'cost_price' %></b>: <%= number_to_currency(@product.master.cost_price) %>
+  <% if @product.master.cost_price.present? %>
+    (<%= t 'price_margin' %>: <%= number_to_percentage(@product.price_margin, precision: 0) %>)
+  <% end %>
+</p>
 
 <p>
 	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>

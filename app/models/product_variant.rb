@@ -18,7 +18,7 @@ class ProductVariant < ActiveRecord::Base
   # ATTRIBUTES
   # -------------
   attr_accessor :selected
-  attr_accessible :price, :reduced_price, :in_stock, :product_id, :pictures_attributes, :selected, :options, :sku
+  attr_accessible :price, :reduced_price, :in_stock, :product_id, :pictures_attributes, :selected, :options, :sku, :cost_price
 
   serialize :options, ActiveRecord::Coders::Hstore
 

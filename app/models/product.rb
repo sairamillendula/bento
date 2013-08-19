@@ -117,6 +117,10 @@ class Product < ActiveRecord::Base
   def percentage_off
     (1 - (master.reduced_price/master.price))*100 if master.reduced_price
   end
+
+  def price_margin
+    (master.price - (master.cost_price || 0)) / (master.cost_price || 0) * 100
+  end
   
   def in_stock?
     master.in_stock > 0

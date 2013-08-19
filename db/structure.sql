@@ -732,7 +732,8 @@ CREATE TABLE product_variants (
     master boolean DEFAULT false,
     sku character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    cost_price numeric(11,2)
 );
 
 
@@ -1909,3 +1910,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130501044513');
 INSERT INTO schema_migrations (version) VALUES ('20130604105050');
 
 INSERT INTO schema_migrations (version) VALUES ('20130605102011');
+
+INSERT INTO schema_migrations (version) VALUES ('20130819135215');

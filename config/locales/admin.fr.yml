@@ -133,6 +133,7 @@ fr:
   reduced_price: Reduced price
   unit_price: Unit price
   public_price: Public price
+  price_margin: margin
   on_sale: Sale
   an_email_was_sent_to: An email was sent to
   is_now_active: is now active
