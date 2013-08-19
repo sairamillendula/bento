@@ -47,6 +47,7 @@ Bento::Application.routes.draw do
     end
 
     resources :resellers, only: [:index, :show] do
+      get 'catalogue', on: :collection
       member do
         post :approve
         post :disapprove

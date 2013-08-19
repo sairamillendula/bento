@@ -133,6 +133,7 @@ en:
   price: Price
   reduced_price: Reduced price
   unit_price: Unit price
+  public_price: Public price
   on_sale: Sale
   an_email_was_sent_to: An email was sent to
   is_now_active: is now active
@@ -158,6 +159,7 @@ en:
     become_reseller_success: We've received your request
     become_reseller_error: All fields required. Please check input and submit again
     account: Your Reseller Account
+    catalogue: Catalogue
     registration:
       title: Create Account
     dashboard:

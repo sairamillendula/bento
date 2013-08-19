@@ -32,4 +32,9 @@ class Admin::ResellersController < Admin::BaseController
     end
   end
 
+  def catalogue
+    set_tab :resellers_catalogue
+    @products = Product.visibles
+  end
+
 end

@@ -23,7 +23,8 @@
   <li><%= tab.users "#{t 'staff_members.title'}", admin_users_path, icon: 'user' %></li>
 
   <li class="nav-header"><%= t 'resellers.title' %></li>
-  <li><%= tab.resellers "#{t 'resellers.title'}", admin_resellers_path, icon: 'bullhorn' %></li>      
+  <li><%= tab.resellers "#{t 'resellers.title'}", admin_resellers_path, icon: 'bullhorn' %></li>
+  <li><%= tab.resellers_catalogue "#{t 'resellers.catalogue'}", catalogue_admin_resellers_path, icon: 'th-large' %></li>
 
   <li class="nav-header"><%= t 'reports.title' %></li>
   <li><%= tab.monthly_sales_report "#{t 'reports.monthly_sales'}", monthly_sales_admin_reports_path, icon: 'file' %></li>
