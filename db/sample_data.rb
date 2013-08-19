@@ -108,6 +108,7 @@ puts "Created 15 articles"
     featured: [true, false].sample
   )
   product.build_master(
+    sku: "00#{p}",
     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     reduced_price: ["", 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     in_stock: (0..10).to_a.sample
