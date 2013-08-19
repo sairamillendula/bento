@@ -8,7 +8,7 @@
 
 <p>
 	<b>URL</b>: <%= link_to product_url(@product.slug), product_url(@product.slug), 'data-no-turbolink'=>true %>
-	<span class="fr"><b>SKU</b>: <%= @product.sku %></span>
+	<span class="fr"><b>SKU</b>: <%= @product.master.sku %></span>
 </p>
 
 <p><b><%= t 'price' %></b>: <%= number_to_currency(@product.master.price) %> || <b><%= t 'reduced_price' %></b>: <%= number_to_currency(@product.master.reduced_price) %></p>
