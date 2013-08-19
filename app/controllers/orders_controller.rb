@@ -14,8 +14,12 @@ class OrdersController < ApplicationController
     end
 
     @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
-    @shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
-    @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @shipping_rates)
+    shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
+
+    # TODO: add weight check
+    @applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == 'price-based' && @cart.subtotal >= shipping_rate.min_criteria }
+
+    @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @applicable_rates)
 
     @order = Order.new
     @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)

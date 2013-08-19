@@ -29,12 +29,10 @@
     <td><span id="tax" data-value="<%= @cart.tax_amount %>"><%= number_to_currency @cart.tax_amount %></span></td>
   </tr>
   <% end %>
-  <% if @cart.try_with_default(:shipping, 0) > 0 %>
-  <tr class="total">
+  <tr class="total" style="display:<%= @cart.try_with_default(:shipping, 0) > 0 ? '' : 'none' %>" id="shipping-row">  
     <td colspan="3"><%= t 'theme.shipping.title' %></td>
-    <td><span id="shipping" data-value="<%= @cart.shipping %>"><%= number_to_currency @cart.shipping %></span></td>
+    <td><span id="shipping" data-value="<%= @cart.try_with_default(:shipping, 0) %>"><%= number_to_currency @cart.try_with_default(:shipping, 0) %></span></td>
   </tr>
-  <% end %>
   <tr class="total">
     <td colspan="3"><%= t 'theme.total' %></td>
     <td><span id="total" data-value="<%= @cart.total %>"><%= number_to_currency @cart.total %></span></td>

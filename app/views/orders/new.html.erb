@@ -26,7 +26,7 @@
   <div class="well">
     <h4><%= t 'theme.shipping.shipping_method' %></h4>
     <p><%= t 'theme.shipping.select_shipping_rate' %></p>
-    <%= select_tag :shipping_rate, options_for_select(@shipping_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+    <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
   </div>
 
   <%= render 'carts/summary' %>
@@ -67,7 +67,7 @@
 
 <script type="text/javascript" charset="utf-8">
   $(function() {
-    var shipping_methods = <%= raw @shipping_rates.to_json(only: [:id, :price]) %>;
+    var shipping_methods = <%= raw @applicable_rates.to_json(only: [:id, :price]) %>;
     Order.setup(shipping_methods);
   });
 </script>

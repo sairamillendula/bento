@@ -35,6 +35,10 @@ class @Order
     $('#shipping_rate').change ->
       shipping_price = mappings[$(this).val()]
       $('#shipping').data('value', shipping_price)
+      if shipping_price > 0
+        $('#shipping-row').css('display', '')
+      else
+        $('#shipping-row').css('display', 'none')
       calculateOrder()      
 
   processCard = ->
