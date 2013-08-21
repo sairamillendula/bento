@@ -178,6 +178,33 @@ class Product < ActiveRecord::Base
   def quick_pictures
     pictures.limit(2).order('position')
   end
+  
+  def self.to_csv(options={}, host_with_port)
+    headers = %w{id title description condition price availability link image_link google_product_category}
+    header_indexes = Hash[headers.map.with_index{|*x| x}]
+
+    CSV.generate(options) do |csv|
+      csv << headers
+      Product.visibles.each do |product|
+        data = {}
+          data["id"] = product.master.sku
+          data["title"] = product.name
+          data["description"] = product.description
+          data["condition"] = "new"
+          data["price"] = product.current_price
+          data["availability"] = "in stock"
+          data["link"] = "#{host_with_port}products/#{product.slug}"
+          data["image_link"] = "#{host_with_port}#{product.pictures.first.upload.url(:thumb, size: '200x200')}" if product.pictures.any?
+          data["google_product_category"] = "Home & Garden > Kitchen & Dining > Food & Beverage Carriers > Lunch Boxes & Totes"
+
+          row = []
+          header_indexes.each do |field, index|
+            row << data[field] || ''
+          end
+          csv << row
+      end
+    end
+  end
 
 private
 

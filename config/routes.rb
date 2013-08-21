@@ -14,9 +14,10 @@ Bento::Application.routes.draw do
   resources :sessions
   
   # ============================================================
-  # STRIPE ROUTES
+  # API ROUTES
   # ============================================================
   get '/stripe/callback' => 'stripe#callback'
+  get 'api/google_shopping' => 'api#google_shopping'
 
   # ============================================================
   # ADMIN ROUTES

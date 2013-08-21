@@ -483,7 +483,8 @@ CREATE TABLE orders (
     last4 character varying(255),
     state character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ip_address character varying(255)
 );
 
 
@@ -1910,5 +1911,7 @@ INSERT INTO schema_migrations (version) VALUES ('20130501044513');
 INSERT INTO schema_migrations (version) VALUES ('20130604105050');
 
 INSERT INTO schema_migrations (version) VALUES ('20130605102011');
+
+INSERT INTO schema_migrations (version) VALUES ('20130817222505');
 
 INSERT INTO schema_migrations (version) VALUES ('20130819135215');
