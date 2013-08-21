@@ -183,13 +183,15 @@ class Product < ActiveRecord::Base
     headers = %w{id title description condition price availability link image_link google_product_category}
     header_indexes = Hash[headers.map.with_index{|*x| x}]
 
+    #renderer = Redcarpet::Render::HTML.new(no_links: true, hard_wrap: true)
+
     CSV.generate(options) do |csv|
       csv << headers
       Product.visibles.each do |product|
         data = {}
           data["id"] = product.master.sku
           data["title"] = product.name
-          data["description"] = product.description
+          data["description"] = "#{product.name} is a japanese bento lunch box to bring your meal on the go." # Redcarpet::Markdown.new(renderer, options).render(product.description)
           data["condition"] = "new"
           data["price"] = product.current_price
           data["availability"] = "in stock"
