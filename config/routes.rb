@@ -18,6 +18,7 @@ Bento::Application.routes.draw do
   # ============================================================
   get '/stripe/callback' => 'stripe#callback'
   get 'api/google_shopping' => 'api#google_shopping'
+  get 'api/sitemap' => 'api#sitemap'
 
   # ============================================================
   # ADMIN ROUTES
