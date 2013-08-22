@@ -15,7 +15,7 @@
 				<div class="opt-tooltip">
 					<span data-social="facebook" data-url="<%= t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC'] %>"></span>
 					<span data-social="twitter" data-url="<%= t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC'] %>"></span>
-					<span data-social="pinterest" data-url="<%= t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC'] %>"></span>
+          <span data-social="pinterest" data-url="//pinterest.com/pin/create/button/?url=<%= request.protocol + request.host_with_port + product_path(product) %>&media=<%= request.protocol + request.host_with_port + product.pictures.first.upload.url(:thumb) if product.pictures.any? %>&description=<%= product.name %>" data-pin-do="buttonPin" data-pin-config="none" ></span>
 				</div>
       </li>
       <% if product.variants.any? %>
