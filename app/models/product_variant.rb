@@ -44,6 +44,7 @@ class ProductVariant < ActiveRecord::Base
   validates_numericality_of :reduced_price, greater_than_or_equal_to: 0.01, allow_blank: true
   validates_numericality_of :in_stock, only_integer: true
   validates_presence_of :price
+  validates_uniqueness_of :sku
 
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   after_save :update_product_options

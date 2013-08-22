@@ -57,7 +57,7 @@ class Product < ActiveRecord::Base
   
   # ATTRIBUTES
   # -------------
-  attr_accessible :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+  attr_accessible :name, :description, :visible, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
                   :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
@@ -65,12 +65,12 @@ class Product < ActiveRecord::Base
   
   # VALIDATIONS
   # -------------
-  validates_uniqueness_of :name, :sku
+  validates_uniqueness_of :name
   validates_presence_of :name, :slug, :description
   
   # CALLBACKS
   # -------------
-  before_create :generate_sku, :if => Proc.new { |product| product.sku.blank? }
+  before_create :generate_sku, :if => Proc.new { |product| product.master.sku.blank? }
   # before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
   before_create :clean_up
@@ -212,7 +212,7 @@ private
 
   def generate_sku
     last_product_id = Product.last.present? ? Product.last.id : 0
-    self.sku = "%05d" % (last_product_id + 1)
+    self.master.sku = "%05d" % (last_product_id + 1)
   end
 
   def clean_up

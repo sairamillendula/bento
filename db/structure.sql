@@ -765,7 +765,6 @@ CREATE TABLE products (
     id integer NOT NULL,
     name character varying(255),
     slug character varying(255),
-    sku character varying(255),
     description text,
     visible boolean DEFAULT true,
     featured boolean DEFAULT false,
@@ -1915,3 +1914,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130605102011');
 INSERT INTO schema_migrations (version) VALUES ('20130817222505');
 
 INSERT INTO schema_migrations (version) VALUES ('20130819135215');
+
+INSERT INTO schema_migrations (version) VALUES ('20130822032641');

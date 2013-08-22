@@ -23,7 +23,7 @@
               <%= status_tag("#{t 'on_sale'}", level: 'warning') if product.on_sale? %>
               <%= status_tag("#{t 'featured'}", level: 'success') if product.featured? %>
           </td>
-          <td><%= product.sku %></td>
+          <td><%= product.master.sku %></td>
           <td><%= product.price_display %></td>
           <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_product_path(product), icon: 'pencil', size: 'small' %></td>
         </tr>
