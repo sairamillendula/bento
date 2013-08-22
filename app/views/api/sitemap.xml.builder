@@ -17,6 +17,11 @@ xml.urlset(xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9") do
     end
   end
 
+  xml.url do
+    xml.loc("#{request.protocol}#{request.host_with_port}#{blog_path}")
+    xml.changefreq("daily")
+  end
+
   @articles.each do |article|
     xml.url do
       xml.loc("#{request.protocol}#{request.host_with_port}#{article_path(article)}")
