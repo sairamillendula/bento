@@ -32,7 +32,7 @@
   </table>  
     
     <div class="form-actions reset">
-      <%= submit_tag "Update", class: "btn btn-primary" %>
+      <%= submit_tag "Update", class: "btn btn-primary", "data-disable-with"=>"#{t 'please_wait'}" %>
     </div>
   <% end %>
 <% else %>
