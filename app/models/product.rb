@@ -198,6 +198,7 @@ class Product < ActiveRecord::Base
           data["link"] = "#{host_with_port}products/#{product.slug}"
           data["image_link"] = "#{host_with_port}#{product.pictures.first.upload.url(:thumb, size: '200x200')}" if product.pictures.any?
           data["google_product_category"] = "Home & Garden > Kitchen & Dining > Food & Beverage Carriers > Lunch Boxes & Totes"
+          data["shipping"] = "US:::6.00"
 
           row = []
           header_indexes.each do |field, index|
