@@ -13,7 +13,7 @@ class @BentoShop
         addToCart $(this).data('url') + "&authenticity_token=#{$('meta[name="csrf-token"]').attr('content')}"
 
       $product.find('.opt-fav span').click ->
-        window.open($(this).data('url'), '_blank')   
+        window.open($(this).data('url-to-open'), '_blank')
         
   rotateItem = (trigger, $product) ->
     $trigger = $(trigger)
