@@ -21,7 +21,7 @@
               <td class="variant"><%= fff.object.name %></td>
               <td>
                 <%= fff.hidden_field :id %>
-                <%= fff.hidden_field :name %>
+                <%= fff.hidden_field :selected, value: '1' %>
                 <%= fff.number_field :in_stock, class: 'input-mini' %>
               </td>
             </tr>
