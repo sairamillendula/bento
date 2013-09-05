@@ -14,7 +14,7 @@
       <li class="opt-fav">
 				<div class="opt-tooltip">
 					<span data-social="facebook" data-url-to-open="<%= t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC'] %>"></span>
-          <span data-social="twitter" data-url-to-open="//twitter.com/share" data-text="<%= product.name %>" data-url="<%= product_url(product.slug) %>"></span>
+          <span data-social="twitter" data-url-to-open="//twitter.com/share" data-params="text=<%= product.name %>&url=<%= product_url(product.slug) %>"></span>
           <span data-social="pinterest" data-url-to-open="//pinterest.com/pin/create/button/?url=<%= request.protocol + request.host_with_port + product_path(product) %>&media=<%= request.protocol + request.host_with_port + product.pictures.first.upload.url(:thumb) if product.pictures.any? %>&description=<%= product.name %>" data-pin-do="buttonPin" data-pin-config="none" ></span>
 				</div>
       </li>
