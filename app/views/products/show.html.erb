@@ -36,8 +36,8 @@
     <% end %>
     <ul id="share-product">
       <li><%= link_to "", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %></li>
-      <li><%= link_to "", "//twitter.com/share/?text=#{@product.name}&url=#{product_url(@product.slug)}&via=#{ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %></li>
-      <li><%= link_to "", "//pinterest.com/pin/create/button/?url=#{request.protocol}#{request.host_with_port}#{product_path(@product)}&media=#{request.protocol}#{request.host_with_port}#{@product.pictures.first.upload.url(:thumb) if @product.pictures.any?}&description=#{@product.name}", "data-pin-do"=>"buttonPin", "data-pin-config"=>"none", class: 'icomoon icon-pinterest', target: "_blank" %></li>
+      <li><%= link_to "", "//twitter.com/share/?text=#{@product.name}&url=#{product_url(@product.slug)}&via=#{ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter' %></li>
+      <li><%= link_to "", "//pinterest.com/pin/create/button/?url=#{request.protocol}#{request.host_with_port}#{product_path(@product)}&media=#{request.protocol}#{request.host_with_port}#{@product.pictures.first.upload.url(:thumb) if @product.pictures.any?}&description=#{@product.name}", class: 'icomoon icon-pinterest' %></li>
     </ul>
   </div>
 </div>
