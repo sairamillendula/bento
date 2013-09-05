@@ -63,7 +63,8 @@ module ApplicationHelper
   def default_meta_tags
     {
       :title       => "#{t 'theme.site_slogan'} | #{t 'theme.site_name'}",
-      :description => "#{t 'theme.site_description'}"
+      :description => "#{t 'theme.site_description'}",
+      :keywords    => "#{t 'theme.site_keywords'}"
     }
   end
 
