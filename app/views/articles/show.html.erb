@@ -13,7 +13,7 @@
 <% end %>
 
 <div class="article-content">
-  <%= simple_format(@article.content) %>
+  <%= markdown(@article.content) %>
 </div>
 
 <%#= render 'comments' %>
