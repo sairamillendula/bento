@@ -325,6 +325,11 @@ body.admin {
 	  border-top: 1px solid #dddddd;
 	}
 
+	.table.with_thumbnails td {
+	  line-height: 30px;
+	}
+
+
 	.table th {
 	  font-weight: bold;
 	  text-transform: uppercase;

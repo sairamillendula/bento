@@ -6,7 +6,7 @@
   <%= form_tag feature_admin_products_path, method: :put do %>
     <div class="well well-small"><%= submit_tag "Feature checked products", class: "btn btn-inverse" %></div>
 
-    <table id="products" class="table table-striped">
+    <table id="products" class="table table-striped with_thumbnails">
       <tr id="table-headers">
         <th></th>
         <th><%= "#{t 'name', default: 'Name'}" %></th>
@@ -18,7 +18,7 @@
       <% @products.each do |product| %>
         <tr>
           <td><%= check_box_tag "product_ids[]", product.id %></td>
-          <td><%= link_to product.name, admin_product_path(product) %>
+          <td><%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:30px; width:30px;") if product.pictures.any? %> <%= link_to product.name, admin_product_path(product) %>
               <%= status_tag "#{t 'private'}" if !product.visible? %>
               <%= status_tag("#{t 'on_sale'}", level: 'warning') if product.on_sale? %>
               <%= status_tag("#{t 'featured'}", level: 'success') if product.featured? %>

@@ -99,14 +99,15 @@ ul.pictures {
 	li {
 		list-style-type: none;
 		border-top: 1px solid #e5e5e5;
-		padding: 0 14px;
+		padding: 8px 14px;
+		height: 26px;
+		line-height: 26px;
 
 		&:first-child {
 			border-top: none;
 		}
 
 		a {
-      display: block;
 			padding: 8px 0;
 		}
 	}
@@ -114,9 +115,6 @@ ul.pictures {
 
 #collection-products {
 	li {
-    display: block;
-		padding: 8px 14px;
-
 		&:hover {
 			cursor: move;
 		  background-color: #eeeeee;

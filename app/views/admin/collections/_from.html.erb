@@ -1,5 +1,6 @@
 <% @products.each do |product| %>
   <%= content_tag_for :li, product do %>
+    <%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:26px; width:26px;") if product.pictures.any? %>
     <%= link_to(add_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true) do %>
       <%= "#{truncate(product.name, length: 40)}" %> <i class="icon-chevron-right"> </i>
     <% end %>

@@ -1,6 +1,7 @@
 <% if @collection.products.any? %>
   <% @collection.products.order('position').each do |product| %>
     <%= content_tag_for :li, product do %>
+      <%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:26px; width:26px;") if product.pictures.any? %>
       <%= product.name %> <%= icon_link_to "", remove_products_admin_collection_path(@collection, product_id: product.id), method: :post, remote: true, icon: 'remove', class: "remove fr" %></span>
     <% end %>
   <% end %>

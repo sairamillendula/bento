@@ -2,7 +2,7 @@ class Admin::ProductsController < Admin::BaseController
   set_tab :products
 
   def index
-    @products = Product.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
+    @products = Product.includes(:pictures, :variants).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
   end
 
   def show
