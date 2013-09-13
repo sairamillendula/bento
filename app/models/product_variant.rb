@@ -1,7 +1,7 @@
 class ProductVariant < ActiveRecord::Base
   # ASSOCIATIONS
   # -------------
-  belongs_to :product
+  belongs_to :product, counter_cache: true
 
   has_many :pictures, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true

@@ -483,7 +483,8 @@ CREATE TABLE orders (
     last4 character varying(255),
     state character varying(255),
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    ip_address character varying(255)
 );
 
 
@@ -772,7 +773,8 @@ CREATE TABLE products (
     orders_count integer DEFAULT 0,
     active boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    product_variants_count integer DEFAULT 0 NOT NULL
 );
 
 
@@ -1910,6 +1912,10 @@ INSERT INTO schema_migrations (version) VALUES ('20130604105050');
 
 INSERT INTO schema_migrations (version) VALUES ('20130605102011');
 
+INSERT INTO schema_migrations (version) VALUES ('20130817222505');
+
 INSERT INTO schema_migrations (version) VALUES ('20130819135215');
 
 INSERT INTO schema_migrations (version) VALUES ('20130822032641');
+
+INSERT INTO schema_migrations (version) VALUES ('20130912195900');
