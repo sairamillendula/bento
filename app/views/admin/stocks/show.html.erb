@@ -11,7 +11,7 @@
           <td>
             <%= ff.hidden_field :id %>
             <%= ff.fields_for :master do |fm| %>
-              <%= fm.number_field :in_stock, class: 'input-mini' %>
+              <%= fm.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
             <% end %>
           </td>
         </tr>
@@ -22,7 +22,7 @@
               <td>
                 <%= fff.hidden_field :id %>
                 <%= fff.hidden_field :selected, value: '1' %>
-                <%= fff.number_field :in_stock, class: 'input-mini' %>
+                <%= fff.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
               </td>
             </tr>
           <% end %>

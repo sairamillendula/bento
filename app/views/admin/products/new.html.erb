@@ -10,10 +10,10 @@
       <%= f.input :slug, input_html: {class: 'span12'} %>
       <%= ff.input :sku, input_html: {class: 'input-small'} %>
       <%= f.input :visible, as: :radio_buttons, item_wrapper_class: 'inline' %>
-      <%= ff.input :price, input_html: {class: 'input-small'} %>
-      <%= ff.input :reduced_price, input_html: {class: 'input-small'} %>
-      <%= ff.input :cost_price, input_html: {class: 'input-small'} %>
-      <%= ff.input :in_stock, input_html: {class: 'input-small'} %>
+      <%= ff.input :price, input_html: {class: 'input-small', min: 0, step: :any} %>
+      <%= ff.input :reduced_price, input_html: {class: 'input-small', min: 0, step: :any} %>
+      <%= ff.input :cost_price, input_html: {class: 'input-small', min: 0, step: :any} %>
+      <%= ff.input :in_stock, input_html: {class: 'input-small', integer_only: true, step: 1, min: 0} %>
       <%= f.input :description %>
     <% end %>
   
@@ -100,8 +100,8 @@
                     <%= ff.hidden_field k %>
                     <% end %>
                   </td>
-                  <td><%= ff.text_field :price %></td>
-                  <td><%= ff.text_field :in_stock %></td>
+                  <td><%= ff.number_field :price, min: 0, step: :any %></td>
+                  <td><%= ff.number_field :in_stock, integer_only: true, min: 0, step: 1 %></td>
                 </tr>
               <% end %>
             </tbody>
