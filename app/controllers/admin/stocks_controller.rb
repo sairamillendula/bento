@@ -2,7 +2,7 @@ class Admin::StocksController < Admin::BaseController
   set_tab :stocks
 
   def show
-    @products = Product.order('name').includes(:variants)
+    @products = Product.order('name').includes(:variants, :pictures)
 
     respond_to do |format|
       format.html # index.html.erb

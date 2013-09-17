@@ -7,7 +7,9 @@
     <% @products.each do |product| %>
       <%= f.fields_for "products[#{Time.now.to_f}]", product do |ff| %>
         <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= link_to product.name, [:admin, product] %></td>
+          <td><%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:26px; width:26px;") if product.pictures.any? %>
+              <%= link_to product.name, [:admin, product] %>
+          </td>
           <td>
             <%= ff.hidden_field :id %>
             <%= ff.fields_for :master do |fm| %>
