@@ -5,7 +5,6 @@ gem 'rails', '3.2.13'
 gem 'pg'
 gem 'pg_search'
 gem 'activerecord-postgres-hstore'
-gem 'capistrano'
 gem 'sorcery'
 gem 'nested_form'
 gem 'simple_form'
@@ -41,10 +40,11 @@ end
 
 group :development, :test do
   gem 'faker', '1.0.1'
-  gem 'hirb'
 end
 
 group :development do
+  gem 'capistrano'
+  gem 'capistrano-nc'
   gem 'rack-mini-profiler'
   gem 'thin'
   gem 'letter_opener'
