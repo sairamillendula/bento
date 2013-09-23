@@ -17,9 +17,9 @@ class Product < ActiveRecord::Base
 
   # ASSOCICATIONS
   # -------------
-  has_many :all_variants, class_name: 'ProductVariant'
+  has_many :all_variants, class_name: 'ProductVariant', dependent: :destroy
   
-  has_many :variants, class_name: "ProductVariant", dependent: :destroy, conditions: { active: true, master: false }
+  has_many :variants, class_name: "ProductVariant", conditions: { active: true, master: false }
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
 
   has_one :master, class_name: "ProductVariant", conditions: { master: true, active: true }
