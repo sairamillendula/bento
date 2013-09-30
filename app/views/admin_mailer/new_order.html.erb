@@ -1,0 +1,11 @@
+ +-+-+-+-+-+-+-+-+
+ |c|o|m|m|a|n|d|e|
+ +-+-+-+-+-+-+-+-+
+
+ Commande: #<%= @order.code %>
+
+ Montant: <%= number_to_currency(@order.total) %>
+
+ Pays: <%= @order.shipping_address.country %>
+
+ -- On remercie chaleureusement <%= @order.client.first_name %>

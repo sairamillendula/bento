@@ -46,6 +46,7 @@ class OrdersController < ApplicationController
         session[:cart_id] = nil
         auto_login(@order.client) unless current_user
         StoreMailer.order_receipt(@order).deliver
+        AdminMailer.new_order(@order).deliver
         format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
       else
         format.html { redirect_to action: "new" }

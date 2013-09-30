@@ -224,6 +224,8 @@ fr:
       subject: Account created
     new_reseller_request:
       subject: New reseller request
+    new_order:
+      subject: "[Bentooo] New Order"
     reset_password_email:
       subject: Your password has been reset
       intro:

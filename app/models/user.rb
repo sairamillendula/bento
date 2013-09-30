@@ -54,7 +54,8 @@ class User < ActiveRecord::Base
   validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/
   validates_length_of :password, minimum: 6, if: :password
   validates_confirmation_of :password, if: :password
-
+  
+  before_create :format_fields
 
   # INSTANCE METHODS
   # ==================================================
@@ -90,5 +91,13 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  private
+
+    def format_fields
+      self.email = email.downcase
+      self.first_name = first_name.titleize
+      self.last_name = last_name.titleize
+    end
 
 end

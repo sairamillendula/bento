@@ -18,4 +18,9 @@ class AdminMailer < ActionMailer::Base
     @contact = contact
     mail(from: contact.email, subject: "#{I18n.t 'email.contact_us.subject'}")
   end
+
+  def new_order(order)
+    @order = order
+    mail(subject: "#{I18n.t 'email.new_order.subject'}")
+  end
 end
