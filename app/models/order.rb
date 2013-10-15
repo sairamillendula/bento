@@ -26,24 +26,24 @@ class Order < ActiveRecord::Base
   
   # ASSOCIATIONS
   # -------------
-  belongs_to :client, :class_name => "User"
+  belongs_to :client, class_name: "User"
   accepts_nested_attributes_for :client
 
   has_many :items, class_name: "LineItem", dependent: :destroy
 
-  has_one :billing_address, :as => :addressable, :class_name => "BillingAddress", :dependent => :destroy
+  has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address
 
-  has_one :shipping_address, :as => :addressable, :class_name => "ShippingAddress", :dependent => :destroy
+  has_one :shipping_address, as: :addressable, class_name: "ShippingAddress", dependent: :destroy
   accepts_nested_attributes_for :shipping_address
 
-  belongs_to :coupon, :foreign_key => "coupon_code"
-  has_many :audits, :class_name => "AuditTrail", as: :auditable
+  belongs_to :coupon, foreign_key: "coupon_code"
+  has_many :audits, class_name: "AuditTrail", as: :auditable
 
   # SCOPES
   # -------------
   scope :opens, where(state: State::OPEN)
-  scope :completed, where(state: State::OPEN) #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
+  scope :completed, where(['state NOT IN (?)', State::CANCELLED])
   scope :by_month, lambda { |month| where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
   scope :by_day, lambda { |day| where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
   scope :within_period, lambda {|from, to| where(created_at: (from..to))}
