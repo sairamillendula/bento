@@ -62,6 +62,7 @@ en:
     date: Date
     thank_you: Thank you for your order!
     none: No orders found
+    shipped_on: Shipped on
   work_list: Work List
   clients:
     title: Clients
@@ -225,6 +226,11 @@ en:
       subject: Account created
     new_reseller_request:
       subject: New reseller request
+    order_has_shipped:
+      subject: Shipment Notification
+      intro: Good news! You items have shipped
+    order_receipt:
+      subject: Order Confirmation
     reseller_request_approved:
       subject: Request approved
     contact_us: 

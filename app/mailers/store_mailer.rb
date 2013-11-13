@@ -6,6 +6,11 @@ class StoreMailer < ActionMailer::Base
 
   def order_receipt(order)
   	@order = order
-  	mail(to: order.client.email, subject: "#{I18n.t 'email.order_receipt.subject'}")
+  	mail(to: order.client.email, subject: "#{I18n.t 'email.order_receipt.subject', default: 'Order Confirmation'}")
+  end
+
+  def order_has_shipped(order)
+  	@order = order
+  	mail(to: order.client.email, subject: "#{I18n.t 'email.order_has_shipped.subject', default: 'Shipment Notification'}")
   end
 end

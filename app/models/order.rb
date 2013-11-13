@@ -79,6 +79,7 @@ class Order < ActiveRecord::Base
     if open?
       self.update_attributes(state: State::SHIPPED, shipped_at: Time.now)
       audits.create!(message: State::SHIPPED, user_id: user.id)
+      StoreMailer.order_has_shipped(self).deliver
     end
   end
 

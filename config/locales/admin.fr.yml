@@ -62,6 +62,7 @@ fr:
     date: Date
     thank_you: Thank you for your order!
     none: No orders found
+    shipped_on: Shipped on
   work_list: Work List
   clients:
     title: Clients
@@ -232,6 +233,9 @@ fr:
       action:
     reseller_request_approved:
       subject: Request approved
+    order_has_shipped:
+      subject: Votre commande a été envoyée
+      intro: Bonne nouvelle! Votre commande a été envoyée
     order_receipt:
       subject: Purchase Receipt
       intro: Thank you for your purchase

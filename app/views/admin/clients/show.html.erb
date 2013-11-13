@@ -1,7 +1,9 @@
-<%= page_title(@client.full_name) %>
+<%= page_title(@client.full_name) do %>
+  <small><%= mail_to @client.email, @client.email, class: 'fr' %></small>
+<% end %>
 
 <% if @client.orders.any? %>
-  <h4 style="padding-top:20px; clear:both;"><%= t 'orders' %></h4>
+  <h3 style="padding-top:20px; clear:both;"><%= t 'orders.title' %></h3>
 
   <table class="table table-striped">
     <tr>

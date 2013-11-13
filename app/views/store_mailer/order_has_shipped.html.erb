@@ -1,0 +1,11 @@
+<%= content_for :email_title do %>
+  <%= "#{t 'email.order_has_shipped.introduction', default: 'Good news! Your items have shipped'}" %>
+<% end %>
+
+<%= content_for :email_body do %>
+  <h3><%= "#{t 'theme.orders.title', default: 'Order'}" %> #<%= @order.code %></h3>
+  <p><%= "#{t 'theme.orders.shipped_on', default: 'Shipped on'}" %> <%= l @order.shipped_at, format: :long %> via <%= @order.shipping_method %>.</p>
+
+  <br><br>
+  <%= "#{t 'admin.email.signature', default: 'Have a great day!'}" %>
+<% end %>

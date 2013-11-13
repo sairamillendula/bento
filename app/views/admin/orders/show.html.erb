@@ -14,7 +14,7 @@
 <% end %>
 
 <h3>
-  <%= @order.client.full_name %>
+  <%= @order.client.full_name %> (<%= mail_to @order.client.email, @order.client.email %>)
   <% if @order.shipped? %><span class="fr normal-text"><%= t 'shipped_on' %> <%= l @order.shipped_at, format: :long %></span><% end %>
 </h3>
 
@@ -36,16 +36,16 @@
   </div>
 
   <div class="span8 address shipping">
-    <div class="span4">
+    <div class="span6">
       <address>
-        <strong><p><%= t 'shipping_address' %></strong></p>
+        <strong><p><%= t 'shipping_address' %></strong> <span class="shipping_method">(<%= @order.shipping_method %>)</span></p>
         <p><%= @order.client.full_name %></p>
         <%= @order.shipping_address.display_name %>
       </address>
     </div>
 
-    <div class="span4">
-      <div id="map-canvas" style="width:336px; height:140px;"></div>
+    <div class="span6">
+      <div id="map-canvas" style="width:348px; height:140px;"></div>
     </div>
   </div>
 </div>

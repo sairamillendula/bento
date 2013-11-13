@@ -14,7 +14,7 @@
     <% @clients.each do |client| %>
       <tr>
         <td><%= link_to client.full_name, admin_client_path(client) %></td>
-        <td><%= client.email %></td>
+        <td><%= mail_to client.email, client.email %></td>
         <td><%= pluralize(client.orders.count, "#{(t 'order').downcase}") %></td>
         <td><%= distance_of_time_in_words_to_now(client.created_at) %></td>
       </tr>
