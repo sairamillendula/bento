@@ -8,7 +8,9 @@
 
   <% @order.items.each do |item| %>
     <tr>
-    	<td><%= item.variant.cart_name %> <%= item.variant.sku.present? ? content_tag(:small, "[SKU: #{item.variant.sku}]") : '' %></td>
+    	<td><%= image_tag(item.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.variant.product.pictures.any? %>
+        <%= link_to "#{item.variant.cart_name}", product_path(item.variant.product) %>
+        <%= item.variant.sku.present? ? content_tag(:small, "[SKU: #{item.variant.sku}]") : '' %></td>
     	<td><%= number_to_currency(item.price) %></td>
       <td><%= item.quantity %></td>
       <td><%= number_to_currency(item.subtotal) %></td>
