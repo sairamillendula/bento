@@ -234,8 +234,8 @@ fr:
     reseller_request_approved:
       subject: Request approved
     order_has_shipped:
-      subject: Votre commande a été envoyée
-      intro: Bonne nouvelle! Votre commande a été envoyée
+      subject: Shipment Notification
+      intro: Good news! You items have shipped
     order_receipt:
       subject: Purchase Receipt
       intro: Thank you for your purchase
