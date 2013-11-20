@@ -773,7 +773,8 @@ CREATE TABLE products (
     active boolean DEFAULT true,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    product_variants_count integer DEFAULT 0 NOT NULL
+    product_variants_count integer DEFAULT 0 NOT NULL,
+    skus character varying(255)
 );
 
 
@@ -1916,3 +1917,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130819135215');
 INSERT INTO schema_migrations (version) VALUES ('20130822032641');
 
 INSERT INTO schema_migrations (version) VALUES ('20130912195900');
+
+INSERT INTO schema_migrations (version) VALUES ('20131120224443');
