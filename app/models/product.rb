@@ -7,7 +7,7 @@ class Product < ActiveRecord::Base
   
   # rake pg_search:multisearch:rebuild[Product]
   #  Product.search_by_keyword('00100')
-  multisearchable :against => [:name, :slug]
+  multisearchable :against => [:name, :slug, :skus]
   pg_search_scope :search_by_keyword, 
                   :against => [:name, :slug],
                   :associated_against => {
@@ -85,9 +85,26 @@ class Product < ActiveRecord::Base
     end
     return product.can_be_deleted?
   }
-  
+  before_save :sync_skus
+
+  # CLASS METHODS
+  # -------------
+
+  def self.sync_skus!
+    all.each &:sync_skus!
+  end
+
   # INSTANCE METHODS
   # -------------
+
+  def sync_skus
+    self.skus = all_variants.map(&:sku).join(' ')
+  end
+
+  def sync_skus!
+    sync_skus and save
+  end
+
   def to_param
     slug
   end

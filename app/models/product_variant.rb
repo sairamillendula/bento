@@ -46,6 +46,8 @@ class ProductVariant < ActiveRecord::Base
   validates_presence_of :price
   validates_uniqueness_of :sku, allow_blank: true
 
+  # CALLBACKS
+  # ---------
   before_save { |variant| variant.in_stock = 0 if variant.in_stock.to_i < 0 }
   after_save :update_product_options
 
@@ -55,9 +57,15 @@ class ProductVariant < ActiveRecord::Base
     end
     return variant.can_be_deleted?
   }
-  
+  after_save :sync_product_skus
+
   # INSTANCE METHODS
-  # -------------  
+  # ----------------
+
+  def sync_product_skus
+    product.sync_skus!
+  end
+
   def current_price
   	price.present? ? price : product.master.price
   end
