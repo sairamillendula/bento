@@ -5,7 +5,8 @@ class Product < ActiveRecord::Base
   include Sluggable
   include PgSearch
   
-  # Remember to run Product.sync_keywords! when changing this array.
+  # Remember to run Product.sync_keywords! and PgSearch::Multisearch.rebuild(Product)
+  # when changing this array.
   VARIANT_SEARCH_FIELDS = [:sku, :price]
   # rake pg_search:multisearch:rebuild[Product]
   #  Product.search_by_keyword('00100')
