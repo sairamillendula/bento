@@ -5,9 +5,11 @@ class Product < ActiveRecord::Base
   include Sluggable
   include PgSearch
   
+  # Remember to run Product.sync_keywords! when changing this array.
+  VARIANT_SEARCH_FIELDS = [:sku, :price]
   # rake pg_search:multisearch:rebuild[Product]
   #  Product.search_by_keyword('00100')
-  multisearchable :against => [:name, :slug, :skus]
+  multisearchable :against => [:name, :slug, :keywords]
   pg_search_scope :search_by_keyword, 
                   :against => [:name, :slug],
                   :associated_against => {
@@ -85,24 +87,27 @@ class Product < ActiveRecord::Base
     end
     return product.can_be_deleted?
   }
-  before_save :sync_skus
+  before_save :sync_keywords
 
   # CLASS METHODS
   # -------------
 
-  def self.sync_skus!
-    all.each &:sync_skus!
+  def self.sync_keywords!
+    all.each &:sync_keywords!
   end
 
   # INSTANCE METHODS
   # -------------
 
-  def sync_skus
-    self.skus = all_variants.map(&:sku).join(' ')
+  def sync_keywords
+    self.keywords = VARIANT_SEARCH_FIELDS.inject([]) do |mem, obj|
+      mem += all_variants.map(&obj)
+    end
+    self.keywords = keywords.join ' '
   end
 
-  def sync_skus!
-    sync_skus and save
+  def sync_keywords!
+    sync_keywords and save
   end
 
   def to_param

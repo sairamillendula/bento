@@ -57,13 +57,13 @@ class ProductVariant < ActiveRecord::Base
     end
     return variant.can_be_deleted?
   }
-  after_save :sync_product_skus
+  after_save :sync_product_keywords
 
   # INSTANCE METHODS
   # ----------------
 
-  def sync_product_skus
-    product.sync_skus!
+  def sync_product_keywords
+    product.sync_keywords!
   end
 
   def current_price

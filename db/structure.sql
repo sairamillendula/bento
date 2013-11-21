@@ -774,7 +774,7 @@ CREATE TABLE products (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     product_variants_count integer DEFAULT 0 NOT NULL,
-    skus character varying(255)
+    keywords character varying(255)
 );
 
 
@@ -1919,3 +1919,5 @@ INSERT INTO schema_migrations (version) VALUES ('20130822032641');
 INSERT INTO schema_migrations (version) VALUES ('20130912195900');
 
 INSERT INTO schema_migrations (version) VALUES ('20131120224443');
+
+INSERT INTO schema_migrations (version) VALUES ('20131121021009');
