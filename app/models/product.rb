@@ -9,7 +9,7 @@ class Product < ActiveRecord::Base
   # when changing this array.
   VARIANT_SEARCH_FIELDS = [:sku, :price]
   # rake pg_search:multisearch:rebuild[Product]
-  #  Product.search_by_keyword('00100')
+  # Product.search_by_keyword('00100')
   multisearchable :against => [:name, :slug, :keywords]
   pg_search_scope :search_by_keyword, 
                   :against => [:name, :slug],
@@ -24,7 +24,7 @@ class Product < ActiveRecord::Base
                   :ignoring => :accents
 
   # ASSOCICATIONS
-  # -------------
+  # ------------------------------------------------------------------------------
   has_many :all_variants, class_name: 'ProductVariant', dependent: :destroy
   
   has_many :variants, class_name: "ProductVariant", conditions: { active: true, master: false }
@@ -56,28 +56,32 @@ class Product < ActiveRecord::Base
 
   store :meta_tag, accessors: [:seo_title, :seo_description]
 
+
   # SCOPES
-  # -------------
+  # ------------------------------------------------------------------------------
   scope :visibles, where(visible: true)
   scope :in_stocks, where('in_stock > ?', 0)
   scope :exclude_products, lambda {|product_ids| where("id NOT IN (?)", product_ids)}
   scope :active, where(active: true)
   
+
   # ATTRIBUTES
-  # -------------
+  # ------------------------------------------------------------------------------
   attr_accessible :name, :description, :visible, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
                   :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
                   :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   attr_accessor :has_options, :auto_generate_variants
   
+
   # VALIDATIONS
-  # -------------
+  # ------------------------------------------------------------------------------
   validates_uniqueness_of :name
   validates_presence_of :name, :slug, :description
   
+
   # CALLBACKS
-  # -------------
+  # ------------------------------------------------------------------------------
   before_create :generate_sku, :if => Proc.new { |product| product.master.sku.blank? }
   # before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
@@ -90,16 +94,16 @@ class Product < ActiveRecord::Base
   }
   before_save :sync_keywords
 
-  # CLASS METHODS
-  # -------------
 
+  # CLASS METHODS
+  # ------------------------------------------------------------------------------
   def self.sync_keywords!
     all.each &:sync_keywords!
   end
 
-  # INSTANCE METHODS
-  # -------------
 
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------
   def sync_keywords
     self.keywords = VARIANT_SEARCH_FIELDS.inject([]) do |mem, obj|
       mem += all_variants.map(&obj)
