@@ -22,7 +22,8 @@ class Product < ActiveRecord::Base
                     }
                   },
                   :ignoring => :accents
-
+  
+  
   # ASSOCICATIONS
   # ------------------------------------------------------------------------------
   has_many :all_variants, class_name: 'ProductVariant', dependent: :destroy
