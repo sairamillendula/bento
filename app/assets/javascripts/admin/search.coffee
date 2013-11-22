@@ -6,7 +6,7 @@ $ ->
 
   data = ->
     out = {}
-    out[$input.attr('name')] = $input.val()
+    out[$input.attr('name')] = $input.val().replace(/,/, '.')
     out
   search = -> $.get($form.attr('action'), data()).done searchDone
   searchDone = (response) ->
