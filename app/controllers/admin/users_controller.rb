@@ -26,26 +26,10 @@ class Admin::UsersController < Admin::BaseController
     end
   end
 
-  def deactivate
+  def toggle_status
     @user = User.find(params[:id])
-    @user.active = false
-
-    if @user.save
-      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_inactive', default: 'is inactive'}."
-    else
-      redirect_to admin_users_url, alert: "Cannot deactivate user #{@user.full_name}. Please contact system administrator."
-    end
-  end
-
-  def activate
-    @user = User.find(params[:id])
-    @user.active = true
-
-    if @user.save
-      redirect_to admin_users_url, notice: "#{@user.full_name} #{t 'is_now_active', default: 'is activate'}."
-    else
-      redirect_to admin_users_url, alert: "Cannot activate user #{@user.full_name}. Please contact system administrator."
-    end
+    @user.toggle_status
+    render layout: false
   end
 
 end

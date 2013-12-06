@@ -89,10 +89,7 @@ Bento::Application.routes.draw do
     end
 
     resources :users, except: [:show, :edit, :update] do
-      member do
-        post :activate
-        post :deactivate
-      end
+      post :toggle_status, on: :member
     end
 
     resources :orders, only: [:index, :show, :edit, :update] do
