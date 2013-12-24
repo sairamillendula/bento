@@ -1,15 +1,27 @@
 class ShippingRate < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-
+  
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
   belongs_to :shipping_country
-  attr_accessible :criteria, :max_criteria, :min_criteria, :name, :price
+  
+  
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  #attr_accessible :criteria, :max_criteria, :min_criteria, :name, :price
 
+  
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validates_presence_of :shipping_country, :criteria, :name, :price
   validates_numericality_of :price, { greater_than_or_equal_to: 0 }
   validates_numericality_of :min_criteria, { greater_than_or_equal_to: 0 }
   validates :max_criteria, presence: true, numericality: { greater_than_or_equal_to: 0 }, if: Proc.new{|r| r.criteria == 'weight-based' }
   validate :validate_criteria
+  
 
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def validate_criteria
     errors.add :max_criteria, "invalid range value" if max_criteria.present? && ((try(:max_criteria) || 0) < (try(:min_criteria) || 0))
   end

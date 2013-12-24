@@ -1,20 +1,45 @@
 class Picture < ActiveRecord::Base
   include Rails.application.routes.url_helpers
+
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
 	belongs_to :picturable, polymorphic: true
+  has_many :colors, class_name: 'PictureColor', dependent: :destroy
   acts_as_list scope: :picturable
 
-  attr_accessible :upload, :name
-
+  
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
   has_attached_file :upload, 
                     url: "/upload/pictures/:id/:style/:basename.:extension",
                     path: ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
                     styles: { thumb: "200x200#", large: "700" }
+  
 
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validates_attachment_size :upload, less_than: 5.megabytes
   validates_attachment_content_type :upload, content_type: ['image/jpeg', 'image/jpg',  'image/png', 'image/gif']
-
-  before_save :set_name                  
   
+
+  # CALLBACKS
+  # ------------------------------------------------------------------------------------------------------
+  before_save :set_name
+  
+
+  # SCOPES
+  # ------------------------------------------------------------------------------------------------------
+  scope(:by_color, lambda do |color_id|
+    if color_id
+      joins(:colors).where('picture_colors.search_color_id = ?', color_id)
+    else
+      all
+    end
+  end)
+  
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def to_jq_upload
     {
       "id" => id,
@@ -24,12 +49,16 @@ class Picture < ActiveRecord::Base
       "thumbnail_url" => upload.url(:thumb),
       "edit_url" => polymorphic_path([:edit, :admin, picturable, self]),
       "delete_url" => polymorphic_path([:admin, picturable, self]),
-      "delete_type" => "DELETE" 
+      "delete_type" => "DELETE"
     }
   end
 
   def set_name
     self.name = name.blank? ? File.basename(upload_file_name, ".*") : name
+  end
+
+  def self.color_ordered(color_id)
+    all.sort { |picture_1, picture_2| picture_1.colors.where(search_color_id: color_id).exists? ? -1 : 1 }
   end
 
 end

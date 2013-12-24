@@ -3,12 +3,21 @@ class Contact
   include ActiveModel::Conversion
   extend ActiveModel::Naming
   
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
   attr_accessor :name, :email, :content
- 
-  validates_presence_of :name, :content, :email
-  validates_format_of :email, :with => /^[-a-z0-9_+\.]+\@([-a-z0-9]+\.)+[a-z0-9]{2,4}$/i
-  validates_length_of :content, :maximum => 500
   
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
+  validates_presence_of :name, :content, :email
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i
+  validates_length_of :content, maximum: 500
+  
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def initialize(attributes = {})
     attributes.each do |name, value|
       send("#{name}=", value)
@@ -18,4 +27,5 @@ class Contact
   def persisted?
     false
   end
+  
 end

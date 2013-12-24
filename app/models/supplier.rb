@@ -1,11 +1,18 @@
 class Supplier < ActiveRecord::Base
-  has_and_belongs_to_many :products
-
-  attr_accessible :name
   
+  # ASSOCIATIONS
+	# ------------------------------------------------------------------------------------------------------
+  has_and_belongs_to_many :products
+  
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validates_presence_of :name
   validates_uniqueness_of :name
 
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def to_param
   	name
   end
@@ -23,4 +30,5 @@ class Supplier < ActiveRecord::Base
 	  tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
 	  tokens.split(',')
 	end
+	
 end

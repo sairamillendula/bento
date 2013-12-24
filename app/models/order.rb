@@ -1,4 +1,7 @@
 class Order < ActiveRecord::Base
+  
+  # SEARCH
+  # ------------------------------------------------------------------------------------------------------
   include PgSearch
 
   multisearchable :against => :code
@@ -10,9 +13,10 @@ class Order < ActiveRecord::Base
                     }
                   },
                   :ignoring => :accents
-                  
+
+
   # MACHINE STATES
-  # -------------
+  # ------------------------------------------------------------------------------------------------------
   module State
     PENDING   = 'pending'
     OPEN      = 'open'
@@ -24,8 +28,9 @@ class Order < ActiveRecord::Base
     end
   end
   
+
   # ASSOCIATIONS
-  # -------------
+  # ------------------------------------------------------------------------------------------------------
   belongs_to :client, class_name: "User"
   accepts_nested_attributes_for :client
 
@@ -40,31 +45,30 @@ class Order < ActiveRecord::Base
   belongs_to :coupon, foreign_key: "coupon_code"
   has_many :audits, class_name: "AuditTrail", as: :auditable
 
+
   # SCOPES
-  # -------------
-  scope :opens, where(state: State::OPEN)
-  scope :completed, where(['state NOT IN (?)', State::CANCELLED])
-  scope :by_month, lambda { |month| where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
-  scope :by_day, lambda { |day| where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
-  scope :within_period, lambda {|from, to| where(created_at: (from..to))}
-  scope :from_date, lambda {|from| where("created_at >= ?", from)}
-  scope :to_date, lambda {|to| where("created_at <= ?", to)}
+  # ------------------------------------------------------------------------------------------------------
+  scope :opens, -> { where(state: State::OPEN) }
+  scope :completed, -> { where(state: State::OPEN) } #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
+  scope :by_month, ->(month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
+  scope :by_day, ->(day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
+  scope :within_period, ->(from, to) { where(created_at: (from..to)) }
+  scope :from_date, ->(from) { where("created_at >= ?", from) }
+  scope :to_date, ->(to) { where("created_at <= ?", to) }
   
-  # ATTRIBUTES
-  # -------------
-  attr_accessible :stripe_card_token, :state, :shipped_at
-  
+
   # CALLBACKS
-  # -------------
+  # ------------------------------------------------------------------------------------------------------
   before_create :generate_code
   after_create :update_stocks
 
   ransacker :created_at_casted do |parent|
     Arel::Nodes::SqlLiteral.new("date(orders.created_at)")
   end
-  
+
+
   # INSTANCE METHODS
-  # -------------
+  # ------------------------------------------------------------------------------------------------------
   def to_param
     code
   end
@@ -226,24 +230,24 @@ class Order < ActiveRecord::Base
     end
   end
 
-private
+  private
 
-  def generate_code
-    last_order_id = Order.last.present? ? Order.last.id : 0
-    self.code = "%05d" % (last_order_id + 1)
-  end
+    def generate_code
+      last_order_id = Order.last.present? ? Order.last.id : 0
+      self.code = "%05d" % (last_order_id + 1)
+    end
 
-  def update_stocks
-    items.each do |item|
-      variant = item.variant
-      variant.in_stock -= item.quantity
-      variant.orders_count += 1
-      variant.save
+    def update_stocks
+      items.each do |item|
+        variant = item.variant
+        variant.in_stock -= item.quantity
+        variant.orders_count += 1
+        variant.save
+      end
+      if coupon
+        coupon.orders_count += 1
+        coupon.save
+      end
     end
-    if coupon
-      coupon.orders_count += 1
-      coupon.save
-    end
-  end
 
 end
