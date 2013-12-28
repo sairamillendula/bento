@@ -18,9 +18,9 @@
         <td><%= review.user.email %></td>
         <td>
           <% if review.approved? %>
-      <%= icon_button_link_to "#{t 'disapprove'}", disapprove_admin_product_review_path(review), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
+      <%= icon_button_link_to "#{t 'disapprove'}", toggle_product_review_status_admin_product_review_path(review), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
     <% else %>
-      <%= icon_button_link_to "#{t 'approve'}", approve_admin_product_review_path(review), level: 'primary', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
+      <%= icon_button_link_to "#{t 'approve'}", toggle_product_review_status_admin_product_review_path(review), level: 'primary', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
     <% end %>
         </td>
       </tr>

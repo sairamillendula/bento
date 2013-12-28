@@ -51,8 +51,7 @@ Bento::Application.routes.draw do
     resources :resellers, only: [:index, :show] do
       get 'catalogue', on: :collection
       member do
-        post :approve
-        post :disapprove
+        post :toggle_reseller_status
       end
     end
     
@@ -71,8 +70,7 @@ Bento::Application.routes.draw do
 
     resources :product_reviews, only: [:index, :show] do
       member do
-        post :approve
-        post :disapprove
+        post :toggle_product_review_status
       end
     end
 

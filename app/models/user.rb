@@ -57,7 +57,6 @@ class User < ActiveRecord::Base
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-
   def full_name
     "#{first_name} #{last_name}"
   end
@@ -89,6 +88,11 @@ class User < ActiveRecord::Base
 
   def toggle_status
     self.active = !active
+    save!
+  end
+
+  def toggle_reseller_status
+    self.reseller = !reseller
     save!
   end
 

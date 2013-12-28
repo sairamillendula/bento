@@ -9,23 +9,13 @@ class Admin::ProductReviewsController < Admin::BaseController
   def show
   end
 
-  def approve
-    @review.approved = true
+  def toggle_product_review_status
+    @review.toggle_product_review_status
 
-    if @review.save
+    if @review.approved?
       redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_approved'}."
     else
-      redirect_to admin_product_reviews_url, alert: "Cannot approve review. Please contact system administrator."
-    end
-  end
-
-  def disapprove
-    @review.approved = false
-
-    if @review.save
       redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_disapproved'}."
-    else
-      redirect_to admin_product_reviews_url, alert: "Cannot disapprove review. Please contact system administrator."
     end
   end
 

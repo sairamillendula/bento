@@ -1,5 +1,5 @@
 class Admin::ResellersController < Admin::BaseController
-  before_action :set_reseller, only: [:approve, :disapprove]
+  before_action :set_reseller, only: [:toggle_reseller_status]
   set_tab :resellers
   
   def index
@@ -10,25 +10,14 @@ class Admin::ResellersController < Admin::BaseController
     @user = User.includes(:reseller_request).find(params[:id])
   end
 
-  def disapprove
-    @user = User.find(params[:id])
-    @user.reseller = false
+  def toggle_reseller_status
+    @user.toggle_reseller_status
 
-    if @user.save
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
-    else
-      redirect_to admin_resellers_url, alert: "Cannot deactivate user #{@user.full_name}. Please contact system administrator."
-    end
-  end
-
-  def approve
-    @user.reseller = true
-
-    if @user.save
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} is now approved. Confirmation sent to #{@user.email}"
+    if @user.reseller?
       ResellerMailer.reseller_request_approved(@user).deliver
-    else
-      redirect_to admin_resellers_url, alert: "Cannot activate user #{@user.full_name}. Please contact system administrator."
+      redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}"
+    else  
+      redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
     end
   end
 
