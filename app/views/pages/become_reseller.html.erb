@@ -16,7 +16,7 @@
 		  <%= f.error_notification %>
 	    
 	    <%= f.input :business_name %>
-	    <%= f.input :country %>
+	    <%= f.input :country, collection: Country.all %>
 	    <%= f.input :city %>
 	    <%= f.input :who_are_you, placeholder: "#{t 'please_describe_your_business'}" %>
 

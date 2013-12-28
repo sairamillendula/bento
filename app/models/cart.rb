@@ -106,7 +106,7 @@ class Cart < ActiveRecord::Base
 
   def shipping_availability?
     if shipping_address && shipping_address.country
-      shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+      shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
       shipping_country.present?
     end
   end

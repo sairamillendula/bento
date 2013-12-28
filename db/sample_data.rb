@@ -144,7 +144,7 @@ puts "Created 15 products reviews"
 # end
 # puts "Created 15 variants"
 
-ShippingCountry.create!(country: 'Worldwide')
+ShippingCountry.create!(country: 'WORLDWIDE')
 puts "Added shipping country"
 
 Collection.create!(name: 'homepage', slug: 'homepage')

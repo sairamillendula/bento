@@ -82,9 +82,12 @@ class Admin::ProductsController < Admin::BaseController
 
     def safe_params
       params.require(:product).permit(
-        :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-        :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-        :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
+        :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :active,
+        :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options,
+        :meta_tag, :seo_title, :seo_description, :auto_generate_variants,
+        master_attributes: [:options, :price, :in_stock, :active, :sku, :reduced_price, :id],
+        variants_attributes: [:option1, :option2, :option3, :price, :in_stock, :active, :selected, :reduced_price, :sku, "_destroy"],
+        options_attributes: [:name, :values, "_destroy"]
       )
     end
 
