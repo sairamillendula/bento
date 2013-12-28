@@ -1,4 +1,5 @@
 class Admin::ResellersController < Admin::BaseController
+  before_action :set_reseller, only: [:approve, :disapprove]
   set_tab :resellers
   
   def index
@@ -21,7 +22,6 @@ class Admin::ResellersController < Admin::BaseController
   end
 
   def approve
-    @user = User.find(params[:id])
     @user.reseller = true
 
     if @user.save
@@ -32,9 +32,10 @@ class Admin::ResellersController < Admin::BaseController
     end
   end
 
-  def catalogue
-    set_tab :resellers_catalogue
-    @products = Product.visibles
-  end
+  private
+
+    def set_reseller
+      @user = User.find(params[:id])
+    end
 
 end

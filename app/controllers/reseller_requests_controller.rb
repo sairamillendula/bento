@@ -6,10 +6,10 @@ class ResellerRequestsController < ApplicationController
   end
 
 	def create
-		@reseller_request = current_user.build_reseller_request(params[:reseller_request])
+		@reseller_request = current_user.build_reseller_request(safe_params, as: :manager)
 
     respond_to do |format|
-      if @reseller_request.save(params[:reseller_request])
+      if @reseller_request.save(safe_params, as: :manager)
         format.html { redirect_to become_reseller_url, notice: "#{t 'resellers.become_reseller_success'}." }
         AdminMailer.new_reseller_request(@reseller_request.user).deliver
       else
@@ -17,5 +17,13 @@ class ResellerRequestsController < ApplicationController
       end
     end
 	end
+
+  private
+
+    def safe_params
+      params.require(:reseller_request).permit(:country, :business_name, :city, :who_are_you, :user_id)
+
+      params.require(:reseller_request).permit(:country, :business_name, :city, :who_are_you, :user_id, :approved, as: :manager)
+    end
 
 end

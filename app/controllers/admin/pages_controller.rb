@@ -1,10 +1,11 @@
 class Admin::PagesController < Admin::BaseController
+  before_action :set_page, only: [:show, :edit, :update, :destroy]
   set_tab :pages
   cache_sweeper :page_sweeper
   helper_method :sort_column, :sort_direction
 
   def index
-    @pages = Page.all
+    @pages = Page.order('name')
   end
   
   def new
@@ -12,7 +13,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def create
-    @page = Page.new(params[:page])
+    @page = Page.new(safe_params)
 
     respond_to do |format|
       if @page.save
@@ -24,8 +25,6 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def show
-    @page = Page.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @page }
@@ -33,14 +32,11 @@ class Admin::PagesController < Admin::BaseController
   end
 
   def edit
-    @page = Page.find(params[:id])
   end
 
   def update
-    @page = Page.find(params[:id])
-
     respond_to do |format|
-      if @page.update_attributes(params[:page])
+      if @page.update_attributes(safe_params)
         format.html { redirect_to admin_page_url(@page), notice: 'Page was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -48,14 +44,30 @@ class Admin::PagesController < Admin::BaseController
     end
   end
 
-private
+  def destroy
+    @page.destroy
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    respond_to do |format|
+      format.html { redirect_to admin_pages_url, notice: 'Page was successfully deleted.' }
+    end
   end
 
-  def sort_column
-    Page.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
+  private
+    
+    def set_page
+      @page = Page.friendly.find(params[:id])
+    end
+
+    def safe_params
+      params.require(:page).permit(:name, :slug, :content, :visible, :klass, :meta_tag, :seo_title, :seo_description)
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
+    end
+
+    def sort_column
+      Page.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
 
 end

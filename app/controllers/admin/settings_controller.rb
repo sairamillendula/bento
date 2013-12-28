@@ -39,4 +39,10 @@ class Admin::SettingsController < Admin::BaseController
     redirect_to admin_settings_path, notice: 'Settings were successfully saved.'
   end
 
+  private
+
+    def safe_params
+      params.require(:setting).permit(:var, :value)
+    end
+
 end

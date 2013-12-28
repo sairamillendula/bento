@@ -1,4 +1,5 @@
 class Admin::ShippingCountriesController < Admin::BaseController
+  before_action :set_shipping_country, only: [:edit, :update, :destroy]
   set_tab :shipping_rates
 
   def index
@@ -10,7 +11,7 @@ class Admin::ShippingCountriesController < Admin::BaseController
   end
 
   def create
-    @shipping_country = ShippingCountry.new(params[:shipping_country])
+    @shipping_country = ShippingCountry.new(safe_params)
 
     respond_to do |format|
       if @shipping_country.save
@@ -22,14 +23,11 @@ class Admin::ShippingCountriesController < Admin::BaseController
   end
 
   def edit
-    @shipping_country = ShippingCountry.find(params[:id])
   end
 
   def update
-    @shipping_country = ShippingCountry.find(params[:id])
-
     respond_to do |format|
-      if @shipping_country.update_attributes(params[:shipping_country])
+      if @shipping_country.update_attributes(safe_params)
         format.html { redirect_to admin_shipping_url, notice: 'Shipping country was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -38,10 +36,18 @@ class Admin::ShippingCountriesController < Admin::BaseController
   end
 
   def destroy
-    @shipping_country = ShippingCountry.find(params[:id])
-    @shipping_country.destroy
-
+    @shipping_country.destroy  
     redirect_to admin_shipping_url, notice: 'Shipping country was successfully removed.'
   end
+
+  private
+
+    def set_shipping_country
+      @shipping_country = ShippingCountry.find(params[:id])
+    end
+
+    def safe_params
+      params.require(:shipping_country).permit(:country, rates_attributes: [:id, :name, :criteria, :min_criteria, :max_criteria, :price, "_destroy"])
+    end
 
 end

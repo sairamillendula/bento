@@ -68,9 +68,9 @@ class Product < ActiveRecord::Base
 
   # ATTRIBUTES
   # ------------------------------------------------------------------------------
-  attr_accessible :name, :description, :visible, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-                  :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
+  #attr_accessible :name, :description, :visible, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+  #                :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
+  #                :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
   attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
   attr_accessor :has_options, :auto_generate_variants
   

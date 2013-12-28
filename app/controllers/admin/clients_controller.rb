@@ -1,5 +1,4 @@
 class Admin::ClientsController < Admin::BaseController
-  require 'iconv'
   set_tab :clients
   helper_method :sort_column, :sort_direction
 
@@ -17,7 +16,7 @@ class Admin::ClientsController < Admin::BaseController
     respond_to do |format|
       format.csv { 
         content = @clients.to_csv
-        content = Iconv.conv('ISO-8859-1','UTF-8', content)
+        content = content.encode("UTF-8")
         send_data content, filename: "#{t 'clients.title'}.csv", type: 'text/csv; charset=utf-8; header=present'
       }
     end

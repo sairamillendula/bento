@@ -72,8 +72,8 @@ CREATE TABLE addresses (
     type character varying(255),
     addressable_id integer,
     addressable_type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -108,8 +108,8 @@ CREATE TABLE articles (
     content text,
     meta_tag text,
     author_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -153,8 +153,8 @@ CREATE TABLE audit_trails (
     auditable_id integer,
     auditable_type character varying(255),
     user_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -184,8 +184,8 @@ ALTER SEQUENCE audit_trails_id_seq OWNED BY audit_trails.id;
 CREATE TABLE audit_years (
     id integer NOT NULL,
     year integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -225,8 +225,8 @@ CREATE TABLE carts (
     email character varying(255),
     first_name character varying(255),
     last_name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -256,8 +256,8 @@ ALTER SEQUENCE carts_id_seq OWNED BY carts.id;
 CREATE TABLE categories (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -332,8 +332,8 @@ CREATE TABLE collections (
     visible boolean DEFAULT true,
     description text,
     meta_tag text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -367,8 +367,8 @@ CREATE TABLE coupons (
     percentage boolean DEFAULT true,
     active boolean DEFAULT true,
     orders_count integer DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -434,8 +434,8 @@ CREATE TABLE line_items (
     price numeric(11,2),
     cart_id integer,
     order_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -482,8 +482,8 @@ CREATE TABLE orders (
     card_type character varying(255),
     last4 character varying(255),
     state character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -518,8 +518,8 @@ CREATE TABLE pages (
     klass character varying(255),
     content text,
     meta_tag text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -551,8 +551,8 @@ CREATE TABLE pg_search_documents (
     content text,
     searchable_id integer,
     searchable_type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -589,8 +589,8 @@ CREATE TABLE pictures (
     upload_updated_at timestamp without time zone,
     "position" integer,
     name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -623,8 +623,8 @@ CREATE TABLE product_options (
     name character varying(255),
     "values" character varying(255),
     "position" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -656,8 +656,8 @@ CREATE TABLE product_relationships (
     product_id integer,
     other_product_id integer,
     type character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -692,8 +692,8 @@ CREATE TABLE product_reviews (
     user_id integer,
     product_id integer,
     approved boolean DEFAULT true,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -731,8 +731,8 @@ CREATE TABLE product_variants (
     active boolean DEFAULT true,
     master boolean DEFAULT false,
     sku character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     cost_price numeric(11,2)
 );
 
@@ -771,8 +771,8 @@ CREATE TABLE products (
     meta_tag text,
     orders_count integer DEFAULT 0,
     active boolean DEFAULT true,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
     product_variants_count integer DEFAULT 0 NOT NULL,
     keywords character varying(255)
 );
@@ -817,8 +817,8 @@ CREATE TABLE region_taxes (
     province character varying(255),
     name character varying(255),
     rate numeric(4,2) DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -853,8 +853,8 @@ CREATE TABLE reseller_requests (
     country character varying(255),
     city character varying(255),
     who_are_you text,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -896,8 +896,8 @@ CREATE TABLE settings (
     value text,
     thing_id integer,
     thing_type character varying(30),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -927,8 +927,8 @@ ALTER SEQUENCE settings_id_seq OWNED BY settings.id;
 CREATE TABLE shipping_countries (
     id integer NOT NULL,
     country character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -963,8 +963,8 @@ CREATE TABLE shipping_rates (
     min_criteria numeric(6,2),
     max_criteria numeric(6,2),
     price numeric(11,2),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -996,8 +996,8 @@ CREATE TABLE stocks (
     in_stock integer DEFAULT 0,
     product_id integer,
     product_variant_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1027,8 +1027,8 @@ ALTER SEQUENCE stocks_id_seq OWNED BY stocks.id;
 CREATE TABLE suppliers (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1058,8 +1058,8 @@ ALTER SEQUENCE suppliers_id_seq OWNED BY suppliers.id;
 CREATE TABLE tags (
     id integer NOT NULL,
     name character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1092,8 +1092,8 @@ CREATE TABLE taxes (
     name character varying(255),
     rate numeric(4,2) DEFAULT 0,
     region_taxes_count integer DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
 );
 
 
@@ -1131,11 +1131,11 @@ CREATE TABLE users (
     localization character varying(255) DEFAULT 'en'::character varying,
     crypted_password character varying(255),
     salt character varying(255),
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    remember_me_token character varying(255) DEFAULT NULL::character varying,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone,
+    remember_me_token character varying(255),
     remember_me_token_expires_at timestamp without time zone,
-    reset_password_token character varying(255) DEFAULT NULL::character varying,
+    reset_password_token character varying(255),
     reset_password_token_expires_at timestamp without time zone,
     reset_password_email_sent_at timestamp without time zone
 );
@@ -1837,6 +1837,8 @@ CREATE UNIQUE INDEX unique_schema_migrations ON schema_migrations USING btree (v
 --
 -- PostgreSQL database dump complete
 --
+
+SET search_path TO "$user",public;
 
 INSERT INTO schema_migrations (version) VALUES ('20130306043155');
 

@@ -1,4 +1,5 @@
 class Admin::UsersController < Admin::BaseController
+  before_action :set_user, only: [:toggle_status]
   set_tab :users
   
   def index
@@ -6,11 +7,11 @@ class Admin::UsersController < Admin::BaseController
   end
   
   def new
-    @user = User.new(params[:user], as: :manager)
+    @user = User.new
   end
 
   def create
-    @user = User.new(params[:user], as: :manager)
+    @user = User.new(safe_params, as: :manager)
     random_password = SecureRandom.hex(4)
     @user.password = random_password
     @user.password_confirmation = random_password
@@ -27,9 +28,22 @@ class Admin::UsersController < Admin::BaseController
   end
 
   def toggle_status
-    @user = User.find(params[:id])
     @user.toggle_status
     render layout: false
   end
+
+  private
+
+    def set_user
+      @user = User.find.params[:id]
+    end
+
+    def safe_params
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
+                            :addresses_attributes, :reseller_request_attributes)
+
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
+                            :addresses_attributes, :active, :admin, :reseller, :reseller_request_attributes, as: :manager)
+    end
 
 end

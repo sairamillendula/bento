@@ -4,7 +4,7 @@ class CartsController < ApplicationController
 	end
 
   def update
-    @cart.update_attributes(params[:cart])        
+    @cart.update_attributes(safe_params)        
     @cart.calculate
 
     redirect_to cart_url
@@ -42,7 +42,7 @@ class CartsController < ApplicationController
     # save user address
     @cart = current_cart
 
-    if @cart.update_attributes(params[:cart])
+    if @cart.update_attributes(safe_params)
       if @cart.shipping_availability?
         redirect_to new_order_url
       else
@@ -52,5 +52,12 @@ class CartsController < ApplicationController
       render :checkout
     end
   end
+
+  private
+
+    def safe_params
+      params.require(:cart).permit(:coupon_code, :billing_address_attributes, :shipping_address_attributes, :email, :first_name, :last_name,
+                                   items_attributes: [:quantity])
+    end
 
 end

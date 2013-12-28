@@ -2,7 +2,7 @@ class Admin::StocksController < Admin::BaseController
   set_tab :stocks
 
   def show
-    @products = Product.order('name').includes(:variants, :pictures)
+    @products = Product.order('name').includes(:variants)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -21,5 +21,11 @@ class Admin::StocksController < Admin::BaseController
     
     return redirect_to [:admin, :stocks], notice: "Stocks were successfully updated."
   end
+
+  private
+
+    def safe_params
+      params.require(:product_variant).permit(:in_stock, :product_id, :product_variant_id)
+    end
 
 end

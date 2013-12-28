@@ -1,13 +1,29 @@
 class ProductOption < ActiveRecord::Base
-  acts_as_list :scope => :product
+  acts_as_list scope: :product
+  
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
   belongs_to :product
-  attr_accessible :name, :product, :values, :position
 
-  validates_uniqueness_of :name, :scope => :product_id
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  #attr_accessible :name, :product, :values, :position
+  
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
+  validates_uniqueness_of :name, scope: :product_id
   validates_presence_of :name
+  
 
+  # CALLBACKS
+  # ------------------------------------------------------------------------------------------------------
   after_destroy :remove_option_from_variants
+  
 
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def destroyable?
     !(product && product.variants.map(&:options).map{|opts| opts.except(:"option#{position}")}.find_dups.size > 0)
   end

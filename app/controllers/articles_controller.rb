@@ -16,7 +16,7 @@ class ArticlesController < ApplicationController
   end
 
 	def show
-    @article = Article.includes(:tags).find(params[:slug])
+    @article = Article.friendly.includes(:tags).find(params[:slug])
     @page_title       = "#{@article.seo_title.present? ? @article.seo_title : @article.title} | #{t 'theme.site_name'}"
     @page_description = @article.seo_description
     

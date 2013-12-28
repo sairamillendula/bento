@@ -1,12 +1,13 @@
 class Admin::ProductsController < Admin::BaseController
+  before_action :set_product, only: [:update, :destroy]
   set_tab :products
 
   def index
-    @products = Product.includes(:pictures, :variants).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
+    @products = Product.includes(:variants, :master).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
   end
 
   def show
-    @product = Product.includes(:stocks, variants: [:stocks]).find(params[:id])
+    @product = Product.friendly.includes(:stocks, variants: [:stocks]).find(params[:id])
   end
 
   def new
@@ -17,11 +18,11 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.friendly.find(params[:id])
   end
 
   def create
-    @product = Product.new(params[:product])
+    @product = Product.new(safe_params)
 
     respond_to do |format|
       if @product.save
@@ -35,10 +36,8 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def update
-    @product = Product.find(params[:id])
-
     respond_to do |format|
-      if @product.update_attributes(params[:product])
+      if @product.update_attributes(safe_params)
         format.html { redirect_to admin_product_url(@product), notice: 'Product was successfully updated.' }
         format.json { head :no_content }
       else
@@ -49,7 +48,6 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def destroy
-    @product = Product.find(params[:id])
     if @product.can_be_deleted?
       @product.destroy
 
@@ -64,18 +62,30 @@ class Admin::ProductsController < Admin::BaseController
   end
 
   def feature
-    Product.update_all({featured: true}, {id: params[:product_ids]})
+    Product.where(id: params[:product_ids]).update_all(featured: true)
     redirect_to admin_products_url
   end
 
-private
+  private
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
+    def set_product
+      @product = Product.friendly.find(params[:id])
+    end
 
-  def sort_column
-    Product.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    def sort_column
+      Product.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
+
+    def safe_params
+      params.require(:product).permit(
+        :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
+        :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
+        :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
+      )
+    end
 
 end

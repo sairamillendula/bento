@@ -57,4 +57,11 @@ class OrdersController < ApplicationController
 	def show
 		@order = current_user.orders.find(params[:id])
 	end
+
+  private
+
+    def safe_params
+      params.require(:order)
+    end
+
 end

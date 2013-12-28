@@ -1,7 +1,7 @@
 class ProductReviewsController < ApplicationController
   
 	def create
-    @review = ProductReview.new(params[:product_review])
+    @review = ProductReview.new(safe_params)
     @review.user_id = current_user.id if current_user
 
     respond_to do |format|
@@ -14,5 +14,11 @@ class ProductReviewsController < ApplicationController
       end
     end
   end
+
+  private
+
+    def safe_params
+      params.require(:product_review).permit(:username, :message, :product_id, :rating, :user_id, :approved)
+    end
 
 end

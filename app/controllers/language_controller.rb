@@ -10,6 +10,7 @@ class LanguageController < ApplicationController
   end
 
   private
+
 	  def set_session_and_redirect
 	    session[:locale] = I18n.locale
 	    redirect_to :back

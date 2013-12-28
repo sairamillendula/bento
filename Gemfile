@@ -1,21 +1,49 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
-gem 'rails', '3.2.16'
+# To remove after completing transition
+#gem 'protected_attributes', "~> 1.0.5"
+#gem 'activerecord-deprecated_finders'
+# To remove after completing transition
 
+gem 'rails', '4.0.2'
 gem 'pg'
+
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 4.0.0'
+
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+
+# Use CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails', '~> 4.0.0'
+
+# Use jquery as the JavaScript library
+gem 'jquery-rails'
+gem 'jquery-ui-rails'
+
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
+# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
+gem 'jbuilder', '~> 1.2'
+
+gem 'rails-observers' # required for sweepers
+gem 'actionpack-page_caching' # required for page caching
+gem 'actionpack-action_caching' # required for page caching
+
 gem 'pg_search'
 gem 'activerecord-postgres-hstore'
 gem 'sorcery'
 gem 'nested_form'
-gem 'simple_form'
-gem 'jquery-rails', "2.3.0" # important since jquery-ui was removed from the gem
-gem 'rails_bootstrap_helper', :git => "https://github.com/hoangnghiem/rails_bootstrap_helper.git"
+gem 'simple_form', "~> 3.0"
+gem 'rails_bootstrap_helper', :git => "https://github.com/juanpastas/rails_bootstrap_helper.git"
 gem 'tabs_on_rails', "~> 2.1.1"
-gem 'friendly_id'
+gem 'friendly_id', '~> 5.0.0'
 gem 'redcarpet'
 gem 'prawn', :git => "git://github.com/prawnpdf/prawn.git"
 #gem 'whenever', :require => false
-gem 'ransack'
+gem 'ransack', github: "ernie/ransack", branch: "rails-4" # Use rails 4 branch
 gem 'kaminari-bootstrap'
 gem 'paperclip'
 gem 'meta-tags', :require => 'meta_tags'
@@ -24,19 +52,10 @@ gem 'figaro'
 gem 'acts_as_list'
 gem 'countries', :git => "https://github.com/hoangnghiem/countries.git"
 gem 'famfamfam_flags_rails'
-gem 'turbolinks'
 gem 'omniauth-stripe-connect'
-gem 'rails-settings-cached', "0.2.4"
-
-# Gems used only for assets and not required
-# in production environments by default.
-group :assets do
-  gem 'sass-rails',   '~> 3.2.3'
-  gem 'coffee-rails', '~> 3.2.1'
-  gem 'uglifier', '>= 1.0.3'
-  gem 'compass-rails'
-  gem 'jquery-fileupload-rails'
-end
+gem 'rails-settings-cached', "0.3.2"
+gem 'compass-rails', "~> 2.0.alpha.0"
+gem 'jquery-fileupload-rails'
 
 group :development, :test do
   gem 'faker', '1.0.1'
@@ -56,5 +75,5 @@ end
 group :production do
   gem 'exception_notification'
   gem 'unicorn'
-  gem 'therubyracer'
+  #gem 'therubyracer'
 end

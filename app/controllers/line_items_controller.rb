@@ -26,4 +26,11 @@ class LineItemsController < ApplicationController
       format.js
     end
 	end
+  
+  private
+
+    def safe_params
+      params.require(:line_item).permit(:cart_id, :variant_id, :quantity, :price, :order_id)
+    end
+
 end

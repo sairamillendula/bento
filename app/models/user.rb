@@ -57,9 +57,6 @@ class User < ActiveRecord::Base
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  def admin?
-   admin == true  
-  end
 
   def full_name
     "#{first_name} #{last_name}"

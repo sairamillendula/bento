@@ -1,13 +1,13 @@
 class Admin::ArticlesController < Admin::BaseController
+  before_action :set_article, only: [:show, :edit, :update, :destroy]
   set_tab :articles
   cache_sweeper :article_sweeper
 
   def index
-    @articles = Article.order(sort_column + " " + sort_direction).page(params[:page]).per(15)
+    @articles = Article.includes(:author).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
   end
 
   def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -16,11 +16,10 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def edit
-    @article = Article.find(params[:id])
   end
 
   def create
-    @article = Article.new(params[:article])
+    @article = Article.new(safe_params)
 
     respond_to do |format|
       if @article.save
@@ -32,10 +31,8 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def update
-    @article = Article.find(params[:id])
-
     respond_to do |format|
-      if @article.update_attributes(params[:article])
+      if @article.update_attributes(safe_params)
         format.html { redirect_to admin_article_url(@article), notice: 'Article was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -44,7 +41,6 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     respond_to do |format|
@@ -52,14 +48,22 @@ class Admin::ArticlesController < Admin::BaseController
     end
   end
 
-private
+  private
+    
+    def set_article
+      @article = Article.friendly.find(params[:id])
+    end
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
+    def safe_params
+      params.require(:article).permit(:content, :visible, :slug, :title, :author_id, :tag_tokens, :meta_tag, :seo_title, :seo_description)
+    end
 
-  def sort_column
-    Article.column_names.include?(params[:sort]) ? params[:sort] : "title"
-  end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    def sort_column
+      Article.column_names.include?(params[:sort]) ? params[:sort] : "title"
+    end
 
 end
