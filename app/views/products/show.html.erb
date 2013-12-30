@@ -47,11 +47,10 @@
 </div>
 
 <%= render 'related' %>
-
 <%#= render 'reviews' %>
 
 <script type="text/javascript">
-  var variants = <%= raw @product.variants.to_json(only: [:id, :price, :in_stock, :options]) %>;
+  var variants = <%= raw @product.variants.to_json(only: [:id, :price, :reduced_price, :in_stock, :options]) %>;
   var option_refs = <%= raw @product.options.inject({}) {|h, option| h[:"option#{option.position}"] = option.name;h }.to_json %>;
   ProductOptionSelector.setup(variants, option_refs);
 </script>

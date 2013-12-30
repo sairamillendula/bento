@@ -12,7 +12,10 @@ class @ProductOptionSelector
         variant = (elem.value for elem in $('.option'))
         if variant_refs[variant]
           if variant_refs[variant].in_stock > 0
-            $('#price').text("$#{parseFloat(variant_refs[variant].price).toFixed(2)}")
+            if variant_refs[variant].reduced_price > 0
+              $('#price').text("$#{parseFloat(variant_refs[variant].reduced_price).toFixed(2)}")
+            else
+              $('#price').text("$#{parseFloat(variant_refs[variant].price).toFixed(2)}")
             $('#add-to-cart').show()
             url = $('#add-to-cart').closest('form').attr('action')
             url = url.replace(/product_id/, 'product_variant_id').replace(/(\=)\d+/, "$1#{variant_refs[variant].id}")
