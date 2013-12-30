@@ -3,7 +3,7 @@ class LineItemsController < ApplicationController
 	def create
     variant = ProductVariant.find(params[:product_variant_id])
 		@line_item = @cart.add_to_cart(variant)
-		
+
 		respond_to do |format|
 			if @line_item.save
         format.html { redirect_to cart_path }
@@ -15,7 +15,7 @@ class LineItemsController < ApplicationController
     end
 	end
 
-	def update	
+	def update
 	end
 
 	def destroy
@@ -26,7 +26,7 @@ class LineItemsController < ApplicationController
       format.js
     end
 	end
-  
+
   private
 
     def safe_params

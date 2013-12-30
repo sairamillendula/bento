@@ -31,7 +31,7 @@ fr:
     updating: Veuillez patienter...
     calculating: Calcule...
     checkout: Passer la commande
-    discount: Bon de réduction
+    discount: Réduction
     estimated_shipping: Estimation frais de port
     apply_coupon: Appliquer
     coupon_code: Coupon
@@ -74,7 +74,7 @@ fr:
     edit: Éditer
     category: Catégorie
     checkout:
-      title: Compte & adresse
+      title: "Compte & adresse"
       secure_connection: Vous naviguez sur un serveur sécurisé
       as_guest: Commander en tant qu'invité
       your_details: Vos informations personnelles

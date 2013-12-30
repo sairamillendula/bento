@@ -80,4 +80,7 @@ Bento::Application.configure do
     :sender_address       => %{"[Bentooo] Exception Notifier" <app@bentooo.com>},
     :exception_recipients => %w{alert@yafoy.com}
 
+  # Rails 4 upgrade, true if preloading: spork or zeus I suppose
+  config.eager_load = true
+
 end

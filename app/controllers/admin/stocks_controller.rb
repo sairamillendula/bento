@@ -2,7 +2,7 @@ class Admin::StocksController < Admin::BaseController
   set_tab :stocks
 
   def show
-    @products = Product.order('name').includes(:variants)
+    @products = Product.includes(:variants, :pictures).order('name')
 
     respond_to do |format|
       format.html # index.html.erb
@@ -15,8 +15,8 @@ class Admin::StocksController < Admin::BaseController
       params[:stocks].values.first.values.each do |product_params|
         Product.find(product_params.delete(:id)).update_attributes!(product_params)
       end
-    rescue
-      return redirect_to [:admin, :stocks], alert: "Failed to update stocks. Please check input."
+    rescue Exception => e
+      return redirect_to [:admin, :stocks], alert: "Failed to update stocks due to #{e.message}. Please check input."
     end
     
     return redirect_to [:admin, :stocks], notice: "Stocks were successfully updated."

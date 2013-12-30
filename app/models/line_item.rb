@@ -4,7 +4,7 @@ class LineItem < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   belongs_to :variant, class_name: 'ProductVariant'
   belongs_to :cart
-  belongs_to :order, counter_cache: true
+  belongs_to :order
 
 
   # CALLBACKS
@@ -15,11 +15,7 @@ class LineItem < ActiveRecord::Base
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
   def subtotal
-  	quantity * current_price
-  end
-
-  def current_price
-  	variant.price
+  	quantity * price
   end
 
   private

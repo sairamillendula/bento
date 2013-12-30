@@ -3,7 +3,7 @@ class Admin::TaxesController < Admin::BaseController
   set_tab :taxes
 
   def index
-    @taxes = Tax.includes(:region_taxes, :shipping_country).all
+    @taxes = Tax.includes(:region_taxes, :shipping_country)
   end
 
   def show
@@ -26,7 +26,7 @@ class Admin::TaxesController < Admin::BaseController
     end
 
     def safe_params
-      params.require(:tax).permit(:name, :rate, :region_taxes_attributes)
+      params.require(:tax).permit(:name, :rate, region_taxes_attributes: [:id, :name, :rate])
     end
 
 end

@@ -1747,7 +1747,7 @@ CREATE INDEX index_pages_on_slug ON pages USING btree (slug);
 -- Name: index_product_variants_on_options; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
-CREATE INDEX index_product_variants_on_options ON product_variants USING gist (options);
+CREATE INDEX index_product_variants_on_options ON product_variants USING gin (options);
 
 
 --

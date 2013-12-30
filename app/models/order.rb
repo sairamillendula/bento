@@ -48,13 +48,13 @@ class Order < ActiveRecord::Base
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
-  scope :opens, -> { where(state: State::OPEN) }
-  scope :completed, -> { where(state: State::OPEN) } #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
-  scope :by_month, ->(month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
-  scope :by_day, ->(day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
+  scope :opens,         -> { where(state: State::OPEN) }
+  scope :completed,     -> { where(state: State::OPEN) } #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
+  scope :by_month,      ->(month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
+  scope :by_day,        ->(day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
   scope :within_period, ->(from, to) { where(created_at: (from..to)) }
-  scope :from_date, ->(from) { where("created_at >= ?", from) }
-  scope :to_date, ->(to) { where("created_at <= ?", to) }
+  scope :from_date,     ->(from) { where("created_at >= ?", from) }
+  scope :to_date,       ->(to) { where("created_at <= ?", to) }
   
 
   # CALLBACKS
@@ -127,7 +127,7 @@ class Order < ActiveRecord::Base
   	cart.items.each do |item|
       #item.product.in_stock = item.product.in_stock - item.quantity || 0
       item.cart_id = nil
-      item.price = item.current_price
+      item.price = item.price
       items << item
     end
 

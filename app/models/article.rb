@@ -22,7 +22,7 @@ class Article < ActiveRecord::Base
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
   scope :visibles, -> { where(visible: true) }
-  scope :private, -> { where(visible: false) }
+  scope :private,  -> { where(visible: false) }
   
 
   # VALIDATIONS

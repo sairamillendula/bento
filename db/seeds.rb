@@ -6,3 +6,7 @@ Page.create!(name: 'About', slug: 'about', content: Faker::Lorem.paragraphs(4).j
 Page.create!(name: 'Press', slug: 'media', content: Faker::Lorem.paragraphs(4).join("<br/>"), klass: 'standard')
 Page.create!(name: 'Terms & Conditions', slug: 'terms', content: Faker::Lorem.paragraphs(4).join("<br/>"), klass: 'standard')
 Page.create!(name: 'FAQ', slug: 'faq', content: Faker::Lorem.paragraphs(4).join("<br/>"), klass: 'faq')
+
+
+ShippingCountry.create!(country: 'WORLDWIDE')
+puts "Created shipping country: WORLDWIDE"

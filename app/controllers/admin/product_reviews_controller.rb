@@ -1,5 +1,5 @@
 class Admin::ProductReviewsController < Admin::BaseController
-  before_action :set_review, only: [:disapprove, :approve]
+  before_action :set_review, only: [:toggle_product_review_status]
   set_tab :reviews
   
   def index

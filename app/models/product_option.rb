@@ -4,11 +4,6 @@ class ProductOption < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :product
-
-
-  # ATTRIBUTES
-  # ------------------------------------------------------------------------------------------------------
-  #attr_accessible :name, :product, :values, :position
   
 
   # VALIDATIONS
@@ -35,4 +30,5 @@ class ProductOption < ActiveRecord::Base
       variant.save
     end
   end
+  
 end

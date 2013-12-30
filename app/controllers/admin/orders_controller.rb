@@ -1,4 +1,5 @@
 class Admin::OrdersController < Admin::BaseController
+  before_action :set_order, only: [:update, :mark_as_shipped, :cancel]
   set_tab :orders
   helper_method :sort_column, :sort_direction
 
@@ -31,10 +32,8 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def update
-    @order = Order.find(params[:id])
-
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.update_attributes(safe_params)
         format.html { redirect_to admin_order_url(@order), notice: 'Order was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -43,7 +42,6 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def mark_as_shipped
-    @order = Order.find(params[:id])
     @order.ship(current_user)
 
     respond_to do |format|
@@ -58,7 +56,6 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def cancel
-    @order = Order.find(params[:id])
     @order.cancel(current_user)
 
     respond_to do |format|
@@ -77,14 +74,22 @@ class Admin::OrdersController < Admin::BaseController
     # send to pdf
   end
 
-private
+  private
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
+    def safe_params
+      params.require(:order).permit(:state, :shipped_at)
+    end
 
-  def sort_column
-    Order.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
-  end
+    def set_order
+      @order = Order.find(params[:id])
+    end
+
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    def sort_column
+      Order.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
+    end
 
 end

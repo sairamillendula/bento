@@ -16,9 +16,14 @@ class Admin::ResellersController < Admin::BaseController
     if @user.reseller?
       ResellerMailer.reseller_request_approved(@user).deliver
       redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}"
-    else  
+    else
       redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
     end
+  end
+
+  def catalogue
+    set_tab :resellers_catalogue
+    @products = Product.visibles.order('name')
   end
 
   private

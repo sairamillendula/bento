@@ -31,7 +31,7 @@ class OrdersController < ApplicationController
 
 	def create
     @cart = current_cart
-		@order = Order.new(params[:order])
+		@order = Order.new(safe_params)
     @order.client_id = current_user.id if current_user
     @order.remote_ip = request.remote_ip
 
@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
         AdminMailer.new_order(@order).deliver
         format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
       else
+        flash[:error] = "An error occured."
         format.html { redirect_to action: "new" }
       end
     end
@@ -61,7 +62,7 @@ class OrdersController < ApplicationController
   private
 
     def safe_params
-      params.require(:order)
+      params.require(:order).permit(:stripe_card_token)
     end
 
 end

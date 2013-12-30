@@ -3,7 +3,6 @@ class BillingAddress < Address
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   attr_accessor :also_shipping_address
-  #attr_accessible :also_shipping_address
 
 
   # VALIDATIONS

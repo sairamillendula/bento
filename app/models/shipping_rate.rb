@@ -4,11 +4,6 @@ class ShippingRate < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :shipping_country
-  
-  
-  # ATTRIBUTES
-  # ------------------------------------------------------------------------------------------------------
-  #attr_accessible :criteria, :max_criteria, :min_criteria, :name, :price
 
   
   # VALIDATIONS

@@ -28,4 +28,7 @@ Bento::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Rails 4 upgrade, true if preloading: spork or zeus I suppose
+  config.eager_load = false
 end

@@ -35,15 +35,15 @@ class Admin::UsersController < Admin::BaseController
   private
 
     def set_user
-      @user = User.find.params[:id]
+      @user = User.find(params[:id])
     end
 
     def safe_params
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
-                            :addresses_attributes, :reseller_request_attributes)
+                                   :addresses_attributes, :reseller_request_attributes)
 
       params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :remember_me, :localization,
-                            :addresses_attributes, :active, :admin, :reseller, :reseller_request_attributes, as: :manager)
+                                   :addresses_attributes, :active, :admin, :reseller, :reseller_request_attributes, as: :manager)
     end
 
 end

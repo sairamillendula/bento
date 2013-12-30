@@ -11,7 +11,7 @@
               <td class="w275" width="275">
                 <p align="left" class="article-title"><singleline label="Title"><%= t 'theme.billing_address', default: 'Billing Address' %></singleline></p>
                 <div align="left" class="article-content">
-                  <multiline label="Description"><address><%= @order.shipping_address.display_name %></address></multiline>
+                  <multiline label="Description"><address><%= @order.billing_address.display_name %></address></multiline>
                 </div>
               </td>
             </tr>

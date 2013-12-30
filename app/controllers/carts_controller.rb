@@ -56,8 +56,9 @@ class CartsController < ApplicationController
   private
 
     def safe_params
-      params.require(:cart).permit(:coupon_code, :billing_address_attributes, :shipping_address_attributes, :email, :first_name, :last_name,
-                                   items_attributes: [:quantity])
+      params.require(:cart).permit(:coupon_code, :email, :first_name, :last_name, :billing_address_attributes, :shipping_address_attributes, items_attributes: [:id, :quantity, :price],
+                                   billing_address_attributes: [:id, :full_name, :address1, :address2, :city, :country, :postal_code, :province, :also_shipping_address],
+                                   shipping_address_attributes: [:id, :full_name, :address1, :address2, :city, :country, :postal_code, :province] )
     end
 
 end

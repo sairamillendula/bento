@@ -1,11 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.0.0'
 
-# To remove after completing transition
-#gem 'protected_attributes', "~> 1.0.5"
-#gem 'activerecord-deprecated_finders'
-# To remove after completing transition
-
 gem 'rails', '4.0.2'
 gem 'pg'
 
@@ -17,6 +12,9 @@ gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
+
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
+# gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -33,18 +31,17 @@ gem 'actionpack-page_caching' # required for page caching
 gem 'actionpack-action_caching' # required for page caching
 
 gem 'pg_search'
-gem 'activerecord-postgres-hstore'
-gem 'sorcery'
+gem 'sorcery', '~> 0.8.5'
 gem 'nested_form'
-gem 'simple_form', "~> 3.0"
+gem 'simple_form'
 gem 'rails_bootstrap_helper', :git => "https://github.com/juanpastas/rails_bootstrap_helper.git"
 gem 'tabs_on_rails', "~> 2.1.1"
 gem 'friendly_id', '~> 5.0.0'
 gem 'redcarpet'
-gem 'prawn', :git => "git://github.com/prawnpdf/prawn.git"
+gem 'prawn', github: "prawnpdf/prawn"
 #gem 'whenever', :require => false
 gem 'ransack', github: "ernie/ransack", branch: "rails-4" # Use rails 4 branch
-gem 'kaminari-bootstrap'
+gem 'kaminari'
 gem 'paperclip'
 gem 'meta-tags', :require => 'meta_tags'
 gem 'stripe'
@@ -59,6 +56,7 @@ gem 'jquery-fileupload-rails'
 
 group :development, :test do
   gem 'faker', '1.0.1'
+  gem 'hirb'
 end
 
 group :development do

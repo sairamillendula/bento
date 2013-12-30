@@ -38,7 +38,7 @@ class Cart < ActiveRecord::Base
   def add_to_cart(variant)
     current_item = items.where(variant_id: variant.id).first_or_initialize
     current_item.quantity += 1 unless current_item.new_record?
-    current_item.price = variant.price
+    current_item.price = variant.current_price
     current_item.save
     calculate
 	  current_item
