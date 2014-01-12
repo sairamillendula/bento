@@ -28,9 +28,10 @@
            <%= select_tag option.name, options_for_select(valid_options[:"option#{option.position}"].uniq, default_variant.send(:"option#{option.position}")), class: 'option' %></p>
       <% end %>
 
-      <h2 id="price"><%= number_to_currency default_variant.price %></h2>
+      <h2 id="price" class="<%= 'line-through' if default_variant.reduced_price %>"><%= number_to_currency default_variant.price %></h2>
+      <h2 id="sale-price" style="display: <%= default_variant.reduced_price ? 'block' : 'none' %>;"><%= number_to_currency default_variant.reduced_price %></h2>
       <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: default_variant.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
-    <% else %>  
+    <% else %>
       <h2 id="price"><%= number_to_currency @product.master.price, strip_insignificant_zeros: true %></h2>
       <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: @product.master.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
     <% end %>
