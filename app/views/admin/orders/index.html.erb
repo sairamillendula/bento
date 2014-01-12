@@ -1,26 +1,28 @@
 <%= page_title("#{t 'orders.title'}") %>
 
 <% if @orders.present? %>
-  <div class="well well-small"><%= link_to "Print invoices", params.merge(format: :pdf), class: "btn btn-inverse" %></div>
+  <%= form_tag params.merge(format: :pdf), method: :get do %>
+    <div class="well well-small"><%= submit_tag "Print invoices", class: "btn btn-inverse", name: nil %></div>
 
-  <table id="orders" class="table table-striped">
-	  <tr id="table-headers">
-	  	<th></th>
-	    <th><%= sortable "code", "#" %></th>
-	    <th><%= sortable "completed", "#{t 'status.title'}" %></th>
-	    <th><%= sortable "client.full_name", "#{t 'client'}" %></th>
-	    <th><%= sortable "created_at", "Date" %></th>
-	    <th>Shipping</th>
-	    <th><%= sortable "total", "#{t 'total'}" %></th>
-	    <th></th>
-	  </tr>
-	  
-	  <% @orders.each do |order| %>
-	    <%= render order %>
-	  <% end %>
-	</table>
+	  <table id="orders" class="table table-striped">
+		  <tr id="table-headers">
+		  	<th></th>
+		    <th><%= sortable "code", "#" %></th>
+		    <th><%= sortable "completed", "#{t 'status.title'}" %></th>
+		    <th><%= sortable "client.full_name", "#{t 'client'}" %></th>
+		    <th><%= sortable "created_at", "Date" %></th>
+		    <th>Shipping</th>
+		    <th><%= sortable "total", "#{t 'total'}" %></th>
+		    <th></th>
+		  </tr>
+		  
+		  <% @orders.each do |order| %>
+		    <%= render order %>
+		  <% end %>
+		</table>
 
-  <%= paginate @orders %>
+	  <%= paginate @orders %>
+	<% end %>
 <% else %>
   <div class="alert"><%= t 'orders.none' %>.</div>
 <% end %>

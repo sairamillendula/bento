@@ -5,6 +5,7 @@ class Admin::OrdersController < Admin::BaseController
 
   def index
     @orders = Order.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(20)
+    @orders = @orders.where(id: params[:order_ids]) if params[:order_ids].present?
 
     respond_to do |format|
       format.html
