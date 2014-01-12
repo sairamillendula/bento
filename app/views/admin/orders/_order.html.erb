@@ -4,12 +4,13 @@
   <td><%= status_tag(order.state, class: "state-#{order.state}") %></td>
   <td><%= order.client.full_name %></td>
   <td><%= l order.created_at, format: :long %></td>
+  <td><%= order.shipping_method %> (<%= Country[order.shipping_address.country].name %>)</td>
   <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
-  <td><% if order.open? %>
-        <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(order), method: :post, remote: true, icon: 'ok', level: 'info', "data-disable-with"=>"#{t 'status.mark_as_shipped'}" %></td>
-        <% elsif order.shipped? %>
-          <%= "#{t 'shipped_on'}" %> <%= l order.shipped_at, format: "%d %b %H:%m" if order.shipped? %>
-        <% end %>
-    </td>
+  <td>
+    <% if order.open? %>
+      <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(order), method: :post, remote: true, icon: 'ok', level: 'info', "data-disable-with"=>"#{t 'status.mark_as_shipped'}" %></td>
+    <% elsif order.shipped? %>
+      <%= "#{t 'shipped_on'}" %> <%= l order.shipped_at, format: "%d %b %H:%m" if order.shipped? %>
+    <% end %>
   </td>
 <% end %>

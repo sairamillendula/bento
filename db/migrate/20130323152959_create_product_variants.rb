@@ -15,6 +15,6 @@ class CreateProductVariants < ActiveRecord::Migration
     end
 
     add_index :product_variants, :product_id
-    add_hstore_index :product_variants, :options
+    add_index :product_variants, :options, using: :gin
   end
 end

@@ -1,0 +1,5 @@
+<% if @review.errors.any? %>
+  alert("<%= j @review.errors.full_messages.to_sentence %>");
+<% else %>
+  $("#<%= dom_id(@review) %>").replaceWith($("<%= j render('admin/product_reviews/review', review: @review) %>"));
+<% end %>

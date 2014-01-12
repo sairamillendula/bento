@@ -1,3 +1,2 @@
 class CrossSell < ProductRelationship
-
 end

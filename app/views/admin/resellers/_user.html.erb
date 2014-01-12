@@ -1,0 +1,12 @@
+<%= content_tag_for :tr, user do %>
+  <td><%= link_to user.reseller_request.business_name, admin_reseller_path(user) %></td>
+  <td><%= link_to user.full_name, admin_client_path(user) %></td>
+  <td><%= user.email %></td>
+  <td>
+    <% if user.reseller? %>
+      <%= icon_button_link_to "#{t 'disapprove'}", toggle_reseller_status_admin_reseller_path(user), method: :post, remote: true, level: 'danger', size: 'small', icon: 'remove', white: true, data: {confirm: "#{t 'are_you_sure'}"} %>
+    <% else %>
+      <%= icon_button_link_to "#{t 'approve'}", toggle_reseller_status_admin_reseller_path(user), method: :post, remote: true, level: 'primary', size: 'small', icon: 'play', white: true, data: {confirm: "#{t 'are_you_sure'}"} %>
+    <% end %>
+  </td>
+<% end %>

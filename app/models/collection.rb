@@ -1,9 +1,15 @@
 class Collection < ActiveRecord::Base
-	extend FriendlyId
+	
+  # FRIENDLY ID
+  # ------------------------------------------------------------------------------------------------------
+  extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
   include Sluggable
   include PgSearch
+  
 
+  # SEARCH
+  # ------------------------------------------------------------------------------------------------------
   multisearchable :against => :name
   pg_search_scope :search_by_keyword, 
                   :against => [:name],
@@ -13,19 +19,32 @@ class Collection < ActiveRecord::Base
                     }
                   },
                   :ignoring => :accents
-
-  before_save :format_slug
   
+  
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
   has_many :collection_products, dependent: :destroy
   has_many :products, through: :collection_products
-    
+
+  
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
   store :meta_tag, accessors: [:seo_title, :seo_description]
 
-  scope :visibles, where(visible: true)
-  scope :private, where(visible: false)
 
-  attr_accessible :description, :name, :visible, :slug, :seo_title, :seo_description
+  # CALLBACKS
+  # ------------------------------------------------------------------------------------------------------
+  before_save :format_slug
   
+
+  # SCOPES
+  # ------------------------------------------------------------------------------------------------------
+  scope :visibles, -> { where(visible: true) }
+  scope :private, -> { where(visible: false) }
+
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validates_presence_of :name, :slug
   validates_uniqueness_of :name, :slug
 

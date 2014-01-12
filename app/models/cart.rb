@@ -1,17 +1,25 @@
 class Cart < ActiveRecord::Base
+
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
   has_many :items, class_name: "LineItem", dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
-
-  attr_accessor :tax_amount
-  attr_accessible :items_attributes, :coupon_code, :billing_address_attributes, :shipping_address_attributes, :email, :first_name, :last_name
-
-  validate :validate_coupon_code_exists, if: :coupon_code?
-
+  
   has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address
 
   has_one :shipping_address, as: :addressable, class_name: "ShippingAddress", dependent: :destroy
   accepts_nested_attributes_for :shipping_address
+
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  attr_accessor :tax_amount
+  
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
+  validate :validate_coupon_code_exists, if: :coupon_code?
 
   before_validation do |cart|
     if billing_address && billing_address.also_shipping_address
@@ -22,12 +30,15 @@ class Cart < ActiveRecord::Base
     end
   end
   
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   # buyable can be product or variant
   # return: line item
   def add_to_cart(variant)
     current_item = items.where(variant_id: variant.id).first_or_initialize
     current_item.quantity += 1 unless current_item.new_record?
-    current_item.price = variant.price
+    current_item.price = variant.current_price
     current_item.save
     calculate
 	  current_item
@@ -95,23 +106,24 @@ class Cart < ActiveRecord::Base
 
   def shipping_availability?
     if shipping_address && shipping_address.country
-      shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+      shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
       shipping_country.present?
     end
   end
 
-private
+  private
 
-  def validate_coupon_code_exists
-    begin
-      coupon = Coupon.active.find_by_code!(coupon_code)
-      self.coupon_amount = coupon.amount
-      self.coupon_percentage = coupon.percentage
-    rescue
-      # if coupon not valid, then remove it from cart
-      self.coupon_code = nil
-      self.coupon_amount = nil
-      self.coupon_percentage = nil
+    def validate_coupon_code_exists
+      begin
+        coupon = Coupon.active.find_by_code!(coupon_code)
+        self.coupon_amount = coupon.amount
+        self.coupon_percentage = coupon.percentage
+      rescue
+        # if coupon not valid, then remove it from cart
+        self.coupon_code = nil
+        self.coupon_amount = nil
+        self.coupon_percentage = nil
+      end
     end
-  end
+
 end

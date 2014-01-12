@@ -111,7 +111,8 @@ puts "Created 15 articles"
     sku: "00#{p}",
     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
     reduced_price: ["", 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
-    in_stock: (0..10).to_a.sample
+    in_stock: (0..10).to_a.sample,
+    cost_price: 1
   )
   product.save!
 end
@@ -126,32 +127,53 @@ puts "Created 100 products"
     rating: (1..5).to_a.sample,
     message: Faker::Lorem.paragraphs(2).join("<br/>"),
     approved: [true, false].sample,
-    user_id: User.pluck(:id).uniq.sample,
+    user_id: User.all.map(&:id).uniq.sample,
     product_id: Product.pluck(:id).uniq.sample
   )
 end
 puts "Created 15 products reviews"
 
-# 10.times do |x|
-#   print '.'
-#   p = x + 1
-#   variant = ProductVariant.create!(
-#     name: Faker::Lorem.words(2).join(' ').titleize,
-#     price: [0.01, 3.33, 4.24, 10, 15, 20, 20.5, 25, 26.76, 66.5, 100, 104.34, 156.45, 1000, 1005.67].sample,
-#     in_stock: (0..10).to_a.sample,
-#     product_id: Product.pluck(:id).sample
-#   )
-# end
-# puts "Created 15 variants"
 
-ShippingCountry.create!(country: 'Worldwide')
-puts "Added shipping country"
+p = Product.first
+p.options.create!(name: 'Color', values: 'blue, red, green,')
+p.options.create!(name: 'Size', values: 'S, M, L,')
+p.variants.create!(option1: "blue", option2: "S", price: 15, reduced_price: 10, in_stock: 45, sku: "P0001a")
+p.variants.create!(option1: "blue", option2: "M", price: 15, reduced_price: 10, in_stock: 0, sku: "P0001b")
+p.variants.create!(option1: "blue", option2: "L", price: 15, reduced_price: 10, in_stock: 105, sku: "P0001c")
+p.variants.create!(option1: "red", option2: "S", price: 15, reduced_price: 10, in_stock: 105, sku: "P0001d")
+p.variants.create!(option1: "green", option2: "S", price: 15, reduced_price: 10, in_stock: 10, sku: "P0001e")
+p.update_attributes(visible: true)
+
+puts "Created options and variants for product #1"
+
+
+c = ShippingCountry.create!(country: 'FR')
+c.rates.create!(min_criteria: 0, max_criteria: 100, price: 8, name: 'Standard (5 days)')
+c.tax.name = 'TVA'
+c.tax.rate = 19.6
+c.tax.save!
+puts "Created shipping country: France"
+
+c = ShippingCountry.create!(country: 'CA')
+c.rates.create!(min_criteria: 0, max_criteria: 100, price: 8, name: 'Standard (5 days)')
+c.tax.name = 'TVH'
+c.tax.rate = 13
+c.tax.save!
+t = 
+t = c.tax.region_taxes.where(province: 'AB').first
+t.update_attributes(name: 'HST', rate: '5')
+t = c.tax.region_taxes.where(province: 'QC').first
+t.update_attributes(name: 'TVH', rate: '9.975')
+t = c.tax.region_taxes.where(province: 'ON').first
+t.update_attributes(name: 'HST', rate: '13')
+puts "Created shipping country: Canada"
+
 
 Collection.create!(name: 'homepage', slug: 'homepage')
+puts "Created collection for homepage"
 
 Product.visibles.each do |product|
   CollectionProduct.create!(collection_id: Collection.first.id.to_i, product_id: product.id)
 end
-puts "Created collection for homepage"
 
 puts "All set"

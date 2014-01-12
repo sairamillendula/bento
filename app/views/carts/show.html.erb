@@ -18,8 +18,8 @@
           <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
   	      <td><%= image_tag(item.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.variant.product.pictures.any? %> <%= item.variant.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
-          <td><%= number_to_currency(item.current_price) %></td>
-  	      <td><%= number_to_currency(item.quantity * item.current_price) %></td>
+          <td><%= number_to_currency(item.price) %></td>
+  	      <td><%= number_to_currency(item.quantity * item.price) %></td>
   	    </tr>
       <% end %>
   	</table>
@@ -64,7 +64,7 @@
         <div class="row-fluid">
           <div class="span3">
             <%= f.hidden_field :subtotal, value: @cart.subtotal %>
-            <%= f.input :country, input_html: {class: 'input-block-level'} %>
+            <%= f.input :country, collection: Country.all, input_html: {class: 'input-block-level'} %>
           </div>
           <div class="span3" style="margin-left:0;">
             <div class="control-group string optional">

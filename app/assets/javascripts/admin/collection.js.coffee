@@ -1,4 +1,4 @@
-jQuery ->
+Util.onReady ->
 	$('#collection-products').sortable
     axis: 'y'
     update: ->

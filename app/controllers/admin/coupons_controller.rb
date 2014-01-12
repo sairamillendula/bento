@@ -1,4 +1,5 @@
 class Admin::CouponsController < Admin::BaseController
+  before_action :set_coupon, only: [:edit, :update, :destroy]
   set_tab :coupons
   respond_to :html, :json
 
@@ -11,7 +12,7 @@ class Admin::CouponsController < Admin::BaseController
   end
 
   def create
-    @coupon = Coupon.new(params[:coupon])
+    @coupon = Coupon.new(safe_params)
 
     respond_to do |format|
       if @coupon.save
@@ -23,14 +24,11 @@ class Admin::CouponsController < Admin::BaseController
   end
 
   def edit
-    @coupon = Coupon.find(params[:id])
   end
 
   def update
-    @coupon = Coupon.find(params[:id])
-
     respond_to do |format|
-      if @coupon.update_attributes(params[:coupon])
+      if @coupon.update_attributes(safe_params)
         format.html { redirect_to admin_coupons_url, notice: 'Coupon was successfully updated.' }
         format.json { head :no_content }
       else
@@ -41,8 +39,6 @@ class Admin::CouponsController < Admin::BaseController
   end
 
   def destroy
-  	@coupon = Coupon.find(params[:id])
-
   	if @coupon.can_be_deleted?
   		respond_to do |format|
   		  @coupon.destroy
@@ -54,5 +50,15 @@ class Admin::CouponsController < Admin::BaseController
   	  end
   	end
   end
+
+  private
+
+    def set_coupon
+      @coupon = Coupon.find(params[:id])
+    end
+
+    def safe_params
+      params.require(:coupon).permit(:active, :code, :percentage, :amount)
+    end
 
 end

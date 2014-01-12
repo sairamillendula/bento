@@ -1,13 +1,18 @@
 # encoding: utf-8
 class Address < ActiveRecord::Base
+
   # ASSOCIATIONS
-  belongs_to :addressable, :polymorphic => true
+  # ------------------------------------------------------------------------------------------------------
+  belongs_to :addressable, polymorphic: true
   
+
   # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
   attr_accessor :bypass_validation
-  attr_accessible :full_name, :address1, :address2, :addressable_id, :addressable_type, :city, :country, :postal_code, :province, :type, 
-                  :bypass_validation
   
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def all_blank?
     attributes.except("addressable_type").values.compact.reject{|s| s.blank?}.empty?
   end
@@ -57,7 +62,7 @@ class Address < ActiveRecord::Base
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
-    html << country if country.present?
+    html << Country[country].name if country.present?
     html.join(", ").html_safe
   end
 

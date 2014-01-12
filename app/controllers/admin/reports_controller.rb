@@ -1,5 +1,4 @@
 # encoding: utf-8
-require 'iconv'
 
 class Admin::ReportsController < Admin::BaseController
   helper_method :sort_column, :sort_direction
@@ -34,20 +33,20 @@ class Admin::ReportsController < Admin::BaseController
       format.html
       format.csv { 
         content = @orders.to_csv
-        content = Iconv.conv('ISO-8859-1','UTF-8', content)
+        content = content.encode("UTF-8")
         send_data content, filename: "#{t 'orders.title'}.csv", type: 'text/csv; charset=utf-8; header=present'
       }
     end
   end
 
-private
+  private
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
 
-  def sort_column
-    params[:sort].present? ? params[:sort] : "created_at"
-  end
+    def sort_column
+      params[:sort].present? ? params[:sort] : "created_at"
+    end
 
 end

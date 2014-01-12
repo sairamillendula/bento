@@ -1,11 +1,18 @@
 class Tag < ActiveRecord::Base
+  
+  # ASSOCIATIONS
+	# ------------------------------------------------------------------------------------------------------
 	has_and_belongs_to_many :articles
 
-  attr_accessible :name
   
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validates_presence_of :name
   validates_uniqueness_of :name
 
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def to_param
   	name
   end
@@ -23,4 +30,5 @@ class Tag < ActiveRecord::Base
 	  tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
 	  tokens.split(',')
 	end
+
 end

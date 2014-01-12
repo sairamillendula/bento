@@ -1,6 +1,7 @@
 <%= page_title("##{@order.code}") do %>
   <%= status_tag(@order.state, class: "state-#{@order.state}") %> <span id='order_date'> <%= l @order.created_at, format: :long %></span>
   <div class="btn-group fr">
+    <%= icon_button_link_to "#{t 'edit'}", edit_admin_order_path(@order), icon: "pencil" %></td>
     <%= icon_button_link_to "#{t 'print'}", admin_order_path(@order, format: :pdf), icon: "print" %></td>
     <%= icon_button_link_to "#{t 'status.mark_as_shipped'}", mark_as_shipped_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", level: 'primary', white: true, icon: "ok" if @order.open? %></td>
     <%= icon_button_link_to "#{t 'cancel'}", cancel_admin_order_path(@order), method: :post, confirm: "#{t 'are_you_sure'}", level: 'danger', white: true, icon: "remove" if @order.open? %></td>

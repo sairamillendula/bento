@@ -1,24 +1,32 @@
 class Admin::TaxesController < Admin::BaseController
+  before_action :set_tax, only: [:show, :update]
   set_tab :taxes
 
   def index
-    @taxes = Tax.includes(:region_taxes, :shipping_country).all
+    @taxes = Tax.includes(:region_taxes, :shipping_country)
   end
 
   def show
-    @tax = Tax.find(params[:id])
   end
 
   def update
-    @tax = Tax.find(params[:id])
-
     respond_to do |format|
-      if @tax.update_attributes(params[:tax])
+      if @tax.update_attributes(safe_params)
         format.html { redirect_to admin_taxes_url, notice: 'Tax was successfully updated.' }
       else
         format.html { render action: "show" }
       end
     end
   end
+
+  private
+
+    def set_tax
+      @tax = Tax.find(params[:id])
+    end
+
+    def safe_params
+      params.require(:tax).permit(:name, :rate, region_taxes_attributes: [:id, :name, :rate])
+    end
 
 end

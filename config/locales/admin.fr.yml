@@ -19,7 +19,6 @@ fr:
   by: by
   from: From
   name: Name
-  status: Status
   active: Active
   inactive: Inactive
   public: Public
@@ -111,11 +110,11 @@ fr:
     title: Staff members
     new: New staff member
   shipping_rates:
-    title: Shipping rates
-    new: New shipping rate
-    edit: Edit shipping rate
+    title: Shipping Rates
+    new: New Shipping Rate
+    edit: Edit Shipping Rate
     none: No shipping rates found
-    add_rate: Add rate
+    add_rate: Add Rate
     calculator: Shipping rates calculator
   stats: Stats
   stocks: Stocks
@@ -200,7 +199,7 @@ fr:
     open: Ouvert
     pending: En attente
     completed: Complété
-    shipped: Envoyé
+    shipped: Expédié
     mark_as_shipped: Mark as shipped
     not_paid: Payment not received
   payments:
@@ -223,10 +222,10 @@ fr:
     signature: Have a great day!
     new_admin_user:
       subject: Account created
-    new_reseller_request:
-      subject: New reseller request
     new_order:
       subject: "[Bentooo] New Order"
+    new_reseller_request:
+      subject: New reseller request
     reset_password_email:
       subject: Your password has been reset
       intro:
@@ -245,7 +244,7 @@ fr:
       intro:
       action:
     contact_us: 
-      subject: New message from contact form   
+      subject: New message from contact form
   search:
     order: Order
     product: Product

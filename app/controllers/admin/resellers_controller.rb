@@ -1,4 +1,5 @@
 class Admin::ResellersController < Admin::BaseController
+  before_action :set_reseller, only: [:toggle_reseller_status]
   set_tab :resellers
   
   def index
@@ -9,32 +10,30 @@ class Admin::ResellersController < Admin::BaseController
     @user = User.includes(:reseller_request).find(params[:id])
   end
 
-  def disapprove
-    @user = User.find(params[:id])
-    @user.reseller = false
+  def toggle_reseller_status
+    @user.toggle_reseller_status
 
-    if @user.save
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
-    else
-      redirect_to admin_resellers_url, alert: "Cannot deactivate user #{@user.full_name}. Please contact system administrator."
-    end
-  end
-
-  def approve
-    @user = User.find(params[:id])
-    @user.reseller = true
-
-    if @user.save
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} is now approved. Confirmation sent to #{@user.email}"
-      ResellerMailer.reseller_request_approved(@user).deliver
-    else
-      redirect_to admin_resellers_url, alert: "Cannot activate user #{@user.full_name}. Please contact system administrator."
+    respond_to do |format|
+      if @user.reseller?
+        format.html { redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}" }
+        format.js
+        ResellerMailer.reseller_request_approved(@user).deliver
+      else
+        format.html { redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}." }
+        format.js
+      end
     end
   end
 
   def catalogue
     set_tab :resellers_catalogue
-    @products = Product.visibles
+    @products = Product.visibles.order('name')
   end
+
+  private
+
+    def set_reseller
+      @user = User.find(params[:id])
+    end
 
 end

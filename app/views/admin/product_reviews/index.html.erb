@@ -11,23 +11,11 @@
     </tr>
     
     <% @reviews.each do |review| %>
-      <tr>
-      	<td><%= truncate(review.message, length: 150) %></td>
-      	<td><%= link_to review.product.name, admin_product_path(review.product) %></td>
-        <td><%= review.user.full_name %></td>
-        <td><%= review.user.email %></td>
-        <td>
-          <% if review.approved? %>
-      <%= icon_button_link_to "#{t 'disapprove'}", disapprove_admin_product_review_path(review), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
-    <% else %>
-      <%= icon_button_link_to "#{t 'approve'}", approve_admin_product_review_path(review), level: 'primary', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
-    <% end %>
-        </td>
-      </tr>
+      <%= render 'review', review: review %>
     <% end %>
   </table>
 
   <%= paginate @reviews %>
 <% else %>
-  <p class="alert"><%= "#{t 'reviews.none'}" %>.</p>  
+  <p class="alert"><%= "#{t 'reviews.none'}" %>.</p>
 <% end %>

@@ -1,4 +1,5 @@
 class Admin::CollectionsController < Admin::BaseController
+  before_action :set_collection, only: [:edit, :update, :destroy, :add_products, :remove_products]
   set_tab :collections
   cache_sweeper :collection_sweeper
 
@@ -7,7 +8,7 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def show
-    @collection = Collection.includes(:products).find(params[:id])
+    @collection = Collection.includes(:products).friendly.find(params[:id])
     if @collection.products.any?
       @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
     else
@@ -20,11 +21,10 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def edit
-    @collection = Collection.find(params[:id])
   end
 
   def create
-    @collection = Collection.new(params[:collection])
+    @collection = Collection.new(safe_params)
 
     respond_to do |format|
       if @collection.save
@@ -36,10 +36,8 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def update
-    @collection = Collection.find(params[:id])
-
     respond_to do |format|
-      if @collection.update_attributes(params[:collection])
+      if @collection.update_attributes(safe_params)
         format.html { redirect_to admin_collection_url(@collection), notice: 'Collection was successfully updated.' }
       else
         format.html { render action: "edit" }
@@ -48,7 +46,6 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def destroy
-    @collection = Collection.find(params[:id])
     @collection.destroy
 
     respond_to do |format|
@@ -64,7 +61,6 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def add_products
-    @collection = Collection.find(params[:id])
     @collection.products << Product.find(params[:product_id])
     @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
 
@@ -74,7 +70,6 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def remove_products
-    @collection = Collection.find(params[:id])
     @relationship = CollectionProduct.find_by_collection_id_and_product_id(@collection.id, params[:product_id])
     @relationship.destroy
 
@@ -89,14 +84,22 @@ class Admin::CollectionsController < Admin::BaseController
     end
   end
 
-private
+  private
+    
+    def set_collection
+      @collection = Collection.friendly.find(params[:id])
+    end
 
-  def sort_direction
-    %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
-  end
+    def safe_params
+      params.require(:collection).permit(:description, :name, :visible, :slug, :seo_title, :seo_description)
+    end
 
-  def sort_column
-    Collection.column_names.include?(params[:sort]) ? params[:sort] : "name"
-  end
+    def sort_direction
+      %w[asc desc].include?(params[:direction]) ? params[:direction] : "desc"
+    end
+
+    def sort_column
+      Collection.column_names.include?(params[:sort]) ? params[:sort] : "name"
+    end
 
 end

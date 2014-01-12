@@ -25,7 +25,7 @@ class ProductsController < ApplicationController
   end
 
 	def show
-    @product = Product.includes(:pictures, :variants).find(params[:id])
+    @product = Product.friendly.includes(:pictures, :variants).find(params[:id])
     @page_title       = "#{@product.seo_title.present? ? @product.seo_title : @product.name} | #{t 'theme.site_name'}"
     @page_description = @product.seo_description
     

@@ -1,10 +1,18 @@
 class Product < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
-	extend FriendlyId
+
+
+  # FRIENDLY ID
+  # ------------------------------------------------------------------------------------------------------
+  extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
   include Sluggable
-  include PgSearch
   
+
+  # SEARCH
+  # ------------------------------------------------------------------------------------------------------
+  include PgSearch
+
   # Remember to run Product.sync_keywords! and PgSearch::Multisearch.rebuild(Product)
   # when changing this array.
   VARIANT_SEARCH_FIELDS = [:sku, :price]
@@ -22,22 +30,22 @@ class Product < ActiveRecord::Base
                     }
                   },
                   :ignoring => :accents
-  
-  
-  # ASSOCICATIONS
-  # ------------------------------------------------------------------------------
+
+
+  # ASSOCIATIONS
+  # ------------------------------------------------------------------------------------------------------
   has_many :all_variants, class_name: 'ProductVariant', dependent: :destroy
   
-  has_many :variants, class_name: "ProductVariant", conditions: { active: true, master: false }
+  has_many :variants, -> { where(active: true, master: false) }, class_name: "ProductVariant"
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
 
-  has_one :master, class_name: "ProductVariant", conditions: { master: true, active: true }
+  has_one :master, -> { where(master: true, active: true) }, class_name: "ProductVariant"
   accepts_nested_attributes_for :master
 
   has_many :options, class_name: "ProductOption", dependent: :destroy
   accepts_nested_attributes_for :options, allow_destroy: true
 
-  has_many :pictures, as: :picturable, dependent: :destroy, order: "position"
+  has_many :pictures, lambda { order "position" }, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
   has_many :product_relationships, dependent: :destroy
@@ -52,37 +60,34 @@ class Product < ActiveRecord::Base
 
   has_and_belongs_to_many :suppliers
   has_many :stocks
-  has_many :orders, through: :line_items, uniq: true
+  has_many :orders, lambda { uniq }, through: :line_items
   has_many :reviews, class_name: "ProductReview", dependent: :destroy
+
+
+  # SCOPES
+  # ------------------------------------------------------------------------------------------------------
+  scope :visibles,         -> { where(visible: true) }
+  scope :in_stocks,        -> { where('in_stock > ?', 0) }
+  scope :exclude_products, ->(product_ids) { where("id NOT IN (?)", product_ids) }
+  scope :active,           -> { where(active: true) }
+
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
+  attr_accessor :has_options, :auto_generate_variants
 
   store :meta_tag, accessors: [:seo_title, :seo_description]
 
 
-  # SCOPES
-  # ------------------------------------------------------------------------------
-  scope :visibles, where(visible: true)
-  scope :in_stocks, where('in_stock > ?', 0)
-  scope :exclude_products, lambda {|product_ids| where("id NOT IN (?)", product_ids)}
-  scope :active, where(active: true)
-  
-
-  # ATTRIBUTES
-  # ------------------------------------------------------------------------------
-  attr_accessible :name, :description, :visible, :slug, :featured, :supplier_id, :in_stock, :variants_attributes, 
-                  :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options, :options_attributes,
-                  :meta_tag, :seo_title, :seo_description, :auto_generate_variants, :master_attributes
-  attr_reader :category_tokens, :supplier_tokens, :cross_sell_tokens
-  attr_accessor :has_options, :auto_generate_variants
-  
-
   # VALIDATIONS
-  # ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------
   validates_uniqueness_of :name
   validates_presence_of :name, :slug, :description
   
 
   # CALLBACKS
-  # ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------
   before_create :generate_sku, :if => Proc.new { |product| product.master.sku.blank? }
   # before_save { |product| product.in_stock = 0 if product.in_stock.to_i < 0 }
   before_validation :generate_variants, :if => :new_record?
@@ -97,14 +102,18 @@ class Product < ActiveRecord::Base
 
 
   # CLASS METHODS
-  # ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------
   def self.sync_keywords!
     all.each &:sync_keywords!
   end
 
 
   # INSTANCE METHODS
-  # ------------------------------------------------------------------------------
+  # ------------------------------------------------------------------------------------------------------
+  def to_param
+    slug
+  end
+
   def sync_keywords
     self.keywords = VARIANT_SEARCH_FIELDS.inject([]) do |mem, obj|
       mem += all_variants.map(&obj)
@@ -114,10 +123,6 @@ class Product < ActiveRecord::Base
 
   def sync_keywords!
     sync_keywords and save
-  end
-
-  def to_param
-    slug
   end
 
   def category_tokens=(tokens)
@@ -136,7 +141,7 @@ class Product < ActiveRecord::Base
   end
 
   def on_sale?
-    master.reduced_price.present? && master.reduced_price > 0
+    master && master.reduced_price.present? && master.reduced_price > 0
   end
 
   def current_price
@@ -244,36 +249,36 @@ class Product < ActiveRecord::Base
     end
   end
 
-private
+  private
 
-  def generate_sku
-    last_product_id = Product.last.present? ? Product.last.id : 0
-    self.master.sku = "%05d" % (last_product_id + 1)
-  end
-
-  def clean_up
-    variants.each {|v| v.selected = '1'} if auto_generate_variants
-    variants.each {|v| v.mark_for_destruction unless v.selected == '1'}
-  end
-
-  def pushOpt(arr1, arr2)
-    result = []
-    for v1 in arr1
-      if arr2.size > 0
-        for v2 in arr2
-          if v1.kind_of?(Array)
-            tmp = v1.dup
-            tmp << v2
-            result << tmp
-          else
-            result << [v1, v2]
-          end
-        end
-      else
-        result << [v1]
-      end
+    def generate_sku
+      last_product_id = Product.last.present? ? Product.last.id : 0
+      self.master.sku = "%05d" % (last_product_id + 1)
     end
-    result
-  end
+
+    def clean_up
+      variants.each {|v| v.selected = '1'} if auto_generate_variants
+      variants.each {|v| v.mark_for_destruction unless v.selected == '1'}
+    end
+
+    def pushOpt(arr1, arr2)
+      result = []
+      for v1 in arr1
+        if arr2.size > 0
+          for v2 in arr2
+            if v1.kind_of?(Array)
+              tmp = v1.dup
+              tmp << v2
+              result << tmp
+            else
+              result << [v1, v2]
+            end
+          end
+        else
+          result << [v1]
+        end
+      end
+      result
+    end
 
 end

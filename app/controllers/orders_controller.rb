@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       return
     end
 
-    @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+    @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
     shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
 
     # TODO: add weight check
@@ -31,11 +31,11 @@ class OrdersController < ApplicationController
 
 	def create
     @cart = current_cart
-		@order = Order.new(params[:order])
+		@order = Order.new(safe_params)
     @order.client_id = current_user.id if current_user
     @order.remote_ip = request.remote_ip
 
-    @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('Worldwide')
+    @shipping_country = ShippingCountry.find_by_country(@cart.shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
     @shipping_estimate = ShippingRate.find(params[:shipping_rate])
     @order.build_from_cart(@cart, @shipping_country, @shipping_estimate)
     @order.copy_from_cart(@cart)
@@ -49,6 +49,7 @@ class OrdersController < ApplicationController
         AdminMailer.new_order(@order).deliver
         format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
       else
+        flash[:error] = "An error occured."
         format.html { redirect_to action: "new" }
       end
     end
@@ -57,4 +58,11 @@ class OrdersController < ApplicationController
 	def show
 		@order = current_user.orders.find(params[:id])
 	end
+
+  private
+
+    def safe_params
+      params.require(:order).permit(:stripe_card_token)
+    end
+
 end
