@@ -50,7 +50,7 @@ gem 'countries', :git => "https://github.com/hoangnghiem/countries.git"
 gem 'famfamfam_flags_rails'
 gem 'omniauth-stripe-connect'
 gem 'rails-settings-cached', "0.3.2"
-gem 'compass-rails', "~> 2.0.alpha.0"
+gem 'compass-rails', "~> 1.1.2"
 gem 'jquery-fileupload-rails'
 
 group :development, :test do
