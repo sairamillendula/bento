@@ -115,8 +115,9 @@ GEM
     debug_inspector (0.0.2)
     erubis (2.7.0)
     eventmachine (1.0.3)
-    exception_notification (3.0.1)
+    exception_notification (4.0.1)
       actionmailer (>= 3.0.4)
+      activesupport (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     faker (1.0.1)
@@ -305,7 +306,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   compass-rails (~> 2.0.alpha.0)
   countries!
-  exception_notification
+  exception_notification (~> 4.0.0)
   faker (= 1.0.1)
   famfamfam_flags_rails
   figaro

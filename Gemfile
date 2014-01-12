@@ -70,7 +70,7 @@ group :development do
 end
 
 group :production do
-  gem 'exception_notification'
+  gem 'exception_notification', '~> 4.0.0'
   gem 'unicorn'
   #gem 'therubyracer'
 end

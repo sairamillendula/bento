@@ -75,10 +75,12 @@ Bento::Application.configure do
   }
 
   # Notifications
-  config.middleware.use ExceptionNotifier,
+  config.middleware.use ExceptionNotification::Rack,
+  :email => {
     :email_prefix         => "[Exception]",
     :sender_address       => %{"[Bentooo] Exception Notifier" <app@bentooo.com>},
     :exception_recipients => %w{alert@yafoy.com}
+  }
 
   # Rails 4 upgrade, true if preloading: spork or zeus I suppose
   config.eager_load = true
