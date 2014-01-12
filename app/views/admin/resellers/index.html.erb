@@ -1,7 +1,7 @@
 <%= page_title("#{t 'resellers.title'}") %>
 
 <% if @users.present? %>
-  <table id="users" class="table table-striped">
+  <table id="resellers" class="table table-striped">
     <tr id="table-headers">
       <th>Business Name</th>
       <th><%= "#{t 'name', default: 'Name'}" %></th>
@@ -10,18 +10,7 @@
     </tr>
     
     <% @users.each do |user| %>
-      <tr>
-        <td><%= link_to user.reseller_request.business_name, admin_reseller_path(user) %></td>
-        <td><%= link_to user.full_name, admin_client_path(user) %></td>
-        <td><%= user.email %></td>
-        <td>
-          <% if user.reseller? %>
-            <%= icon_button_link_to "#{t 'disapprove'}", toggle_reseller_status_admin_reseller_path(user), level: 'danger', size: 'small', icon: 'remove', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
-          <% else %>
-            <%= icon_button_link_to "#{t 'approve'}", toggle_reseller_status_admin_reseller_path(user), level: 'success', size: 'small', icon: 'play', white: true, method: :post, data: {confirm: "#{t 'are_you_sure'}"} %>
-          <% end %>
-        </td>
-      </tr>
+      <%= render 'user', user: user %>
     <% end %>
   </table>
 

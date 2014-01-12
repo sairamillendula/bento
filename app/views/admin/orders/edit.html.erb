@@ -1,0 +1,36 @@
+<%= page_title("Editing ##{@order.code}") %>
+
+<%= simple_form_for([:admin, @order], html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+  <div class="row-fluid">
+    <div class="span6 address billing">
+      <h4><%= t 'shipping_address' %></h4>
+      <%= f.fields_for :shipping_address do |ff| %>
+        <%= ff.input :full_name %>
+        <%= ff.input :address1 %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city %>
+        <%= ff.input :postal_code %>
+        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province'} %>
+      <% end %>
+    </div>
+
+    <div class="span6 address shipping">
+      <h4><%= t 'billing_address' %></h4>
+      <%= f.fields_for :billing_address do |ff| %>
+        <%= ff.input :full_name %>
+        <%= ff.input :address1 %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city %>
+        <%= ff.input :postal_code %>
+        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province'} %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>

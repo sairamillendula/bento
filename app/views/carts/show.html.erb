@@ -26,7 +26,7 @@
 
     <div id="cart-actions" class="row-fluid">      
       <%= link_to "#{t 'theme.cart.continue'}", checkout_cart_path, class: "btn btn-success fr" %>
-      <%= f.submit disable_with: "#{t 'theme.updating'}", class: 'btn fr' %>
+      <%= f.submit data: {disable_with: "#{t 'theme.updating'}"}, class: 'btn fr' %>
     </div>
   <% end %>
   
@@ -36,7 +36,7 @@
     <%= form_tag apply_coupon_cart_path, class: 'form-inline' do %>
       <%= label_tag :coupon_code, "#{t 'theme.coupon_code'}" %>
       <%= text_field_tag :coupon_code, @cart.coupon_code %>
-      <%= submit_tag "#{t 'theme.apply_coupon'}", disable_with: "#{t 'theme.apply_coupon'}", class: 'btn' %>
+      <%= submit_tag "#{t 'theme.apply_coupon'}", data: {disable_with: "#{t 'theme.apply_coupon'}"}, class: 'btn' %>
     <% end %>
   <% end %>
   
@@ -70,7 +70,7 @@
             <div class="control-group string optional">
               <label class="string optional control-label" for="shipping_calculate">&nbsp;</label>
               <div class="controls">
-                <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', disable_with: "#{t 'theme.calculating'}", style: 'margin-left:0;' %>
+                <%= f.submit "#{t 'theme.cart.calculate'}", class: 'btn', data: {disable_with: "#{t 'theme.calculating'}"}, style: 'margin-left:0;' %>
               </div>
             </div>
           </div>

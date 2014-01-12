@@ -77,7 +77,9 @@ class Admin::OrdersController < Admin::BaseController
   private
 
     def safe_params
-      params.require(:order).permit(:state, :shipped_at)
+      params.require(:order).permit(:state, :shipped_at, 
+                                    shipping_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province],
+                                    billing_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province] )
     end
 
     def set_order

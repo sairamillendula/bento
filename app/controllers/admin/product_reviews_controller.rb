@@ -12,10 +12,14 @@ class Admin::ProductReviewsController < Admin::BaseController
   def toggle_product_review_status
     @review.toggle_product_review_status
 
-    if @review.approved?
-      redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_approved'}."
-    else
-      redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_disapproved'}."
+    respond_to do |format|
+      if @review.approved?
+        format.html { redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_approved'}." }
+        format.js
+      else
+        format.html { redirect_to admin_product_reviews_url, notice: "#{t 'reviews.is_now_disapproved'}." }
+        format.js
+      end
     end
   end
 

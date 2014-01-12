@@ -13,11 +13,15 @@ class Admin::ResellersController < Admin::BaseController
   def toggle_reseller_status
     @user.toggle_reseller_status
 
-    if @user.reseller?
-      ResellerMailer.reseller_request_approved(@user).deliver
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}"
-    else
-      redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}."
+    respond_to do |format|
+      if @user.reseller?
+        format.html { redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}" }
+        format.js
+        ResellerMailer.reseller_request_approved(@user).deliver
+      else
+        format.html { redirect_to admin_resellers_url, notice: "#{@user.full_name} #{t 'is_now_deactivated', default: 'is deactivated'}." }
+        format.js
+      end
     end
   end
 
