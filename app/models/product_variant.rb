@@ -101,6 +101,15 @@ class ProductVariant < ActiveRecord::Base
     end
   end
 
+  def as_json(opt={})
+    {
+      id: id,
+      price: current_price.to_s.to_f,
+      in_stock: in_stock,
+      options: options
+    }
+  end
+
   private
 
     def update_product_options

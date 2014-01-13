@@ -17,7 +17,7 @@ class Admin::OptionsController < Admin::BaseController
     end
 
     def safe_params
-      params.require(:product).permit(options_attributes: [:name, :product, :values, :position, "_destroy"])
+      params.require(:product).permit(options_attributes: [:id, :name, :product, :values, :position, "_destroy"])
     end
 
 end

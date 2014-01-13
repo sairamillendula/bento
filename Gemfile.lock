@@ -301,7 +301,7 @@ DEPENDENCIES
   acts_as_list
   better_errors
   binding_of_caller
-  capistrano
+  capistrano (~> 2.15.0)
   capistrano-nc
   coffee-rails (~> 4.0.0)
   compass-rails (~> 1.1.2)

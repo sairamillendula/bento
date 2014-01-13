@@ -59,7 +59,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'capistrano'
+  gem 'capistrano', '~> 2.15.0'
   gem 'capistrano-nc'
   gem 'rack-mini-profiler'
   gem 'thin'

@@ -218,6 +218,10 @@ a {
   }
 }
 
+.line-through {
+  text-decoration: line-through;
+}
+
 .pagination {
   margin: 20px 0;
   text-align: center;
@@ -329,8 +333,4 @@ a {
 	.container > header > span {
 		text-indent: 30px;
 	}
-}
-
-.line-through {
-  text-decoration: line-through;
 }
