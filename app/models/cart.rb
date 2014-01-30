@@ -4,7 +4,7 @@ class Cart < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   has_many :items, class_name: "LineItem", dependent: :destroy
   accepts_nested_attributes_for :items, allow_destroy: true
-  
+
   has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address
 
@@ -15,7 +15,7 @@ class Cart < ActiveRecord::Base
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   attr_accessor :tax_amount
-  
+
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
@@ -29,19 +29,23 @@ class Cart < ActiveRecord::Base
       end
     end
   end
-  
+
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
   # buyable can be product or variant
   # return: line item
   def add_to_cart(variant)
-    current_item = items.where(variant_id: variant.id).first_or_initialize
-    current_item.quantity += 1 unless current_item.new_record?
-    current_item.price = variant.current_price
-    current_item.save
-    calculate
-	  current_item
+    if variant.in_stock?
+      current_item = items.where(variant_id: variant.id).first_or_initialize
+      current_item.quantity += 1 unless current_item.new_record?
+      current_item.price = variant.current_price
+      current_item.save
+      calculate
+  	  current_item
+    else
+      I18n.t("theme.out_of_stock")
+    end
   end
 
   def remove_from_cart(line_id)

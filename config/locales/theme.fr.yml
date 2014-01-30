@@ -42,6 +42,7 @@ fr:
     remember_me: Se souvenir
     required: requis
     from_price: À partir de
+    out_of_stock: 'Stock épuisé'
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel
