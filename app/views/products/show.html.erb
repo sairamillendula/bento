@@ -36,7 +36,7 @@
       <% if @product.master.in_stock? %>
         <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: @product.master.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
       <% else %>
-        <p><%= t 'theme.out_of_stock' %></p>
+        <h2><%= t 'theme.out_of_stock' %></h2>
       <% end %>
     <% end %>
     <ul id="share-product">
