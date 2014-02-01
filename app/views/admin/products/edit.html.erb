@@ -15,7 +15,7 @@
       <%= ff.input :in_stock, input_html: {class: 'input-small', integer_only: true, min: 0, step: :any} %>
       <%= f.input :description %>
     <% end %>
-  
+
     <%= subsection_title('Classification & Related Products') %>
     <div class="control-group">
       <label class="control-label" for="product_category_tokens"><%= t 'categories' %></label>
@@ -40,7 +40,7 @@
 
     <%= subsection_title('Options') %>
     <div class="control-group" id="options-container">
-      <div class="control-label"><%= link_to "#{t 'products.edit_options'}", '#edit-option-modal', class: 'btn btn-inverse', data: {toggle: 'modal'} %></div>
+      <div class="control-label"><%= link_to "#{t 'products.edit_options'}", edit_admin_product_options_path(@product), class: 'btn btn-inverse', data: {toggle: 'modal', target: '#edit-option-modal'} %></div>
       <div class="controls well">
         <% if @product.options.any? %>
           <table id="table-variants" class="table">
@@ -92,10 +92,11 @@
             </tfoot>
           </table>
         <% else %>
-          <div class="alert warning" style="margin-bottom:0;">This product has no options yet. Please add options first.</div>  
+          <div class="alert warning" style="margin-bottom:0;">This product has no options yet. Please add options first.</div>
         <% end %>
+      </div>
     </div>
-    
+
     <%= subsection_title('SEO') %>
     <%= render 'admin/meta_tags/form', f: f %>
   </div>
@@ -105,7 +106,16 @@
   </div>
 <% end %>
 
-<%= render 'admin/options/modal_form', product: @product %>
+<%#= render 'admin/options/modal_form', product: @product %>
+<div id="edit-option-modal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+    <h3 id="myModalLabel">Edit Options</h3>
+  </div>
+  <div class="modal-body">
+    <p>Loading...</p>
+  </div>
+</div>
 
 <script type="text/javascript">
   Util.onReady(function() {

@@ -36,9 +36,9 @@ class NewProductForm
 
       @resetOptionIds()
       if @isValid()
-        @generateVariants() 
+        @generateVariants()
       else
-        @resetVariants()  
+        @resetVariants()
 
     # Add product option handle
     $(document).on 'nested:fieldAdded:options', (event) =>
@@ -59,19 +59,19 @@ class NewProductForm
     $('.option_values').tagsInput
       'defaultText': 'Separate values by a comma'
       'onAddTag': @addOption
-      'onRemoveTag': @removeOption    
+      'onRemoveTag': @removeOption
 
   addOption: (field, optionValue) =>
     if @isValid()
-      @generateVariants() 
+      @generateVariants()
     else
-      @resetVariants()  
+      @resetVariants()
 
   removeOption: (value) =>
     if @isValid()
-      @generateVariants() 
+      @generateVariants()
     else
-      @resetVariants()  
+      @resetVariants()
 
   isValid: ->
     for optionValue in $('.option_values')
@@ -91,12 +91,12 @@ class NewProductForm
 
     if $('#option-2').length > 0
       option2 = $.map $("#option-2 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-2\">#{n}</span>", value: n}
-      variants = @pushOpt(variants, option2) 
+      variants = @pushOpt(variants, option2)
 
     if $('#option-3').length > 0
       option3 = $.map $("#option-3 .option_values").val().split(','), (n, i) -> return {name: "<span class=\"option-3\">#{n}</span>", value: n}
       variants = @pushOpt(variants, option3)
-    
+
     $('#auto-create').show()
     $('#variant-count').text(variants.length)
 
@@ -130,16 +130,16 @@ class NewProductForm
           else
             result.push([v1, v2])
       else
-        result.push([v1])      
-    return result    
-    
-  
+        result.push([v1])
+    return result
+
+
   resetOptionIds: ->
     $('#options_fields tbody tr').each (index, tr) ->
       $(tr).attr('id', "option-#{index + 1}")
 
 @new_product_form = new NewProductForm()
-  
+
 class EditProductForm
   constructor: ->
 
@@ -152,25 +152,17 @@ class EditProductForm
       else
         return $(content).insertBefore(link)
 
-    $(document).on 'nested:fieldAdded:options', (event) =>
-      if $('#table-options').find('tbody tr:visible').length == 3
-        $('#add_product_option').hide()
-      else
-        $('#add_product_option').show()    
+    # $(document).on 'nested:fieldAdded:options', (event) =>
+    #   if $('#table-options').find('tbody tr:visible').length == 3
+    #     $('#add_product_option').hide()
+    #   else
+    #     $('#add_product_option').show()
 
-    $(document).on 'nested:fieldRemoved:options', (event) =>
-      if $('#table-options').find('tbody tr:visible').length == 3
-        $('#add_product_option').hide()
-      else
-        $('#add_product_option').show()    
-
-    $(document).on 'click', '.close-modal', (e) ->
-      $('#edit-option-modal').modal('hide')
-      return false
-
-    $(document).on 'hidden', '#edit-option-modal', (e) ->
-      $.get $('.close-modal').attr('href'), (html) ->
-        $('#edit-option-modal').replaceWith(html)
+    # $(document).on 'nested:fieldRemoved:options', (event) =>
+    #   if $('#table-options').find('tbody tr:visible').length == 3
+    #     $('#add_product_option').hide()
+    #   else
+    #     $('#add_product_option').show()
 
 @edit_product_form = new EditProductForm()
 

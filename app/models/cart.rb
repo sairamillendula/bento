@@ -44,7 +44,7 @@ class Cart < ActiveRecord::Base
       calculate
   	  current_item
     else
-      I18n.t("theme.out_of_stock")
+      I18n.t("theme.out_of_stock", default: "Out of Stock")
     end
   end
 

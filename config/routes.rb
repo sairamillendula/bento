@@ -12,7 +12,7 @@ Bento::Application.routes.draw do
   resource :password, only: [:new, :create, :edit, :update]
   resources :registrations, except: [:index, :show, :destroy]
   resources :sessions
-  
+
   # ============================================================
   # API ROUTES
   # ============================================================
@@ -39,7 +39,7 @@ Bento::Application.routes.draw do
       root to: 'shipping_countries#index', as: :shipping
       resources :shipping_countries, except: [:index, :show]
     end
-    
+
     resources :collections do
       member do
         post "sort_products"
@@ -54,7 +54,7 @@ Bento::Application.routes.draw do
         post :toggle_reseller_status
       end
     end
-    
+
     resources :products do
       resource :options, only: [:edit, :update], as: :options
       resources :variants, only: [:destroy]
@@ -77,7 +77,7 @@ Bento::Application.routes.draw do
     resource :settings, only: [:show, :update] do
       delete :remove_logo
     end
-    
+
     resource :reports do
       collection do
         get "sales"
@@ -112,7 +112,7 @@ Bento::Application.routes.draw do
   post "language/set_to_english"
   post "language/set_to_french"
   get "application/users" # used for dynamic caching only
-  
+
   scope "/blog" do
     get "/", controller: 'articles', action: 'index', as: 'blog'
     get "/:slug" => "articles#show", as: 'article'
@@ -129,7 +129,7 @@ Bento::Application.routes.draw do
     resources :line_items
   end
   resources :line_items, only: [:create, :update]
-  
+
   resources :orders, only: [:index, :new, :create, :show]
   resources :tags, only: :index
   resources :categories, only: :index
@@ -147,7 +147,7 @@ Bento::Application.routes.draw do
   resource :reseller_request, only: :create
   resource :contact, only: [:show, :create]
   get "user_info" => 'pages#user_info'
-  
+
   get "/:slug" => 'pages#show', as: 'page'
 
   root :to => 'pages#home'

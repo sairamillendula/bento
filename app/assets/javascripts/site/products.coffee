@@ -27,7 +27,7 @@ class @ProductOptionSelector
           else
             $('#price').removeClass('line-through').text(I18n.t('out_of_stock'))
             $('#sale-price').hide()
-            $('#add-to-cart').hide()  
+            $('#add-to-cart').hide()
         else
           $('#price').removeClass('line-through').text(I18n.t('not_available'))
           $('#sale-price').hide()

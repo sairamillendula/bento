@@ -7,7 +7,6 @@ class Admin::OptionsController < Admin::BaseController
 
   def update
     @product.update_attributes(safe_params)
-    redirect_to [:edit, :admin, @product]
   end
 
   private

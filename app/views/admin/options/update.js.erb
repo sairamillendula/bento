@@ -1,0 +1,5 @@
+<% if @product.errors.any? %>
+  $('#edit-option-form').replaceWith('<%= j render("modal_form", product: @product) %>');
+<% else %>
+  window.location = "<%= edit_admin_product_path(@product) %>";
+<% end %>
