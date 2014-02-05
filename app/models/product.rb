@@ -1,7 +1,6 @@
 class Product < ActiveRecord::Base
   include ActionView::Helpers::NumberHelper
 
-
   # FRIENDLY ID
   # ------------------------------------------------------------------------------------------------------
   extend FriendlyId

@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
   def home
     #@products = Product.visibles.order('name').page(params[:page]).per(12)
-    @products = Collection.first.products.visibles.order('position').page(params[:page]).per(12)
+    @products = Collection.first.products.visibles.includes(:pictures).order('position').page(params[:page]).per(12)
 
     respond_to do |format|
       format.html
