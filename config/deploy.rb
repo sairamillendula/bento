@@ -6,7 +6,7 @@ server "50.116.63.166", :web, :app, :db, primary: true
 #set :whenever_command, "bundle exec whenever"
 #require "whenever/capistrano"
 
-set :application, "bentooo"
+set :application, "bento"
 set :user, "deployer"
 set :deploy_to, "/home/#{user}/apps/#{application}"
 set :deploy_via, :remote_cache
@@ -14,7 +14,7 @@ set :use_sudo, false
 
 set :scm, "git"
 set :repository, "git@github.com:olimart/bento.git"
-set :branch, "master"
+set :branch, "jolibento"
 
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true

@@ -61,8 +61,8 @@ Bento::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  config.action_mailer.default_url_options = { host: 'bentooo.com' }
-  config.action_mailer.asset_host = 'https://bentooo.com'
+  config.action_mailer.default_url_options = { host: 'jolibento.com' }
+  config.action_mailer.asset_host = 'https://jolibento.com'
   config.action_mailer.raise_delivery_errors = true
   config.action_mailer.perform_deliveries = true
   config.action_mailer.delivery_method = :smtp
@@ -78,7 +78,7 @@ Bento::Application.configure do
   config.middleware.use ExceptionNotification::Rack,
   :email => {
     :email_prefix         => "[Exception]",
-    :sender_address       => %{"[Bentooo] Exception Notifier" <app@bentooo.com>},
+    :sender_address       => %{"[Joli Bento] Exception Notifier" <app@jolibento.com>},
     :exception_recipients => %w{alert@yafoy.com}
   }
 

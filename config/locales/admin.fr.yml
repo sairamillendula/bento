@@ -223,7 +223,7 @@ fr:
     new_admin_user:
       subject: Account created
     new_order:
-      subject: "[Bentooo] New Order"
+      subject: "[Joli Bento] New Order"
     new_reseller_request:
       subject: New reseller request
     reset_password_email:
