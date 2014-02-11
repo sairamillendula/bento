@@ -1,17 +1,17 @@
 class Collection < ActiveRecord::Base
-	
+
   # FRIENDLY ID
   # ------------------------------------------------------------------------------------------------------
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
   include Sluggable
   include PgSearch
-  
+
 
   # SEARCH
   # ------------------------------------------------------------------------------------------------------
   multisearchable :against => :name
-  pg_search_scope :search_by_keyword, 
+  pg_search_scope :search_by_keyword,
                   :against => [:name],
                   :using => {
                     :tsearch => {
@@ -19,14 +19,14 @@ class Collection < ActiveRecord::Base
                     }
                   },
                   :ignoring => :accents
-  
-  
+
+
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   has_many :collection_products, dependent: :destroy
   has_many :products, through: :collection_products
 
-  
+
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   store :meta_tag, accessors: [:seo_title, :seo_description]
@@ -35,7 +35,7 @@ class Collection < ActiveRecord::Base
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :format_slug
-  
+
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------

@@ -169,6 +169,8 @@ t.update_attributes(name: 'HST', rate: '13')
 puts "Created shipping country: Canada"
 
 
+Collection.create!(name: 'Top Sellers', slug: 'top-sellers')
+Collection.create!(name: 'On Sale', slug: 'on-sale')
 Collection.create!(name: 'homepage', slug: 'homepage')
 puts "Created collection for homepage"
 

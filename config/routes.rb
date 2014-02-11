@@ -104,7 +104,7 @@ Bento::Application.routes.draw do
   # ============================================================
   scope module: 'reseller', path: 'reseller', as: 'reseller' do
     root to: 'dashboard#show', as: :dashboard
-  end  
+  end
 
   # ============================================================
   # PUBLIC ROUTES

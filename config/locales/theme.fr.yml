@@ -51,6 +51,12 @@ fr:
       cutlery: Couverts
       napkin: Serviette de table
       kit: Kit bento
+      modern_bento_box: Boite à bento moderne
+      traditional_bento_box: Boite à bento traditionnelle
+      kid_bento_box: Boite à bento pour enfants
+      kit_bento_box: Kit à Bento
+      top_sellers: Meilleures ventes
+      on_sale: Bento en promotion
     card:
       name: Nom sur la carte
       number: Numéro de carte de crédit

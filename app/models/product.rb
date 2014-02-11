@@ -34,7 +34,7 @@ class Product < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   has_many :all_variants, class_name: 'ProductVariant', dependent: :destroy
-  
+
   has_many :variants, -> { where(active: true, master: false) }, class_name: "ProductVariant"
   accepts_nested_attributes_for :variants, allow_destroy: true, reject_if: proc {|attributes| attributes['selected'] != '1'}
 
@@ -67,8 +67,10 @@ class Product < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   scope :visibles,         -> { where(visible: true) }
   scope :in_stocks,        -> { where('in_stock > ?', 0) }
-  scope :exclude_products, ->(product_ids) { where("id NOT IN (?)", product_ids) }
+  scope :exclude_products, -> (product_ids) { where("id NOT IN (?)", product_ids) }
   scope :active,           -> { where(active: true) }
+  scope :top_sellers,      -> { where("orders_count > 0").order(:orders_count).limit(10)}
+  #scope :on_sales, -> { joins(:master).where("variants.reduced_price > 0") }
 
 
   # ATTRIBUTES
@@ -83,7 +85,7 @@ class Product < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   validates_uniqueness_of :name
   validates_presence_of :name, :slug, :description
-  
+
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
@@ -159,7 +161,7 @@ class Product < ActiveRecord::Base
   def price_margin
     (master.price - (master.cost_price || 0)) / (master.cost_price || 0) * 100
   end
-  
+
   def in_stock?
     master.in_stock > 0
   end
@@ -216,7 +218,7 @@ class Product < ActiveRecord::Base
   def quick_pictures
     pictures.limit(2).order('position')
   end
-  
+
   def self.to_csv(options={}, host_with_port)
     headers = %w{id title description condition price availability link image_link google_product_category}
     header_indexes = Hash[headers.map.with_index{|*x| x}]
