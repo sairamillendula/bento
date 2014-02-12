@@ -90,6 +90,11 @@ en:
       submit: Send message
       menu_tab: Contact
       success_notice: Message sent! Thank you for contacting us
+    guarantees:
+      free_shipping_from: Free shipping from $80
+      worldwide_delivery: We ship worldwide
+      live_stock_update: Live stock update
+      order_online_tracking: Track order online
     orders:
       title: Order
       thank_you: Thank you for your order

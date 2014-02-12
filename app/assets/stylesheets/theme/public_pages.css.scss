@@ -31,10 +31,27 @@
 			font-size: 32px;
 
 			a.icomoon:after {
-				color: #666;
+				color: $grey;
       }
       a.icomoon:hover:after {
       	color: #333;
+      }
+		}
+	}
+
+  .guarantees {
+		margin-left: 0;
+		padding-left: 0;
+
+		li {
+			list-style-type: none;
+			color: lighten($grey, 10%);
+			line-height: 2em;
+
+			&:before {
+				font-family: "icomoon";
+        content: "\e600";
+        margin-right: 8px;
       }
 		}
 	}
@@ -85,7 +102,7 @@
 
 		tr td:first-of-type {
 			text-transform: uppercase;
-    	color: #666;
+    	color: $grey;
       -webkit-font-smoothing: antialiased;
       letter-spacing: 1px;
       padding-right: 25px;
@@ -116,7 +133,7 @@
 			}
 		}
 	}
-	
+
 	#stripe_error {
   	color: #b94a48;
   }

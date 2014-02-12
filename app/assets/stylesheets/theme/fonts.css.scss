@@ -1,7 +1,7 @@
 @import "compass/css3/font-face";
 @import url(https://fonts.googleapis.com/css?family=Lato:400|News+Cycle);
 
-@include font-face("icomoon", 
+@include font-face("icomoon",
   font-files(
     'icomoon/icomoon.woff', woff,
     'icomoon/icomoon.ttf', ttf,
@@ -35,4 +35,7 @@
 }
 .icon-lock:before {
   content: "\e005"
+}
+.icon-checkmark:before {
+  content: "\e600";
 }

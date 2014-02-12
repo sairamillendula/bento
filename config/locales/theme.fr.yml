@@ -90,6 +90,11 @@ fr:
       submit: Envoyer le message
       menu_tab: Contact
       success_notice: Message envoyé. Merci!
+    guarantees:
+      free_shipping_from: Livraison offerte à partir de 80$
+      worldwide_delivery: Livraison mondiale
+      live_stock_update: Disponibilité des produits en temps réel
+      order_online_tracking: Suivi des commandes en ligne
     orders:
       title: Commande
       thank_you: Merci pour votre commande
