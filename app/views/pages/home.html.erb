@@ -1,11 +1,11 @@
 <%= content_for :body_id do %>homepage<% end %>
-
+<% cache @products do %>
 <div id="pgcontainer" class="pgcontainer">
   <ul class="pggrid" id="product-list">
     <%= render partial: 'products/product', collection: @products, as: :product %>
   </ul>
 </div>
-
+<% end %>
 <%= paginate @products %>
 
 <script type="text/javascript">

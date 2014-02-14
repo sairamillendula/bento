@@ -1611,6 +1611,13 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: collection_products_position_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX collection_products_position_index ON collection_products USING btree ("position");
+
+
+--
 -- Name: index_addresses_on_addressable_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1828,6 +1835,27 @@ CREATE INDEX index_users_on_reset_password_token ON users USING btree (reset_pas
 
 
 --
+-- Name: pictures_picturable_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX pictures_picturable_index ON pictures USING btree (picturable_id, picturable_type);
+
+
+--
+-- Name: pictures_position_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX pictures_position_index ON pictures USING btree ("position");
+
+
+--
+-- Name: product_variants_master_active_index; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX product_variants_master_active_index ON product_variants USING btree (master, active);
+
+
+--
 -- Name: unique_schema_migrations; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1923,3 +1951,9 @@ INSERT INTO schema_migrations (version) VALUES ('20130912195900');
 INSERT INTO schema_migrations (version) VALUES ('20131120224443');
 
 INSERT INTO schema_migrations (version) VALUES ('20131121021009');
+
+INSERT INTO schema_migrations (version) VALUES ('20140214130158');
+
+INSERT INTO schema_migrations (version) VALUES ('20140214131505');
+
+INSERT INTO schema_migrations (version) VALUES ('20140214131938');
