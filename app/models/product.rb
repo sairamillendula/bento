@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   extend FriendlyId
   friendly_id :slug, use: [:slugged, :history]
   include Sluggable
-  
+
 
   # SEARCH
   # ------------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
   # rake pg_search:multisearch:rebuild[Product]
   # Product.search_by_keyword('00100')
   multisearchable :against => [:name, :slug, :keywords]
-  pg_search_scope :search_by_keyword, 
+  pg_search_scope :search_by_keyword,
                   :against => [:name, :slug],
                   :associated_against => {
                     :all_variants => [:sku, :price]

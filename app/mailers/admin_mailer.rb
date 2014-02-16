@@ -2,7 +2,7 @@ class AdminMailer < ActionMailer::Base
   default from: "#{I18n.t 'theme.site_name'} <#{ENV['DEFAULT_EMAIL_SENDER']}>"
   default to: ENV['DEFAULT_ADMIN_EMAIL']
   layout "email_admin"
-  
+
   def new_admin_user(user, random_password)
   	@user = user
   	@random_password = random_password

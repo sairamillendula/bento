@@ -1,11 +1,11 @@
 class Admin::UsersController < Admin::BaseController
   before_action :set_user, only: [:toggle_status]
   set_tab :users
-  
+
   def index
   	@users = User.admin.exclude_users([current_user.id]).order('first_name')
   end
-  
+
   def new
     @user = User.new
   end
@@ -16,7 +16,7 @@ class Admin::UsersController < Admin::BaseController
     @user.password = random_password
     @user.password_confirmation = random_password
     @user.admin = true
-    
+
     respond_to do |format|
       if @user.save
         AdminMailer.new_admin_user(@user, random_password).deliver

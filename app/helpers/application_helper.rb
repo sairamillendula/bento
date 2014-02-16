@@ -7,7 +7,7 @@ module ApplicationHelper
       form.submit(class: 'btn btn-primary', data: {disable_with: "#{t 'please_wait'}"}) + " #{t 'or'} " + link_to(cancel_name, 'javascript:history.go(-1);', class: 'cancel')
     end
   end
-  
+
   def sortable(column, title = nil)
     title ||= column.titleize
     css_class = column == sort_column ? "current #{sort_direction}" : nil
@@ -16,7 +16,7 @@ module ApplicationHelper
     options.merge!(params.slice(:search, :day))
     link_to title, options, {class: css_class}
   end
-  
+
   def sort_direction
     %w[asc desc].include?(params[:direction]) ? params[:direction] : "asc"
   end
