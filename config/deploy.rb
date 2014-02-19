@@ -3,8 +3,8 @@ require "capistrano-nc"
 
 server "50.116.63.166", :web, :app, :db, primary: true
 
-#set :whenever_command, "bundle exec whenever"
-#require "whenever/capistrano"
+set :whenever_command, "bundle exec whenever"
+require "whenever/capistrano"
 
 set :application, "bento"
 set :user, "deployer"
@@ -29,13 +29,13 @@ after "deploy:setup", "init:create_upload_directory"
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
 namespace :init do
-  
+
   desc "Set proper permissions for deployment user"
   task :set_permissions do
     sudo "mkdir -p #{shared_path}/config"
     sudo "chown -R #{user}:admin #{deploy_to}"
   end
-  
+
   desc "Create database yaml"
   task :database_yaml do
     set :db_name, Capistrano::CLI.ui.ask("database name: ")
@@ -52,10 +52,10 @@ production:
   host: #{db_host}
   pool: 5
 EOF
-    
+
     put db_config.result, "#{shared_path}/config/database.yml"
   end
-  
+
   desc "Create production.rb"
   task :production_file do
     template = ERB.new(File.read('config/environments/production.rb'))
@@ -64,11 +64,11 @@ EOF
     mail_server_post = Capistrano::CLI.ui.ask('What is mail server port (587)?: ')
     mail_server_username = Capistrano::CLI.ui.ask('What is mail server username?: ')
     mail_server_password = Capistrano::CLI.ui.ask('What is mail server password?: ')
-    
+
     run "mkdir -p #{shared_path}/config"
     put template.result(binding), "#{shared_path}/config/production.rb"
   end
-  
+
   desc "Create config. file"
   task :config_file do
   	put File.read("config/application.sample.yml"), "#{shared_path}/config/application.yml"
@@ -83,7 +83,7 @@ EOF
 
   desc "Create upload directory for pictures"
   task :create_upload_directory do
-    run "mkdir -p #{shared_path}/upload" 
+    run "mkdir -p #{shared_path}/upload"
   end
 end
 
@@ -127,12 +127,12 @@ namespace :db do
   task :migrate, roles: :app do
     run "cd #{current_path}; bundle exec rake RAILS_ENV=production -f #{current_path}/Rakefile db:migrate --trace"
   end
-  
+
   desc "Seed database"
   task :seed, roles: :app do
     run "cd #{current_path}; bundle exec rake RAILS_ENV=production -f #{current_path}/Rakefile db:seed --trace"
   end
-  
+
   desc "Drop & Migrate database"
   task :reset, roles: :app do
     run "cd #{current_path}; bundle exec rake RAILS_ENV=production -f #{current_path}/Rakefile db:drop db:migrate --trace"

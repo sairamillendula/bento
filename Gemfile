@@ -38,7 +38,7 @@ gem 'tabs_on_rails', "~> 2.1.1"
 gem 'friendly_id', '~> 5.0.0'
 gem 'redcarpet'
 gem 'prawn', github: "prawnpdf/prawn"
-#gem 'whenever', :require => false
+gem 'whenever', :require => false
 gem 'ransack', github: "ernie/ransack", branch: "rails-4" # Use rails 4 branch
 gem 'kaminari'
 gem 'paperclip'

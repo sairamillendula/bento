@@ -90,6 +90,7 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-nc (0.0.2)
       terminal-notifier (~> 1.4.2)
+    chronic (0.10.2)
     chunky_png (1.2.9)
     climate_control (0.0.3)
       activesupport (>= 3.0)
@@ -291,6 +292,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    whenever (0.9.0)
+      activesupport (>= 2.3.4)
+      chronic (>= 0.6.3)
 
 PLATFORMS
   ruby
@@ -342,3 +346,4 @@ DEPENDENCIES
   turbolinks
   uglifier (>= 1.3.0)
   unicorn
+  whenever

@@ -1,5 +1,5 @@
 class Order < ActiveRecord::Base
-  
+
   # SEARCH
   # ------------------------------------------------------------------------------------------------------
   include PgSearch
@@ -22,12 +22,12 @@ class Order < ActiveRecord::Base
     OPEN      = 'open'
     SHIPPED   = 'shipped'
     CANCELLED = 'cancelled'
-    
+
     def self.options
       [[I18n.t(PENDING), PENDING], [I18n.t(OPEN), OPEN], [I18n.t(SHIPPED), SHIPPED], [I18n.t(CANCELLED), CANCELLED]]
     end
   end
-  
+
 
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
@@ -55,7 +55,7 @@ class Order < ActiveRecord::Base
   scope :within_period, ->(from, to) { where(created_at: (from..to)) }
   scope :from_date,     ->(from) { where("created_at >= ?", from) }
   scope :to_date,       ->(to) { where("created_at <= ?", to) }
-  
+
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
@@ -198,7 +198,7 @@ class Order < ActiveRecord::Base
   def coupon_formatted
     if coupon_code.present?
       coupon_percentage.present? ? subtotal*coupon_amount/100 : coupon_amount
-    end  
+    end
   end
 
   # EXPORT
