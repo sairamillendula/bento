@@ -1,5 +1,5 @@
 class Admin::SettingsController < Admin::BaseController
-  
+
   def show
     set_tab :settings
   end
@@ -13,7 +13,7 @@ class Admin::SettingsController < Admin::BaseController
     @settings = @settings.each {|s| a[s.key] = s.value}
     @settings = a
   end
-  
+
   def update
     if params[:setting]
       if file = params[:setting].delete(:logo)

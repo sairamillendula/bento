@@ -1,0 +1,29 @@
+<%= page_title("Abandoned checkouts") %>
+
+<% if @carts.present? %>
+  <table id="orders" class="table table-striped">
+	  <tr id="table-headers">
+	  	<th><%= sortable "created_at", "Date" %></th>
+	  	<th>Items</th>
+	  	<th><%= sortable "total", "#{t 'total'}" %></th>
+	    <th><%= sortable "coupon_code", "Coupon" %></th>
+	    <th><%= sortable "email" %></th>
+	    <th><%= sortable "full_name", "#{t 'client'}" %></th>
+	  </tr>
+
+	  <% @carts.each do |cart| %>
+	    <tr>
+	      <td><%= l cart.created_at, format: :long %></td>
+	      <td><%= cart.items.length || '0' %></td>
+	      <td><%= number_to_currency(cart.total) %></td>
+	      <td><%= cart.coupon_code %></td>
+	      <td><%= cart.email %></td>
+	      <td><%= "#{cart.first_name} #{cart.last_name}" %></td>
+	    </tr>
+	  <% end %>
+	</table>
+<% else %>
+  <p class="alert">No abandoned checkouts found.</p>
+<% end %>
+
+<%= paginate @carts %>

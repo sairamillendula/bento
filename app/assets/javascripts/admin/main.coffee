@@ -1,7 +1,7 @@
 Util.onReady ->
   $("#q_reset").click ->
     $(".form-search input, .form-search select").val('')
-  
+
   # token fields
   $('#article_tag_tokens').tokenInput(
     '/tags.json'
@@ -34,13 +34,13 @@ Util.onReady ->
     $link = $(e.currentTarget)
     assoc = $link.data('association')
     wrapper = $link.data('wrapper') || '.fields'
-      
+
     hiddenField = $link.prev('input[type=hidden]')
     hiddenField.val('1')
-      
+
     field = $link.closest(wrapper)
     field.hide()
-      
+
     field
       .trigger({ type: 'nested:fieldRemoved', field: field })
       .trigger({ type: 'nested:fieldRemoved:' + assoc, field: field })

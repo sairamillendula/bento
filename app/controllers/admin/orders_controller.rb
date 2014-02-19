@@ -75,6 +75,10 @@ class Admin::OrdersController < Admin::BaseController
     # send to pdf
   end
 
+  def abandoned
+    @carts = Cart.includes(:items).order('created_at DESC').page(params[:page]).per(20)
+  end
+
   private
 
     def safe_params

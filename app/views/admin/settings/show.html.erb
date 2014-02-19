@@ -19,6 +19,13 @@
       <%= image_tag "powered-by-stripe.png", size: "119x26", alt: "Powered by Stripe" %>
       <p><%= t 'stripe.account_set_up' %> <%= link_to "Stripe account", "https://manage.stripe.com", target: "_blank" %>.</p>
     <%# end %>
+
+    <h3>Store</h3>
+    <div class="input-append">
+      <%= f.label :abandonned_carts_reminder, 'Send reminder to abandonned carts after' %>
+      <%= f.text_field :abandonned_carts_reminder, class: 'span3', placeholder: '30' %>
+      <span class="add-on">days</span>
+    </div>
   </div>
   <div class="form-actions reset">
     <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>

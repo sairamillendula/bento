@@ -2,7 +2,10 @@
 
 <% if @orders.present? %>
   <%= form_tag params.merge(format: :pdf), method: :get do %>
-    <div class="well well-small"><%= submit_tag "Print invoices", class: "btn btn-inverse", name: nil %></div>
+    <div class="well well-small">
+    	<%= submit_tag "Print invoices", class: "btn btn-inverse", name: nil %>
+    	<%= link_to "Abandoned checkouts", abandoned_admin_orders_path, class: 'btn btn-default' %>
+    </div>
 
 	  <table id="orders" class="table table-striped">
 		  <tr id="table-headers">
@@ -15,7 +18,7 @@
 		    <th><%= sortable "total", "#{t 'total'}" %></th>
 		    <th></th>
 		  </tr>
-		  
+
 		  <% @orders.each do |order| %>
 		    <%= render order %>
 		  <% end %>

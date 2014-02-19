@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include ActionController::Caching::Pages
   self.page_cache_directory = "#{Rails.root.to_s}/public/cache"
-  
+
   protect_from_forgery
   before_action :load_cart
   before_action :set_locale
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
       rescue ActiveRecord::RecordNotFound
         @cart = Cart.create
         session[:cart_id] = @cart.id
-      end 
+      end
     end
 
     def not_authenticated

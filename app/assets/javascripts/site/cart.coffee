@@ -46,7 +46,7 @@ class @Cart
     if addresses
       address_mapping = []
       address_mapping[address.display_name] = address for address in addresses
-      
+
       $('#billing_address').change ->
         if $(this).val() != ''
           adr = address_mapping[$(this).val()]
@@ -60,7 +60,7 @@ class @Cart
             $('#billing_province').show()
           else
             $('#billing_province').hide()
-          
+
         else
           $('#cart_billing_address_attributes_address1').val('')
           $('#cart_billing_address_attributes_address2').val('')
