@@ -20,7 +20,6 @@ class AdminMailer < ActionMailer::Base
   end
 
   def new_order(order)
-    layout false
     @order = order
     mail(subject: "#{I18n.t 'email.new_order.subject'}")
   end

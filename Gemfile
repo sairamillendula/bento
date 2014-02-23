@@ -35,7 +35,7 @@ gem 'nested_form'
 gem 'simple_form'
 gem 'rails_bootstrap_helper', :git => "https://github.com/juanpastas/rails_bootstrap_helper.git"
 gem 'tabs_on_rails', "~> 2.1.1"
-gem 'friendly_id', '~> 5.0.0'
+gem 'friendly_id', '~> 5.0.3'
 gem 'redcarpet'
 gem 'prawn', github: "prawnpdf/prawn"
 gem 'whenever', :require => false

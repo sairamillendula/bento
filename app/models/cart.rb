@@ -11,14 +11,23 @@ class Cart < ActiveRecord::Base
   has_one :shipping_address, as: :addressable, class_name: "ShippingAddress", dependent: :destroy
   accepts_nested_attributes_for :shipping_address
 
+  belongs_to :user
+
 
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   attr_accessor :tax_amount
 
 
+  # SCOPES
+  # ------------------------------------------------------------------------------------------------------
+  scope :not_reminded, -> { where(reminded: false) }
+  scope :with_items,   -> { where("line_items_count > ?", 0) }
+
+
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
+  validates_format_of :email, with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/, allow_blank: true
   validate :validate_coupon_code_exists, if: :coupon_code?
 
   before_validation do |cart|
@@ -113,6 +122,16 @@ class Cart < ActiveRecord::Base
       shipping_country = ShippingCountry.find_by_country(shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
       shipping_country.present?
     end
+  end
+
+  def has_no_email?
+    user_id.blank? && email.blank?
+  end
+
+  def mark_as_reminded
+    self.reminded = true
+    self.reminded_at = Time.now
+    self.save!
   end
 
   private

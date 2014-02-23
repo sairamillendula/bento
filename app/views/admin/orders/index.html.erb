@@ -1,10 +1,11 @@
-<%= page_title("#{t 'orders.title'}") %>
+<%= page_title("#{t 'orders.title'}") do %>
+  <%= link_to "Abandoned checkouts", abandoned_admin_orders_path, class: 'pull-right btn btn-default' %>
+<% end %>
 
 <% if @orders.present? %>
   <%= form_tag params.merge(format: :pdf), method: :get do %>
     <div class="well well-small">
     	<%= submit_tag "Print invoices", class: "btn btn-inverse", name: nil %>
-    	<%= link_to "Abandoned checkouts", abandoned_admin_orders_path, class: 'btn btn-default' %>
     </div>
 
 	  <table id="orders" class="table table-striped">

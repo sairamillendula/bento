@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
-  
+
   # SEARCH
   # ------------------------------------------------------------------------------------------------------
   include PgSearch
@@ -18,6 +18,7 @@ class User < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   has_many :orders, foreign_key: 'client_id', dependent: :destroy
+  has_many :carts, dependent: :destroy
   has_many :posts
   has_one  :reseller_request
   accepts_nested_attributes_for :reseller_request, reject_if: ->(rr) { rr[:location].blank? }, allow_destroy: true
@@ -31,7 +32,7 @@ class User < ActiveRecord::Base
   scope :admin,            -> { where(admin: true) }
   scope :active,           -> { where(active: true) }
   scope :inactive,         -> { where(active: false) }
-  scope :exclude_users,    ->(user_ids) { where("id NOT IN (?)", user_ids) }
+  scope :exclude_users,    -> (user_ids) { where("id NOT IN (?)", user_ids) }
   scope :normal,           -> { where(admin: false) }
   scope :active_resellers, -> { where(reseller: true) }
   scope :resellers,        -> { joins(:reseller_request) }
@@ -61,7 +62,7 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-  
+
   def email_helper
     "#{full_name} <#{email}>"
   end

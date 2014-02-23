@@ -130,8 +130,8 @@ GEM
     figaro (0.6.4)
       bundler (~> 1.0)
       rails (>= 3, < 5)
-    friendly_id (5.0.2)
-      activerecord (~> 4.0.0)
+    friendly_id (5.0.3)
+      activerecord (>= 4.0.0)
     fssm (0.2.10)
     hashery (2.1.0)
     hashie (2.0.5)
@@ -314,7 +314,7 @@ DEPENDENCIES
   faker (= 1.0.1)
   famfamfam_flags_rails
   figaro
-  friendly_id (~> 5.0.0)
+  friendly_id (~> 5.0.3)
   hirb
   jbuilder (~> 1.2)
   jquery-fileupload-rails

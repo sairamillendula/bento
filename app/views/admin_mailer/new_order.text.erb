@@ -9,3 +9,7 @@
  Pays: <%= @order.shipping_address.country %>
 
  -- On remercie chaleureusement <%= @order.client.first_name %>
+
+ <% if @order.recovered? %>
+   ** Commande "recovered"
+ <% end %>

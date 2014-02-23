@@ -226,7 +226,11 @@ CREATE TABLE carts (
     first_name character varying(255),
     last_name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    user_id integer,
+    reminded boolean DEFAULT false,
+    reminded_at timestamp without time zone,
+    line_items_count integer DEFAULT 0
 );
 
 
@@ -483,7 +487,8 @@ CREATE TABLE orders (
     last4 character varying(255),
     state character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    recovered boolean DEFAULT false
 );
 
 
@@ -1660,6 +1665,13 @@ CREATE INDEX index_articles_tags_on_tag_id ON articles_tags USING btree (tag_id)
 
 
 --
+-- Name: index_carts_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_carts_on_user_id ON carts USING btree (user_id);
+
+
+--
 -- Name: index_categories_products_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1957,3 +1969,9 @@ INSERT INTO schema_migrations (version) VALUES ('20140214130158');
 INSERT INTO schema_migrations (version) VALUES ('20140214131505');
 
 INSERT INTO schema_migrations (version) VALUES ('20140214131938');
+
+INSERT INTO schema_migrations (version) VALUES ('20140221012037');
+
+INSERT INTO schema_migrations (version) VALUES ('20140222221330');
+
+INSERT INTO schema_migrations (version) VALUES ('20140222232951');

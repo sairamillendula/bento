@@ -76,7 +76,7 @@ class Admin::OrdersController < Admin::BaseController
   end
 
   def abandoned
-    @carts = Cart.includes(:items).order('created_at DESC').page(params[:page]).per(20)
+    @carts = Cart.with_items.includes(:items).page(params[:page]).per(20)
   end
 
   private

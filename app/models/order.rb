@@ -50,11 +50,12 @@ class Order < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   scope :opens,         -> { where(state: State::OPEN) }
   scope :completed,     -> { where(state: State::OPEN) } #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
-  scope :by_month,      ->(month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
-  scope :by_day,        ->(day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
-  scope :within_period, ->(from, to) { where(created_at: (from..to)) }
-  scope :from_date,     ->(from) { where("created_at >= ?", from) }
-  scope :to_date,       ->(to) { where("created_at <= ?", to) }
+  scope :by_month,      -> (month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
+  scope :by_day,        -> (day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
+  scope :within_period, -> (from, to) { where(created_at: (from..to)) }
+  scope :from_date,     -> (from) { where("created_at >= ?", from) }
+  scope :to_date,       -> (to) { where("created_at <= ?", to) }
+  scope :recovered,     -> { where(recovered: true) }
 
 
   # CALLBACKS
@@ -143,6 +144,7 @@ class Order < ActiveRecord::Base
     self.coupon_code = cart.coupon_code
     self.coupon_amount = cart.coupon_amount
     self.coupon_percentage = cart.coupon_percentage
+    self.recovered = true if cart.reminded?
   end
 
   def subtotal

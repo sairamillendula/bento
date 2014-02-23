@@ -151,7 +151,7 @@ class Product < ActiveRecord::Base
 
   def price_display
     # products have at least 1 variant (master)
-    product_variants_count > 1 ? "#{I18n.t('theme.from_price', default: 'From')} #{number_to_currency(master.price)}" : "#{number_to_currency(master.price)}"
+    product_variants_count > 1 ? "#{I18n.t('theme.from_price', default: 'From')} #{number_to_currency(master.current_price)}" : "#{number_to_currency(master.current_price)}"
   end
 
   def percentage_off

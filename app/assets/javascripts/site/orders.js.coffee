@@ -17,7 +17,7 @@ class @Order
           $(this).after('<span class="card discover">Discover</span>')
         when "amex"
           $(this).after('<span class="card amex">American Express</span>')
-    
+
     if CURRENT_LOCALE == 'fr'
       accounting.settings.currency.thousand = "."
       accounting.settings.currency.decimal = ","
@@ -30,8 +30,8 @@ class @Order
       processCard()
       return false
 
-    mappings = []  
-    mappings[shipping_method.id] = shipping_method.price for shipping_method in shipping_methods  
+    mappings = []
+    mappings[shipping_method.id] = shipping_method.price for shipping_method in shipping_methods
     $('#shipping_rate').change ->
       shipping_price = mappings[$(this).val()]
       $('#shipping').data('value', shipping_price)
@@ -39,7 +39,7 @@ class @Order
         $('#shipping-row').css('display', '')
       else
         $('#shipping-row').css('display', 'none')
-      calculateOrder()      
+      calculateOrder()
 
   processCard = ->
     card =
@@ -49,7 +49,7 @@ class @Order
       expMonth: $('#card_month').val()
       expYear: $('#card_year').val()
     Stripe.createToken(card, handleStripeResponse)
-  
+
   handleStripeResponse = (status, response) ->
     if status == 200
       $('#order_stripe_card_token').val(response.id)
@@ -66,5 +66,3 @@ class @Order
     total = subtotal + tax + shipping - discount
     $('#shipping').text accounting.formatMoney(shipping)
     $('#total').text accounting.formatMoney(total)
-
-    

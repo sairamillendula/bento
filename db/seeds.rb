@@ -10,3 +10,5 @@ Page.create!(name: 'FAQ', slug: 'faq', content: Faker::Lorem.paragraphs(4).join(
 
 ShippingCountry.create!(country: 'WORLDWIDE')
 puts "Created shipping country: WORLDWIDE"
+
+Setting.abandoned_carts_reminder = "3"

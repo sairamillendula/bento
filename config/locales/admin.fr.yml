@@ -152,7 +152,7 @@ fr:
     new: New Collection
     edit: Edit Collection
   search_results:
-    none: Nothing found    
+    none: Nothing found
   resellers:
     title: Resellers
     become_reseller: Become Reseller
@@ -194,6 +194,7 @@ fr:
   month: Month
   week: Week
   and_up: et plus
+  recovered: Recovered
   status:
     title: Status
     open: Ouvert
@@ -226,6 +227,11 @@ fr:
       subject: "[Joli Bento] New Order"
     new_reseller_request:
       subject: New reseller request
+    remind_cart:
+      subject: Vos produits vous attendent
+      action: Voir mon panier
+      intro: Vos articles sont mis de côté et n'attendent que votre retour
+      in_your_cart_you_left: "Votre panier contient les produits suivants"
     reset_password_email:
       subject: Your password has been reset
       intro:
@@ -243,10 +249,10 @@ fr:
       subject: Welcome
       intro:
       action:
-    contact_us: 
+    contact_us:
       subject: New message from contact form
   search:
     order: Order
     product: Product
-    user: Client    
+    user: Client
     collection: Collection

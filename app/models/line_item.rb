@@ -1,21 +1,25 @@
 class LineItem < ActiveRecord::Base
-	
+
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   belongs_to :variant, class_name: 'ProductVariant'
-  belongs_to :cart
+  belongs_to :cart, counter_cache: true
   belongs_to :order
 
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :ensure_valid_quantity
-  
+
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
   def subtotal
   	quantity * price
+  end
+
+  def summary
+    "#{quantity} * #{variant.product.name} (#{price})"
   end
 
   private

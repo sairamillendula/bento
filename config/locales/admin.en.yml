@@ -154,7 +154,7 @@ en:
     new: New Collection
     edit: Edit Collection
   search_results:
-    none: Nothing found    
+    none: Nothing found
   resellers:
     title: Resellers
     become_reseller: Become Reseller
@@ -196,6 +196,7 @@ en:
   month: Month
   week: Week
   and_up: and up
+  recovered: Recovered
   status:
     title: Status
     open: Open
@@ -231,12 +232,17 @@ en:
       intro: Good news! You items have shipped
     order_receipt:
       subject: Order Confirmation
+    remind_cart:
+      subject: Not too late to complete your Purchase
+      action: View cart
+      intro: Your shopping cart has been reserved and is waiting for your return
+      in_your_cart_you_left: "In your cart, you left"
     reseller_request_approved:
       subject: Request approved
-    contact_us: 
-      subject: New message from contact form   
+    contact_us:
+      subject: New message from contact form
   search:
     order: Order
     product: Product
-    user: Client    
+    user: Client
     collection: Collection

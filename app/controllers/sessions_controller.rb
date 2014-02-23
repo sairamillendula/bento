@@ -19,9 +19,10 @@ class SessionsController < ApplicationController
 			  elsif user.reseller?
 		      redirect_to reseller_dashboard_url
 			  else
-			  	redirect_back_or_to root_url 	
+			  	redirect_back_or_to root_url
 			  end
 			end
+			current_cart.update_attributes(user_id: user.id)
 		else
 			flash.now.alert = "#{t 'theme.sessions.error', default: 'Invalid email/password combination'}."
 			if params[:checkout]

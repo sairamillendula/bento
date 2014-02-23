@@ -4,6 +4,7 @@
   <table id="orders" class="table table-striped">
 	  <tr id="table-headers">
 	  	<th><%= sortable "created_at", "Date" %></th>
+	  	<th><%= sortable "reminded", "Email status" %></th>
 	  	<th>Items</th>
 	  	<th><%= sortable "total", "#{t 'total'}" %></th>
 	    <th><%= sortable "coupon_code", "Coupon" %></th>
@@ -14,11 +15,16 @@
 	  <% @carts.each do |cart| %>
 	    <tr>
 	      <td><%= l cart.created_at, format: :long %></td>
-	      <td><%= cart.items.length || '0' %></td>
+	      <td><%= status_tag("#{cart.reminded? ? 'Sent' : 'Not sent'}", level: "#{cart.reminded? ? 'warning' : ''}") %></td>
+	      <td><% if cart.items.length > 0 %>
+	        <%= link_to cart.items.length, "#", class: 'popover1', data: {toggle: "popover", title: pluralize(cart.items.length, 'item'), content: "#{cart.items.map{|i| i.summary}.to_sentence}"} %>
+	      <% else %>
+	        0
+	      <% end %></td>
 	      <td><%= number_to_currency(cart.total) %></td>
 	      <td><%= cart.coupon_code %></td>
-	      <td><%= cart.email %></td>
-	      <td><%= "#{cart.first_name} #{cart.last_name}" %></td>
+	      <td><%= cart.user.present? ? cart.user.email : cart.email %></td>
+	      <td><%= cart.user.present? ? cart.user.try(:full_name) : "#{cart.first_name} #{cart.last_name}" %></td>
 	    </tr>
 	  <% end %>
 	</table>
@@ -27,3 +33,9 @@
 <% end %>
 
 <%= paginate @carts %>
+
+<script>
+  $(document).ready(function() {
+    $(".popover1").popover();
+  });
+</script>

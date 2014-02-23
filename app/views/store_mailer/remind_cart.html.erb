@@ -1,0 +1,16 @@
+<%= content_for :email_body do %>
+  <p>Hey,</p>
+  <p><%= "#{t 'admin.email.remind_cart.intro', default: 'Your shopping cart has been reserved and is waiting for your return'}" %>!</p>
+  <p><%= t 'admin.email.remind_cart.in_your_cart_you_left', default: 'In your cart, you left' %>:</p>
+
+  <ul>
+  	<% @cart.items.each do |item| %>
+      <li><%= item.quantity %> * <%= item.variant.product.name %></li>
+    <% end %>
+  </ul>
+
+  <p><%= link_to "#{t 'admin.email.remind_cart.action', default: 'View cart'}", cart_url %></p>
+
+  <br><br>
+  <%= "#{t 'theme.email.signature', default: 'Have a great day!'}" %>
+<% end %>
