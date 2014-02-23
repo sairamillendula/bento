@@ -49,7 +49,7 @@ class Order < ActiveRecord::Base
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
   scope :opens,         -> { where(state: State::OPEN) }
-  scope :completed,     -> { where(state: State::OPEN) } #where("state IN '#{State::OPEN}' OR '#{State::SHIPPED}'")
+  scope :completed,     -> { where(state: [State::OPEN, State::SHIPPED]) }
   scope :by_month,      -> (month) { where("created_at BETWEEN '#{month.beginning_of_month}' AND '#{month.end_of_month}'") }
   scope :by_day,        -> (day) { where("created_at BETWEEN '#{day.beginning_of_day}' AND '#{day.end_of_day}'") }
   scope :within_period, -> (from, to) { where(created_at: (from..to)) }
