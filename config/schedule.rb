@@ -3,6 +3,7 @@ set :output, "#{path}/log/cron_log.log"
 every 1.day, at: "11:59 PM" do
   #rake "scheduled_jobs:remove_old_carts"
   rake "scheduled_jobs:remove_old_carts"
+  rake "scheduled_jobs:send_reminder_to_abandoned_carts"
   command "echo '**** whenever triggered ****'"
 end
 
