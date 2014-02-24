@@ -6,8 +6,8 @@
 	  <%= stylesheet_link_tag    "theme", media: "all" %>
 	  <%= javascript_include_tag "https://js.stripe.com/v1/" if @checkout_script %>
 	  <%= javascript_include_tag "application", "theme" %>
-	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+	  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	  <%= csrf_meta_tags unless @page_caching %>
 	  <%= render 'scripts' %>
     <script type="text/javascript">
@@ -30,7 +30,7 @@
 	  </div>
 
     <%= render 'footer' %>
-    
+
     <script>
       var menu = new cbpHorizontalSlideOutMenu( document.getElementById( 'cbp-hsmenu-wrapper' ) );
     </script>
