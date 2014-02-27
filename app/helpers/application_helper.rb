@@ -23,7 +23,7 @@ module ApplicationHelper
 
   def markdown(text)
     if text.present?
-      renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: true)
+      renderer = Redcarpet::Render::HTML.new(hard_wrap: true, filter_html: false)
       options = {
         autolink: true,
         tables: true,
