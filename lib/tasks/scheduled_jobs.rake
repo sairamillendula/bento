@@ -6,7 +6,7 @@ namespace :scheduled_jobs do
 
     carts = Cart.where('created_at >= ?', Date.today - 30.days)
     carts.destroy_all
-    puts "**** deleted old carts ****"
+    puts "**** #{Time.zone.now.strftime("%Y-%m-%d %H:%M")} deleted old carts (#{carts.length}) ****"
   end
 
   # rake scheduled_jobs:send_reminder_to_abandoned_carts
@@ -23,7 +23,7 @@ namespace :scheduled_jobs do
         StoreMailer.remind_cart(cart).deliver
       end
     end
-    puts "**** reminded abandoned carts ****"
+    puts "**** #{Time.zone.now.strftime("%Y-%m-%d %H:%M")} reminded abandoned carts (#{carts.length}) ****"
   end
 
 end
