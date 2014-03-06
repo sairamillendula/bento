@@ -10,7 +10,7 @@
       <th><%= "#{t 'orders.title'}" %></th>
       <th><%= sortable "created_at", "#{t 'users.member_since'}" %></th>
     </tr>
-    
+
     <% @clients.each do |client| %>
       <tr>
         <td><%= link_to client.full_name, admin_client_path(client) %></td>
@@ -20,7 +20,7 @@
       </tr>
     <% end %>
   </table>
-  
+
   <%= paginate @clients %>
 
 <% else %>
