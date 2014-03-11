@@ -149,9 +149,14 @@ class Product < ActiveRecord::Base
     master.reduced_price.present? ? master.reduced_price : master.price
   end
 
-  def price_display
+  def price_display(currency = 'USD')
     # products have at least 1 variant (master)
-    product_variants_count > 1 ? "#{I18n.t('theme.from_price', default: 'From')} #{number_to_currency(master.current_price)}" : "#{number_to_currency(master.current_price)}"
+    begin
+      price = Money.us_dollar(master.current_price * 100).exchange_to(currency)
+    rescue Money::Bank::UnknownRate
+      price = Money.us_dollar(master.current_price * 100).exchange_to('USD')
+    end
+    product_variants_count > 1 ? "#{I18n.t('theme.from_price', default: 'From')} #{price.symbol} #{price} #{currency}" : "#{price.symbol} #{price} #{currency}"
   end
 
   def percentage_off

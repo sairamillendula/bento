@@ -52,6 +52,8 @@ gem 'omniauth-stripe-connect'
 gem 'rails-settings-cached', "0.3.2"
 gem 'compass-rails', "~> 1.1.2"
 gem 'jquery-fileupload-rails'
+gem 'money'
+gem 'google_currency'
 
 group :development, :test do
   gem 'faker', '1.0.1'
@@ -67,6 +69,7 @@ group :development do
   gem 'better_errors'
   gem 'quiet_assets'
   gem 'binding_of_caller'
+  gem 'pry-byebug'
 end
 
 group :production do

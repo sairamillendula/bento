@@ -18,8 +18,8 @@
           <td><%= link_to "#{t 'theme.cart.remove'}", cart_line_item_path(item), method: :delete %></td>
   	      <td><%= image_tag(item.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.variant.product.pictures.any? %> <%= item.variant.cart_name %></td>
   	      <td><%= ff.number_field :quantity, class: 'input-mini' %></td>
-          <td><%= number_to_currency(item.price) %></td>
-  	      <td><%= number_to_currency(item.quantity * item.price) %></td>
+          <td><%= price_with_currency(item.price, @currency) %></td>
+  	      <td><%= price_with_currency(item.quantity * item.price, @currency) %></td>
   	    </tr>
       <% end %>
   	</table>
@@ -43,12 +43,12 @@
   <table id="cart-totals" style="float:right;" class="span6">
     <tr>
       <td><%= t 'theme.subtotal' %></td>
-      <td><%= number_to_currency(@cart.subtotal) %></td>
+      <td><%= price_with_currency(@cart.subtotal, @currency) %></td>
     </tr>
     <% if @cart.discount > 0 %>
       <tr>
         <td><%= t 'theme.discount' %></td>
-        <td><%= number_to_currency(-@cart.discount) %></td>
+        <td><%= price_with_currency(-@cart.discount, @currency) %></td>
       </tr>
     <% end %>
     <tr id="shipping" style="display:none;">

@@ -64,5 +64,18 @@ class @Order
     discount = parseFloat($('#discount').data('value')) || 0
     shipping = parseFloat($('#shipping').data('value')) || 0
     total = subtotal + tax + shipping - discount
-    $('#shipping').text accounting.formatMoney(shipping)
-    $('#total').text accounting.formatMoney(total)
+    $('#shipping').text(accounting.formatMoney(shipping))
+    $('#total').text(accounting.formatMoney(total))
+    $.ajax
+      type: 'GET'
+      url: "/get_total"
+      data:
+        currency: $('#set_currency').val()
+        total: total
+      dataType: "script"
+      success: (response) ->
+        data = JSON.parse(response)
+        currency_total = data[0]['total']
+        currency_symbol = data[0]['symbol'] + ' '
+        currency = ' ' + data[0]['currency']
+        $('#total_currency').text('(' + accounting.formatMoney(currency_total, currency_symbol) + currency + ')')

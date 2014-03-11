@@ -2,6 +2,6 @@
 
 <ul>
   <% @shipping_rates.each do |shipping_rate| %>
-    <li><%= "#{shipping_rate.name}: #{number_to_currency shipping_rate.price} - #{t 'theme.shipping_rate.order_between'} #{shipping_rate.rate}" %></li>
+    <li><%= "#{shipping_rate.name}: #{price_with_currency shipping_rate.price, @currency} - #{t 'theme.shipping_rate.order_between'} #{shipping_rate.rate}" %></li>
   <% end %>
 </ul>

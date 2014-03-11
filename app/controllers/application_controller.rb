@@ -10,12 +10,33 @@ class ApplicationController < ActionController::Base
 
   #http_basic_authenticate_with name: "temp", password: "temp" if Rails.env.production?
 
+  def set_currency
+    begin
+      Money.new(1000, "USD").exchange_to(params[:currency])
+      cookies[:currency] = params[:currency]
+    rescue Money::Bank::UnknownRate
+      nil
+    end
+    render js: "window.location.reload()"
+  end
+
+  def get_total
+    begin
+      total = Money.new(params[:total].to_f * 100, "USD").exchange_to(params[:currency])
+      cookies[:currency] = params[:currency]
+    rescue Money::Bank::UnknownRate
+      total = params[:total]
+    end
+    render json: [ {total: total.to_s, symbol: total.symbol, currency: cookies[:currency]}]
+  end
+
   private
 
     def set_locale
       #I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first) || I18n.default_locale
       I18n.locale = session[:locale] || I18n.default_locale
       session[:locale] = I18n.locale
+      cookies[:currency] = 'USD' unless cookies[:currency].present?
     end
 
     def load_cart

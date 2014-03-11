@@ -148,6 +148,8 @@ Bento::Application.routes.draw do
   resource :reseller_request, only: :create
   resource :contact, only: [:show, :create]
   get "user_info" => 'pages#user_info'
+  get 'set_currency' => "application#set_currency"
+  get 'get_total' => "application#get_total"
 
   get "/:slug" => 'pages#show', as: 'page'
 

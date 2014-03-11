@@ -7,6 +7,7 @@ class CollectionsController < ApplicationController
     @page_title       = "#{@collection.seo_title.present? ? @collection.seo_title : @collection.name} | #{t 'theme.site_name'}"
     @page_description = @collection.seo_description
     @products = @collection.products.visibles.order('position').page(params[:page]).per(12)
+    @currency = cookies[:currency]
 
     if !@collection.visible?
       raise ActionController::RoutingError.new('Not Found')

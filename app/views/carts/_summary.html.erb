@@ -35,7 +35,12 @@
   </tr>
   <tr class="total">
     <td colspan="3"><%= t 'theme.total' %></td>
-    <td><span id="total" data-value="<%= @cart.total %>"><%= number_to_currency @cart.total %></span></td>
+    <td>
+    <span id="total" data-value="<%= @cart.total %>"><%= number_to_currency @cart.total %></span>
+    <% if @currency != 'USD' %>
+      <span id='total_currency'>(<%= price_with_currency  @cart.total, @currency %>)</span>
+    <% end %>
+    </td>
   </tr>
 </table>
 

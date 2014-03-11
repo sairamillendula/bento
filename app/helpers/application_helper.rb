@@ -83,4 +83,14 @@ module ApplicationHelper
     }
   end
 
+  def price_with_currency(price, currency = 'USD')
+    price = Money.us_dollar(price * 100).exchange_to(currency)
+    "#{price.symbol} #{price} #{currency}"
+  end
+
+# set value[:priority] < 100 for limit to major currencies
+  def all_currencies
+    Money::Currency.table.map{|key, value| [value[:name], value[:iso_code]] if value[:priority] < 101}.compact
+  end
+
 end

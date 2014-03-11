@@ -2,6 +2,7 @@ class ShippingsController < ApplicationController
 
   def search
     @shipping_rates = nil
+    @currency = cookies[:currency]
     @country = params[:shipping][:country]
     if @country.present?
       shipping_country = ShippingCountry.find_by_country(@country) || ShippingCountry.find_by_country('WORLDWIDE')
