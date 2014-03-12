@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
 
   def set_currency
     begin
-      Money.new(1000, "USD").exchange_to(params[:currency])
+      Money.new(1000, ENV['STRIPE_CURRENCY']).exchange_to(params[:currency])
       cookies[:currency] = params[:currency]
     rescue Money::Bank::UnknownRate
       nil
@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
 
   def get_total
     begin
-      total = Money.new(params[:total].to_f * 100, "USD").exchange_to(params[:currency])
+      total = Money.new(params[:total].to_f * 100, ENV['STRIPE_CURRENCY']).exchange_to(params[:currency])
       cookies[:currency] = params[:currency]
     rescue Money::Bank::UnknownRate
       total = params[:total]
@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       #I18n.locale = request.env['HTTP_ACCEPT_LANGUAGE'].try(:scan, /^[a-z]{2}/).try(:first) || I18n.default_locale
       I18n.locale = session[:locale] || I18n.default_locale
       session[:locale] = I18n.locale
-      cookies[:currency] = 'USD' unless cookies[:currency].present?
+      cookies[:currency] = ENV['STRIPE_CURRENCY'] unless cookies[:currency].present?
     end
 
     def load_cart
