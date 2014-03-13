@@ -1,11 +1,9 @@
-<%= page_title("#{t 'resellers.catalogue'}") do %>
-  <%= icon_button_link_to "#{t 'download'}", catalogue_admin_resellers_path(format: :pdf), icon: 'download-alt', class: 'fr' %>
-<% end %>
+<%= page_title("#{t 'resellers.catalogue'}") %>
 
 <% @products.each do |product| %>
   <div class="row-fluid catalogue-product">
     <div class="span2"><%= image_tag(product.pictures.first.upload.url(:thumb), size: "180x180") if product.pictures.any? %></div>
-	  <%= content_tag :div, class: "span10" do %>
+	  <%= content_tag :div, class: "span9" do %>
 			<h3><%= product.name %> <span class="fr"><%= product.master.sku %></span></h3>
 			<p>
 				<b><%= t 'public_price' %>:</b> <%= number_to_currency(product.current_price) %>
