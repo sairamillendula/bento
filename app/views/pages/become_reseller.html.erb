@@ -14,7 +14,7 @@
   <% else %>
     <%= simple_form_for(@reseller_request, url: reseller_request_path, html: {class: "form-horizontal"}) do |f| %>
 		  <%= f.error_notification %>
-	    
+
 	    <%= f.input :business_name %>
 	    <%= f.input :country, collection: Country.all %>
 	    <%= f.input :city %>
@@ -26,5 +26,5 @@
 <% else %>
 
   <%= link_to "#{t 'sign_up'}", signup_path %> or <%= link_to "#{t 'sign_in'}", login_path %>
- 
+
 <% end %>

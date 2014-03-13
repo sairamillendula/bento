@@ -1,7 +1,7 @@
 class Admin::ResellersController < Admin::BaseController
   before_action :set_reseller, only: [:toggle_reseller_status]
   set_tab :resellers
-  
+
   def index
   	@users = User.resellers.order('first_name')
   end
