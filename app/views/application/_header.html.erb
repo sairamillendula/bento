@@ -5,14 +5,12 @@
 		<span class="site-slogan"><%= t 'theme.site_slogan' %></span>
     <span class="cart-summary">
 		  <i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path %> - 
-      <%= t('theme.products', count: current_cart.items.length) %>
-      <p id="current-currency" class="left" style="display: block;">
-        &nbsp;
-        All prices in <span class="selected-currency"><%= @currency %></span> 
-      <%= select_tag 'set_currency', options_for_select(all_currencies, @currency), prompt: 'Currency', style: 'width:85px; display: none' %>
-        <span id="currency-picker-toggle" style="display: inline;">(<a href="#">change</a>)</span>
-      </p>
-
-</span>
+      <%= t('theme.products', count: current_cart.items.length) %> | 
+      <span id="current-currency">
+        <small><span class="selected-currency"><%= @currency %></span> 
+        <%= select_tag 'set_currency', options_for_select(all_currencies, @currency), prompt: 'Currency', style: 'width:85px; display:none;' %>
+        <span id="currency-picker-toggle" style="display:inline;"> <a href="#"><%= t 'theme.change_currency' %></a></span></small>
+      </span>
+    </span>
 	</h1>
 </header>

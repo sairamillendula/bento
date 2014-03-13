@@ -43,6 +43,7 @@ fr:
     required: requis
     from_price: À partir de
     out_of_stock: 'Stock épuisé'
+    change_currency: changer
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel
