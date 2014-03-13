@@ -7,7 +7,7 @@ class OrdersController < ApplicationController
 
 	def new
 		@cart = current_cart
-    @currency = cookies[:currency]
+    @currency = session[:currency]
 
     if @cart.items.empty?
       redirect_to products_url, notice: "#{t 'cart.is_empty', default: 'Cart is empty'}."

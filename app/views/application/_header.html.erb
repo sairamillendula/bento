@@ -6,7 +6,13 @@
     <span class="cart-summary">
 		  <i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path %> - 
       <%= t('theme.products', count: current_cart.items.length) %>
-      <%= select_tag 'set_currency', options_for_select(all_currencies, @currency), prompt: 'Currency', style: 'width:85px;' %>
-    </span>
+      <p id="current-currency" class="left" style="display: block;">
+        &nbsp;
+        All prices in <span class="selected-currency"><%= @currency %></span> 
+      <%= select_tag 'set_currency', options_for_select(all_currencies, @currency), prompt: 'Currency', style: 'width:85px; display: none' %>
+        <span id="currency-picker-toggle" style="display: inline;">(<a href="#">change</a>)</span>
+      </p>
+
+</span>
 	</h1>
 </header>

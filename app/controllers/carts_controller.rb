@@ -1,7 +1,7 @@
 class CartsController < ApplicationController
 
 	def show
-    @currency = cookies[:currency]
+    @currency = session[:currency]
 	end
 
   def update

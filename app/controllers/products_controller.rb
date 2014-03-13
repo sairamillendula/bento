@@ -17,7 +17,7 @@ class ProductsController < ApplicationController
       @page_title = "#{I18n.t 'products.title'} | #{t 'theme.site_name'}"
       @products = Product.visibles.order('name').page(params[:page]).per(12)
     end
-    @currency = cookies[:currency]
+    @currency = session[:currency]
 
     respond_to do |format|
       format.html
@@ -30,7 +30,7 @@ class ProductsController < ApplicationController
     @page_title       = "#{@product.seo_title.present? ? @product.seo_title : @product.name} | #{t 'theme.site_name'}"
     @page_description = @product.seo_description
 
-    @currency = cookies[:currency]
+    @currency = session[:currency]
 
     if !@product.visible?
       raise ActionController::RoutingError.new('Not Found')
@@ -41,7 +41,7 @@ class ProductsController < ApplicationController
 
   def search
     @products = Product.where("lower(name) like ?", "%#{params[:q].strip.downcase}%")
-    @currency = cookies[:currency]
+    @currency = session[:currency]
 
     respond_to do |format|
       format.json {render json: @products}
