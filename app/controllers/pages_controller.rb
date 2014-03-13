@@ -28,7 +28,7 @@ class PagesController < ApplicationController
   end
 
   def become_reseller
-    @reseller_request = ResellerRequest.new if current_user
+    @reseller_request = ResellerRequest.new
   end
 
 end

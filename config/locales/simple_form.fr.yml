@@ -36,6 +36,9 @@ fr:
         full_name: Nom complet
       page:
         klass: Type
+      reseller_request:
+        business_name: Nom de votre commerce
+        who_are_you: Présentation de votre commerce
       tax:
         rate: Taxes
     hints:

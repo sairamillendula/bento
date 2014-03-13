@@ -155,10 +155,13 @@ fr:
     none: Nothing found
   resellers:
     title: Resellers
-    become_reseller: Become Reseller
-    become_reseller_success: We've received your request
-    become_reseller_error: All fields required. Please check input and submit again
-    account: Your Reseller Account
+    become_reseller: Rejoignez-nous
+    become_reseller_success: Demande bien transmise
+    become_reseller_error: Tous les champs sont obligatoires. Veuillez vérifier vos informations et réessayer
+    please_describe_your_business: "Merci de nous en dire un peu plus sur vous: Combien de magasins avez-vous? Quelles marques vendez-vous? Qui sont vos clients..."
+    submit_request: Envoyer
+    pending_request: Demande bien reçue. Nous vous contacterons sous peu
+    account: Votre compte revendeur
     catalogue: Catalogue
     registration:
       title: Create Account
@@ -171,7 +174,6 @@ fr:
   billing_address: Billing Address
   shipping_address: Shipping Address
   categories: Categories
-  please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
   vendor_supplier: Vendor/Supplier
   message: Message
