@@ -29,7 +29,7 @@
       <% end %>
 
       <h2 id="price" class="<%= 'line-through' if default_variant.reduced_price %>"><%= price_with_currency(default_variant.price, @currency) %></h2>
-      <h2 id="sale-price" style="display: <%= price_with_currency(default_variant.reduced_price, @currency) ? 'block' : 'none' %>;"><%= price_with_currency(default_variant.reduced_price, @currency) %></h2>
+      <h2 id="sale-price" style="display: <%= default_variant.reduced_price ? 'block' : 'none' %>;"><%= price_with_currency(default_variant.reduced_price, @currency) unless default_variant.reduced_price.nil? %></h2>
       <%= button_to "#{t 'theme.add_to_cart'}", line_items_path(product_variant_id: default_variant.id), class: "btn btn-success btn-add-to-cart", id: 'add-to-cart' %>
     <% else %>
       <h2 id="price"><%= price_with_currency(@product.master.current_price, @currency) %></h2>

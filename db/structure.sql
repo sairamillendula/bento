@@ -728,8 +728,8 @@ ALTER SEQUENCE product_reviews_id_seq OWNED BY product_reviews.id;
 CREATE TABLE product_variants (
     id integer NOT NULL,
     options hstore,
-    price numeric(11,2) DEFAULT 0,
-    reduced_price numeric(11,2) DEFAULT 0,
+    price numeric(11,2) DEFAULT NULL::numeric,
+    reduced_price numeric(11,2) DEFAULT NULL::numeric,
     in_stock integer DEFAULT 0,
     product_id integer,
     orders_count integer DEFAULT 0,
@@ -738,7 +738,7 @@ CREATE TABLE product_variants (
     sku character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    cost_price numeric(11,2) DEFAULT 0
+    cost_price numeric(11,2) DEFAULT NULL::numeric
 );
 
 
@@ -1975,5 +1975,3 @@ INSERT INTO schema_migrations (version) VALUES ('20140221012037');
 INSERT INTO schema_migrations (version) VALUES ('20140222221330');
 
 INSERT INTO schema_migrations (version) VALUES ('20140222232951');
-
-INSERT INTO schema_migrations (version) VALUES ('20140314094333');
