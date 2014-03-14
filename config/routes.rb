@@ -20,6 +20,12 @@ Bento::Application.routes.draw do
   get 'api/google_shopping' => 'api#google_shopping'
   get 'api/sitemap' => 'api#sitemap'
 
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+      resources :products
+    end
+  end
+
   # ============================================================
   # ADMIN ROUTES
   # ============================================================

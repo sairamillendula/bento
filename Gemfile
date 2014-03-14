@@ -62,7 +62,7 @@ end
 
 group :development do
   gem 'capistrano', '~> 2.15.0'
-  gem 'capistrano-nc'
+  #gem 'capistrano-nc'
   gem 'rack-mini-profiler'
   gem 'thin'
   gem 'letter_opener'
