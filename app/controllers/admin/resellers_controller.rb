@@ -28,14 +28,6 @@ class Admin::ResellersController < Admin::BaseController
   def catalogue
     set_tab :resellers_catalogue
     @products = Product.visibles.order('name')
-
-    respond_to do |format|
-      format.html
-      format.pdf do
-        pdf = ResellerCataloguePdf.new(@products)
-        send_data pdf.render, filename: "#{t 'site_name'} - Catalogue.pdf", type: "application/pdf", disposition: "inline"
-      end
-    end
   end
 
   private

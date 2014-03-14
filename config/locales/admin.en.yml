@@ -19,6 +19,7 @@ en:
   by: by
   from: From
   name: Name
+  status: Status
   active: Active
   inactive: Inactive
   public: Public
@@ -31,7 +32,6 @@ en:
   error: Error
   featured: Featured
   discount: Discount
-  download: Download
   dashboard:
     title: Dashboard
     no_orders: Looks like you don't have any orders yet. We'll display statistics as soon as you you make your first sale
@@ -160,6 +160,9 @@ en:
     become_reseller: Become Reseller
     become_reseller_success: We've received your request
     become_reseller_error: All fields required. Please check input and submit again
+    please_describe_your_business: "Please describe your business: How Many Stores do you operate? What Brands Do You Carry? Client Demographics..."
+    submit_request: Submit Request to Become Reseller
+    pending_request: We are reviewing your request. We'll be in touch you soon
     account: Your Reseller Account
     catalogue: Catalogue
     registration:
@@ -173,7 +176,6 @@ en:
   billing_address: Billing Address
   shipping_address: Shipping Address
   categories: Categories
-  please_describe_your_business: "Please describe your business: How Many Stores? What Brands Do You Carry? Client Demographics..."
   vendors: Vendors
   vendor_supplier: Vendor/Supplier
   message: Message

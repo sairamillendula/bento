@@ -13,6 +13,8 @@ class SessionsController < ApplicationController
 	  if user
 	  	if params[:checkout]
 	  		redirect_to checkout_cart_url
+	  	elsif params[:become_reseller]
+	  		redirect_to become_reseller_url
 	  	else
 				if user.admin?
 			    redirect_to admin_dashboard_url

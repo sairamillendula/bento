@@ -13,6 +13,8 @@ class RegistrationsController < ApplicationController
       UserMailer.welcome(@user).deliver
       if params[:checkout]
         redirect_to checkout_cart_url
+      elsif params[:become_reseller]
+        redirect_to become_reseller_url
       else
 	  	  redirect_to products_url, notice: "#{t 'theme.registrations.welcome', default: 'Thanks for signing up!' }"
       end

@@ -1,30 +1,31 @@
 <%= page_title("#{t 'resellers.become_reseller'}") %>
 
-<div class="well">
-	Ad leggings keytar, brunch id art party dolor labore. Pitchfork yr enim lo-fi before they sold out qui. Tumblr farm-to-table bicycle rights whatever. Anim keffiyeh carles cardigan. Velit seitan mcsweeney's photo booth 3 wolf moon irure. Cosby sweater lomo jean shorts, williamsburg hoodie minim qui you probably haven't heard of them et cardigan trust fund culpa biodiesel wes anderson aesthetic. Nihil tattooed accusamus, cred irony biodiesel keffiyeh artisan ullamco consequat.
-</div>
+<h3>Vous avez une boutique tendance, design! Vous êtes à la recherche de nouveautés!</h3>
+
+<p><b><%= t 'theme.site_name' %> Pro</b> est un distributeur de bento et d'accessoires à bento en provenance du Japon. Nous avons des produits uniques que vous ne trouverez pas ailleurs.</p>
+
+<p>Veuillez remplir le formulaire ci-dessous pour avoir accès à notre catalogue distributeur. Nous communiquerons avec vous afin de faire plus ample connaissance et mieux vous conseiller.</p>
 
 <% if current_user %>
   <% if current_user.reseller_request %>
-    <% if current_user.reseller_request.approved? %>
+    <% if current_user.reseller? %>
       <p class="alert">You already are a reseller. <%= link_to "Go To Reseller Account", reseller_dashboard_path %></p>
     <% else %>
-      <p class="alert">We are reviewing your request. We'll get back to you soon.</p>
+      <p class="alert"><%= t 'resellers.pending_request' %>.</p>
     <% end %>
   <% else %>
     <%= simple_form_for(@reseller_request, url: reseller_request_path, html: {class: "form-horizontal"}) do |f| %>
 		  <%= f.error_notification %>
-	    
+
 	    <%= f.input :business_name %>
 	    <%= f.input :country, collection: Country.all %>
 	    <%= f.input :city %>
-	    <%= f.input :who_are_you, placeholder: "#{t 'please_describe_your_business'}" %>
+	    <%= f.input :who_are_you, placeholder: "#{t 'resellers.please_describe_your_business'}" %>
 
-	    <%= f.button :submit, "Submit Request to Become Reseller", class: "btn btn-primary nolabel" %>
+	    <%= f.button :submit, "#{t 'resellers.submit_request'}", class: "btn btn-primary nolabel" %>
 	  <% end %>
 	<% end %>
 <% else %>
-
-  <%= link_to "#{t 'sign_up'}", signup_path %> or <%= link_to "#{t 'sign_in'}", login_path %>
- 
+  <%= link_to "J'ai déjà un compte", login_path(become_reseller: true), class: 'btn btn-default' %> ou
+  <%= link_to "Je n'ai pas encore de compte", signup_path(become_reseller: true), class: 'btn btn-default' %>
 <% end %>
