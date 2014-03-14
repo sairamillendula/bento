@@ -83,8 +83,8 @@ module ApplicationHelper
     }
   end
 
-  def price_with_currency(price = 0, currency = 'USD')
-    price = Money.us_dollar(price * 100).exchange_to(currency)
+  def price_with_currency(price, currency = 'USD')
+    price = Money.us_dollar(price.to_f.round(2) * 100).exchange_to(currency)
     "#{price.symbol} #{price} #{currency}"
   end
 
