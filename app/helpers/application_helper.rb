@@ -88,7 +88,7 @@ module ApplicationHelper
     "#{price.symbol} #{price} #{currency}"
   end
 
-# set value[:priority] < 100 for limit to major currencies
+  # set value[:priority] < 100 to limit to major currencies
   def all_currencies
     Money::Currency.table.map{|key, value| [value[:iso_code], value[:iso_code]] if value[:priority] < 100}.compact
   end

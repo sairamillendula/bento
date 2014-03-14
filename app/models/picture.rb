@@ -7,25 +7,25 @@ class Picture < ActiveRecord::Base
   has_many :colors, class_name: 'PictureColor', dependent: :destroy
   acts_as_list scope: :picturable
 
-  
+
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
   has_attached_file :upload, 
                     url: "/upload/pictures/:id/:style/:basename.:extension",
                     path: ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
                     styles: { thumb: "200x200#", large: "700" }
-  
+
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
   validates_attachment_size :upload, less_than: 5.megabytes
   validates_attachment_content_type :upload, content_type: ['image/jpeg', 'image/jpg',  'image/png', 'image/gif']
-  
+
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :set_name
-  
+
 
   # SCOPES
   # ------------------------------------------------------------------------------------------------------
@@ -36,7 +36,7 @@ class Picture < ActiveRecord::Base
       all
     end
   end)
-  
+
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------

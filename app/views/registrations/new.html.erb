@@ -4,6 +4,7 @@
   <div class="span6">
   	<%= simple_form_for(@user, url: registrations_path, html: {class: "form-horizontal"}) do |f| %>
 		  <%= f.error_notification %>
+		  <%= hidden_field_tag :become_reseller, '1' if params[:become_reseller].present? %>
 
 		  <%= f.input :email %>
 		  <%= f.input :first_name %>

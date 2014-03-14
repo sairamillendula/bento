@@ -4,6 +4,7 @@ fr:
     site_slogan: Boite à Bento du Japon
     site_description: "Tout sur le boites à manger japonaises (japanese lunch box). Recettes de lunch bento, sushi et art culinaire japonais"
     site_keywords: "bento, bento box, bento lunch box, boites à lunch, boite à sushis, sac à bento, bento kit, furoshiki, bento lunches, bento box meals, obento"
+    site_intro: "Spécialiste de la boite à repas du Japon. Découvrez plus de 50 bento et accessoires bento sur notre boutique"
     faq: FAQ
     in_the_news: La presse en parle
     blog: Blog
@@ -43,6 +44,8 @@ fr:
     required: requis
     from_price: À partir de
     out_of_stock: 'Stock épuisé'
+    change_currency: changer
+    become_reseller: Devenez revendeur
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel

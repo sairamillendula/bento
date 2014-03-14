@@ -4,7 +4,8 @@
   <div class="span6">
     <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
 	    <%= f.error_notification %>
-	  
+	    <%= hidden_field_tag :become_reseller, '1' if params[:become_reseller].present? %>
+
 	    <%= f.input :email %>
 	    <%= f.input :password %>
 
@@ -13,7 +14,7 @@
 	    </p>
 
 	    <p><%= f.button :submit, class: "nolabel btn", style: 'margin-top:10px;' %></p>
-   <% end %> 
+   <% end %>
 	  <p class="nolabel" style="margin-top:20px;"><i><%= link_to "#{t 'theme.passwords.forgot'}", new_password_path %></i></p>
   </div>
 
