@@ -71,6 +71,7 @@ class Product < ActiveRecord::Base
   scope :active,           -> { where(active: true) }
   scope :top_sellers,      -> { where("orders_count > 0").order(:orders_count).limit(10)}
   #scope :on_sales, -> { joins(:master).where("variants.reduced_price > 0") }
+  scope :on_sale, -> { includes('all_variants').where("product_variants.reduced_price > 0").references('product_variants') }
 
 
   # ATTRIBUTES
