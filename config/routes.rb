@@ -1,3 +1,5 @@
+require 'api_constraints'
+
 Bento::Application.routes.draw do
 
   # ============================================================
@@ -21,7 +23,7 @@ Bento::Application.routes.draw do
   get 'api/sitemap' => 'api#sitemap'
 
   namespace :api, defaults: {format: 'json'} do
-    scope module: :v1, constraints: ApiConstraints.new(version: 1) do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :products
     end
   end
