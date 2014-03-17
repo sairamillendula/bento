@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     rescue Money::Bank::UnknownRate
       total = params[:total]
     end
-    render json: [ {total: total.to_s, symbol: total.symbol, currency: session[:currency]}]
+    render json: [ {total: total.to_s, symbol: total.symbol, currency: session[:currency]} ]
   end
 
   private

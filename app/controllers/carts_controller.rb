@@ -5,7 +5,7 @@ class CartsController < ApplicationController
 	end
 
   def update
-    @cart.update_attributes(safe_params)        
+    @cart.update_attributes(safe_params)
     @cart.calculate
 
     redirect_to cart_url
@@ -32,7 +32,7 @@ class CartsController < ApplicationController
 
   def checkout
     @cart = current_cart
-    
+
     if @cart.items.empty?
       redirect_to products_url, notice: "#{t 'theme.cart.is_empty'}."
       return
