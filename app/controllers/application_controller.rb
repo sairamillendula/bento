@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   include ActionController::Caching::Pages
   self.page_cache_directory = "#{Rails.root.to_s}/public/cache"
 
-  protect_from_forgery
+  protect_from_forgery with: :null_session
 
   before_action :load_cart
   before_action :set_locale

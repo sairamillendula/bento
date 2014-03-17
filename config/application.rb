@@ -54,5 +54,15 @@ module Bento
     config.assets.version = '1.0'
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
     config.assets.precompile += ['admin.js', 'admin.css', 'theme.js', 'theme.css']
+
+    # API
+    config.middleware.use Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :put, :patch, :post, :delete, :options]
+        # TODO constrain to /api namespace only
+      end
+    end
+
   end
 end
