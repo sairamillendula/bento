@@ -59,8 +59,7 @@ module Bento
     config.middleware.use Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :put, :patch, :post, :delete, :options]
-        # TODO constrain to /api namespace only
+        resource '/api/*', headers: :any, methods: [:get, :put, :patch, :post, :options]
       end
     end
 
