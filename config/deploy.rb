@@ -27,6 +27,7 @@ after "deploy:setup", "init:setup_config"
 after "deploy:setup", "init:create_upload_directory"
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
+after 'deploy:restart', 'git:push_deploy_tag'
 
 namespace :init do
 
@@ -118,6 +119,15 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 
+end
+
+namespace :git do
+  task :push_deploy_tag do
+    user = `git config --get user.name`.chomp
+    email = `git config --get user.email`.chomp
+    puts `git tag #{stage}-deploy-#{release_name} #{current_revision} -m "Deployed by #{user} <#{email}>"`
+    puts `git push --tags origin`
+  end
 end
 
 
