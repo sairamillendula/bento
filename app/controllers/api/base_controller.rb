@@ -1,4 +1,7 @@
 class Api::BaseController < ApplicationController
+  skip_before_action :load_cart
+  skip_before_action :set_locale
+
   before_filter :restrict_access
 
   private
