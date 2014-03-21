@@ -55,7 +55,6 @@ gem 'jquery-fileupload-rails'
 gem 'money'
 gem 'google_currency'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'active_model_serializers'
 
 group :development, :test do
   gem 'faker', '1.0.1'

@@ -4,12 +4,6 @@ class Api::BaseController < ApplicationController
 
   before_filter :restrict_access
 
-  def default_serializer_options
-  {
-    root: false
-  }
-  end
-
   private
 
   def restrict_access
