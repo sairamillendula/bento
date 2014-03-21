@@ -6,7 +6,7 @@ class PictureSerializer < ActiveModel::Serializer
   end
 
   def thumbnail_url
-    "https://jolibento.com#{object.upload.url(:thumbnail)}"
+    "https://jolibento.com#{object.upload.url(:thumb)}"
   end
 
 end
