@@ -19,7 +19,7 @@ body.admin {
   padding: 0;
   -webkit-text-size-adjust: none;
   background: url('sidebar-bg.gif');
-  
+
   a {
 	  color: #0088cc;
 	  text-decoration: none;
@@ -72,17 +72,17 @@ body.admin {
 
 		a.view-site {
 			color: $light-gray;
-		  
+
 		  &:hover {
 			  color: $blue;
 			}
 		}
-    
+
     #user-info {
     	color: $light-gray;
     	display: block;
     	margin-top: 35px;
-   
+
 			a {
 				color: $blue;
 
@@ -164,7 +164,7 @@ body.admin {
 				line-height: 40px;
 				border-bottom: none;
 			}
-				
+
 			a.btn {
 				margin-left: 10px;
 				line-height: 30px;
@@ -298,7 +298,7 @@ body.admin {
 	div.well > .control-group:last-of-type {
     margin-bottom: 0;
   }
-  
+
   /* tables */
   table {
 	  max-width: 100%;
@@ -407,7 +407,7 @@ body.admin {
 
 	.label {
 		@include border-radius(2px);
-    
+
     &.state-pending { background-color: #ce8f22; }
 		&.state-shipped { background-color: $green; }
 		&.state-cancelled { background-color: $red; }
@@ -476,7 +476,7 @@ body.admin {
 	.pagination {
 	  margin: 20px 0;
 	}
-  
+
   .pagination > span > a {
     display: inline-block;
 	  *display: inline;
@@ -580,4 +580,10 @@ body.admin {
 	  max-height: 340px;
 	  overflow-y: scroll;
 	}
+
+	.help-block,
+  .help-inline {
+    color: #777777;
+    font-size: 12px;
+  }
 }

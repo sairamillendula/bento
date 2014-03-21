@@ -85,7 +85,7 @@ class Admin::ProductsController < Admin::BaseController
         :name, :description, :visible, :sku, :slug, :featured, :supplier_id, :active,
         :category_tokens, :supplier_tokens, :pictures_attributes, :cross_sell_tokens, :has_options,
         :meta_tag, :seo_title, :seo_description, :auto_generate_variants,
-        master_attributes: [:id, :options, :price, :in_stock, :active, :sku, :reduced_price, :cost_price],
+        master_attributes: [:id, :options, :price, :in_stock, :active, :sku, :reduced_price, :cost_price, :reseller_price, :min_quantity_for_reseller_order],
         variants_attributes: [:id, :option1, :option2, :option3, :price, :in_stock, :active, :selected, :reduced_price, :sku, "_destroy"],
         options_attributes: [:id, :name, :values, "_destroy"]
       )

@@ -21,6 +21,11 @@
 </p>
 
 <p>
+  <b><%= t 'resellers.price' %></b>: <%= number_to_currency(@product.master.reseller_price) %> ||
+  <b><%= t 'resellers.min_quantity_for_reseller_order' %></b>: <%= @product.master.min_quantity_for_reseller_order %>
+</p>
+
+<p>
 	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
   <% if @product.suppliers.any? %>
     <span class="fr"><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></span>
