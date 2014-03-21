@@ -47,6 +47,8 @@ class Product < ActiveRecord::Base
   has_many :pictures, lambda { order "position" }, as: :picturable, dependent: :destroy
   accepts_nested_attributes_for :pictures, allow_destroy: true
 
+  has_one :main_picture, -> { where(position: 1) }, as: :picturable, class_name: "Picture"
+
   has_many :product_relationships, dependent: :destroy
   has_many :cross_sells
   has_many :cross_sell_products, through: :cross_sells, source: :other_product
@@ -70,7 +72,6 @@ class Product < ActiveRecord::Base
   scope :exclude_products, -> (product_ids) { where("id NOT IN (?)", product_ids) }
   scope :active,           -> { where(active: true) }
   scope :top_sellers,      -> { where("orders_count > 0").order(:orders_count).limit(10)}
-  #scope :on_sales, -> { joins(:master).where("variants.reduced_price > 0") }
   scope :on_sale, -> { includes('all_variants').where("product_variants.reduced_price > 0").references('product_variants') }
 
 
