@@ -1,5 +1,5 @@
 class ProductSerializer < ActiveModel::Serializer
-  attributes :name, :url, :current_price, :on_sale?
+  attributes :name, :url, :current_price, :on_sale?, :id
   has_one :master, embed: :objects
   has_many :variants, embed: :objects
   has_one :main_picture, embed: :objects
