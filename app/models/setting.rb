@@ -1,11 +1,9 @@
-class Setting < RailsSettings::CachedSettings
+class Setting < ActiveRecord::Base
+
+  store_accessor :options, :logo_id, :abandoned_carts_reminder
 
   def self.logo
-    Picture.find_by(id: self['logo'])
-  end
-
-  def abandonned_carts_reminder
-  	Setting.abandonned_carts_reminder
+    Picture.find(Setting.first.logo_id) rescue nil
   end
 
 end

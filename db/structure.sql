@@ -728,8 +728,8 @@ ALTER SEQUENCE product_reviews_id_seq OWNED BY product_reviews.id;
 CREATE TABLE product_variants (
     id integer NOT NULL,
     options hstore,
-    price numeric(11,2) DEFAULT 0,
-    reduced_price numeric(11,2) DEFAULT 0,
+    price numeric(11,2) DEFAULT NULL::numeric,
+    reduced_price numeric(11,2) DEFAULT NULL::numeric,
     in_stock integer DEFAULT 0,
     product_id integer,
     orders_count integer DEFAULT 0,
@@ -738,7 +738,7 @@ CREATE TABLE product_variants (
     sku character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    cost_price numeric(11,2) DEFAULT 0,
+    cost_price numeric(11,2) DEFAULT NULL::numeric,
     reseller_price numeric(11,2),
     min_quantity_for_reseller_order integer DEFAULT 1
 );
@@ -899,12 +899,9 @@ CREATE TABLE schema_migrations (
 
 CREATE TABLE settings (
     id integer NOT NULL,
-    var character varying(255) NOT NULL,
-    value text,
-    thing_id integer,
-    thing_type character varying(30),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    options hstore
 );
 
 
@@ -1800,13 +1797,6 @@ CREATE INDEX index_region_taxes_on_tax_id ON region_taxes USING btree (tax_id);
 
 
 --
--- Name: index_settings_on_thing_type_and_thing_id_and_var; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE UNIQUE INDEX index_settings_on_thing_type_and_thing_id_and_var ON settings USING btree (thing_type, thing_id, var);
-
-
---
 -- Name: index_shipping_rates_on_shipping_country_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1978,6 +1968,6 @@ INSERT INTO schema_migrations (version) VALUES ('20140222221330');
 
 INSERT INTO schema_migrations (version) VALUES ('20140222232951');
 
-INSERT INTO schema_migrations (version) VALUES ('20140314094333');
-
 INSERT INTO schema_migrations (version) VALUES ('20140321190848');
+
+INSERT INTO schema_migrations (version) VALUES ('20140323132328');
