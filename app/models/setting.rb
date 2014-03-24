@@ -1,8 +1,17 @@
 class Setting < ActiveRecord::Base
 
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
   store_accessor :options, :logo_id, :abandoned_carts_reminder, :webhook_url
+
+
+  # VALIDATIONS
+  # ------------------------------------------------------------------------------------------------------
   validate :webhook
 
+
+  # INSTANCE METHODS
+  # ------------------------------------------------------------------------------------------------------
   def self.logo
     Picture.find(Setting.first.logo_id) rescue nil
   end

@@ -26,9 +26,10 @@
       <%= f.text_field :abandoned_carts_reminder, class: 'span3', placeholder: '3' %>
       <span class="add-on">days</span>
     </div>
-  <h3>Webhook</h3>
+  <h3>Notifications</h3>
+    <p>Webhooks allow external services to be notified when certain events happen in your store. When the specified events happen, we'll send a POST request to the provided URL</p>
     <div class="input-append">
-      <%= f.label :webhook_url, 'Set webhook' %>
+      <%= f.label :webhook_url, 'Webhook URL' %>
       <%= f.text_field :webhook_url, class: 'span12', placeholder: 'http://' %>
       <span class="add-on">URL</span>
     </div>
