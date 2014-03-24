@@ -27,7 +27,7 @@ after "deploy:setup", "init:setup_config"
 after "deploy:setup", "init:create_upload_directory"
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
-after 'deploy:restart', 'git:push_deploy_tag'
+after 'deploy:restart', 'deploy:git:push_deploy_tag'
 
 namespace :init do
 
@@ -127,8 +127,8 @@ namespace :deploy do
       puts `git push --tags origin`
     end
   end
-end
 
+end
 
 
 ###### DB TASKS #######
