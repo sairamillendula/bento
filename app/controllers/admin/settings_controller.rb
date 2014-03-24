@@ -27,14 +27,20 @@ class Admin::SettingsController < Admin::BaseController
          picture = Picture.find_by_id(Setting.logo)
          if picture.present?
           picture.delete
+          end
         end
+        @settings.logo_id = logo.id
       end
-    @settings.logo_id = logo.id
     end
-    @settings.update(safe_params)
-  end
 
-    redirect_to admin_settings_path, notice: 'Settings were successfully saved.'
+    respond_to do |format|
+      if @settings.update(safe_params)
+        format.html { redirect_to admin_settings_path, notice: 'Settings were successfully saved.' }
+      else
+        @setting = @settings
+        format.html { redirect_to admin_settings_path, alert: @setting.errors.full_messages.join("<br/>") }
+      end
+    end
   end
 
   def remove_logo
@@ -47,7 +53,7 @@ class Admin::SettingsController < Admin::BaseController
   private
 
     def safe_params
-      params.require(:setting).permit(:logo, :abandoned_carts_reminder)
+      params.require(:setting).permit(:logo, :abandoned_carts_reminder, :webhook_url)
     end
 
 end

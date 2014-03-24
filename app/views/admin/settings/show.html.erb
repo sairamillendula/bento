@@ -26,6 +26,12 @@
       <%= f.text_field :abandoned_carts_reminder, class: 'span3', placeholder: '3' %>
       <span class="add-on">days</span>
     </div>
+  <h3>Webhook</h3>
+    <div class="input-append">
+      <%= f.label :webhook_url, 'Set webhook' %>
+      <%= f.text_field :webhook_url, class: 'span12', placeholder: 'http://' %>
+      <span class="add-on">URL</span>
+    </div>
   </div>
   <div class="form-actions reset">
     <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>
