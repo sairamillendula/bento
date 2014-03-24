@@ -119,16 +119,16 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 
-end
-
-namespace :git do
-  task :push_deploy_tag do
-    user = `git config --get user.name`.chomp
-    email = `git config --get user.email`.chomp
-    puts `git tag #production-deploy-#{release_name} #{current_revision} -m "Deployed by #{user} <#{email}>"`
-    puts `git push --tags origin`
+  namespace :git do
+    task :push_deploy_tag do
+      user = `git config --get user.name`.chomp
+      email = `git config --get user.email`.chomp
+      puts `git tag #production-deploy-#{release_name} #{current_revision} -m "Deployed by #{user} <#{email}>"`
+      puts `git push --tags origin`
+    end
   end
 end
+
 
 
 ###### DB TASKS #######
