@@ -91,6 +91,8 @@ GEM
       net-ssh-gateway (>= 1.1.0)
     capistrano-ext (1.2.1)
       capistrano (>= 1.0.0)
+    celluloid (0.15.2)
+      timers (~> 1.1.0)
     chronic (0.10.2)
     chunky_png (1.3.0)
     climate_control (0.0.3)
@@ -113,6 +115,7 @@ GEM
     compass-rails (1.1.7)
       compass (>= 0.12.2)
       sprockets (<= 2.11.0)
+    connection_pool (2.0.0)
     country_select (1.2.0)
     currencies (0.4.2)
     daemons (1.1.9)
@@ -227,6 +230,8 @@ GEM
     pry-byebug (1.3.2)
       byebug (~> 2.7)
       pry (~> 0.9.12)
+    pry-rails (0.3.2)
+      pry (>= 0.9.10)
     quiet_assets (1.0.2)
       railties (>= 3.1, < 5.0)
     rack (1.5.2)
@@ -253,6 +258,9 @@ GEM
     raindrops (0.13.0)
     rake (10.1.1)
     redcarpet (3.1.1)
+    redis (3.0.7)
+    redis-namespace (1.4.1)
+      redis (~> 3.0.4)
     rest-client (1.6.7)
       mime-types (>= 1.16)
     sass (3.2.18)
@@ -261,6 +269,12 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0.0)
+    sidekiq (2.17.7)
+      celluloid (>= 0.15.2)
+      connection_pool (>= 1.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
     simple_form (3.0.1)
       actionpack (>= 4.0.0, < 4.1)
       activemodel (>= 4.0.0, < 4.1)
@@ -291,6 +305,7 @@ GEM
     thread_safe (0.3.1)
       atomic (>= 1.1.7, < 2)
     tilt (1.4.1)
+    timers (1.1.0)
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
@@ -345,6 +360,7 @@ DEPENDENCIES
   pg_search
   prawn!
   pry-byebug
+  pry-rails
   quiet_assets
   rack-cors
   rack-mini-profiler
@@ -354,6 +370,7 @@ DEPENDENCIES
   ransack!
   redcarpet
   sass-rails (~> 4.0.0)
+  sidekiq
   simple_form
   sorcery (~> 0.8.5)
   stripe

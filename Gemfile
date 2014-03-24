@@ -54,10 +54,12 @@ gem 'jquery-fileupload-rails'
 gem 'money'
 gem 'google_currency'
 gem 'rack-cors', :require => 'rack/cors'
+gem 'sidekiq'
 
 group :development, :test do
   gem 'faker', '1.0.1'
   gem 'hirb'
+  gem 'pry-rails'
 end
 
 group :development do

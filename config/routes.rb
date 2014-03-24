@@ -21,7 +21,7 @@ Bento::Application.routes.draw do
   get '/stripe/callback' => 'stripe#callback'
   get 'api/google_shopping' => 'api#google_shopping'
   get 'api/sitemap' => 'api#sitemap'
-
+  post 'api/webhook' => 'api#webhook' #for testing
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :products, only: [:index, :show]

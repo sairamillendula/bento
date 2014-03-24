@@ -1,4 +1,6 @@
 class ApiController < ApplicationController
+  skip_before_action :verify_authenticity_token, only: [:webhook]
+
   def google_shopping
   	@products = Product.visibles
   	host_with_port = request.protocol + request.host_with_port
@@ -17,5 +19,10 @@ class ApiController < ApplicationController
 	    format.xml #{ render xml: @products }
 	    # render(:template => “reports/report”, :formats => [:xml], :handlers => :builder, :layout => false)
 	  end
+  end
+
+#### For testing ##
+  def webhook
+    render json: {}, status: 200
   end
 end
