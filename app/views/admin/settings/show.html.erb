@@ -33,12 +33,6 @@
       <%= f.text_field :webhook_url, class: 'span12', placeholder: 'http://' %>
       <span class="add-on">URL</span>
     </div>
-    <p>
-    <div class="input-append">
-      <%= f.label :auth_token, 'Authentication token' %>
-      <%= f.text_field :auth_token, class: 'span12' %>
-      <span class="add-on">token</span>
-    </div>
   </div>
   <div class="form-actions reset">
     <%= submit_tag "#{t 'save'}", class: 'btn btn-primary' %>

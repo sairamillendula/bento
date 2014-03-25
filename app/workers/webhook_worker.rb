@@ -6,7 +6,7 @@ class WebhookWorker
     order = Order.find(order_id)
     settings = Setting.first
     webhook = settings.webhook_url
-    token = settings.auth_token
+    token = 'b76cdabd077990df5d2f2b0679e316c2'
 
     if order.present? && webhook.present?
       uri = URI.parse(webhook)

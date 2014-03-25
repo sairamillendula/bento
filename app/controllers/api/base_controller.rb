@@ -7,7 +7,6 @@ class Api::BaseController < ApplicationController
   private
 
   def restrict_access
-    binding.pry
     if request.method != "OPTIONS"
       authenticate_or_request_with_http_token do |token, options|
         api_key = ENV['AUTH_TOKEN']
