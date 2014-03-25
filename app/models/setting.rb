@@ -2,7 +2,7 @@ class Setting < ActiveRecord::Base
 
   # ATTRIBUTES
   # ------------------------------------------------------------------------------------------------------
-  store_accessor :options, :logo_id, :abandoned_carts_reminder, :webhook_url
+  store_accessor :options, :logo_id, :abandoned_carts_reminder, :webhook_url, :auth_token
 
 
   # VALIDATIONS

@@ -53,7 +53,7 @@ class Admin::SettingsController < Admin::BaseController
   private
 
     def safe_params
-      params.require(:setting).permit(:logo, :abandoned_carts_reminder, :webhook_url)
+      params.require(:setting).permit(:logo, :abandoned_carts_reminder, :webhook_url, :auth_token)
     end
 
 end

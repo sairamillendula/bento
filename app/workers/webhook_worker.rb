@@ -4,13 +4,19 @@ class WebhookWorker
 
   def perform(order_id)
     order = Order.find(order_id)
-    webhook = Setting.first.webhook_url
+    settings = Setting.first
+    webhook = settings.webhook_url
+    token = settings.auth_token
 
     if order.present? && webhook.present?
       uri = URI.parse(webhook)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true if uri.scheme == 'https'
-
+     headers = {
+        "User-Agent" => 'Webhook',
+        'Content-Type' =>'application/json',
+        "Authorization" => "Token token=\"#{token}\""
+      }
       body ={
         order: {
           order_id: order.id.to_s,
@@ -18,7 +24,7 @@ class WebhookWorker
           }
         }.to_json
 
-        request = Net::HTTP::Post.new(uri.path, {'Content-Type' =>'application/json'})
+        request = Net::HTTP::Post.new(uri.path, headers)
         request.body = body
         response = http.request(request)
         response.code == '200' ? true : false

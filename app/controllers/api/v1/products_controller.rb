@@ -15,6 +15,10 @@ module Api
         @product = Product.friendly.includes(:master, :variants, :main_picture).find(params[:id])
       end
 
+      #### For testing ##
+      def webhook
+        render json: {}, status: 200
+      end
     end
   end
 end

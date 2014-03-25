@@ -20,9 +20,4 @@ class ApiController < ApplicationController
 	    # render(:template => “reports/report”, :formats => [:xml], :handlers => :builder, :layout => false)
 	  end
   end
-
-#### For testing ##
-  def webhook
-    render json: {}, status: 200
-  end
 end
