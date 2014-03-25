@@ -32,7 +32,7 @@ class Address < ActiveRecord::Base
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
-    html << Country[country].name if country.present?
+    html << Country.find_country_by_name(country).name if country.present?
     html.join(sep).titleize.html_safe
   end
 
@@ -44,7 +44,7 @@ class Address < ActiveRecord::Base
     r3 << province if province.present?
     r3 << postal_code if postal_code.present?
     html << r3.join(', ')
-    html << Country[country].name if country.present?
+    html << Country.find_country_by_name(country).name if country.present?
     html.join("\n").html_safe
   end
 
@@ -62,7 +62,7 @@ class Address < ActiveRecord::Base
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
-    html << Country[country].name if country.present?
+    html << Country.find_country_by_name(country).name if country.present?
     html.join(", ").html_safe
   end
 
