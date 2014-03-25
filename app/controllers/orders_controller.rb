@@ -46,9 +46,9 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         auto_login(@order.client) unless current_user
-        WebhookWorker.perform_async(@order.id)
         StoreMailer.order_receipt(@order).deliver
         AdminMailer.new_order(@order).deliver
+        WebhookWorker.perform_async(@order.id)
         format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
       else
         flash[:error] = "An error occured."
