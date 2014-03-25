@@ -123,7 +123,7 @@ namespace :deploy do
     task :push_deploy_tag do
       user = `git config --get user.name`.chomp
       #email = `git config --get user.email`.chomp
-      puts `git tag "#{release_name} @ production-deploy:#{current_revision}" -m "Deployed by #{user}"`
+      puts `git tag "#{release_name}-production-deploy:#{current_revision}" -m "Deployed by #{user}"`
       puts `git push origin --tags`
     end
   end
