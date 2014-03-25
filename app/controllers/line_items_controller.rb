@@ -1,7 +1,9 @@
 class LineItemsController < ApplicationController
+  skip_before_action :verify_authenticity_token
 
 	def create
     variant = ProductVariant.find(params[:product_variant_id])
+    puts variant.inspect
 		@line_item = @cart.add_to_cart(variant)
 
 		respond_to do |format|
