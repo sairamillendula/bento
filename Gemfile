@@ -56,6 +56,7 @@ gem 'google_currency'
 gem 'rack-cors', :require => 'rack/cors'
 gem 'sidekiq'
 gem 'capistrano-sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :development, :test do
   gem 'faker', '1.0.1'

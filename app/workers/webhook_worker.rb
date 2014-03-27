@@ -7,6 +7,8 @@ class WebhookWorker
     settings = Setting.first
     webhook = settings.webhook_url
     token = ENV['AUTH_TOKEN']
+    StoreMailer.order_receipt(order).deliver
+    AdminMailer.new_order(order).deliver
 
     if order.present? && webhook.present?
       uri = URI.parse(webhook)

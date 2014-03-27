@@ -48,7 +48,15 @@ class OrdersController < ApplicationController
         auto_login(@order.client) unless current_user
         StoreMailer.order_receipt(@order).deliver
         AdminMailer.new_order(@order).deliver
+
+        begin
         WebhookWorker.perform_async(@order.id)
+        rescue => e
+          logger.error "Sidekiq error while perform_async order: #{@order.code}, #{e.message}"
+          flash[:error] = "An error occured."
+          format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
+        end
+
         format.html { redirect_to @order, notice: "#{t 'theme.orders.thank_you', default: 'Thank you for your order'}." }
       else
         flash[:error] = "An error occured."
