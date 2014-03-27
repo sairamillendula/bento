@@ -119,6 +119,7 @@ namespace :deploy do
   end
   before "deploy", "deploy:check_revision"
 
+  desc "Release tagging to view what is installed on server. Check out github.com/username/repo/tags"
   namespace :git do
     task :push_deploy_tag do
       user = `git config --get user.name`.chomp
