@@ -22,17 +22,17 @@ class Address < ActiveRecord::Base
     html << address1 if address1.present?
     html << address2 if address2.present?
     r3 = []
-    if country == 'FR'
+    if country == 'FR' || country =='France'
       r3 << postal_code if postal_code.present?
       r3 << city if city.present?
       html << r3.join(' ')
     else
       r3 << city if city.present?
-      r3 << Country[country].subdivisions[province]['name'] if province.present?
+      r3 << country_obj.subdivisions[province]['name'] if country_obj.subdivisions[province].present?
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
-    html << Country.find_country_by_name(country).name if country.present?
+    html << country_obj.name if country_obj.present?
     html.join(sep).titleize.html_safe
   end
 
@@ -44,7 +44,7 @@ class Address < ActiveRecord::Base
     r3 << province if province.present?
     r3 << postal_code if postal_code.present?
     html << r3.join(', ')
-    html << Country.find_country_by_name(country).name if country.present?
+    html << country_obj.name if country_obj.present?
     html.join("\n").html_safe
   end
 
@@ -52,7 +52,7 @@ class Address < ActiveRecord::Base
     html = []
     html << address1 if address1.present?
     r3 = []
-    if country == 'FR'
+    if country == 'FR' || country =='France'
       r3 << postal_code if postal_code.present?
       r3 << city if city.present?
       html << r3.join(' ')
@@ -62,7 +62,7 @@ class Address < ActiveRecord::Base
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
-    html << Country.find_country_by_name(country).name if country.present?
+    html << country_obj.name if country_obj.present?
     html.join(", ").html_safe
   end
 
@@ -100,5 +100,8 @@ class Address < ActiveRecord::Base
       display_name: display_name(', ')
     }
   end
-
+ 
+  def country_obj
+    Country[country] || Country.find_country_by_name(country)
+  end
 end
