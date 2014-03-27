@@ -28,7 +28,7 @@ class Address < ActiveRecord::Base
       html << r3.join(' ')
     else
       r3 << city if city.present?
-      r3 << country_obj.subdivisions[province]['name'] if country_obj.subdivisions[province].present?
+      r3 << country_obj.subdivisions[province]['name'] if country_obj.present? && country_obj.subdivisions[province].present?
       r3 << postal_code if postal_code.present?
       html << r3.join(', ')
     end
