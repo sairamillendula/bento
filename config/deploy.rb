@@ -28,6 +28,7 @@ after "deploy:setup", "init:create_upload_directory"
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 after 'deploy:restart', 'deploy:git:push_deploy_tag'
+after 'deploy:restart', 'deploy:restart_sidekiq'
 
 namespace :init do
 
@@ -129,6 +130,10 @@ namespace :deploy do
     end
   end
 
+  task :restart_sidekiq, roles: :app do
+    puts "Restart sidekiq"
+    run "sudo kill $(cat #{release_path}/tmp/pids/sidekiq-*.pid)"
+  end
 end
 
 
