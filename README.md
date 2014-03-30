@@ -9,3 +9,8 @@ e-commerce application - © yafoy.com
 2. ````rake db:bootstrap````
 3. ````rails server -p 3015```` -> important for Stripe registered application
 4. Sign in as admin and connect user with Stripe
+
+## Webhook
+
+1. Set webhook URL
+2. Start redis

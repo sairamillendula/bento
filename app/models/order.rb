@@ -203,6 +203,10 @@ class Order < ActiveRecord::Base
     end
   end
 
+  def total_products
+    items.to_a.sum(&:quantity)
+  end
+
   # EXPORT
   def self.to_csv(options = {})
     headers = %w{Date Code Client Subtotal TaxName TaxRate ShippingMethod ShippingAmount Total Coupon}

@@ -4,7 +4,6 @@ class Picture < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
 	belongs_to :picturable, polymorphic: true
-  has_many :colors, class_name: 'PictureColor', dependent: :destroy
   acts_as_list scope: :picturable
 
 
@@ -25,17 +24,6 @@ class Picture < ActiveRecord::Base
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :set_name
-
-
-  # SCOPES
-  # ------------------------------------------------------------------------------------------------------
-  scope(:by_color, lambda do |color_id|
-    if color_id
-      joins(:colors).where('picture_colors.search_color_id = ?', color_id)
-    else
-      all
-    end
-  end)
 
 
   # INSTANCE METHODS
