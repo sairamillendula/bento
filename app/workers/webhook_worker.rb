@@ -30,8 +30,8 @@ class WebhookWorker
           amount: order.subtotal,
           shipping: order.shipping_price,
           total_price: order.total,
-          coupon: true if order.coupon_code.present?
-          coupon_code: order.coupon_code if order.coupon_code.present?
+          #coupon: true if order.coupon_code.present?
+          #coupon_code: order.coupon_code if order.coupon_code.present?
           country: order.billing_address.country,
           city: order.billing_address.city,
           url: order_url(order.id).to_s,
