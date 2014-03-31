@@ -2,9 +2,11 @@ module Api
   module V1
     class ProductsController < Api::BaseController
       respond_to :json
-      #### For testing ##
+
+      ### For testing ###
       skip_before_action :verify_authenticity_token, only: :webhook
-      ####
+      ###
+
       # curl http://localhost:3015/api/products -H "Content-type: application/json" -H 'Authorization: Token token="b76cdabd077990df5d2f2b0679e316c2"'
       def index
         @products = Product.visibles.includes(:master, :variants, :main_picture)
@@ -17,7 +19,7 @@ module Api
         @product = Product.friendly.includes(:master, :variants, :main_picture).find(params[:id])
       end
 
-      #### For testing ##
+      ### For testing ###
       def webhook
         render json: {}, status: 200
       end
