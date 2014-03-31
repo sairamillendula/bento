@@ -8,7 +8,7 @@ class WebhookWorker
     settings = Setting.first
     webhook = settings.webhook_url
     token = ENV['AUTH_TOKEN']
-
+    coupon, coupon_code = false, nil
     StoreMailer.order_receipt(order).deliver
     AdminMailer.new_order(order).deliver
 
@@ -21,6 +21,10 @@ class WebhookWorker
         'Content-Type' =>'application/json',
         "Authorization" => "Token token=\"#{token}\""
       }
+      if order.coupon_code.present?
+        coupon = true
+        coupon_code = order.coupon_code
+      end
       body = {
         order: {
           order_id: order.id.to_s,
@@ -30,8 +34,8 @@ class WebhookWorker
           amount: order.subtotal,
           shipping: order.shipping_price,
           total_price: order.total,
-          #coupon: true if order.coupon_code.present?
-          #coupon_code: order.coupon_code if order.coupon_code.present?
+          coupon: coupon,
+          coupon_code: coupon_code,
           country: order.billing_address.country,
           city: order.billing_address.city,
           url: order_url(order.id).to_s,
