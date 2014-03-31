@@ -9,8 +9,6 @@ class WebhookWorker
     webhook = settings.webhook_url
     token = ENV['AUTH_TOKEN']
     coupon, coupon_code = false, nil
-    StoreMailer.order_receipt(order).deliver
-    AdminMailer.new_order(order).deliver
 
     if order.present? && webhook.present?
       uri = URI.parse(webhook)
@@ -38,7 +36,7 @@ class WebhookWorker
           coupon_code: coupon_code,
           country: order.billing_address.country,
           city: order.billing_address.city,
-          url: order_url(order.id).to_s,
+          url: Rails.application.routes.url_helpers.admin_order_url(host: ENV['HOST'], id: order.id),
           client_email: order.client.email,
           products_count: order.total_products
         }

@@ -46,6 +46,8 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         auto_login(@order.client) unless current_user
+        StoreMailer.order_receipt(order).deliver
+        AdminMailer.new_order(order).deliver
 
         begin
         WebhookWorker.perform_async(@order.id)
