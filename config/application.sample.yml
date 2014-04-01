@@ -11,3 +11,4 @@ development:
   FACEBOOK_NIC:
   TWITTER_NIC:
   PINTEREST_NIC:
+  HOST: 'localhost:3015'
