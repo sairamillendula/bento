@@ -1,0 +1,33 @@
+<%= page_title("#{t 'orders.title'}") %>
+
+<% if @orders.present? %>
+  <%= form_tag params.merge(format: :pdf), method: :get do %>
+    <div class="well well-small">
+    	<%= submit_tag "Print orders", class: "btn btn-inverse", name: nil %>
+    </div>
+
+	  <table id="orders" class="table table-striped">
+		  <tr id="table-headers">
+		  	<th></th>
+		    <th><%= sortable "code", "#" %></th>
+		    <th><%= sortable "completed", "#{t 'status.title'}" %></th>
+		    <th><%= sortable "client.full_name", "#{t 'client'}" %></th>
+		    <th><%= sortable "created_at", "Date" %></th>
+		    <th>Shipping</th>
+		    <th><%= sortable "total", "#{t 'total'}" %></th>
+		    <th></th>
+		  </tr>
+
+		  <% @orders.each do |order| %>
+		    <%= render order %>
+		  <% end %>
+		</table>
+
+	  <%= paginate @orders %>
+	<% end %>
+<% else %>
+  <div class="alert"><%= t 'orders.none' %>.</div>
+<% end %>
+<div class="well well-small">
+	<%= button_link_to "New order", new_reseller_order_path, class: "btn btn-inverse", name: nil %>
+</div>

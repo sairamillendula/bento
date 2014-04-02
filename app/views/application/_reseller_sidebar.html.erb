@@ -1,0 +1,7 @@
+<%= tabs_tag builder: BootstrapSidebarNavBuilder do |tab| %>
+  <li><%= tab.dashboard "#{t 'dashboard.title'}", reseller_dashboard_path, icon: 'globe' %></li>
+
+  <li class="nav-header"><%= t 'work_list' %></li>
+  <li><%= tab.orders "#{t 'orders.title'}", reseller_orders_path, icon: 'fire' %></li>
+
+<% end %>

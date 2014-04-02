@@ -95,6 +95,13 @@ ul.pictures {
 	color: $red;
 }
 
+.input-mini {
+  .controls {
+    width: 60px;
+    margin-left: 0;
+  }
+}
+
 /* Collections */
 #products-list, #collection-products {
 	padding-left: 0;

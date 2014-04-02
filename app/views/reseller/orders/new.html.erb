@@ -1,0 +1,72 @@
+<%= page_title("New order") %>
+
+<%= simple_form_for([:reseller, @order], html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+  <div class="row-fluid">
+    <div class="span6 address billing">
+      <h4><%= t 'shipping_address' %></h4>
+      <%= f.fields_for :shipping_address do |ff| %>
+        <%= ff.input :full_name %>
+        <%= ff.input :address1 %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city %>
+        <%= ff.input :postal_code %>
+        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province'} %>
+      <% end %>
+    </div>
+
+    <div class="span6 address shipping">
+      <h4><%= t 'billing_address' %></h4>
+      <%= f.fields_for :billing_address do |ff| %>
+        <%= ff.input :full_name %>
+        <%= ff.input :address1 %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city %>
+        <%= ff.input :postal_code %>
+        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province'} %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="well">
+      <h4><%= t 'theme.shipping.shipping_method' %></h4>
+      <p><%= t 'theme.shipping.select_shipping_rate' %></p>
+      <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+    </div>
+
+  <table class="table table-striped" id="stocks">
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Min. quantity</th>
+      <th>Quantity</th>
+    </tr>
+    <%= f.fields_for :items do |item| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td>
+          <% if item.object.variant.master %>
+            <%= link_to item.object.variant.product.name, [:reseller, item.object.variant.product] %>
+            <% else %>
+            <%= link_to item.object.variant.name, [:reseller, item.object.variant.product] %>
+            <% end %>
+          <%= item.input :variant_id, as: :hidden %>
+        </td>
+        <td>
+          <%= item.text_field :price, readonly: true, class: 'input-mini' %>
+        </td>
+        <td>
+          <%= item.object.variant.min_quantity_for_reseller_order %>
+        </td>
+        <td>
+          <%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'} %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f) %>
+  </div>
+<% end %>

@@ -9,8 +9,6 @@ class WebhookWorker
     webhook = settings.webhook_url
     token = ENV['AUTH_TOKEN']
     coupon, coupon_code = false, nil
-    StoreMailer.order_receipt(order).deliver
-    AdminMailer.new_order(order).deliver
 
     if order.present? && webhook.present?
       uri = URI.parse(webhook)

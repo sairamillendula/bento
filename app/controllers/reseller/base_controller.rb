@@ -1,5 +1,5 @@
 class Reseller::BaseController < ApplicationController
-  #layout 'admin'
+  layout 'reseller'
   before_filter :verify_reseller
 
 private

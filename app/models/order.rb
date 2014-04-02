@@ -35,6 +35,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :client
 
   has_many :items, class_name: "LineItem", dependent: :destroy
+  accepts_nested_attributes_for :items, reject_if: proc { |a| a['quantity'].to_i == 0 }
 
   has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address
@@ -234,6 +235,30 @@ class Order < ActiveRecord::Base
         csv << row
       end
     end
+  end
+
+#for reseller order
+  def calculate_tax(shipping_country, shipping_estimate)
+     # shipping
+    self.shipping_method = shipping_estimate.try(:name)
+    self.shipping_price = shipping_estimate.try(:price)
+
+    if shipping_country && shipping_country.tax
+      self.tax_name = shipping_country.tax.name
+      self.tax_rate = shipping_country.tax.rate
+      if self.shipping_address.province.present? && shipping_country.tax.region_taxes_count > 0
+        province_tax = shipping_country.tax.region_taxes.find_by_province(self.shipping_address.province)
+        if province_tax && province_tax.rate.present? && province_tax.rate > 0
+          self.tax_name = province_tax.name
+          self.tax_rate = province_tax.rate
+        end
+      end
+    else
+      self.tax_name = nil
+      self.tax_rate = nil
+      self.shipping = nil
+    end
+    self.total= subtotal + shipping_price
   end
 
   private

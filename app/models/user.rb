@@ -98,6 +98,10 @@ class User < ActiveRecord::Base
     save!
   end
 
+  def reseller?
+    reseller_request.present?
+  end
+
   private
 
     def format_fields
