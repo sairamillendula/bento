@@ -5,7 +5,7 @@ class Admin::SettingsController < Admin::BaseController
     @setting = Setting.first_or_create
   end
 
-# TODO remove if unsed
+  # TODO remove if unused
   # def current
   #   set_tab :current
 
@@ -17,7 +17,8 @@ class Admin::SettingsController < Admin::BaseController
   # end
 
   def update
-     @settings = Setting.first_or_create
+    @settings = Setting.first_or_create
+
     if params[:setting]
       if file = params[:setting].delete(:logo)
         logo = Picture.new
