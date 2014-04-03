@@ -118,8 +118,11 @@ Bento::Application.routes.draw do
   # ============================================================
   scope module: 'reseller', path: 'reseller', as: 'reseller' do
     root to: 'dashboard#show', as: :dashboard
-
-    resources :orders, only: [:index, :new, :create]
+    resources :carts
+    resources :orders, only: [:index, :show, :new, :create]
+    resources :products do
+      resource :options, only: [:edit, :update], as: :options
+    end
   end
 
   # ============================================================

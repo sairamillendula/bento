@@ -16,41 +16,15 @@ class Reseller::OrdersController < Reseller::BaseController
   end
 
   def new
+    @cart = current_cart
     @order = Order.new
-    country_alpha2 = Country.find_country_by_name(@current_user.reseller_request.country).alpha2 rescue nil
-    @order.build_shipping_address(
-        full_name: @current_user.reseller_request.business_name,
-        country: country_alpha2,
-        city: @current_user.reseller_request.city
-    )
-    @order.build_billing_address(
-        full_name: @current_user.reseller_request.business_name,
-        country: country_alpha2,
-        city: @current_user.reseller_request.city
-    )
-
+    @order.copy_from_cart(@cart)
     @shipping_country = ShippingCountry.find_by_country(@current_user.reseller_request.country) || ShippingCountry.find_by_country('WORLDWIDE')
     shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
 
     @applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == 'price-based' }
+    @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @applicable_rates)
 
-    @products = Product.includes(:variants, :pictures).order('name')
-    @products.each do |product|
-      @order.items.build(
-          variant_id: product.master.id,
-          quantity: 0,
-          price: product.master.reseller_price
-      )
-      if product.variants.any?
-        product.variants.each do |variant|
-          @order.items.build(
-              variant_id: variant.id,
-              quantity: 0,
-              price: variant.reseller_price
-          )
-        end
-      end
-    end
   end
 
   def show
@@ -81,15 +55,24 @@ class Reseller::OrdersController < Reseller::BaseController
 
   def create
     @order = @current_user.orders.new(safe_params)
+    @cart = current_cart
+
     @shipping_country = ShippingCountry.find_by_country(@order.shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
     @shipping_estimate = ShippingRate.find(params[:shipping_rate])
 
     @order.calculate_tax(@shipping_country, @shipping_estimate)
 
+    @cart.items.each do |item|
+      item.cart_id = nil
+      @order.items << item
+    end
+
     respond_to do |format|
       if @order.save
         StoreMailer.order_receipt(@order).deliver
         AdminMailer.new_order(@order).deliver
+        Cart.destroy(session[:cart_id])
+        session[:cart_id] = nil
 
         begin
         WebhookWorker.perform_async(@order.id)
@@ -131,8 +114,7 @@ class Reseller::OrdersController < Reseller::BaseController
     def safe_params
       params.require(:order).permit(:state, :shipped_at, :shipping_rate,
                                     shipping_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province, :full_name],
-                                    billing_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province, :full_name],
-                                    items_attributes: [:id, :quantity, :price, :variant_id]
+                                    billing_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province, :full_name]
       )
     end
 

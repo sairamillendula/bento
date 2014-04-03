@@ -35,7 +35,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :client
 
   has_many :items, class_name: "LineItem", dependent: :destroy
-  accepts_nested_attributes_for :items, reject_if: proc { |a| a['quantity'].to_i == 0 }
+  # accepts_nested_attributes_for :items, reject_if: proc { |a| a['quantity'].to_i == 0 }
 
   has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address

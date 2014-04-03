@@ -31,40 +31,10 @@
   </div>
 
   <div class="well">
-      <h4><%= t 'theme.shipping.shipping_method' %></h4>
-      <p><%= t 'theme.shipping.select_shipping_rate' %></p>
-      <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
-    </div>
-
-  <table class="table table-striped" id="stocks">
-    <tr>
-      <th>Product</th>
-      <th>Price</th>
-      <th>Min. quantity</th>
-      <th>Quantity</th>
-    </tr>
-    <%= f.fields_for :items do |item| %>
-      <tr class="<%= cycle('odd', 'even') %>">
-        <td>
-          <% if item.object.variant.master %>
-            <%= link_to item.object.variant.product.name, [:reseller, item.object.variant.product] %>
-            <% else %>
-            <%= link_to item.object.variant.name, [:reseller, item.object.variant.product] %>
-            <% end %>
-          <%= item.input :variant_id, as: :hidden %>
-        </td>
-        <td>
-          <%= item.text_field :price, readonly: true, class: 'input-mini' %>
-        </td>
-        <td>
-          <%= item.object.variant.min_quantity_for_reseller_order %>
-        </td>
-        <td>
-          <%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'} %>
-        </td>
-      </tr>
-    <% end %>
-  </table>
+    <h4><%= t 'theme.shipping.shipping_method' %></h4>
+    <p><%= t 'theme.shipping.select_shipping_rate' %></p>
+    <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+  </div>
 
   <div class="form-actions">
     <%= submit_or_cancel(f) %>
