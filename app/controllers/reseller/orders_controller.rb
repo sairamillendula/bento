@@ -17,14 +17,15 @@ class Reseller::OrdersController < Reseller::BaseController
 
   def new
     @order = Order.new
+    country_alpha2 = Country.find_country_by_name(@current_user.reseller_request.country).alpha2 rescue nil
     @order.build_shipping_address(
         full_name: @current_user.reseller_request.business_name,
-        country: Country.find_country_by_name(@current_user.reseller_request.country).alpha2,
+        country: country_alpha2,
         city: @current_user.reseller_request.city
     )
     @order.build_billing_address(
         full_name: @current_user.reseller_request.business_name,
-        country: Country.find_country_by_name(@current_user.reseller_request.country).alpha2,
+        country: country_alpha2,
         city: @current_user.reseller_request.city
     )
 
