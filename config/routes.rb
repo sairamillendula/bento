@@ -24,11 +24,7 @@ Bento::Application.routes.draw do
   get 'api/sitemap' => 'api#sitemap'
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
-      resources :products, only: [:index, :show] do #for testing
-        collection do
-          post 'webhook'
-        end #for testing
-      end
+      resources :products, only: [:index, :show]
     end
   end
 

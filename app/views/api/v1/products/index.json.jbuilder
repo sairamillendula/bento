@@ -1,4 +1,4 @@
-json.array!(@products) do |product|
+json.cache!(@products) do |product|
   json.extract! product, :name, :current_price
   json.url product_url(product, format: :json)
   json.sku product.master.sku.to_json
