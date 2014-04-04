@@ -1,7 +1,7 @@
 class Reseller::OrdersController < Reseller::BaseController
   before_action :set_order, only: [:update]
   set_tab :orders
-  helper_method :sort_column, :sort_direction
+  helper_method :sort_column, :sort_direction, :shipping
 
   def index
     @orders = @current_user.orders.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(20)    # @orders = @orders.where(id: params[:order_ids]) if params[:order_ids].present?
@@ -16,15 +16,11 @@ class Reseller::OrdersController < Reseller::BaseController
   end
 
   def new
-    @cart = current_cart
+    @cart = @current_user.carts.find(session[:reseller_cart_id])
     @order = Order.new
-    @order.copy_from_cart(@cart)
-    @shipping_country = ShippingCountry.find_by_country(@current_user.reseller_request.country) || ShippingCountry.find_by_country('WORLDWIDE')
-    shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
-
-    @applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == 'price-based' }
-    @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @applicable_rates)
-
+    @order.build_billing_address.copy(@cart.billing_address)
+    @order.build_shipping_address.copy(@cart.shipping_address)
+    shipping
   end
 
   def show
@@ -54,25 +50,25 @@ class Reseller::OrdersController < Reseller::BaseController
   end
 
   def create
+
     @order = @current_user.orders.new(safe_params)
-    @cart = current_cart
+    @cart = @current_user.carts.find(session[:reseller_cart_id])
 
     @shipping_country = ShippingCountry.find_by_country(@order.shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
     @shipping_estimate = ShippingRate.find(params[:shipping_rate])
 
     @order.calculate_tax(@shipping_country, @shipping_estimate)
 
-    @cart.items.each do |item|
-      item.cart_id = nil
-      @order.items << item
-    end
-
     respond_to do |format|
       if @order.save
+        @cart.items.each do |item|
+          item.cart_id = nil
+          @order.items << item
+        end
         StoreMailer.order_receipt(@order).deliver
         AdminMailer.new_order(@order).deliver
-        Cart.destroy(session[:cart_id])
-        session[:cart_id] = nil
+        @current_user.carts.find(session[:reseller_cart_id]).destroy
+        session[:reseller_cart_id] = nil
 
         begin
         WebhookWorker.perform_async(@order.id)
@@ -84,6 +80,7 @@ class Reseller::OrdersController < Reseller::BaseController
 
         format.html { redirect_to reseller_order_url(@order), notice: 'Order was successfully created.' }
       else
+        shipping
         format.html { render action: 'new' }
       end
     end
@@ -129,5 +126,10 @@ class Reseller::OrdersController < Reseller::BaseController
     def sort_column
       Order.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
-
-end
+    def shipping
+      @shipping_country = ShippingCountry.find_by_country(@current_user.reseller_request.country) || ShippingCountry.find_by_country('WORLDWIDE')
+      shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
+      @applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == 'price-based' }
+      @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @applicable_rates)
+    end
+  end

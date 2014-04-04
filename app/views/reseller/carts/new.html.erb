@@ -30,5 +30,6 @@
 
   <div class="form-actions">
     <%= submit_or_cancel(f, "Continue") %>
+    <%= button_link_to "Empty cart", reseller_cart_path(@cart), method: :delete, class: "pull-right" %>
   </div>
 <% end %>
