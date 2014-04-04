@@ -1,3 +1,3 @@
 <%= page_title("#{t 'resellers.dashboard.title'}") do %>
-  <%= link_to "#{t 'resellers.orders.new', default: 'New Order'}", new_reseller_order_path, class: 'btn btn-default pull-right' %>
+  <%= button_link_to "#{t 'resellers.orders.new', default: 'New Order'}", new_reseller_order_path, class: 'btn-default pull-right' %>
 <% end %>
