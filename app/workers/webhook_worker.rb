@@ -1,6 +1,6 @@
 class WebhookWorker
   include Sidekiq::Worker
-  sidekiq_options retry: 5
+  sidekiq_options queue: :bento, retry: 5
 
   # WebhookWorker.perform_async(order_id)
   def perform(order_id)
