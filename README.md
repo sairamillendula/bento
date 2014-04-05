@@ -14,4 +14,4 @@ e-commerce application - © yafoy.com
 
 1. Set webhook URL
 2. Start redis
-3. ```bundle exec sidekiq```
+3. Start sidekiq ```bundle exec sidekiq -q default,bento```

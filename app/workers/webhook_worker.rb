@@ -25,7 +25,6 @@ class WebhookWorker
       end
       body = {
         order: {
-          order_id: order.id.to_s,
           uid: order.code,
           currency: order.currency,
           date: order.created_at,
