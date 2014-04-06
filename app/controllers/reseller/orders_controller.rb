@@ -126,10 +126,11 @@ class Reseller::OrdersController < Reseller::BaseController
     def sort_column
       Order.column_names.include?(params[:sort]) ? params[:sort] : "created_at"
     end
+    
     def shipping
       @shipping_country = ShippingCountry.find_by_country(@current_user.reseller_request.country) || ShippingCountry.find_by_country('WORLDWIDE')
       shipping_rates = (@shipping_country && @shipping_country.rates.order('price ASC')) || []
       @applicable_rates = shipping_rates.select {|shipping_rate| shipping_rate.criteria == 'price-based' }
-      @shipping_estimate = ShippingRate.estimate(@cart.subtotal, @applicable_rates)
+      @shipping_estimate = ShippingRate.estimate(@cart.subtotal.to_f.round(2), @applicable_rates)
     end
   end
