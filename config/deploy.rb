@@ -132,7 +132,7 @@ namespace :deploy do
 
   task :restart_sidekiq, roles: :app do
     puts "Restarting sidekiq"
-    run "sudo kill $(cat #{release_path}/tmp/pids/sidekiq-*.pid)"
+    run "sudo kill $(cat #{release_path}/tmp/pids/sidekiq-*.pid) 2> /dev/null"
   end
 end
 
