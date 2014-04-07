@@ -54,8 +54,8 @@ gem 'jquery-fileupload-rails'
 gem 'money'
 gem 'google_currency'
 gem 'rack-cors', :require => 'rack/cors'
-gem 'sidekiq'
-gem 'capistrano-sidekiq'
+gem 'sidekiq', '~> 3.0.0'
+# gem 'capistrano-sidekiq'
 gem 'sinatra', '>= 1.3.0', :require => nil
 
 group :development, :test do
