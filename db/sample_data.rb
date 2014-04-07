@@ -60,7 +60,7 @@ puts "Created 10 clients"
     password_confirmation: "123123"
   )
   client.build_reseller_request(
-    country: "Dude",
+    country: ["France", "Canada"].sample,
     city: "Ottawa",
     business_name: Faker::Name.last_name,
     who_are_you: Faker::Name.last_name
@@ -159,7 +159,7 @@ c.rates.create!(min_criteria: 0, max_criteria: 100, price: 8, name: 'Standard (5
 c.tax.name = 'TVH'
 c.tax.rate = 13
 c.tax.save!
-t = 
+t =
 t = c.tax.region_taxes.where(province: 'AB').first
 t.update_attributes(name: 'HST', rate: '5')
 t = c.tax.region_taxes.where(province: 'QC').first
