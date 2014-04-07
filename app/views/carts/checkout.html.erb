@@ -79,10 +79,10 @@
       <%= simple_form_for(:session, url: sessions_path, method: :post, html: {class: "form-horizontal"}) do |f| %>
         <%= f.error_notification %>
         <%= hidden_field_tag :checkout, '1' %>
-        
+
         <%= f.input :email %>
         <%= f.input :password %>
-        
+
         <p id="remember-control" class="nolabel">
           <%= check_box_tag :remember_me %> <%= t 'theme.remember_me' %>
         </p>
