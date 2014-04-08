@@ -13,7 +13,7 @@ class WebhookWorker
     if order.present? && webhook.present?
       uri = URI.parse(webhook)
       http = Net::HTTP.new(uri.host, uri.port)
-      http.use_ssl = true if uri.scheme == 'https'
+      http.use_ssl = true if uri.scheme == 'https' || uri.port == 443
       headers = {
         "User-Agent" => 'Webhook',
         'Content-Type' =>'application/json',
@@ -43,8 +43,12 @@ class WebhookWorker
 
       request = Net::HTTP::Post.new(uri.path, headers)
       request.body = body
+      begin
       response = http.request(request)
       response.code == '200' ? true : false
+      rescue
+        false
+      end
     end
   end
 end
