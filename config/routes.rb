@@ -1,5 +1,6 @@
 require 'api_constraints'
 require 'sidekiq/web'
+require 'admin_constraint'
 
 Bento::Application.routes.draw do
 
@@ -32,7 +33,7 @@ Bento::Application.routes.draw do
   # ADMIN ROUTES
   # ============================================================
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
-    mount Sidekiq::Web => 'sidekiq'
+    mount Sidekiq::Web => 'sidekiq', constraints: AdminConstraint.new
     root to: 'dashboard#show', as: :dashboard
     get 'search', to: 'dashboard#search', as: :search
     get 'audit', to: 'audit_trails#index', as: 'audit'
