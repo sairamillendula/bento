@@ -54,13 +54,13 @@ class Reseller::OrdersController < Reseller::BaseController
     @order = @current_user.orders.new(safe_params)
     @cart = @current_user.carts.find(session[:reseller_cart_id])
 
-    @shipping_country = ShippingCountry.find_by_country(@order.shipping_address.country) || ShippingCountry.find_by_country('WORLDWIDE')
-    @shipping_estimate = ShippingRate.find(params[:shipping_rate])
-
-    @order.calculate_tax(@shipping_country, @shipping_estimate)
+    # Reseller order has no shipping price
+    @order.shipping_price = 0
+    @order.tax_rate = 0
+    @order.total = @cart.total
 
     respond_to do |format|
-      if @order.save
+      if @order.save_with_payment(@cart)
         @cart.items.each do |item|
           item.cart_id = nil
           @order.items << item
@@ -109,7 +109,7 @@ class Reseller::OrdersController < Reseller::BaseController
   private
 
     def safe_params
-      params.require(:order).permit(:state, :shipped_at, :shipping_rate,
+      params.require(:order).permit(:state, :shipped_at, :shipping_rate, :stripe_card_token,
                                     shipping_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province, :full_name],
                                     billing_address_attributes: [:id, :address1, :address2, :city, :country, :postal_code, :province, :full_name]
       )

@@ -1,7 +1,14 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+  <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
+<% end %>
+
 <%= page_title("Addresses & Shipping") %>
 
 <%= simple_form_for([:reseller, @order], html: {class: 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
+  <%= f.hidden_field :stripe_card_token %>
+
   <div class="row-fluid">
     <div class="span6 address billing">
       <h4><%= t 'shipping_address' %></h4>
@@ -36,7 +43,42 @@
     <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
   </div>
 
+  <div id="payment-form" class="well">
+    <h4><%= t 'theme.payment.title' %></h4>
+
+    <% if @order.stripe_card_token.present? %>
+      <%= t 'theme.payment.credit_card_provided' %>.
+    <% else %>
+      <div class="field">
+        <%= label_tag :card_holder, "#{t 'theme.card.name'}" %>
+        <%= text_field_tag :card_holder, '', name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', pattern: '\d*', "x-autocompletetype"=>"cc-number" %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
+        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', pattern: '\d*', "autocomplete"=>"off", "x-autocompletetype"=>"cc-csc" %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_month, "#{t 'theme.card.expiration'}" %>
+        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+        <%= select_year Date.today.year+1, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+      </div>
+    <% end %>
+    <div id="stripe_error">
+      <noscript><%= t 'theme.no_js', default: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings" %>.</noscript>
+    </div>
+  </div>
+
   <div class="form-actions">
     <%= submit_or_cancel(f, "", 'Retourner') %>
   </div>
 <% end %>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    var shipping_methods = <%= raw @applicable_rates.to_json(only: [:id, :price]) %>;
+    Order.setup(shipping_methods);
+  });
+</script>

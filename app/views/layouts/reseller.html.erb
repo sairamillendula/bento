@@ -7,7 +7,7 @@
     <title><%= t('theme.site_name') %> | Reseller</title>
     <%= stylesheet_link_tag    "application", "admin", :media => "all" %>
     <%= javascript_include_tag "https://js.stripe.com/v1/" if @checkout_script%>
-    <%= javascript_include_tag "admin" %>
+    <%= javascript_include_tag "application", "theme" %>
     <%= csrf_meta_tags %>
     <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] if @checkout_script %>
     <script type="text/javascript">

@@ -2,6 +2,7 @@ class Reseller::BaseController < ApplicationController
   layout 'reseller'
   before_filter :verify_reseller
   before_action :load_cart
+  before_filter { @checkout_script = true }
 
 private
 

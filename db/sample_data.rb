@@ -60,7 +60,7 @@ puts "Created 10 clients"
     password_confirmation: "123123"
   )
   client.build_reseller_request(
-    country: ["FR", "CA"].sample,
+    country: ["France", "Canada"].sample,
     city: "Ottawa",
     business_name: Faker::Name.last_name,
     who_are_you: Faker::Name.last_name
