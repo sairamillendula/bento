@@ -18,7 +18,7 @@ class @BentoShop
         if params
           url_to_open += "?#{params}"
         window.open(url_to_open, '_blank')
-        
+
   rotateItem = (trigger, $product) ->
     $trigger = $(trigger)
     $item = $product.find('div.item').first()
@@ -30,7 +30,7 @@ class @BentoShop
     else
       $item.data('open', 'open')
       $trigger.addClass('rotate-active')
-      $item.addClass('item-showback')  
+      $item.addClass('item-showback')
 
   addToCart = (url) ->
     $('body').append($('<form/>', {

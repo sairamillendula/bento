@@ -5,20 +5,20 @@ class Reseller::CartsController < Reseller::BaseController
     @cart = @current_user.carts.find(session[:reseller_cart_id])
 
     unless @cart.items.any?
-      @products = Product.includes(:variants).order('name')
+      @products = Product.visibles.includes(:variants).order('name')
       @products.each do |product|
         @cart.items.build(
           variant_id: product.master.id,
           quantity: 0,
           price: product.master.reseller_price || product.master.price
-          )
+        )
         if product.variants.any?
           product.variants.each do |variant|
             @cart.items.build(
               variant_id: variant.id,
               quantity: 0,
               price: variant.reseller_price || variant.price
-              )
+            )
           end
         end
       end

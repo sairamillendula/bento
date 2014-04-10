@@ -4,13 +4,6 @@
   <td><%= status_tag(order.state, class: "state-#{order.state}") %></td>
   <td><%= order.client.full_name %></td>
   <td><%= l order.created_at, format: :long %></td>
-  <td><%= order.shipping_method %> (<%= order.shipping_address.country %>)</td>
+  <td>TBC<%#= order.shipping_method %> (<%= order.shipping_address.country %>)</td>
   <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
-  <td>
-    <% if order.open? %>
-      <%= status_tag 'ok' %>
-    <% elsif order.shipped? %>
-      <%= "#{t 'shipped_on'}" %> <%= l order.shipped_at, format: "%d %b %H:%m" if order.shipped? %>
-    <% end %>
-  </td>
 <% end %>

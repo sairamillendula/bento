@@ -13,12 +13,12 @@
     <div class="span6 address billing">
       <h4><%= t 'shipping_address' %></h4>
       <%= f.fields_for :shipping_address do |ff| %>
-        <%= ff.input :full_name %>
-        <%= ff.input :address1 %>
+        <%= ff.input :full_name, required: true %>
+        <%= ff.input :address1, required: true %>
         <%= ff.input :address2 %>
-        <%= ff.input :city %>
-        <%= ff.input :postal_code %>
-        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :city, required: true %>
+        <%= ff.input :postal_code, required: true %>
+        <%= ff.input :country, collection: Country.all, required: true %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province'} %>
       <% end %>
     </div>
@@ -26,21 +26,26 @@
     <div class="span6 address shipping">
       <h4><%= t 'billing_address' %></h4>
       <%= f.fields_for :billing_address do |ff| %>
-        <%= ff.input :full_name %>
-        <%= ff.input :address1 %>
+        <%= ff.input :full_name, required: true %>
+        <%= ff.input :address1, required: true %>
         <%= ff.input :address2 %>
-        <%= ff.input :city %>
-        <%= ff.input :postal_code %>
-        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :city, required: true %>
+        <%= ff.input :postal_code, required: true %>
+        <%= ff.input :country, collection: Country.all, required: true %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province'} %>
       <% end %>
     </div>
   </div>
 
-  <div class="well">
-    <h4 style="margin-top:0;"><%= t 'theme.shipping.shipping_method' %></h4>
-    <p><%= t 'theme.shipping.select_shipping_rate' %></p>
-    <%= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+ <!--  <div class="well">
+    <h4 style="margin-top:0;"><%#= t 'theme.shipping.shipping_method' %></h4>
+    <p><%#= t 'theme.shipping.select_shipping_rate' %></p>
+    <%#= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+  </div> -->
+
+  <div class="alert alert-warning">
+    <h4 style="margin-top:0;"><%= t 'theme.shipping.select_shipping_method' %></h4>
+    <%= t 'resellers.shipping.tbc_with_client' %>.
   </div>
 
   <div id="payment-form" class="well">

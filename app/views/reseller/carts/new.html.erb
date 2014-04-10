@@ -6,24 +6,26 @@
   <table class="table table-striped" id="reseller-products">
     <tr>
       <th>Product</th>
-      <th>Price</th>
-      <th>Min. quantity</th>
-      <th>Quantity</th>
+      <th>Unit Price</th>
+      <th>Min. order quantity</th>
+      <th>Your Quantity</th>
     </tr>
 
     <%= f.fields_for :items do |item| %>
       <tr class="<%= cycle('odd', 'even') %>">
-        <td>
+        <td style="<%= item.object.variant.master? ? '' : 'padding-left:50px;' %>">
           <% if item.object.variant.master %>
+            <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
             <%= link_to item.object.variant.product.name, [:reseller, item.object.variant.product] %>
           <% else %>
-            <%= link_to item.object.variant.name, [:reseller, item.object.variant.product] %>
+            <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
+            <%= item.object.variant.name %>
           <% end %>
           <%= item.input :variant_id, as: :hidden %>
         </td>
         <td><%= number_to_currency(item.object.price) %></td>
         <td><%= item.object.variant.min_quantity_for_reseller_order %></td>
-        <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'} %></td>
+        <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'}, min: 0 %></td>
       </tr>
     <% end %>
   </table>

@@ -1,5 +1,5 @@
 <%= page_title("#{t 'orders.title'}") do %>
-  <%= button_link_to "#{t 'resellers.orders.new'}", new_reseller_cart_path, class: "pull-right" %>
+  <%= button_link_to "#{t 'resellers.orders.new', default: 'New Order'}", new_reseller_cart_path, class: "pull-right" %>
 <% end %>
 
 <% if @orders.present? %>
@@ -12,7 +12,6 @@
 	    <th><%= sortable "created_at", "Date" %></th>
 	    <th>Shipping</th>
 	    <th><%= sortable "total", "#{t 'total'}" %></th>
-	    <th></th>
 	  </tr>
 
 	  <% @orders.each do |order| %>
