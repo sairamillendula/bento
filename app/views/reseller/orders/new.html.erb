@@ -18,8 +18,8 @@
         <%= ff.input :address2 %>
         <%= ff.input :city, required: true %>
         <%= ff.input :postal_code, required: true %>
-        <%= ff.input :country, collection: Country.all, required: true %>
-        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province'} %>
+        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
       <% end %>
     </div>
 
@@ -31,8 +31,8 @@
         <%= ff.input :address2 %>
         <%= ff.input :city, required: true %>
         <%= ff.input :postal_code, required: true %>
-        <%= ff.input :country, collection: Country.all, required: true %>
-        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province'} %>
+        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
       <% end %>
     </div>
   </div>
@@ -51,16 +51,13 @@
   <div id="payment-form" class="well">
     <h4><%= t 'theme.payment.title' %></h4>
 
-    <% if @order.stripe_card_token.present? %>
-      <%= t 'theme.payment.credit_card_provided' %>.
-    <% else %>
       <div class="field">
         <%= label_tag :card_holder, "#{t 'theme.card.name'}" %>
         <%= text_field_tag :card_holder, '', name: nil %>
       </div>
       <div class="field">
         <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
-        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', pattern: '\d*', "x-autocompletetype"=>"cc-number" %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "x-autocompletetype"=>"cc-number" %>
       </div>
       <div class="field">
         <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
@@ -71,7 +68,7 @@
         <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
         <%= select_year Date.today.year+1, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
       </div>
-    <% end %>
+
     <div id="stripe_error">
       <noscript><%= t 'theme.no_js', default: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings" %>.</noscript>
     </div>

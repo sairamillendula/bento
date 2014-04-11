@@ -59,6 +59,10 @@ class Reseller::OrdersController < Reseller::BaseController
     @order.tax_rate = 0
     @order.total = @cart.total
 
+    unless @order.valid?
+      shipping
+      render action: 'new' and return
+    end
     respond_to do |format|
       if @order.save_with_payment(@cart)
         @cart.items.each do |item|
