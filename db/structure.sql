@@ -488,7 +488,8 @@ CREATE TABLE orders (
     state character varying(255),
     created_at timestamp without time zone,
     updated_at timestamp without time zone,
-    recovered boolean DEFAULT false
+    recovered boolean DEFAULT false,
+    reseller_order boolean DEFAULT false
 );
 
 
@@ -1971,3 +1972,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140222232951');
 INSERT INTO schema_migrations (version) VALUES ('20140321190848');
 
 INSERT INTO schema_migrations (version) VALUES ('20140323132328');
+
+INSERT INTO schema_migrations (version) VALUES ('20140411163128');

@@ -4,7 +4,7 @@ class Reseller::OrdersController < Reseller::BaseController
   helper_method :sort_column, :sort_direction, :shipping
 
   def index
-    @orders = @current_user.orders.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(20)    # @orders = @orders.where(id: params[:order_ids]) if params[:order_ids].present?
+    @orders = @current_user.orders.reseller.includes(:client).order(sort_column + " " + sort_direction).page(params[:page]).per(20)    # @orders = @orders.where(id: params[:order_ids]) if params[:order_ids].present?
 
     respond_to do |format|
       format.html
@@ -58,6 +58,7 @@ class Reseller::OrdersController < Reseller::BaseController
     @order.shipping_price = 0
     @order.tax_rate = 0
     @order.total = @cart.total
+    @order.reseller_order = true
 
     unless @order.valid?
       shipping

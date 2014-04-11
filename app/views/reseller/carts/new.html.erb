@@ -23,9 +23,15 @@
           <% end %>
           <%= item.input :variant_id, as: :hidden %>
         </td>
-        <td><%= number_to_currency(item.object.price) %></td>
-        <td><%= item.object.variant.min_quantity_for_reseller_order %></td>
-        <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'}, min: 0 %></td>
+        <% if item.object.variant.master && item.object.variant.product.variants.any? %>
+          <td></td>
+          <td></td>
+          <td></td>
+        <% else %>
+          <td><%= number_to_currency(item.object.price) %></td>
+          <td><%= item.object.variant.min_quantity_for_reseller_order %></td>
+          <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'}, min: 0 %></td>
+        <% end %>
       </tr>
     <% end %>
   </table>

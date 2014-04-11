@@ -57,7 +57,8 @@ class Order < ActiveRecord::Base
   scope :from_date,     -> (from) { where("created_at >= ?", from) }
   scope :to_date,       -> (to) { where("created_at <= ?", to) }
   scope :recovered,     -> { where(recovered: true) }
-
+  scope :reseller,      -> { where(reseller_order: true)}
+  scope :regular,      -> { where(reseller_order: false)}
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
