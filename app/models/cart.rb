@@ -3,7 +3,7 @@ class Cart < ActiveRecord::Base
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   has_many :items, class_name: "LineItem", dependent: :destroy
-  accepts_nested_attributes_for :items, allow_destroy: true
+  accepts_nested_attributes_for :items, reject_if: proc { |a| a['quantity'].to_i == 0 }, allow_destroy: true
 
   has_one :billing_address, as: :addressable, class_name: "BillingAddress", dependent: :destroy
   accepts_nested_attributes_for :billing_address

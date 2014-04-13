@@ -10,7 +10,7 @@ class LineItem < ActiveRecord::Base
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------
   before_save :ensure_valid_quantity
-
+  validate :min_quantity, on: :create
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
@@ -20,6 +20,12 @@ class LineItem < ActiveRecord::Base
 
   def summary
     "#{quantity} * #{variant.product.name} (#{price})"
+  end
+
+  protected
+
+  def min_quantity
+    errors.add(:quantity, 'Wrong quantity') if quantity % variant.min_quantity_for_reseller_order != 0
   end
 
   private

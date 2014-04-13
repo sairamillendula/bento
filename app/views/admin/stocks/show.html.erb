@@ -3,36 +3,36 @@
 <% if @products.any? %>
   <%= form_for :stocks, method: :put do |f| %>
 
-  <table class="table table-striped" id="stocks">
-    <% @products.each do |product| %>
-      <%= f.fields_for "products[#{Time.now.to_f}]", product do |ff| %>
-        <tr class="<%= cycle('odd', 'even') %>">
-          <td><%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:26px; width:26px;") if product.pictures.any? %>
-              <%= link_to product.name, [:admin, product] %>
-          </td>
-          <td>
-            <%= ff.hidden_field :id %>
-            <%= ff.fields_for :master do |fm| %>
-              <%= fm.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
+    <table class="table table-striped" id="stocks">
+      <% @products.each do |product| %>
+        <%= f.fields_for "products[#{Time.now.to_f}]", product do |ff| %>
+          <tr class="<%= cycle('odd', 'even') %>">
+            <td><%= image_tag(product.pictures.first.upload.url(:thumb), alt: "#{product.pictures.first.name}", style: "height:26px; width:26px;") if product.pictures.any? %>
+                <%= link_to product.name, [:admin, product] %>
+            </td>
+            <td>
+              <%= ff.hidden_field :id %>
+              <%= ff.fields_for :master do |fm| %>
+                <%= fm.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
+              <% end %>
+            </td>
+          </tr>
+          <% if product.variants.size > 0 %>
+            <%= ff.fields_for :variants do |fff| %>
+              <tr class="<%= current_cycle %>">
+                <td class="variant"><%= fff.object.name %></td>
+                <td>
+                  <%= fff.hidden_field :id %>
+                  <%= fff.hidden_field :selected, value: '1' %>
+                  <%= fff.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
+                </td>
+              </tr>
             <% end %>
-          </td>
-        </tr>
-        <% if product.variants.size > 0 %>
-          <%= ff.fields_for :variants do |fff| %>
-            <tr class="<%= current_cycle %>">
-              <td class="variant"><%= fff.object.name %></td>
-              <td>
-                <%= fff.hidden_field :id %>
-                <%= fff.hidden_field :selected, value: '1' %>
-                <%= fff.number_field :in_stock, class: 'input-mini', integer_only: true, step: 1, min: 0 %>
-              </td>
-            </tr>
           <% end %>
         <% end %>
       <% end %>
-    <% end %>
-  </table>  
-    
+    </table>
+
     <div class="form-actions reset">
       <%= submit_tag "Update", class: "btn btn-primary", data: {disable_with: "#{t 'please_wait'}"} %>
     </div>

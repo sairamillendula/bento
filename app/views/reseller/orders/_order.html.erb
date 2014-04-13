@@ -1,0 +1,9 @@
+<%= content_tag_for :tr, order do %>
+  <td><%= check_box_tag "order_ids[]", order.id %></td>
+  <td><%= link_to order.code, reseller_order_path(order) %></td>
+  <td><%= status_tag(order.state, class: "state-#{order.state}") %></td>
+  <td><%= order.client.full_name %></td>
+  <td><%= l order.created_at, format: :long %></td>
+  <td>TBC<%#= order.shipping_method %> (<%= order.shipping_address.country %>)</td>
+  <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
+<% end %>

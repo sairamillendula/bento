@@ -1,0 +1,8 @@
+<h1 class="fl">
+  <%= "#{t 'theme.site_name'}" %> <%= link_to "#{t 'go_to_store'}", root_path, class: "view-site", 'data-no-turbolink'=>true %>
+</h1>
+
+<span id="user-info" class="fr">
+  <%= t 'welcome' %> <%= link_to current_user.first_name, profile_path, 'data-no-turbolink'=>true %> |
+  <%= link_to "#{t 'logout'}", logout_path, method: :delete %>
+</span>

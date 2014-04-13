@@ -95,6 +95,13 @@ ul.pictures {
 	color: $red;
 }
 
+.input-mini {
+  .controls {
+    width: 60px;
+    margin-left: 0;
+  }
+}
+
 /* Collections */
 #products-list, #collection-products {
 	padding-left: 0;
@@ -223,7 +230,7 @@ table#table-options {
   form {
   	margin-bottom: 0;
 
-  	button { 
+  	button {
   		min-width: 45px;
   		padding: 4px 8px;
   	}

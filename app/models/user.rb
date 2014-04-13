@@ -95,7 +95,12 @@ class User < ActiveRecord::Base
 
   def toggle_reseller_status
     self.reseller = !reseller
+    self.reseller_request.approved = !reseller_request.approved
     save!
+  end
+
+  def reseller?
+    reseller_request.present?
   end
 
   private

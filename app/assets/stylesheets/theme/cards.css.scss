@@ -8,22 +8,26 @@
   margin-left: 10px;
 }
 
-.visa { 
+.visa {
   @include cards-sprite(visa);
   border: none;
 }
 
-.amex { 
+.amex {
   @include cards-sprite(amex);
   border: none;
 }
 
-.mastercard { 
+.mastercard {
   @include cards-sprite(mastercard);
   border: none;
 }
 
-.discover { 
+.discover {
   @include cards-sprite(discover);
   border: none;
+}
+
+#stripe_error {
+  color: #b94a48;
 }

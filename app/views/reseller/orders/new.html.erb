@@ -1,0 +1,86 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "https://js.stripe.com/v1/" %>
+  <%= tag :meta, name: "stripe-key", content: ENV['STRIPE_PUBLIC_KEY'] %>
+<% end %>
+
+<%= page_title("Addresses & Shipping") %>
+
+<%= simple_form_for([:reseller, @order], html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+  <%= f.hidden_field :stripe_card_token %>
+
+  <div class="row-fluid">
+    <div class="span6 address billing">
+      <h4><%= t 'shipping_address' %></h4>
+      <%= f.fields_for :shipping_address do |ff| %>
+        <%= ff.input :full_name, required: true %>
+        <%= ff.input :address1, required: true %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city, required: true %>
+        <%= ff.input :postal_code, required: true %>
+        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
+      <% end %>
+    </div>
+
+    <div class="span6 address shipping">
+      <h4><%= t 'billing_address' %></h4>
+      <%= f.fields_for :billing_address do |ff| %>
+        <%= ff.input :full_name, required: true %>
+        <%= ff.input :address1, required: true %>
+        <%= ff.input :address2 %>
+        <%= ff.input :city, required: true %>
+        <%= ff.input :postal_code, required: true %>
+        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
+      <% end %>
+    </div>
+  </div>
+
+ <!--  <div class="well">
+    <h4 style="margin-top:0;"><%#= t 'theme.shipping.shipping_method' %></h4>
+    <p><%#= t 'theme.shipping.select_shipping_rate' %></p>
+    <%#= select_tag :shipping_rate, options_for_select(@applicable_rates.map{|sr| [sr, sr.id]}, @shipping_estimate) %>
+  </div> -->
+
+  <div class="alert alert-warning">
+    <h4 style="margin-top:0;"><%= t 'theme.shipping.select_shipping_method' %></h4>
+    <%= t 'resellers.shipping.tbc_with_client' %>.
+  </div>
+
+  <div id="payment-form" class="well">
+    <h4><%= t 'theme.payment.title' %></h4>
+
+      <div class="field">
+        <%= label_tag :card_holder, "#{t 'theme.card.name'}" %>
+        <%= text_field_tag :card_holder, '', name: nil %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_number, "#{t 'theme.card.number'}" %>
+        <%= text_field_tag :card_number, '', name: nil, class: 'cc-number', "x-autocompletetype"=>"cc-number" %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_code, "#{t 'theme.card.code'}" %>
+        <%= text_field_tag :card_code, '', name: nil, class: 'cc-cvc', pattern: '\d*', "autocomplete"=>"off", "x-autocompletetype"=>"cc-csc" %>
+      </div>
+      <div class="field">
+        <%= label_tag :card_month, "#{t 'theme.card.expiration'}" %>
+        <%= select_month nil, {add_month_numbers: true}, {name: nil, id: "card_month"} %>
+        <%= select_year Date.today.year+1, {start_year: Date.today.year, end_year: Date.today.year+15}, {name: nil, id: "card_year"} %>
+      </div>
+
+    <div id="stripe_error">
+      <noscript><%= t 'theme.no_js', default: "JavaScript is not enabled and is required for this form. First enable it in your web browser settings" %>.</noscript>
+    </div>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f, "", 'Retourner') %>
+  </div>
+<% end %>
+<script type="text/javascript" charset="utf-8">
+  $(function() {
+    var shipping_methods = <%= raw @applicable_rates.to_json(only: [:id, :price]) %>;
+    Order.setup(shipping_methods);
+  });
+</script>

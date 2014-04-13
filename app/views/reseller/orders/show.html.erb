@@ -1,0 +1,40 @@
+<%= page_title("##{@order.code}") do %>
+  <%= status_tag(@order.state, class: "state-#{@order.state}") %>
+  <%= status_tag("#{t 'recovered'}", level: "success") if @order.recovered? %> <span id='order_date'> <%= l @order.created_at, format: :long %></span>
+  <div class="btn-group fr">
+    <%#= icon_button_link_to "#{t 'print'}", reseller_order_path(@order, format: :pdf), icon: "print" %></td>
+  </div>
+<% end %>
+
+<h3>
+  <%= @order.client.full_name %> (<%= mail_to @order.client.email, @order.client.email %>)
+  <% if @order.shipped? %><span class="fr normal-text"><%= t 'shipped_on' %> <%= l @order.shipped_at, format: :long %></span><% end %>
+</h3>
+
+<%= render 'orders/items' %>
+
+<% if @order.coupon_code.present? %>
+  <p>
+    <b><%= t 'coupon_code' %>:</b> <%= @order.coupon_code %>
+  </p>
+<% end %>
+
+<div id="addresses" class="row-fluid">
+  <div class="span4 address billing">
+    <address>
+      <strong><p><%= t 'billing_address' %></strong></p>
+      <p><%= @order.client.full_name %></p>
+      <%= @order.billing_address.display_name %>
+    </address>
+  </div>
+
+  <div class="span8 address shipping">
+    <div class="span6">
+      <address>
+        <strong><p><%= t 'shipping_address' %></strong> <span class="shipping_method">(<%= t 'resellers.shipping.tbc' %><%#= @order.shipping_method %>)</span></p>
+        <p><%= @order.client.full_name %></p>
+        <%= @order.shipping_address.display_name %>
+      </address>
+    </div>
+  </div>
+</div>

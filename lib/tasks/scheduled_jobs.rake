@@ -15,7 +15,7 @@ namespace :scheduled_jobs do
   desc "Send reminder to abandoned carts in the hope to recover"
   task :send_reminder_to_abandoned_carts => :environment do
 
-    setting = Setting.abandoned_carts_reminder.to_i
+    setting = Setting.first.abandoned_carts_reminder.to_i
     carts = Cart.with_items.not_reminded.where(created_at: setting.days.ago.beginning_of_day..setting.days.ago.end_of_day)
     carts.each do |cart|
       # let's ignore admin type users

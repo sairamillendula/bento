@@ -1,5 +1,7 @@
 <% reseller = @user.reseller_request %>
-<%= page_title(reseller.business_name) %>
+<%= page_title(reseller.business_name) do %>
+  <%= status_tag(reseller.approved? ? "Approved" : "Declined", level: (reseller.approved? ? "success" : "warning") ) %>
+<% end %>
 
 <p><b>Submitted: </b><%= l reseller.created_at, format: :long %></p>
 

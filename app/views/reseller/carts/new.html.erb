@@ -1,0 +1,43 @@
+<%= page_title("New order") %>
+
+<%= simple_form_for([:reseller, @cart], html: {class: 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <table class="table table-striped" id="reseller-products">
+    <tr>
+      <th>Product</th>
+      <th>Unit Price</th>
+      <th>Min. order quantity</th>
+      <th>Your Quantity</th>
+    </tr>
+
+    <%= f.fields_for :items do |item| %>
+      <tr class="<%= cycle('odd', 'even') %>">
+        <td style="<%= item.object.variant.master? ? '' : 'padding-left:50px;' %>">
+          <% if item.object.variant.master %>
+            <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
+            <%= link_to item.object.variant.product.name, [:reseller, item.object.variant.product] %>
+          <% else %>
+            <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
+            <%= item.object.variant.name %>
+          <% end %>
+          <%= item.input :variant_id, as: :hidden %>
+        </td>
+        <% if item.object.variant.master && item.object.variant.product.variants.any? %>
+          <td></td>
+          <td></td>
+          <td></td>
+        <% else %>
+          <td><%= number_to_currency(item.object.price) %></td>
+          <td><%= item.object.variant.min_quantity_for_reseller_order %></td>
+          <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'}, min: 0 %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>
+
+  <div class="form-actions">
+    <%= submit_or_cancel(f, "Continue") %>
+    <%= button_link_to "Empty cart", reseller_cart_path(@cart), method: :delete, class: "pull-right" %>
+  </div>
+<% end %>

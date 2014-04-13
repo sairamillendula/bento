@@ -169,6 +169,11 @@ fr:
       title: Dashboard
     price: Reseller price
     min_quantity_for_reseller_order: Min. order quantity
+    orders:
+      new: Passer commande
+    shipping:
+      tbc: Shipping method to be confirmed
+      tbc_with_client: We will finalize shipping with you based on your order and preferences. Expect a call from us once we've reviewed your order. Thanks for your understanding
   shipping_and_billing_are_the_same: Also shipping address
   i_read_and_accept: I read and accept the
   terms_and_conditions: terms and conditions

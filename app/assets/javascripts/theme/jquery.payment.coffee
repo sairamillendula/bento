@@ -335,7 +335,7 @@ $.payment.fn.formatCardNumber = ->
   @on('keypress', restrictCardNumber)
   @on('keypress', formatCardNumber)
   @on('keydown', formatBackCardNumber)
-  @on('keyup', setCardType)
+#  @on('keyup', setCardType)
   @on('paste', reFormatCardNumber)
   this
 
