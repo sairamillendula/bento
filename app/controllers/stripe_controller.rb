@@ -3,7 +3,7 @@ require "uri"
 
 class StripeController < ApplicationController
 
-	def callback
+  def callback
     uri = URI.parse('https://connect.stripe.com/oauth/token')
     https = Net::HTTP.new(uri.host,uri.port)
     https.use_ssl = true
@@ -14,6 +14,6 @@ class StripeController < ApplicationController
     Setting.stripe_access_token = response['access_token']
 
     redirect_to admin_dashboard_path, notice: "#{t 'stripe.account_connected'}."
-	end
+  end
 
 end
