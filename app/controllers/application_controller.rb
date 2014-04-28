@@ -13,9 +13,9 @@ class ApplicationController < ActionController::Base
 
   def set_currency
     begin
-      Money.new(1000, ENV['STRIPE_CURRENCY'].upcase).exchange_to(params[:currency])
-      session[:currency] = params[:currency]
-    rescue Money::Bank::UnknownRate
+      currency = Money.new(1000, ENV['STRIPE_CURRENCY'].upcase).exchange_to(params[:currency])
+      session[:currency] = params[:currency] if currency
+    rescue
       nil
     end
     render js: "window.location.reload()"
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   def get_total
     begin
       total = Money.new(params[:total].to_f * 100, ENV['STRIPE_CURRENCY'].upcase).exchange_to(params[:currency])
-      session[:currency] = params[:currency]
+      session[:currency] = params[:currency] if total
     rescue Money::Bank::UnknownRate
       total = params[:total]
     end

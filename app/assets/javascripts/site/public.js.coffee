@@ -1,7 +1,7 @@
 ready = ->
 
-	if $('.public').length
-	  $.getScript('/user_info')
+  if $('.public').length
+    $.getScript('/user_info')
 
   $("#set_currency").change ->
     $.ajax
