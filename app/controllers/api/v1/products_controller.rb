@@ -6,7 +6,8 @@ module Api
       # curl http://localhost:3015/api/products -H "Content-type: application/json" -H 'Authorization: Token token="b76cdabd077990df5d2f2b0679e316c2"'
       def index
         @products = Product.visibles.includes(:master, :variants, :main_picture)
-        render json: @products, status: 200
+        # render json: @products, status: 200
+        respond_with @products, status: 200
       end
 
       # curl http://localhost:3015/api/products/:id -H "Content-type: application/json" -H 'Authorization: Token token="b76cdabd077990df5d2f2b0679e316c2"'
@@ -14,7 +15,8 @@ module Api
       # on production, response is {"status":"404","error":"Not Found"}
       def show
         @product = Product.friendly.includes(:master, :variants, :main_picture).find(params[:id])
-        render json: @product, status: 200
+        #render json: @product, status: 200
+        respond_with @product
       end
 
     end

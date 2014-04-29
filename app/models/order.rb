@@ -5,7 +5,7 @@ class Order < ActiveRecord::Base
   include PgSearch
 
   multisearchable :against => :code
-  pg_search_scope :search_by_keyword, 
+  pg_search_scope :search_by_keyword,
                   :against => [:code],
                   :using => {
                     :tsearch => {
@@ -58,7 +58,7 @@ class Order < ActiveRecord::Base
   scope :to_date,       -> (to) { where("created_at <= ?", to) }
   scope :recovered,     -> { where(recovered: true) }
   scope :reseller,      -> { where(reseller_order: true)}
-  scope :regular,      -> { where(reseller_order: false)}
+  scope :regular,       -> { where(reseller_order: false)}
 
   # CALLBACKS
   # ------------------------------------------------------------------------------------------------------

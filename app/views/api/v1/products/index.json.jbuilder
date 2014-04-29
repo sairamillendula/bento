@@ -1,10 +1,10 @@
 json.cache!(@products) do |product|
   json.extract! product, :name, :current_price
-  json.url product_url(product, format: :json)
-  json.sku product.master.sku.to_json
-  json.in_stock product.master.in_stock.to_json
-  json.reseller_price product.master.reseller_price.to_json
-  json.min_quantity_for_reseller_order product.master.min_quantity_for_reseller_order.to_json
+  json.url product_url(product)
+  json.sku product.sku.to_json
+  json.in_stock product.in_stock.to_json
+  json.reseller_price product.reseller_price.to_json
+  json.min_quantity_for_reseller_order product.min_quantity_for_reseller_order.to_json
   json.extract! product, :id
 
   json.variants product.variants do |variant|

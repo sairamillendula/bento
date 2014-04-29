@@ -1,6 +1,6 @@
 json.cache!(@product) do
-  json.extract! @product, :name, :current_price
-  json.url product_url(@product, format: :json)
+  json.extract! @product, :name, :description, :current_price
+  json.url product_url(@product)
   json.sku @product.master.sku.to_json
   json.in_stock @product.master.in_stock.to_json
   json.reseller_price @product.master.reseller_price.to_json
