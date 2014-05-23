@@ -13,13 +13,13 @@
       <th>Shipping</th>
       <th><%= t 'total' %></th>
     </tr>
-    
+
     <% @client.orders.order('created_at DESC').each do |order| %>
       <tr>
       	<td><%= link_to order.code, admin_order_path(order) %></td>
       	<td><%= status(order.state) %></td>
         <td><%= l order.created_at, format: :long %></td>
-        <td><%= order.shipping_method %> (<%= Country[order.shipping_address.country].name %>)</td>
+        <td><%= order.shipping_method %> (<%= order.shipping_address.country %>)</td>
         <td><%= number_to_currency(order.total, strip_insignificant_zeros: true) %></td>
       </tr>
     <% end %>

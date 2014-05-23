@@ -1,5 +1,5 @@
 <%= page_title("#{t 'products.title'}") do %>
-  <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>  
+  <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>
 <% end %>
 
 <% if @products.present? %>
@@ -14,7 +14,7 @@
         <th><%= "#{t 'price'}" %></th>
         <th style="min-width:80px;"></th>
       </tr>
-      
+
       <% @products.each do |product| %>
         <tr>
           <td><%= check_box_tag "product_ids[]", product.id %></td>
