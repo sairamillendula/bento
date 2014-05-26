@@ -85,7 +85,7 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   private
-    
+
     def set_collection
       @collection = Collection.friendly.find(params[:id])
     end

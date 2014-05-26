@@ -49,7 +49,7 @@ class Admin::ArticlesController < Admin::BaseController
   end
 
   private
-    
+
     def set_article
       @article = Article.friendly.find(params[:id])
     end

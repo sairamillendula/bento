@@ -19,7 +19,7 @@ class ArticlesController < ApplicationController
     @article = Article.friendly.includes(:tags).find(params[:slug])
     @page_title       = "#{@article.seo_title.present? ? @article.seo_title : @article.title} | #{t 'theme.site_name'}"
     @page_description = @article.seo_description
-    
+
     if !@article.visible?
       raise ActionController::RoutingError.new('Not Found')
     elsif request.path != "/blog/#{@article.slug}"
