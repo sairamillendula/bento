@@ -11,7 +11,7 @@
         <%= ff.input :address2 %>
         <%= ff.input :city %>
         <%= ff.input :postal_code %>
-        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :country, collection: all_countries %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province'} %>
       <% end %>
     </div>
@@ -24,7 +24,7 @@
         <%= ff.input :address2 %>
         <%= ff.input :city %>
         <%= ff.input :postal_code %>
-        <%= ff.input :country, collection: Country.all %>
+        <%= ff.input :country, collection: all_countries %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province'} %>
       <% end %>
     </div>

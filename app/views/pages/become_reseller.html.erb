@@ -18,7 +18,7 @@
 		  <%= f.error_notification %>
 
 	    <%= f.input :business_name %>
-	    <%= f.input :country, collection: Country.all %>
+	    <%= f.input :country, collection: all_countries %>
 	    <%= f.input :city %>
 	    <%= f.input :who_are_you, placeholder: "#{t 'resellers.please_describe_your_business'}" %>
 

@@ -24,6 +24,10 @@ class ShippingCountry < ActiveRecord::Base
     Country[country].name
   end
 
+  def self.find_by_country(name)
+    where(country: name).first || where(country: Country.find_by_name(name)[0]).first
+  end
+
   private
 
     def create_default_shipping_rate

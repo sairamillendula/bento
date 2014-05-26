@@ -4,7 +4,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :country, collection: Country.all %>
+    <%= f.input :country, collection: all_countries %>
 
     <div id="rates">
       <%= f.fields_for :rates do |ff| %>

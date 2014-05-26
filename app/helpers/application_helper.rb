@@ -93,4 +93,9 @@ module ApplicationHelper
     Money::Currency.table.map{|key, value| [value[:iso_code], value[:iso_code]] if value[:priority] < 100}.compact
   end
 
+  def all_countries
+    countries = Country.all.sort_by { |n| n[0] }
+    countries.delete(["Worldwide", "WORLDWIDE"])
+    countries.unshift(["Worldwide", "WORLDWIDE"])
+  end
 end

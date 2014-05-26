@@ -32,7 +32,7 @@
               <%= ba.input :address2 %>
               <%= ba.input :postal_code, required: true %>
               <%= ba.input :city, required: true %>
-              <%= ba.input :country, required: true %>
+              <%= ba.input :country, collection: all_countries,  required: true %>
               <%= ba.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ba.object.country) ? 'block': 'none'};"} %>
 
               <div class="checkbox inline nolabel">
@@ -60,7 +60,7 @@
               <%= sa.input :address2 %>
               <%= sa.input :postal_code, required: true %>
               <%= sa.input :city, required: true %>
-              <%= sa.input :country, required: true %>
+              <%= sa.input :country, collection: all_countries, required: true %>
               <%= sa.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(sa.object.country) ? 'block': 'none'};"} %>
             <% end %>
           </div>

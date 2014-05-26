@@ -18,7 +18,7 @@
         <%= ff.input :address2 %>
         <%= ff.input :city, required: true %>
         <%= ff.input :postal_code, required: true %>
-        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :country, collection: all_countries, required: true %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'shipping_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
       <% end %>
     </div>
@@ -31,7 +31,7 @@
         <%= ff.input :address2 %>
         <%= ff.input :city, required: true %>
         <%= ff.input :postal_code, required: true %>
-        <%= ff.input :country, collection: Country.all.sort_by { |d| d[0] }, required: true %>
+        <%= ff.input :country, collection: all_countries, required: true %>
         <%= ff.input :province, collection: province_options, as: :grouped_select, group_method: :last, group_label_method: :first, wrapper_html: {id: 'billing_province', style: "display:#{['US', 'CA'].include?(ff.object.country) ? 'block': 'none'};"} %>
       <% end %>
     </div>
