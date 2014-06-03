@@ -259,7 +259,7 @@ fr:
       intro:
       action:
     contact_us:
-      subject: New message from contact form
+      subject: "[Joli Bento] New message from contact form"
   search:
     order: Order
     product: Product
