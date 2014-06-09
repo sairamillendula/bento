@@ -1,7 +1,7 @@
 class Admin::ArticlesController < Admin::BaseController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   set_tab :articles
-  cache_sweeper :article_sweeper
+  #cache_sweeper :article_sweeper
 
   def index
     @articles = Article.includes(:author).order(sort_column + " " + sort_direction).page(params[:page]).per(15)
