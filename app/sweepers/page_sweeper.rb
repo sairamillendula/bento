@@ -6,6 +6,6 @@ class PageSweeper < ActionController::Caching::Sweeper
 		FileUtils.rm_rf "#{page_cache_directory}/page"
 	end
 	alias_method :after_create, :sweep
-	alias_method :after_update, :sweep 
-	alias_method :after_destroy, :sweep 
+	alias_method :after_update, :sweep
+	alias_method :after_destroy, :sweep
 end
