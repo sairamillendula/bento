@@ -1,0 +1,25 @@
+<%= page_title("#{t 'categories.title'}") %>
+
+<% if @categories.any? %>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Products count</th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @categories.order('name').each do |category| %>
+        <tr>
+          <td><%= category.name %></td>
+          <td><%= category.products.length %></td>
+          <td><%= icon_button_link_to "#{t 'edit'}", edit_admin_category_path(category), icon: 'pencil', size: 'small' %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p class="alert alert-warning">Categories will appear once you group products by categories.</p>
+<% end %>

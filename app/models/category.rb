@@ -1,22 +1,23 @@
 class Category < ActiveRecord::Base
-  
+
   # ASSOCIATIONS
   # ------------------------------------------------------------------------------------------------------
   has_and_belongs_to_many :products
-  
+
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
   validates_presence_of :name
   validates_uniqueness_of :name
-  
+
+
+  # ATTRIBUTES
+  # ------------------------------------------------------------------------------------------------------
+  store :meta_tag, accessors: [:seo_title, :seo_description]
+
 
   # INSTANCE METHODS
   # ------------------------------------------------------------------------------------------------------
-  def to_param
-  	name
-  end
-
   def self.tokens(query)
 	  categories = where("name like ?", "%#{query}%")
 	  if categories.empty?
@@ -30,4 +31,5 @@ class Category < ActiveRecord::Base
 	  tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
 	  tokens.split(',')
 	end
+
 end

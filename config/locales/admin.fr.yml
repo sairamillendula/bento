@@ -88,6 +88,10 @@ fr:
     is_now_approved: Product review is now approved
   cart:
     is_empty: Cart is empty
+  categories:
+    title: Product Categories
+    edit: Edit Category
+    name: Categories
   coupons:
     title: Coupons
     new: New Coupon
@@ -180,7 +184,6 @@ fr:
   blog_posts: Blog
   billing_address: Billing Address
   shipping_address: Shipping Address
-  categories: Categories
   vendors: Vendors
   vendor_supplier: Vendor/Supplier
   message: Message

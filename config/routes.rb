@@ -39,6 +39,7 @@ Bento::Application.routes.draw do
     get 'audit', to: 'audit_trails#index', as: 'audit'
     resource :stock, only: [:show, :update], path: 'stocks', as: 'stocks'
     resources :articles
+    resources :categories, only: [:index, :edit, :update, :destroy]
     resources :clients, only: [:index, :show] do
       get 'export', on: :collection
     end

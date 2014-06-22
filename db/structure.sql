@@ -261,7 +261,9 @@ CREATE TABLE categories (
     id integer NOT NULL,
     name character varying(255),
     created_at timestamp without time zone,
-    updated_at timestamp without time zone
+    updated_at timestamp without time zone,
+    description text,
+    meta_tag text
 );
 
 
@@ -1974,3 +1976,5 @@ INSERT INTO schema_migrations (version) VALUES ('20140321190848');
 INSERT INTO schema_migrations (version) VALUES ('20140323132328');
 
 INSERT INTO schema_migrations (version) VALUES ('20140411163128');
+
+INSERT INTO schema_migrations (version) VALUES ('20140621143306');

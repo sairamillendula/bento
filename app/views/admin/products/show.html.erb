@@ -26,7 +26,7 @@
 </p>
 
 <p>
-	<b><%= t 'categories' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
+	<b><%= t 'categories.name' %></b>: <%= raw @product.categories.map { |c| link_to c.name, category_path(c) }.join(', ') %>
   <% if @product.suppliers.any? %>
     <span class="fr"><b><%= t 'vendor_supplier' %></b>: <%= @product.suppliers.map(&:name).to_sentence %></span>
   <% end %>
