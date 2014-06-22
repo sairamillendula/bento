@@ -71,6 +71,7 @@ Bento::Application.routes.draw do
       resources :variants, only: [:destroy]
       collection do
         put :feature
+        get 'export'
       end
       resources :pictures do
         collection do
