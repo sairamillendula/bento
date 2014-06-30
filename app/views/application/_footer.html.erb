@@ -2,23 +2,24 @@
 	<div class="inner">
 		<nav>
 			<ul>
-				<li><%= link_to "Facebook", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", target: "_blank" %></li>
-	    	<li><%= link_to "Twitter", "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", target: "_blank" %></li>
-	    	<li><%= link_to "Pinterest", "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", target: "_blank" %></li>
+				<li><%= link_to 'Facebook', "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", target: '_blank' %></li>
+	    	<li><%= link_to 'Twitter', "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", target: '_blank' %></li>
+	    	<li><%= link_to 'Pinterest', "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", target: '_blank' %></li>
+	    	<li><%= link_to 'Inspiration Bento', '/bento-inspiration' %></li>
 			</ul>
 			<ul>
-				<li><%= link_to "#{t 'theme.faq'}", "/faq" %></li>
-				<li><%= link_to "#{t 'theme.in_the_news'}", "/media" %></li>
+				<li><%= link_to "#{t 'theme.faq'}", '/faq' %></li>
+				<li><%= link_to "#{t 'theme.in_the_news'}", '/media' %></li>
 				<li><%= link_to "#{t 'theme.blog'}", blog_path %></li>
 				<li><%= link_to "#{t 'theme.become_reseller'}", become_reseller_path %></li>
 			</ul>
 			<ul>
-				<li><%= link_to t('theme.nav.modern_bento_box'), "/category/modern" %></li>
-				<li><%= link_to t('theme.nav.traditional_bento_box'), "/category/traditional" %></li>
-				<li><%= link_to t('theme.nav.kid_bento_box'), "/category/kid" %></li>
-				<li><%= link_to t('theme.nav.kit_bento_box'), "/category/kit" %></li>
-				<li><%= link_to t('theme.nav.top_sellers'), "/collection/top-sellers" %></li>
-				<li><%= link_to t('theme.nav.on_sale'), "/collection/on-sale" %></li>
+				<li><%= link_to t('theme.nav.modern_bento_box'), '/category/modern' %></li>
+				<li><%= link_to t('theme.nav.traditional_bento_box'), '/category/traditional' %></li>
+				<li><%= link_to t('theme.nav.kid_bento_box'), '/category/kid' %></li>
+				<li><%= link_to t('theme.nav.kit_bento_box'), '/category/kit' %></li>
+				<li><%= link_to t('theme.nav.top_sellers'), '/collection/top-sellers' %></li>
+				<li><%= link_to t('theme.nav.on_sale'), '/collection/on-sale' %></li>
 			</ul>
 			<ul>
 				<li>Bento Showa</li>
@@ -29,7 +30,7 @@
 		</nav>
 		<div class="items">
 			<div class="copyright">
-				<%= link_to "Une réalisation e-commerce de yafoy", "http://yafoy.com", target: "_blank" %>
+				<%= link_to'Une réalisation e-commerce de yafoy', 'http://yafoy.com', target: '_blank' %>
 			</div>
 		</div>
 	</div>
