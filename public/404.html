@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>The page you were looking for doesn't exist (404)</title>
+  <title>La page demandée est introuvable (404)</title>
   <style type="text/css">
     body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
     div.dialog {
@@ -13,17 +13,28 @@
       line-height: 1.5em;
     }
     h1 { font-size: 100%; color: #ec565a; line-height: 1.5em; }
-    a, a:visited { text-decoration: none; background-color: #6cc644; color: #ffffff; padding: 12px 12px;  }
-    a:hover { background-color: #8bd26b; }
+    .btn, .btn:visited { text-decoration: none; background-color: #6cc644; color: #ffffff; padding: 12px 12px;  }
+    .btn:hover { background-color: #8bd26b; }
+    a, a.visited { color: #666; }
+    a:hover { color: #000; }
+    ul { list-style-type: none; }
   </style>
 </head>
 
 <body>
   <!-- This file lives in public/404.html -->
   <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
-    <p><a href="/">Return to Homepage</a></p>
+    <h1>La page demandée est introuvable.</h1>
+    <p><a href="/" class="btn">Retourner à la page d'accueil</a></p>
+    <br>
+    <ul>
+      <li><a href="/category/modern">Boite à bento moderne</a></li>
+      <li><a href="/category/traditional">Boite à bento traditionnelle</a></li>
+      <li><a href="/category/kid">Boite à bento enfant</a></li>
+      <li><a href="/category/kit_bento_box">Boite à bento kit (bento, sac, couverts)</a></li>
+      <li><a href="/category/top_sellers">Boite à bento populaire</a></li>
+      <li><a href="/category/on_sale">Boite à bento pas cher</a></li>
+    </ul>
   </div>
 </body>
 </html>

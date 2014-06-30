@@ -1,5 +1,6 @@
 <%= page_title("#{t 'products.title'}") do %>
   <%= icon_button_link_to "#{t 'products.new'}", new_admin_product_path, level: 'primary', icon: 'plus', white: true, class: "fr" %>
+  <%= icon_button_link_to "#{t 'export'}", export_admin_products_path(format: :csv), icon: 'download-alt', class: 'fr' %>
 <% end %>
 
 <% if @products.present? %>

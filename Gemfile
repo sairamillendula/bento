@@ -25,7 +25,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
-gem 'rails-observers' # required for sweepers
+gem 'rails-observers', '~> 0.1.2' # required for sweepers
 gem 'actionpack-page_caching' # required for page caching
 gem 'actionpack-action_caching' # required for page caching
 

@@ -90,6 +90,10 @@ en:
   cart:
     is_empty: Cart is empty
     no_shipping_in_country: "Sorry, we cannot proceed with your order as we currently do not ship to"
+  categories:
+    title: Product categories
+    edit: Edit Category
+    name: Categories
   coupons:
     title: Coupons
     new: New Coupon
@@ -182,7 +186,6 @@ en:
   blog_posts: Blog
   billing_address: Billing Address
   shipping_address: Shipping Address
-  categories: Categories
   vendors: Vendors
   vendor_supplier: Vendor/Supplier
   message: Message
@@ -249,7 +252,7 @@ en:
     reseller_request_approved:
       subject: Request approved
     contact_us:
-      subject: New message from contact form
+      subject: "[Joli Bento] New message from contact form"
   search:
     order: Order
     product: Product

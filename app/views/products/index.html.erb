@@ -2,6 +2,7 @@
 
 <% if params[:category] %>
   <h3><%= t 'theme.category' %>: <%= @category.name %></h3>
+  <%= markdown(@category.description) if @category.description.present? %>
 <% end %>
 
 <div id="pgcontainer" class="pgcontainer">
@@ -13,8 +14,8 @@
 <%= paginate @products %>
 
 <script type="text/javascript">
-$(function() {
-  BentoShop.setup('#pgcontainer');
-  EndlessScrolling.setup();
-});
+	$(function() {
+	  BentoShop.setup('#pgcontainer');
+	  EndlessScrolling.setup();
+	});
 </script>

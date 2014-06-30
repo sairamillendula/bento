@@ -66,6 +66,19 @@ class Admin::ProductsController < Admin::BaseController
     redirect_to admin_products_url
   end
 
+  def export
+    @products = Product.order('id')
+    host_with_port = request.protocol + request.host_with_port
+
+    respond_to do |format|
+      format.csv {
+        content = @products.to_csv(host_with_port)
+        content = content.encode("UTF-8")
+        send_data content, filename: "#{t 'products.title'}.csv", type: 'text/csv; charset=utf-8; header=present'
+      }
+    end
+  end
+
   private
 
     def set_product

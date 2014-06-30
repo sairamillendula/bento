@@ -8,8 +8,9 @@ class ProductsController < ApplicationController
       @category = Category.where(name: params[:category]).first
 
       if @category.present?
-        @page_title = "#{params[:category]} | #{t 'theme.site_name'}"
         @products = @category.products.visibles.order('name').page(params[:page]).per(12)
+        @page_title       = "#{@category.seo_title.present? ? @category.seo_title : t('theme.site_slogan') } | #{t 'theme.site_name'}"
+        @page_description = @category.seo_description
       else
         raise ActionController::RoutingError.new('Not Found')
       end

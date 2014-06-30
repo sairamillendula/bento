@@ -1,6 +1,6 @@
 <%= content_for :body_id do %>homepage<% end %>
 
-<%= image_tag("theme/slide-home.jpg", alt: "#{t 'theme.site_intro'}", class: 'slide-home') %>
+<%= image_tag("theme/slide#{@random_slide}.jpg", alt: "#{t 'theme.site_intro'}", class: 'slide-home') %>
 
 <% cache [@products, @currency] do %>
 	<div id="pgcontainer" class="pgcontainer">

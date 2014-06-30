@@ -20,9 +20,9 @@
 
     <%= subsection_title('Classification & Related Products') %>
     <div class="control-group">
-      <label class="control-label" for="product_category_tokens"><%= t 'categories' %></label>
+      <label class="control-label" for="product_category_tokens"><%= t 'categories.name' %></label>
       <div class="controls" style="position:absolute;">
-        <%= f.text_field :category_tokens, data: {load: @product.categories} %>
+        <%= f.text_field :category_tokens, data: {load: @product.categories.to_json(only: :name)} %>
       </div>
     </div>
 

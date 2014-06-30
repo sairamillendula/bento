@@ -39,6 +39,7 @@ Bento::Application.routes.draw do
     get 'audit', to: 'audit_trails#index', as: 'audit'
     resource :stock, only: [:show, :update], path: 'stocks', as: 'stocks'
     resources :articles
+    resources :categories, only: [:index, :edit, :update, :destroy]
     resources :clients, only: [:index, :show] do
       get 'export', on: :collection
     end
@@ -70,6 +71,7 @@ Bento::Application.routes.draw do
       resources :variants, only: [:destroy]
       collection do
         put :feature
+        get 'export'
       end
       resources :pictures do
         collection do

@@ -100,7 +100,7 @@ class Address < ActiveRecord::Base
       display_name: display_name(', ')
     }
   end
- 
+
   def country_obj
     Country[country] || Country.find_country_by_name(country)
   end

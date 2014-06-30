@@ -9,7 +9,7 @@
       <th><%= t 'theme.total' %></th>
       <th><%= t 'theme.orders.date' %></th>
     </tr>
-    
+
     <% @orders.each do |order| %>
 	    <tr>
 	      <td><%= link_to order.code, order %> <%= status_tag(t("status.#{order.state}"), class: "state-#{order.state}") %></td>
