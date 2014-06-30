@@ -12,7 +12,6 @@ class Picture < ActiveRecord::Base
   has_attached_file :upload,
                     url: "/upload/pictures/:id/:style/:basename.:extension",
                     path: ":rails_root/public/upload/pictures/:id/:style/:basename.:extension",
-                    quality: 70,
                     styles: { thumb: "200x200#", large: "700" }
 
 
