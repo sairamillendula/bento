@@ -61,7 +61,7 @@ gem 'sinatra', '>= 1.3.0', :require => nil
 group :development, :test do
   gem 'faker', '1.0.1'
   gem 'hirb'
-  gem 'pry-rails'
+  #gem 'pry-rails'
 end
 
 group :development do

@@ -1,5 +1,5 @@
 class Admin::CollectionsController < Admin::BaseController
-  before_action :set_collection, only: [:edit, :update, :destroy, :add_products, :remove_products]
+  before_action :set_collection, only: [:edit, :update, :destroy, :add_products, :remove_products, :sort_products]
   set_tab :collections
   cache_sweeper :collection_sweeper
 
@@ -55,7 +55,7 @@ class Admin::CollectionsController < Admin::BaseController
 
   def sort_products
     params[:product].each_with_index do |id, index|
-      CollectionProduct.update_all({position: index+1}, {product_id: id})
+      CollectionProduct.where(product_id: id, collection_id: @collection.id).update_all(position: index+1)
     end
     render nothing: true
   end
