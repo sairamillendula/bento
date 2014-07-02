@@ -30,14 +30,16 @@ class WebhookWorker
           date: order.created_at,
           amount: order.subtotal,
           shipping: order.shipping_price,
+          tax: (order.subtotal * (order.tax_rate / 100)).to_s,
           total_price: order.total,
           coupon: coupon,
           coupon_code: coupon_code,
-          country: order.billing_address.country,
+          country: ShippingCountry.find_by(country: order.billing_address.country).name,
           city: order.billing_address.city,
           url: Rails.application.routes.url_helpers.admin_order_url(host: ENV['HOST'], id: order.id),
           client_email: order.client.email,
-          products_count: order.total_products
+          products_count: order.total_products,
+          source: 'website'
         }
       }.to_json
 
