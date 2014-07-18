@@ -45,6 +45,7 @@ en:
     out_of_stock: Out of Stock
     change_currency: change
     become_reseller: Become reseller
+    bento_customization: Custom bento
     nav:
       modern: Modern Bento
       traditional: Traditional Bento

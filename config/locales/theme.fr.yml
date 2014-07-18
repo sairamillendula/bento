@@ -45,6 +45,7 @@ fr:
     out_of_stock: 'Stock épuisé'
     change_currency: changer
     become_reseller: Devenez revendeur
+    bento_customization: Personnalisation de bento
     nav:
       modern: Bento moderne
       traditional: Bento traditionnel
