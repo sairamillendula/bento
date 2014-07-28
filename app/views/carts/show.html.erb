@@ -11,7 +11,7 @@
         <th><%= t 'theme.unit_price' %></th>
   	    <th><%= t 'theme.subtotal' %></th>
   	  </tr>
-  	 
+
       <%= f.fields_for :items do |ff| %>
         <% item = ff.object %>
   	    <tr>
@@ -24,12 +24,12 @@
       <% end %>
   	</table>
 
-    <div id="cart-actions" class="row-fluid">      
+    <div id="cart-actions" class="row-fluid">
       <%= link_to "#{t 'theme.cart.continue'}", checkout_cart_path, class: "btn btn-success fr" %>
       <%= f.submit data: {disable_with: "#{t 'theme.updating'}"}, class: 'btn fr' %>
     </div>
   <% end %>
-  
+
   <% if @cart.coupon_applied? %>
     <%= t 'theme.coupon_code' %> <b>"<%= @cart.coupon_code %>"</b> <%= t 'theme.was_applied' %>. <%= link_to "#{t 'theme.cart.remove'}", remove_coupon_cart_path, method: :post %>
   <% else %>
@@ -39,7 +39,7 @@
       <%= submit_tag "#{t 'theme.apply_coupon'}", data: {disable_with: "#{t 'theme.apply_coupon'}"}, class: 'btn' %>
     <% end %>
   <% end %>
-  
+
   <table id="cart-totals" style="float:right;" class="span6">
     <tr>
       <td><%= t 'theme.subtotal' %></td>
