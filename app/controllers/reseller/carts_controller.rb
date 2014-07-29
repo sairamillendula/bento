@@ -5,7 +5,8 @@ class Reseller::CartsController < Reseller::BaseController
     @cart = @current_user.carts.find(session[:reseller_cart_id])
 
     unless @cart.items.any?
-      @products = Product.visibles.includes(:variants).order('name')
+      # @products = Product.visibles.includes(:variants).order('name')
+      @products = Collection.find_by(name: 'revendeur').products.order('position')
       @products.each do |product|
         @cart.items.build(
           variant_id: product.master.id,

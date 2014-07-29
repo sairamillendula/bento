@@ -15,3 +15,5 @@ Setting.create!(
 	abandoned_carts_reminder: "3"
 )
 puts "Created defaut settings..."
+
+Collection.create!(name: 'revendeur', slug: 'revendeur', visible: false)
