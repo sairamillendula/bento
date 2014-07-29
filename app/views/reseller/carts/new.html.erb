@@ -29,7 +29,7 @@
           <td></td>
         <% else %>
           <td><%= number_to_currency(item.object.variant.product.master.reseller_price ||= item.object.price) %></td>
-          <td><%= item.object.variant.min_quantity_for_reseller_order %></td>
+          <td><%= item.object.variant.master.min_quantity_for_reseller_order %></td>
           <td><%= item.input :quantity, label: false, input_html: {class: 'input-mini'}, wrapper_html: {class: 'input-mini'}, min: 0 %></td>
         <% end %>
       </tr>
