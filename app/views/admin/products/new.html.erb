@@ -94,7 +94,7 @@
                 <% idx = ff.object_name.gsub(/[^0-9]+/,'') %>
                 <tr id="variant_<%= idx %>">
                   <td>
-                    <%= ff.check_box :selected, {}, "1", "0" %>
+                    <%= ff.check_box :selected, {}, '1', '0' %>
                   </td>
                   <td>
                     <%= ff.object.name(true) %>

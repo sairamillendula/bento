@@ -7,7 +7,7 @@ class Admin::PagesController < Admin::BaseController
   def index
     @pages = Page.order('name')
   end
-  
+
   def new
     @page = Page.new
   end
@@ -53,7 +53,7 @@ class Admin::PagesController < Admin::BaseController
   end
 
   private
-    
+
     def set_page
       @page = Page.friendly.find(params[:id])
     end
