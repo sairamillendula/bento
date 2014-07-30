@@ -70,8 +70,7 @@ class Admin::CollectionsController < Admin::BaseController
   end
 
   def remove_products
-    @relationship = CollectionProduct.find_by_collection_id_and_product_id(@collection.id, params[:product_id])
-    @relationship.destroy
+    @collection.products.delete(Product.find(params[:product_id]))
 
     if @collection.products.any?
       @products = Product.exclude_products(@collection.products.pluck(:product_id)).order('name')
