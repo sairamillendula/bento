@@ -7,12 +7,12 @@ Bento::Application.routes.draw do
   # ============================================================
   # USER ROUTES
   # ============================================================
-  delete "logout" => "sessions#destroy", as: "logout"
-  get "login" => "sessions#new", as: "login"
-  get "signup" => "registrations#new", as: "signup"
-  get "profile" => "registrations#edit", as: "profile"
-  post "profile" => "registrations#update", as: "update_profile"
-  get "paswords/:token/edit" => "passwords#edit", as: "change_password"
+  delete 'logout'            => 'sessions#destroy',     as: "logout"
+  get 'login'                => 'sessions#new',         as: "login"
+  get 'signup'               => 'registrations#new',    as: "signup"
+  get 'profile'              => 'registrations#edit',   as: "profile"
+  post 'profile'             => 'registrations#update', as: "update_profile"
+  get 'paswords/:token/edit' => 'passwords#edit',       as: "change_password"
   resource :password, only: [:new, :create, :edit, :update]
   resources :registrations, except: [:index, :show, :destroy]
   resources :sessions
@@ -20,9 +20,9 @@ Bento::Application.routes.draw do
   # ============================================================
   # API ROUTES
   # ============================================================
-  get '/stripe/callback' => 'stripe#callback'
+  get '/stripe/callback'    => 'stripe#callback'
   get 'api/google_shopping' => 'api#google_shopping'
-  get 'api/sitemap' => 'api#sitemap'
+  get 'api/sitemap'         => 'api#sitemap'
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :products, only: [:index, :show]
@@ -35,8 +35,8 @@ Bento::Application.routes.draw do
   scope module: 'admin', path: 'adm1nistr8tion', as: 'admin' do
     mount Sidekiq::Web => 'sidekiq', constraints: AdminConstraint.new
     root to: 'dashboard#show', as: :dashboard
-    get 'search', to: 'dashboard#search', as: :search
-    get 'audit', to: 'audit_trails#index', as: 'audit'
+    get 'search', to: 'dashboard#search',   as: :search
+    get 'audit',  to: 'audit_trails#index', as: 'audit'
     resource :stock, only: [:show, :update], path: 'stocks', as: 'stocks'
     resources :articles
     resources :categories, only: [:index, :edit, :update, :destroy]
@@ -53,9 +53,9 @@ Bento::Application.routes.draw do
 
     resources :collections do
       member do
-        post "sort_products"
-        post "add_products"
-        post "remove_products"
+        post 'sort_products'
+        post 'add_products'
+        post 'remove_products'
       end
     end
 
@@ -70,7 +70,7 @@ Bento::Application.routes.draw do
       resource :options, only: [:edit, :update], as: :options
       resources :variants, only: [:destroy]
       collection do
-        put :feature
+        put 'feature'
         get 'export'
       end
       resources :pictures do
@@ -92,9 +92,9 @@ Bento::Application.routes.draw do
 
     resource :reports do
       collection do
-        get "sales"
-        get "monthly_sales"
-        get "orders"
+        get 'sales'
+        get 'monthly_sales'
+        get 'orders'
       end
     end
 
@@ -103,11 +103,11 @@ Bento::Application.routes.draw do
     end
 
     resources :orders, only: [:index, :show, :edit, :update] do
-      put "print", on: :collection
-      get "abandoned", on: :collection
+      put 'print', on: :collection
+      get 'abandoned', on: :collection
       member do
-        post "mark_as_shipped"
-        post "cancel"
+        post 'mark_as_shipped'
+        post 'cancel'
       end
     end
   end
@@ -127,14 +127,14 @@ Bento::Application.routes.draw do
   # ============================================================
   # PUBLIC ROUTES
   # ============================================================
-  post "language/set_to_english"
-  post "language/set_to_french"
-  get "application/users" # used for dynamic caching only
+  post 'language/set_to_english'
+  post 'language/set_to_french'
+  get 'application/users' # used for dynamic caching only
 
-  scope "/blog" do
-    get "/", controller: 'articles', action: 'index', as: 'blog'
-    get "/:slug" => "articles#show", as: 'article'
-    get "/tag/:tag" => "articles#index", as: 'tag'
+  scope '/blog' do
+    get '/', controller: 'articles', action: 'index', as: 'blog'
+    get '/:slug'    => "articles#show",  as: 'article'
+    get '/tag/:tag' => "articles#index", as: 'tag'
   end
 
   resource :cart, except: [:new, :create, :edit] do
@@ -159,16 +159,16 @@ Bento::Application.routes.draw do
   resources :shippings, only: [] do
     post :search, on: :collection
   end
-  get "/category/:category", to: "products#index", as: 'category'
-  get "/collection/:slug", to: "collections#show", as: 'collection'
-  get "become_reseller", to: "pages#become_reseller", as: "become_reseller"
   resource :reseller_request, only: :create
   resource :contact, only: [:show, :create]
-  get "user_info" => 'pages#user_info'
-  get 'set_currency' => "application#set_currency"
-  get 'get_total' => "application#get_total"
-
-  get "/:slug" => 'pages#show', as: 'page'
+  
+  get '/category/:category', to: 'products#index',        as: 'category'
+  get '/collection/:slug',   to: 'collections#show',      as: 'collection'
+  get 'become_reseller',     to: 'pages#become_reseller', as: "become_reseller"
+  get 'user_info',           to: 'pages#user_info'
+  get 'set_currency',        to: 'application#set_currency'
+  get 'get_total',           to: 'application#get_total'
+  get '/:slug',              to: 'pages#show',            as: 'page'
 
   root :to => 'pages#home'
 end

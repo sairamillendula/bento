@@ -28,4 +28,11 @@ xml.urlset(xmlns: "http://www.sitemaps.org/schemas/sitemap/0.9") do
       xml.changefreq("weekly")
     end
   end
+
+  @collections.each do |collection|
+    xml.url do
+      xml.loc("#{request.protocol}#{request.host_with_port}#{collection_path(collection)}")
+      xml.changefreq("weekly")
+    end
+  end
 end

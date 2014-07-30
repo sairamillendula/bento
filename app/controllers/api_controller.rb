@@ -14,10 +14,10 @@ class ApiController < ApplicationController
   	@pages = Page.visibles
   	@articles = Article.visibles
   	@products = Product.visibles
+    @collections = Collection.visibles
 
   	respond_to do |format|
-	    format.xml #{ render xml: @products }
-	    # render(:template => “reports/report”, :formats => [:xml], :handlers => :builder, :layout => false)
-	  end
+	    format.xml
+    end
   end
 end
