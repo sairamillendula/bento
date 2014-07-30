@@ -4,7 +4,7 @@
 	<h1><%= link_to "#{t 'theme.site_name'}", root_url %>
 		<span class="site-slogan"><%= t 'theme.site_slogan' %></span>
     <span class="cart-summary">
-		  <i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path %> - 
+		  <i class="icomoon icon-cart"></i> <%= link_to "#{t 'theme.cart.title'}", cart_path, rel: 'nofollow' %> - 
       <%= t('theme.products', count: current_cart.items.length) %> | 
       <span id="current-currency">
         <small><span class="selected-currency"><%= @currency %></span> 

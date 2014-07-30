@@ -2,29 +2,29 @@
 	<div class="cbp-hsinner">
 		<ul class="cbp-hsmenu">
 			<li>
-				<%= link_to "#{t 'theme.bento_lunch_box'}", "#" %>
+				<%= link_to "#{t 'theme.nav.bento_box'}", '#' %>
 				<ul class="cbp-hssubmenu">
-					<li><%= link_to(image_tag('theme/products/bento-modern.png', alt: "Modern bento") + content_tag(:span, "#{t 'theme.nav.modern'}"), "/category/modern") %></li>
-					<li><%= link_to(image_tag('theme/products/bento-traditional.png', alt: "Traditional bento") + content_tag(:span, "#{t 'theme.nav.traditional'}"), "/category/traditional") %></li>
-					<li><%= link_to(image_tag('theme/products/bento-kid.png', alt: "Bento for kids") + content_tag(:span, "#{t 'theme.nav.kid'}"), "/category/kid") %></li>
-					<li><%= link_to(image_tag('theme/products/bento-kit.png', alt: "Bento kit") + content_tag(:span, "#{t 'theme.nav.kit'}"), "/category/kit") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-modern.png', alt: 'Modern bento') + content_tag(:span, "#{t 'theme.nav.modern'}"), '/collection/moderne') %></li>
+					<li><%= link_to(image_tag('theme/products/bento-traditional.png', alt: 'Traditional bento') + content_tag(:span, "#{t 'theme.nav.traditional'}"), '/collection/traditionnel') %></li>
+					<li><%= link_to(image_tag('theme/products/bento-kid.png', alt: 'Bento for kids') + content_tag(:span, "#{t 'theme.nav.kid'}"), '/collection/enfant') %></li>
+					<li><%= link_to(image_tag('theme/products/bento-kit.png', alt: 'Bento kit') + content_tag(:span, "#{t 'theme.nav.kit'}"), '/collection/kit') %></li>
 				</ul>
 			</li>
 			<li>
-				<%= link_to "#{t 'theme.accessories'}", "#" %>
+				<%= link_to "#{t 'theme.nav.accessories'}", "#" %>
 				<ul class="cbp-hssubmenu">
-					<li><%= link_to(image_tag('theme/products/bento-napkin.png', alt: "Bento napkin") + content_tag(:span, "#{t 'theme.nav.napkin'}"), "/category/napkin") %></li>
-					<li><%= link_to(image_tag('theme/products/bento-cutlery.png', alt: "Cutlery & Chopsticks") + content_tag(:span, "#{t 'theme.nav.cutlery'}"), "/category/cutlery") %></li>
-					<li><%= link_to(image_tag('theme/products/bento-bag.png', alt: "Bento bag") + content_tag(:span, "#{t 'theme.nav.bag'}"), "/category/bag") %></li>
+					<li><%= link_to(image_tag('theme/products/bento-napkin.png', alt: 'Bento napkin') + content_tag(:span, "#{t 'theme.nav.napkin'}"), '/collection/serviette-de-table') %></li>
+					<li><%= link_to(image_tag('theme/products/bento-cutlery.png', alt: 'Cutlery & Chopsticks') + content_tag(:span, "#{t 'theme.nav.cutlery'}"), '/collection/couvert') %></li>
+					<li><%= link_to(image_tag('theme/products/bento-bag.png', alt: 'Bento bag') + content_tag(:span, "#{t 'theme.nav.bag'}"), '/collection/sac') %></li>
 				</ul>
 			</li>
-			<li><%= link_to "#{t 'theme.about'}", "/about" %></li>
-			<li><%= link_to "#{t 'theme.contact.menu_tab'}", contact_path %></li>
+			<li><%= link_to "#{t 'theme.about'}", '/about', rel: 'nofollow' %></li>
+			<li><%= link_to "#{t 'theme.contact.menu_tab'}", contact_path, rel: 'nofollow' %></li>
 			<li><%= link_to "#{t 'theme.blog'}", blog_path %></li>
 	    <li class="get-social">
-	    	<%= link_to "", "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %>
-	    	<%= link_to "", "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %>
-	    	<%= link_to "", "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", class: 'icomoon icon-pinterest', target: "_blank" %>
+	    	<%= link_to '', "#{t 'theme.facebook_url', fb_nic: ENV['FACEBOOK_NIC']}", class: 'icomoon icon-facebook', target: "_blank" %>
+	    	<%= link_to '', "#{t 'theme.twitter_url', twitter_nic: ENV['TWITTER_NIC']}", class: 'icomoon icon-twitter', target: "_blank" %>
+	    	<%= link_to '', "#{t 'theme.pinterest_url', pinterest_nic: ENV['PINTEREST_NIC']}", class: 'icomoon icon-pinterest', target: "_blank" %>
 	    </li>
 		</ul>
 	</div>

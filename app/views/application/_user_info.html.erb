@@ -1,12 +1,12 @@
 <% if current_user %>
-  <li><%= t 'theme.welcome' %>, <%= link_to current_user.first_name, profile_path %></li>
-  <li><%= link_to "#{t 'theme.orders.mine'}", orders_path %></li>
+  <li><%= t 'theme.welcome' %>, <%= link_to current_user.first_name, profile_path, rel: 'nofollow' %></li>
+  <li><%= link_to "#{t 'theme.orders.mine'}", orders_path, rel: 'nofollow' %></li>
   <% if current_user.admin? %>
-    <li><%= link_to "#{t 'theme.manage_store'}", admin_dashboard_path %></li>
+    <li><%= link_to "#{t 'theme.manage_store'}", admin_dashboard_path, rel: 'nofollow' %></li>
   <% end %>
-  <li class="fr"><%= link_to("#{t 'theme.logout'}", logout_path, method: :delete) %></li>
+  <li class="fr"><%= link_to("#{t 'theme.logout'}", logout_path, method: :delete, rel: 'nofollow') %></li>
   <li class="fr"><%= I18n.locale == :fr ? (link_to "English", language_set_to_english_path, method: :post) : (link_to "Français", language_set_to_french_path, method: :post) %></li>
 <% else %>
-  <li><%= t 'theme.welcome' %>, <%= link_to "#{t 'theme.login'}", login_path %> <%= t 'theme.or' %> <%= link_to "#{t 'theme.register'}", signup_path %></li>
+  <li><%= t 'theme.welcome' %>, <%= link_to "#{t 'theme.login'}", login_path, rel: 'nofollow' %> <%= t 'theme.or' %> <%= link_to "#{t 'theme.register'}", signup_path, rel: 'nofollow' %></li>
   <li class="fr"><%= I18n.locale == :fr ? (link_to "English", language_set_to_english_path, method: :post) : (link_to "Français", language_set_to_french_path, method: :post) %></li>
 <% end %>

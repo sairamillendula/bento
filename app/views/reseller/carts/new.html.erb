@@ -16,7 +16,7 @@
         <td style="<%= item.object.variant.master? ? '' : 'padding-left:50px;' %>">
           <% if item.object.variant.master %>
             <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
-            <%= link_to item.object.variant.product.name, [:reseller, item.object.variant.product] %>
+            <%= link_to item.object.variant.product.name, product_path(item.object.variant.product) %>
           <% else %>
             <%= image_tag(item.object.variant.product.pictures.first.upload.url(:thumb), size: "38x38") if item.object.variant.product.pictures.any? %>
             <%= item.object.variant.name %>

@@ -14,6 +14,15 @@ puts "Created shipping country: WORLDWIDE"
 Setting.create!(
 	abandoned_carts_reminder: "3"
 )
-puts "Created defaut settings..."
+puts "Created default settings..."
 
+Collection.create!(name: 'Couverts bento', slug: 'couvert')
+Collection.create!(name: 'Sac bento (Furoshiki)', slug: 'sac')
+Collection.create!(name: 'Serviette de table lunch box', slug: 'serviette-de-table')
+Collection.create!(name: 'Kit lunch box bento', slug: 'kit')
+Collection.create!(name: 'Boite bento pour enfant', slug: 'enfant')
+Collection.create!(name: 'Boite bento japonaise', slug: 'traditionnel')
+Collection.create!(name: 'Boite bento moderne', slug: 'moderne')
 Collection.create!(name: 'revendeur', slug: 'revendeur', visible: false)
+
+puts "Created default collections..."

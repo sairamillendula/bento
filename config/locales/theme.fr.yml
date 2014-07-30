@@ -14,7 +14,6 @@ fr:
     manage_store: Administration
     welcome: Bienvenue
     or: ou
-    accessories: Accessoires
     categories: Catégories
     about: À propos
     contact: Contact
@@ -47,6 +46,8 @@ fr:
     become_reseller: Devenez revendeur
     bento_customization: Personnalisation de bento
     nav:
+      accessories: Accessoires bento
+      bento_box: Boite bento
       modern: Bento moderne
       traditional: Bento traditionnel
       kid: Bento pour enfants
