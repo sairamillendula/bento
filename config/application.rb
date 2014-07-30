@@ -56,10 +56,10 @@ module Bento
     config.assets.precompile += ['admin.js', 'admin.css', 'theme.js', 'theme.css']
 
     # API
-    config.middleware.use Rack::Cors do
+    config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
       allow do
         origins '*'
-        resource '/api/*', headers: :any, methods: [:get, :put, :patch, :post, :options]
+        resource '/api/*', headers: :any, methods: [:get, :post, :put, :delete, :options]
       end
     end
 
