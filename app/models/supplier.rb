@@ -1,9 +1,9 @@
 class Supplier < ActiveRecord::Base
-  
+
   # ASSOCIATIONS
 	# ------------------------------------------------------------------------------------------------------
   has_and_belongs_to_many :products
-  
+
 
   # VALIDATIONS
   # ------------------------------------------------------------------------------------------------------
@@ -30,5 +30,5 @@ class Supplier < ActiveRecord::Base
 	  tokens.gsub!(/<<<(.+?)>>>/) { create!(name: $1).id }
 	  tokens.split(',')
 	end
-	
+
 end

@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
   # ------------------------------------------------------------------------------------------------------
   include PgSearch
   multisearchable :against => [:first_name, :last_name, :email]
-  pg_search_scope :search_by_keyword, 
+  pg_search_scope :search_by_keyword,
                   :against => [:first_name, :last_name, :email],
                   :using => {
                     :tsearch => {
@@ -94,13 +94,13 @@ class User < ActiveRecord::Base
   end
 
   def toggle_reseller_status
-    self.reseller = !reseller
-    self.reseller_request.approved = !reseller_request.approved
+    self.reseller = !self.reseller
+    self.reseller_request.approved = !self.reseller_request.approved
     save!
   end
 
-  def reseller?
-    reseller_request.present?
+  def active_reseller?
+    reseller_request.present? && reseller_request.approved?
   end
 
   private

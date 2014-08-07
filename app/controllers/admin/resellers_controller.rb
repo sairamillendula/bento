@@ -14,7 +14,7 @@ class Admin::ResellersController < Admin::BaseController
     @user.toggle_reseller_status
 
     respond_to do |format|
-      if @user.reseller?
+      if @user.active_reseller?
         format.html { redirect_to admin_resellers_url, notice: "#{@user.full_name} reseller account was approved. Confirmation sent to #{@user.email}" }
         format.js
         ResellerMailer.reseller_request_approved(@user).deliver

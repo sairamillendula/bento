@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
 	  	else
 				if user.admin?
 			    redirect_to admin_dashboard_url
-			  elsif user.reseller?
+			  elsif user.active_reseller?
 		      redirect_to reseller_dashboard_url
 			  else
 			  	redirect_back_or_to root_url

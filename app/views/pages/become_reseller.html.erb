@@ -8,7 +8,7 @@
 
 <% if current_user %>
   <% if current_user.reseller_request %>
-    <% if current_user.reseller? %>
+    <% if current_user.active_reseller? %>
       <p class="alert">You already are a reseller. <%= link_to "Go To Reseller Account", reseller_dashboard_path %></p>
     <% else %>
       <p class="alert"><%= t 'resellers.pending_request' %>.</p>
