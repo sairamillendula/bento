@@ -4,6 +4,48 @@
 	width: 100%;
 	//max-width: 69em;
   }
+
+  .hero {
+  	background-image: url(asset_path("theme/slide-home.jpg", image));
+  	//asset-url("<%= asset_url('theme/slide-home.jpg') %>");
+  	height: 500px;
+
+  	.inner {
+      width: 335px;
+      word-wrap: break-word;
+  	}
+
+  	.title {
+  		width: 3em;
+  		font-size: 37px;
+      text-transform: uppercase;
+      position: relative;
+      left: 55px;
+      top: 225px;
+      color: #ffffff;
+      word-break: break-all;
+      -ms-word-break: break-all;
+      word-wrap: break-word;
+
+      h1 {
+      	font-size: 37px;
+      	font-weight: normal;
+      	word-break: break-all;
+        -ms-word-break: break-all;
+        word-wrap: break-word;
+      }
+  	}
+  	.tagline {
+      font-size: 14px;
+      word-wrap: break-word;
+  	}
+  }
+
+  h2 {
+  	line-height: 1.8em;
+  	font-size: 1.6em;
+  	font-weight: normal;
+  }
 }
 
 #product.public {

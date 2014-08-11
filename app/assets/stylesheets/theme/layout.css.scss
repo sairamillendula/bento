@@ -41,7 +41,7 @@ a {
 	padding-bottom: 1.4em;
 }
 
-.container > header h1 {
+.container > header p {
 	font-family: 'BrandonPrintedTwo-Shadow';
 	font-weight: normal;
 	font-size: 46px;
@@ -139,7 +139,6 @@ a {
 }
 
 /* Custom */
-#main_footer { clear: both; }
 #footer {
 	position: relative;
 	bottom: 0px;
@@ -321,7 +320,6 @@ a {
 /* end custom */
 
 @media screen and (max-width: 55em) {
-
 	.container > header h1,
 	.container > header nav {
 		float: none;

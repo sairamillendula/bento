@@ -45,6 +45,8 @@ fr:
     change_currency: changer
     become_reseller: Devenez revendeur
     bento_customization: Personnalisation de bento
+    homepage:
+      tagline: 'Boites à repas traditionnelles ou modernes, pour transporter son déjeuner au travail ou au parc. Ces ravissantes "lunch box" sauront ravir les grands comme les enfants'
     nav:
       accessories: Accessoires bento
       bento_box: Boite bento

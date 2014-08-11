@@ -1,6 +1,16 @@
 <%= content_for :body_id do %>homepage<% end %>
 
-<%= image_tag("theme/slide#{@random_slide}.jpg", alt: "#{t 'theme.site_intro'}", class: 'slide-home') %>
+<%#= image_tag("theme/slide#{@random_slide}.jpg", alt: "#{t 'theme.site_intro'}", class: 'slide-home') %>
+
+<div class="hero">
+	<div class="inner">
+		<span class="title">Spécialiste du <h1>Bento japonais</h1>
+	  <p class="tagline">Découvrez plus de 75 bento et <br>accessoires	 bento sur notre boutique.</p>
+	  </span>
+	</div>
+</div>
+
+<h2><%= "#{t 'theme.homepage.tagline'}" %>.</h2>
 
 <% cache [@products, @currency] do %>
 	<div id="pgcontainer" class="pgcontainer">

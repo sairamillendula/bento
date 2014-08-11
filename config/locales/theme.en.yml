@@ -45,6 +45,8 @@ en:
     change_currency: change
     become_reseller: Become reseller
     bento_customization: Custom bento
+    homepage:
+      tagline: 'Traditional or modern bento lunch boxes to carry lunch to work or to the park. These cuties will make you smile rain or shine'
     nav:
       accessories: Accessories for bento
       bento_box: Bento box
