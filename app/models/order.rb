@@ -197,6 +197,16 @@ class Order < ActiveRecord::Base
     logger.error "Stripe error while creating customer: #{e.message}"
     errors.add :base, "#{I18n.t 'stripe.error'}."
     false
+
+  rescue Stripe::CardError => e
+    logger.error "Stripe error while charge: #{e.message}"
+    errors.add :base, "#{I18n.t 'stripe.error'}."
+    false
+
+  rescue => e
+    logger.error "Stripe error: #{e.message}"
+    false
+
   end
 
   def coupon_formatted
