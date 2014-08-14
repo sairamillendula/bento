@@ -25,7 +25,7 @@ class ShippingCountry < ActiveRecord::Base
   end
 
   def self.find_by_country(name)
-    where(country: name).first || where(country: Country.find_by_name(name)[0]).first
+    where(country: name).first || where(country: Country.find_by_name(name)[0]).first rescue nil || where(country: Country.find_by_alpha2(name)[0]).first rescue nil
   end
 
   private
