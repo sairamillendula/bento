@@ -13,7 +13,6 @@
 .DS_Store
 public/assets/
 .rvmrc
-/config/initializers/stripe.rb
 # Ignore application configuration
 /config/application.yml
 /config/database.yml

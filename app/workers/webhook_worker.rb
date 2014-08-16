@@ -46,10 +46,11 @@ class WebhookWorker
       request = Net::HTTP::Post.new(uri.path, headers)
       request.body = body
       begin
-      response = http.request(request)
-      response.code == '200' ? true : false
+        response = http.request(request)
+        response.code == '200' ? true : false
       rescue
         false
+        puts "**** #{response.message} ****"
       end
     end
   end
