@@ -13,6 +13,7 @@ class LineItemsController < ApplicationController
         format.html {
           # line item is 'out of stock' string
           redirect_to cart_path, alert: @line_item
+          puts "**** #{@line_item} ****"
         }
         format.js
       end
