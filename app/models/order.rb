@@ -199,14 +199,13 @@ class Order < ActiveRecord::Base
     false
 
   rescue Stripe::CardError => e
-    logger.error "Stripe error while charge: #{e.message}"
+    logger.error "Stripe error while charging: #{e.message}"
     errors.add :base, "#{I18n.t 'stripe.error'}."
     false
 
   rescue => e
     logger.error "Stripe error: #{e.message}"
     false
-
   end
 
   def coupon_formatted

@@ -28,6 +28,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'rails-observers', '~> 0.1.2' # required for sweepers
 gem 'actionpack-page_caching' # required for page caching
 gem 'actionpack-action_caching' # required for page caching
+gem 'activerecord-session_store', github: 'rails/activerecord-session_store'
 
 gem 'pg_search'
 gem 'sorcery', '~> 0.8.5'

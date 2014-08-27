@@ -19,6 +19,15 @@ GIT
       ttfunk (~> 1.1.1)
 
 GIT
+  remote: git://github.com/rails/activerecord-session_store.git
+  revision: e879bf087eb684452aaddb734efa20b95588b141
+  specs:
+    activerecord-session_store (0.1.0)
+      actionpack (>= 4.0.0, < 5)
+      activerecord (>= 4.0.0, < 5)
+      railties (>= 4.0.0, < 5)
+
+GIT
   remote: https://github.com/hoangnghiem/countries.git
   revision: 02a0ffdcdfc566579ff1af21dd91d6c08a20390d
   specs:
@@ -329,6 +338,7 @@ PLATFORMS
 DEPENDENCIES
   actionpack-action_caching
   actionpack-page_caching
+  activerecord-session_store!
   acts_as_list
   better_errors
   capistrano (~> 2.15.0)
